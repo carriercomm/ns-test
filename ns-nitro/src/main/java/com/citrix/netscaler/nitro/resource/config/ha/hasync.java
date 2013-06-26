@@ -58,7 +58,7 @@ public class hasync extends base_resource
 
 	/**
 	* <pre>
-	* After synchronization, automatically save the configuration in the secondary node’s configuration file (ns.conf) without prompting for confirmation.<br> Possible values = YES, NO
+	* After synchronization, automatically save the configuration in the secondary nodes configuration file (ns.conf) without prompting for confirmation.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_save(String save) throws Exception{
@@ -67,7 +67,7 @@ public class hasync extends base_resource
 
 	/**
 	* <pre>
-	* After synchronization, automatically save the configuration in the secondary node’s configuration file (ns.conf) without prompting for confirmation.<br> Possible values = YES, NO
+	* After synchronization, automatically save the configuration in the secondary nodes configuration file (ns.conf) without prompting for confirmation.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_save() throws Exception {

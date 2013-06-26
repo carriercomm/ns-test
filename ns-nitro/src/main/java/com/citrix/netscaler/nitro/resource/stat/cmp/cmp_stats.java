@@ -201,7 +201,7 @@ public class cmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of HTTP compression requests the NetScaler receives for which the response is successfully compressed. For example, after you enable compression and configure services, if you send requests to the NetScaler with the following header information: “Accept-Encoding: gzip, deflate, and NetScaler compresses the corresponding response, this counter is incremented.
+	* Number of HTTP compression requests the NetScaler receives for which the response is successfully compressed. For example, after you enable compression and configure services, if you send requests to the NetScaler with the following header information: Accept-Encoding: gzip, deflate, and NetScaler compresses the corresponding response, this counter is incremented.
 	* </pre>
 	*/
 	public Long get_comprequestsrate() throws Exception {
@@ -687,7 +687,7 @@ public class cmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of HTTP compression requests the NetScaler receives for which the response is successfully compressed. For example, after you enable compression and configure services, if you send requests to the NetScaler with the following header information: “Accept-Encoding: gzip, deflate”, and NetScaler compresses the corresponding response, this counter is incremented.
+	* Number of HTTP compression requests the NetScaler receives for which the response is successfully compressed. For example, after you enable compression and configure services, if you send requests to the NetScaler with the following header information: Accept-Encoding: gzip, deflate, and NetScaler compresses the corresponding response, this counter is incremented.
 	* </pre>
 	*/
 	public Long get_comptotalrequests() throws Exception {

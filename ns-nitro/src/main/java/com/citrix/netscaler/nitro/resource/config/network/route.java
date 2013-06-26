@@ -259,7 +259,7 @@ public class route extends base_resource
 	/**
 	* <pre>
 	* Routing protocols used for advertising routes if route advertisement is enabled.
-             Note: For this setting to work, you must configure the dynamic routing protocol from the VTYSH command line. For more information about configuring dynamic routing protocols on the NetScaler appliance, see the “Dynamic Routing” chapter of the Citrix NetScaler Networking Guide. .<br> Possible values = OSPF, ISIS, RIP, BGP
+             Note: For this setting to work, you must configure the dynamic routing protocol from the VTYSH command line. For more information about configuring dynamic routing protocols on the NetScaler appliance, see the Dynamic Routing chapter of the Citrix NetScaler Networking Guide. .<br> Possible values = OSPF, ISIS, RIP, BGP
 	* </pre>
 	*/
 	public void set_protocol(String[] protocol) throws Exception{
@@ -269,7 +269,7 @@ public class route extends base_resource
 	/**
 	* <pre>
 	* Routing protocols used for advertising routes if route advertisement is enabled.
-             Note: For this setting to work, you must configure the dynamic routing protocol from the VTYSH command line. For more information about configuring dynamic routing protocols on the NetScaler appliance, see the “Dynamic Routing” chapter of the Citrix NetScaler Networking Guide. .<br> Possible values = OSPF, ISIS, RIP, BGP
+             Note: For this setting to work, you must configure the dynamic routing protocol from the VTYSH command line. For more information about configuring dynamic routing protocols on the NetScaler appliance, see the Dynamic Routing chapter of the Citrix NetScaler Networking Guide. .<br> Possible values = OSPF, ISIS, RIP, BGP
 	* </pre>
 	*/
 	public String[] get_protocol() throws Exception {
