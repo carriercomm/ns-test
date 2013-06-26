@@ -12,7 +12,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.rackspace.exp</groupId>
+            <groupId>com.citrix.netscaler</groupId>
             <artifactId>ns-nitro</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

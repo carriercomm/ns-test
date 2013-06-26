@@ -6,9 +6,10 @@
         <artifactId>ns-test-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    <groupId>com.citrix.netscaler</groupId>
     <artifactId>ns-nitro</artifactId>
-    <name> Netscaler :: Experiment :: Nitro source</name>
     <version>0.0.1-SNAPSHOT</version>
+    <name> Netscaler :: Experiment :: Nitro source</name>
     <packaging>jar</packaging>
 
     <dependencies>
