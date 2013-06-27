@@ -14,6 +14,7 @@
     <modules>
         <module>sample-classes</module>
         <module>not-implemented</module>
+        <module>get_config</module>
     </modules>
     <build>
          <pluginManagement>
