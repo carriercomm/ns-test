@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cs;
@@ -27,7 +33,6 @@ class cspolicy_cspolicylabel_binding_response extends base_response
 public class cspolicy_cspolicylabel_binding extends base_resource
 {
 	private String domain;
-	private String target;
 	private String url;
 	private Long priority;
 	private Long hits;
@@ -38,7 +43,7 @@ public class cspolicy_cspolicylabel_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the policy to be displayed. if no name is given then all policies will be displayed.<br> Minimum length =  1
+	* Name of the content switching policy to display. If this parameter is omitted, details of all the policies are displayed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_policyname(String policyname) throws Exception{
@@ -47,7 +52,7 @@ public class cspolicy_cspolicylabel_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the policy to be displayed. if no name is given then all policies will be displayed.<br> Minimum length =  1
+	* Name of the content switching policy to display. If this parameter is omitted, details of all the policies are displayed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_policyname() throws Exception {
@@ -101,18 +106,7 @@ public class cspolicy_cspolicylabel_binding extends base_resource
 
 	/**
 	* <pre>
-	* Target flag.
-	* </pre>
-	*/
-	public String get_target() throws Exception {
-		return this.target;
-	}
-
-	/**
-	* <pre>
-	* The URL, with wildcards.
-Specify the string value in this format:
-// [[prefix ] [*]] [.suffix].<br> Minimum length =  1<br> Maximum length =  208
+	* URL string that is matched with the URL of a request. Can contain a wildcard character. Specify the string value in the following format: [[prefix] [*]] [.suffix].<br> Minimum length =  1<br> Maximum length =  208
 	* </pre>
 	*/
 	public String get_url() throws Exception {

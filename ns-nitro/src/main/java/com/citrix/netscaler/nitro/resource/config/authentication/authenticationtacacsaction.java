@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.authentication;
@@ -34,6 +40,7 @@ public class authenticationtacacsaction extends base_resource
 	private String authorization;
 	private String accounting;
 	private String auditfailedcmds;
+	private String defaultauthenticationgroup;
 
 	//------- Read only Parameter ---------;
 
@@ -43,7 +50,11 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The name for the new TACACS+ action.<br> Minimum length =  1
+	* Name for the TACACS+ profile (action). 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after TACACS profile is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my authentication action or my authentication action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -52,7 +63,11 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The name for the new TACACS+ action.<br> Minimum length =  1
+	* Name for the TACACS+ profile (action). 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after TACACS profile is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my authentication action or my authentication action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -61,7 +76,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the TACACS+ server.<br> Minimum length =  1
+	* IP address assigned to the TACACS+ server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_serverip(String serverip) throws Exception{
@@ -70,7 +85,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the TACACS+ server.<br> Minimum length =  1
+	* IP address assigned to the TACACS+ server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_serverip() throws Exception {
@@ -79,7 +94,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The port on which the TACACS+ server is running.<br> Default value: 49<br> Minimum value =  1
+	* Port number on which the TACACS+ server listens for connections.<br> Default value: 49<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_serverport(int serverport) throws Exception {
@@ -88,7 +103,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The port on which the TACACS+ server is running.<br> Default value: 49<br> Minimum value =  1
+	* Port number on which the TACACS+ server listens for connections.<br> Default value: 49<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_serverport(Integer serverport) throws Exception{
@@ -97,7 +112,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The port on which the TACACS+ server is running.<br> Default value: 49<br> Minimum value =  1
+	* Port number on which the TACACS+ server listens for connections.<br> Default value: 49<br> Minimum value =  1
 	* </pre>
 	*/
 	public Integer get_serverport() throws Exception {
@@ -106,7 +121,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of seconds the system will wait for a response from the TACACS+ server.<br> Default value: 3<br> Minimum value =  1
+	* Number of seconds the NetScaler appliance waits for a response from the TACACS+ server.<br> Default value: 3<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_authtimeout(long authtimeout) throws Exception {
@@ -115,7 +130,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of seconds the system will wait for a response from the TACACS+ server.<br> Default value: 3<br> Minimum value =  1
+	* Number of seconds the NetScaler appliance waits for a response from the TACACS+ server.<br> Default value: 3<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_authtimeout(Long authtimeout) throws Exception{
@@ -124,7 +139,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of seconds the system will wait for a response from the TACACS+ server.<br> Default value: 3<br> Minimum value =  1
+	* Number of seconds the NetScaler appliance waits for a response from the TACACS+ server.<br> Default value: 3<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_authtimeout() throws Exception {
@@ -133,7 +148,8 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The key shared between the client and the server. This information is required for the system to communicate with the TACACS+ server.<br> Minimum length =  1
+	* Key shared between the TACACS+ server and the NetScaler appliance. 
+Required for allowing the NetScaler appliance to communicate with the TACACS+ server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_tacacssecret(String tacacssecret) throws Exception{
@@ -142,7 +158,8 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The key shared between the client and the server. This information is required for the system to communicate with the TACACS+ server.<br> Minimum length =  1
+	* Key shared between the TACACS+ server and the NetScaler appliance. 
+Required for allowing the NetScaler appliance to communicate with the TACACS+ server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_tacacssecret() throws Exception {
@@ -151,7 +168,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The state of the TACACS+ server that will be used for streaming authorization.<br> Possible values = ON, OFF
+	* Use streaming authorization on the TACACS+ server.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_authorization(String authorization) throws Exception{
@@ -160,7 +177,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The state of the TACACS+ server that will be used for streaming authorization.<br> Possible values = ON, OFF
+	* Use streaming authorization on the TACACS+ server.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_authorization() throws Exception {
@@ -169,7 +186,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The state of the TACACS+ server that will receive accounting messages.<br> Possible values = ON, OFF
+	* Whether the TACACS+ server is currently accepting accounting messages.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_accounting(String accounting) throws Exception{
@@ -178,7 +195,7 @@ public class authenticationtacacsaction extends base_resource
 
 	/**
 	* <pre>
-	* The state of the TACACS+ server that will receive accounting messages.<br> Possible values = ON, OFF
+	* Whether the TACACS+ server is currently accepting accounting messages.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_accounting() throws Exception {
@@ -201,6 +218,24 @@ public class authenticationtacacsaction extends base_resource
 	*/
 	public String get_auditfailedcmds() throws Exception {
 		return this.auditfailedcmds;
+	}
+
+	/**
+	* <pre>
+	* This is the default group that is chosen when the authentication succeeds in addition to extracted groups.<br> Maximum length =  64
+	* </pre>
+	*/
+	public void set_defaultauthenticationgroup(String defaultauthenticationgroup) throws Exception{
+		this.defaultauthenticationgroup = defaultauthenticationgroup;
+	}
+
+	/**
+	* <pre>
+	* This is the default group that is chosen when the authentication succeeds in addition to extracted groups.<br> Maximum length =  64
+	* </pre>
+	*/
+	public String get_defaultauthenticationgroup() throws Exception {
+		return this.defaultauthenticationgroup;
 	}
 
 	/**
@@ -268,6 +303,7 @@ public class authenticationtacacsaction extends base_resource
 		addresource.authorization = resource.authorization;
 		addresource.accounting = resource.accounting;
 		addresource.auditfailedcmds = resource.auditfailedcmds;
+		addresource.defaultauthenticationgroup = resource.defaultauthenticationgroup;
 		return addresource.add_resource(client);
 	}
 
@@ -288,6 +324,7 @@ public class authenticationtacacsaction extends base_resource
 				addresources[i].authorization = resources[i].authorization;
 				addresources[i].accounting = resources[i].accounting;
 				addresources[i].auditfailedcmds = resources[i].auditfailedcmds;
+				addresources[i].defaultauthenticationgroup = resources[i].defaultauthenticationgroup;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -357,6 +394,7 @@ public class authenticationtacacsaction extends base_resource
 		updateresource.authorization = resource.authorization;
 		updateresource.accounting = resource.accounting;
 		updateresource.auditfailedcmds = resource.auditfailedcmds;
+		updateresource.defaultauthenticationgroup = resource.defaultauthenticationgroup;
 		return updateresource.update_resource(client);
 	}
 
@@ -377,6 +415,7 @@ public class authenticationtacacsaction extends base_resource
 				updateresources[i].authorization = resources[i].authorization;
 				updateresources[i].accounting = resources[i].accounting;
 				updateresources[i].auditfailedcmds = resources[i].auditfailedcmds;
+				updateresources[i].defaultauthenticationgroup = resources[i].defaultauthenticationgroup;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -387,26 +426,9 @@ public class authenticationtacacsaction extends base_resource
 	* Use this API to unset the properties of authenticationtacacsaction resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		authenticationtacacsaction unsetresource = new authenticationtacacsaction();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of authenticationtacacsaction resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, authenticationtacacsaction resource, String[] args) throws Exception{
 		authenticationtacacsaction unsetresource = new authenticationtacacsaction();
 		unsetresource.name = resource.name;
-		unsetresource.serverip = resource.serverip;
-		unsetresource.serverport = resource.serverport;
-		unsetresource.authtimeout = resource.authtimeout;
-		unsetresource.tacacssecret = resource.tacacssecret;
-		unsetresource.authorization = resource.authorization;
-		unsetresource.accounting = resource.accounting;
-		unsetresource.auditfailedcmds = resource.auditfailedcmds;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -438,13 +460,6 @@ public class authenticationtacacsaction extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new authenticationtacacsaction();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].serverip = resources[i].serverip;
-				unsetresources[i].serverport = resources[i].serverport;
-				unsetresources[i].authtimeout = resources[i].authtimeout;
-				unsetresources[i].tacacssecret = resources[i].tacacssecret;
-				unsetresources[i].authorization = resources[i].authorization;
-				unsetresources[i].accounting = resources[i].accounting;
-				unsetresources[i].auditfailedcmds = resources[i].auditfailedcmds;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

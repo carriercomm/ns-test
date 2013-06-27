@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.vpn;
@@ -35,16 +41,13 @@ public class vpnclientlessaccesspolicy extends base_resource
 	private String undefaction;
 	private Long hits;
 	private Long undefhits;
-	private Integer activepolicy;
-	private String boundto;
-	private Long priority;
 	private String description;
 	private Boolean isdefault;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name for the new clientless access policy.<br> Minimum length =  1
+	* Name of the new clientless access policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -53,7 +56,7 @@ public class vpnclientlessaccesspolicy extends base_resource
 
 	/**
 	* <pre>
-	* The name for the new clientless access policy.<br> Minimum length =  1
+	* Name of the new clientless access policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -62,7 +65,13 @@ public class vpnclientlessaccesspolicy extends base_resource
 
 	/**
 	* <pre>
-	* The rule to be used by the clientless access policy.
+	* Expression, or name of a named expression, specifying the traffic that matches the policy. Can be written in either default or classic syntax. 
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 	* </pre>
 	*/
 	public void set_rule(String rule) throws Exception{
@@ -71,7 +80,13 @@ public class vpnclientlessaccesspolicy extends base_resource
 
 	/**
 	* <pre>
-	* The rule to be used by the clientless access policy.
+	* Expression, or name of a named expression, specifying the traffic that matches the policy. Can be written in either default or classic syntax. 
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 	* </pre>
 	*/
 	public String get_rule() throws Exception {
@@ -80,7 +95,7 @@ public class vpnclientlessaccesspolicy extends base_resource
 
 	/**
 	* <pre>
-	* The profile to be invoked for clientless access.
+	* Name of the profile to invoke for the clientless access.
 	* </pre>
 	*/
 	public void set_profilename(String profilename) throws Exception{
@@ -89,7 +104,7 @@ public class vpnclientlessaccesspolicy extends base_resource
 
 	/**
 	* <pre>
-	* The profile to be invoked for clientless access.
+	* Name of the profile to invoke for the clientless access.
 	* </pre>
 	*/
 	public String get_profilename() throws Exception {
@@ -121,33 +136,6 @@ public class vpnclientlessaccesspolicy extends base_resource
 	*/
 	public Long get_undefhits() throws Exception {
 		return this.undefhits;
-	}
-
-	/**
-	* <pre>
-	* Indicates whether policy is bound or not.
-	* </pre>
-	*/
-	public Integer get_activepolicy() throws Exception {
-		return this.activepolicy;
-	}
-
-	/**
-	* <pre>
-	* Location where policy is bound.
-	* </pre>
-	*/
-	public String get_boundto() throws Exception {
-		return this.boundto;
-	}
-
-	/**
-	* <pre>
-	* Specifies the priority of the policy.<br> Minimum value =  1<br> Maximum value =  2147483647
-	* </pre>
-	*/
-	public Long get_priority() throws Exception {
-		return this.priority;
 	}
 
 	/**

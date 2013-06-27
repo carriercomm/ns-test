@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ns;
@@ -28,7 +34,7 @@ public class nsencryptionparams extends base_resource
 
 	/**
 	* <pre>
-	* The cipher method (and key length) used to encrypt and decrypt content. The default method is AES256.<br> Possible values = NONE, RC4, DES3, AES128, AES192, AES256
+	* Cipher method (and key length) to be used to encrypt and decrypt content. The default value is AES256.<br> Possible values = NONE, RC4, DES3, AES128, AES192, AES256
 	* </pre>
 	*/
 	public void set_method(String method) throws Exception{
@@ -37,7 +43,7 @@ public class nsencryptionparams extends base_resource
 
 	/**
 	* <pre>
-	* The cipher method (and key length) used to encrypt and decrypt content. The default method is AES256.<br> Possible values = NONE, RC4, DES3, AES128, AES192, AES256
+	* Cipher method (and key length) to be used to encrypt and decrypt content. The default value is AES256.<br> Possible values = NONE, RC4, DES3, AES128, AES192, AES256
 	* </pre>
 	*/
 	public String get_method() throws Exception {
@@ -46,7 +52,10 @@ public class nsencryptionparams extends base_resource
 
 	/**
 	* <pre>
-	* The base64-encoded key generation number, method, and key value. The parameter should be omitted when the encryption method is being changed, but can be specified with an empty string argument ("") for the generation of a new key value for the current encryption method. The parameter is passed implicitly, with its automatically generated value, to the NetScaler Packet Engines even when it is not specified in the command. This enables the appliance to save the key value to the configuration file and to enable propagation of the key value to the secondary appliance in an HA pair.
+	* The base64-encoded key generation number, method, and key value. 
+Note:
+* Do not include this argument if you are changing the encryption method.
+* To generate a new key value for the current encryption method, specify an empty string \(""\) as the value of this parameter. The parameter is passed implicitly, with its automatically generated value, to the NetScaler packet engines even when it is not included in the command. Passing the parameter to the packet engines enables the appliance to save the key value to the configuration file and to propagate the key value to the secondary appliance in a high availability setup.
 	* </pre>
 	*/
 	public void set_keyvalue(String keyvalue) throws Exception{
@@ -55,7 +64,10 @@ public class nsencryptionparams extends base_resource
 
 	/**
 	* <pre>
-	* The base64-encoded key generation number, method, and key value. The parameter should be omitted when the encryption method is being changed, but can be specified with an empty string argument ("") for the generation of a new key value for the current encryption method. The parameter is passed implicitly, with its automatically generated value, to the NetScaler Packet Engines even when it is not specified in the command. This enables the appliance to save the key value to the configuration file and to enable propagation of the key value to the secondary appliance in an HA pair.
+	* The base64-encoded key generation number, method, and key value. 
+Note:
+* Do not include this argument if you are changing the encryption method.
+* To generate a new key value for the current encryption method, specify an empty string \(""\) as the value of this parameter. The parameter is passed implicitly, with its automatically generated value, to the NetScaler packet engines even when it is not included in the command. Passing the parameter to the packet engines enables the appliance to save the key value to the configuration file and to propagate the key value to the secondary appliance in a high availability setup.
 	* </pre>
 	*/
 	public String get_keyvalue() throws Exception {

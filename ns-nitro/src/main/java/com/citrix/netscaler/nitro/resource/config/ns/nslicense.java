@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ns;
@@ -69,6 +75,8 @@ public class nslicense extends base_resource
 	private Boolean isis;
 	private Boolean cluster;
 	private Boolean ch;
+	private Boolean appqoe;
+	private Boolean appflowica;
 
 	/**
 	* <pre>
@@ -428,6 +436,24 @@ public class nslicense extends base_resource
 	*/
 	public Boolean get_ch() throws Exception {
 		return this.ch;
+	}
+
+	/**
+	* <pre>
+	* AppQoS.
+	* </pre>
+	*/
+	public Boolean get_appqoe() throws Exception {
+		return this.appqoe;
+	}
+
+	/**
+	* <pre>
+	* Appflow for ICA.
+	* </pre>
+	*/
+	public Boolean get_appflowica() throws Exception {
+		return this.appflowica;
 	}
 
 	/**

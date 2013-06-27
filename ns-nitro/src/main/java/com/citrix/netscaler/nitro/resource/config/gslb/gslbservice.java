@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.gslb;
@@ -73,7 +79,9 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service.<br> Minimum length =  1
+	* Name for the GSLB service. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the GSLB service is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my gslbsvc" or 'my gslbsvc').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicename(String servicename) throws Exception{
@@ -82,7 +90,9 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service.<br> Minimum length =  1
+	* Name for the GSLB service. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the GSLB service is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my gslbsvc" or 'my gslbsvc').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicename() throws Exception {
@@ -91,7 +101,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The cname of the gslb service.<br> Minimum length =  1
+	* Canonical name of the GSLB service. Used in CNAME-based GSLB.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_cnameentry(String cnameentry) throws Exception{
@@ -100,7 +110,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The cname of the gslb service.<br> Minimum length =  1
+	* Canonical name of the GSLB service. Used in CNAME-based GSLB.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_cnameentry() throws Exception {
@@ -109,7 +119,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the server for which the service will be added.<br> Minimum length =  1
+	* IP address for the GSLB service. Should represent a load balancing, content switching, or VPN virtual server on the NetScaler appliance, or the IP address of another load balancing device.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ip(String ip) throws Exception{
@@ -118,7 +128,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the server for which the service will be added.<br> Minimum length =  1
+	* IP address for the GSLB service. Should represent a load balancing, content switching, or VPN virtual server on the NetScaler appliance, or the IP address of another load balancing device.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ip() throws Exception {
@@ -127,7 +137,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The name  of the server for which the service will be added.<br> Minimum length =  1
+	* Name of the server hosting the GSLB service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servername(String servername) throws Exception{
@@ -136,7 +146,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The name  of the server for which the service will be added.<br> Minimum length =  1
+	* Name of the server hosting the GSLB service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servername() throws Exception {
@@ -145,7 +155,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The type of service that is being added.<br> Default value: NSSVC_SERVICE_UNKNOWN<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL
+	* Type of service to create.<br> Default value: NSSVC_SERVICE_UNKNOWN<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL
 	* </pre>
 	*/
 	public void set_servicetype(String servicetype) throws Exception{
@@ -154,7 +164,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The type of service that is being added.<br> Default value: NSSVC_SERVICE_UNKNOWN<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL
+	* Type of service to create.<br> Default value: NSSVC_SERVICE_UNKNOWN<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL
 	* </pre>
 	*/
 	public String get_servicetype() throws Exception {
@@ -163,7 +173,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The port on which the service is running.<br> Minimum value =  1<br> Range 1 - 65535
+	* Port on which the load balancing entity represented by this GSLB service listens.<br> Minimum value =  1<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(int port) throws Exception {
@@ -172,7 +182,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The port on which the service is running.<br> Minimum value =  1<br> Range 1 - 65535
+	* Port on which the load balancing entity represented by this GSLB service listens.<br> Minimum value =  1<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(Integer port) throws Exception{
@@ -181,7 +191,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The port on which the service is running.<br> Minimum value =  1<br> Range 1 - 65535
+	* Port on which the load balancing entity represented by this GSLB service listens.<br> Minimum value =  1<br> Range 1 - 65535
 	* </pre>
 	*/
 	public Integer get_port() throws Exception {
@@ -190,7 +200,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The IP address on a NAT box in front of the system to which a private IP of the service maps. This is applicable to GSLB local services. This is optional.
+	* The public IP address that a NAT device translates to the GSLB service's private IP address. Optional.
 	* </pre>
 	*/
 	public void set_publicip(String publicip) throws Exception{
@@ -199,7 +209,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The IP address on a NAT box in front of the system to which a private IP of the service maps. This is applicable to GSLB local services. This is optional.
+	* The public IP address that a NAT device translates to the GSLB service's private IP address. Optional.
 	* </pre>
 	*/
 	public String get_publicip() throws Exception {
@@ -208,7 +218,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The port on a NAT box in front of the system to which the private port of service maps. This is applicable to GSLB local services.This is optional.
+	* The public port associated with the GSLB service's public IP address. The port is mapped to the service's private port number. Applicable to the local GSLB service. Optional.
 	* </pre>
 	*/
 	public void set_publicport(int publicport) throws Exception {
@@ -217,7 +227,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The port on a NAT box in front of the system to which the private port of service maps. This is applicable to GSLB local services.This is optional.
+	* The public port associated with the GSLB service's public IP address. The port is mapped to the service's private port number. Applicable to the local GSLB service. Optional.
 	* </pre>
 	*/
 	public void set_publicport(Integer publicport) throws Exception{
@@ -226,7 +236,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The port on a NAT box in front of the system to which the private port of service maps. This is applicable to GSLB local services.This is optional.
+	* The public port associated with the GSLB service's public IP address. The port is mapped to the service's private port number. Applicable to the local GSLB service. Optional.
 	* </pre>
 	*/
 	public Integer get_publicport() throws Exception {
@@ -235,7 +245,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of open connections to the service. This argument is optional.<br> Minimum value =  0<br> Maximum value =  4294967294
+	* The maximum number of open connections that the service can support at any given time. A GSLB service whose connection count reaches the maximum is not considered when a GSLB decision is made, until the connection count drops below the maximum.<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_maxclient(long maxclient) throws Exception {
@@ -244,7 +254,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of open connections to the service. This argument is optional.<br> Minimum value =  0<br> Maximum value =  4294967294
+	* The maximum number of open connections that the service can support at any given time. A GSLB service whose connection count reaches the maximum is not considered when a GSLB decision is made, until the connection count drops below the maximum.<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_maxclient(Long maxclient) throws Exception{
@@ -253,7 +263,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of open connections to the service. This argument is optional.<br> Minimum value =  0<br> Maximum value =  4294967294
+	* The maximum number of open connections that the service can support at any given time. A GSLB service whose connection count reaches the maximum is not considered when a GSLB decision is made, until the connection count drops below the maximum.<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public Long get_maxclient() throws Exception {
@@ -262,7 +272,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* Health monitoring state of the gslb service.<br> Default value: YES<br> Possible values = YES, NO
+	* Monitor the health of the GSLB service.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_healthmonitor(String healthmonitor) throws Exception{
@@ -271,7 +281,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* Health monitoring state of the gslb service.<br> Default value: YES<br> Possible values = YES, NO
+	* Monitor the health of the GSLB service.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_healthmonitor() throws Exception {
@@ -280,7 +290,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The GSLB site name. This parameter is mandatory. This option specifies whether the service is a local GSLB service or remote GSLB service.<br> Minimum length =  1
+	* Name of the GSLB site to which the service belongs.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_sitename(String sitename) throws Exception{
@@ -289,7 +299,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The GSLB site name. This parameter is mandatory. This option specifies whether the service is a local GSLB service or remote GSLB service.<br> Minimum length =  1
+	* Name of the GSLB site to which the service belongs.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_sitename() throws Exception {
@@ -298,7 +308,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The state of the service(s). This parameter is optional. This is not applicable to the local GSLB services.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -307,7 +317,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The state of the service(s). This parameter is optional. This is not applicable to the local GSLB services.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -316,7 +326,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* State of insertion of the Client IP header for the service. This parameter is used while connection proxy based Site persistency is enabled, and it inserts real client's IP address in the HTTP request.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* In the request that is forwarded to the GSLB service, insert a header that stores the client's IP address. Client IP header insertion is used in connection-proxy based site persistence.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_cip(String cip) throws Exception{
@@ -325,7 +335,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* State of insertion of the Client IP header for the service. This parameter is used while connection proxy based Site persistency is enabled, and it inserts real client's IP address in the HTTP request.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* In the request that is forwarded to the GSLB service, insert a header that stores the client's IP address. Client IP header insertion is used in connection-proxy based site persistence.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_cip() throws Exception {
@@ -334,7 +344,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The client IP header to be used in the HTTP request.  If client IP insertion is enabled and the client IP header is not specified then the value that has been set by the set ns param CLI command will be used as the Client IP header.<br> Minimum length =  1
+	* Name for the HTTP header that stores the client's IP address. Used with the Client IP option. If client IP header insertion is enabled on the service and a name is not specified for the header, the NetScaler appliance uses the name specified by the cipHeader parameter in the set ns param command or, in the GUI, the Client IP Header parameter in the Configure HTTP Parameters dialog box.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_cipheader(String cipheader) throws Exception{
@@ -343,7 +353,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The client IP header to be used in the HTTP request.  If client IP insertion is enabled and the client IP header is not specified then the value that has been set by the set ns param CLI command will be used as the Client IP header.<br> Minimum length =  1
+	* Name for the HTTP header that stores the client's IP address. Used with the Client IP option. If client IP header insertion is enabled on the service and a name is not specified for the header, the NetScaler appliance uses the name specified by the cipHeader parameter in the set ns param command or, in the GUI, the Client IP Header parameter in the Configure HTTP Parameters dialog box.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_cipheader() throws Exception {
@@ -352,7 +362,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The state of cookie based Site persistency.<br> Possible values = ConnectionProxy, HTTPRedirect, NONE
+	* Use cookie-based site persistence. Applicable only to HTTP and SSL GSLB services.<br> Possible values = ConnectionProxy, HTTPRedirect, NONE
 	* </pre>
 	*/
 	public void set_sitepersistence(String sitepersistence) throws Exception{
@@ -361,7 +371,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The state of cookie based Site persistency.<br> Possible values = ConnectionProxy, HTTPRedirect, NONE
+	* Use cookie-based site persistence. Applicable only to HTTP and SSL GSLB services.<br> Possible values = ConnectionProxy, HTTPRedirect, NONE
 	* </pre>
 	*/
 	public String get_sitepersistence() throws Exception {
@@ -370,7 +380,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The timeout value in minutes for the cookie when cookie based Site persistency is enabled.<br> Minimum value =  0<br> Maximum value =  1440
+	* Timeout value, in minutes, for the cookie, when cookie based site persistence is enabled.<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_cookietimeout(long cookietimeout) throws Exception {
@@ -379,7 +389,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The timeout value in minutes for the cookie when cookie based Site persistency is enabled.<br> Minimum value =  0<br> Maximum value =  1440
+	* Timeout value, in minutes, for the cookie, when cookie based site persistence is enabled.<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_cookietimeout(Long cookietimeout) throws Exception{
@@ -388,7 +398,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* The timeout value in minutes for the cookie when cookie based Site persistency is enabled.<br> Minimum value =  0<br> Maximum value =  1440
+	* Timeout value, in minutes, for the cookie, when cookie based site persistence is enabled.<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public Long get_cookietimeout() throws Exception {
@@ -397,9 +407,7 @@ public class gslbservice extends base_resource
 
 	/**
 	* <pre>
-	* Specify the site prefix string. When the service is bound to a GSLB vserver,
-then for each bound service-domain pair, a GSLB Site domain will be generated internally by concatenating the service's siteprefix and the domain's name. If a special string "NONE" is specified,
-the siteprefix string will be unset.
+	* The site's prefix string. When the service is bound to a GSLB virtual server, a GSLB site domain is generated internally for each bound service-domain pair by concatenating the site prefix of the service and the name of the domain. If the special string NONE is specified, the site-prefix string is unset. When implementing HTTP redirect site persistence, the NetScaler appliance redirects GSLB requests to GSLB services by using their site domains.
 	* </pre>
 	*/
 	public void set_siteprefix(String siteprefix) throws Exception{
@@ -408,9 +416,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* Specify the site prefix string. When the service is bound to a GSLB vserver,
-then for each bound service-domain pair, a GSLB Site domain will be generated internally by concatenating the service's siteprefix and the domain's name. If a special string "NONE" is specified,
-the siteprefix string will be unset.
+	* The site's prefix string. When the service is bound to a GSLB virtual server, a GSLB site domain is generated internally for each bound service-domain pair by concatenating the site prefix of the service and the name of the domain. If the special string NONE is specified, the site-prefix string is unset. When implementing HTTP redirect site persistence, the NetScaler appliance redirects GSLB requests to GSLB services by using their site domains.
 	* </pre>
 	*/
 	public String get_siteprefix() throws Exception {
@@ -419,7 +425,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The idle time in seconds after which the client connection is terminated. This will be used while doing site persistency.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a client connection is terminated. Applicable if connection proxy based site persistence is used.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_clttimeout(long clttimeout) throws Exception {
@@ -428,7 +434,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The idle time in seconds after which the client connection is terminated. This will be used while doing site persistency.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a client connection is terminated. Applicable if connection proxy based site persistence is used.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_clttimeout(Long clttimeout) throws Exception{
@@ -437,7 +443,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The idle time in seconds after which the client connection is terminated. This will be used while doing site persistency.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a client connection is terminated. Applicable if connection proxy based site persistence is used.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public Long get_clttimeout() throws Exception {
@@ -446,7 +452,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The idle time in seconds after which the server connection is terminated. This will be used while doing site persistency.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a server connection is terminated. Applicable if connection proxy based site persistence is used.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_svrtimeout(long svrtimeout) throws Exception {
@@ -455,7 +461,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The idle time in seconds after which the server connection is terminated. This will be used while doing site persistency.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a server connection is terminated. Applicable if connection proxy based site persistence is used.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_svrtimeout(Long svrtimeout) throws Exception{
@@ -464,7 +470,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The idle time in seconds after which the server connection is terminated. This will be used while doing site persistency.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a server connection is terminated. Applicable if connection proxy based site persistence is used.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public Long get_svrtimeout() throws Exception {
@@ -473,7 +479,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* A positive integer to identify the maximum bandwidth allowed for  the service.
+	* Integer specifying the maximum bandwidth allowed for the service. A GSLB service whose bandwidth reaches the maximum is not considered when a GSLB decision is made, until its bandwidth consumption drops below the maximum.
 	* </pre>
 	*/
 	public void set_maxbandwidth(long maxbandwidth) throws Exception {
@@ -482,7 +488,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* A positive integer to identify the maximum bandwidth allowed for  the service.
+	* Integer specifying the maximum bandwidth allowed for the service. A GSLB service whose bandwidth reaches the maximum is not considered when a GSLB decision is made, until its bandwidth consumption drops below the maximum.
 	* </pre>
 	*/
 	public void set_maxbandwidth(Long maxbandwidth) throws Exception{
@@ -491,7 +497,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* A positive integer to identify the maximum bandwidth allowed for  the service.
+	* Integer specifying the maximum bandwidth allowed for the service. A GSLB service whose bandwidth reaches the maximum is not considered when a GSLB decision is made, until its bandwidth consumption drops below the maximum.
 	* </pre>
 	*/
 	public Long get_maxbandwidth() throws Exception {
@@ -500,7 +506,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* Perform delayed clean up of connections on this vserver.<br> Possible values = ENABLED, DISABLED
+	* Flush all active transactions associated with the GSLB service when its state transitions from UP to DOWN. Do not enable this option for services that must complete their transactions. Applicable if connection proxy based site persistence is used.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_downstateflush(String downstateflush) throws Exception{
@@ -509,7 +515,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* Perform delayed clean up of connections on this vserver.<br> Possible values = ENABLED, DISABLED
+	* Flush all active transactions associated with the GSLB service when its state transitions from UP to DOWN. Do not enable this option for services that must complete their transactions. Applicable if connection proxy based site persistence is used.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_downstateflush() throws Exception {
@@ -518,7 +524,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The maximum number of concurrent SSLVPN users allowed to login at a time.<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum number of SSL VPN users that can be logged on concurrently to the VPN virtual server that is represented by this GSLB service. A GSLB service whose user count reaches the maximum is not considered when a GSLB decision is made, until the count drops below the maximum.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_maxaaausers(long maxaaausers) throws Exception {
@@ -527,7 +533,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The maximum number of concurrent SSLVPN users allowed to login at a time.<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum number of SSL VPN users that can be logged on concurrently to the VPN virtual server that is represented by this GSLB service. A GSLB service whose user count reaches the maximum is not considered when a GSLB decision is made, until the count drops below the maximum.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_maxaaausers(Long maxaaausers) throws Exception{
@@ -536,7 +542,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The maximum number of concurrent SSLVPN users allowed to login at a time.<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum number of SSL VPN users that can be logged on concurrently to the VPN virtual server that is represented by this GSLB service. A GSLB service whose user count reaches the maximum is not considered when a GSLB decision is made, until the count drops below the maximum.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public Long get_maxaaausers() throws Exception {
@@ -545,7 +551,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The monitoring threshold.<br> Minimum value =  0<br> Maximum value =  65535
+	* Monitoring threshold value for the GSLB service. If the sum of the weights of the monitors that are bound to this GSLB service and are in the UP state is not equal to or greater than this threshold value, the service is marked as DOWN.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_monthreshold(long monthreshold) throws Exception {
@@ -554,7 +560,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The monitoring threshold.<br> Minimum value =  0<br> Maximum value =  65535
+	* Monitoring threshold value for the GSLB service. If the sum of the weights of the monitors that are bound to this GSLB service and are in the UP state is not equal to or greater than this threshold value, the service is marked as DOWN.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_monthreshold(Long monthreshold) throws Exception{
@@ -563,7 +569,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The monitoring threshold.<br> Minimum value =  0<br> Maximum value =  65535
+	* Monitoring threshold value for the GSLB service. If the sum of the weights of the monitors that are bound to this GSLB service and are in the UP state is not equal to or greater than this threshold value, the service is marked as DOWN.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public Long get_monthreshold() throws Exception {
@@ -572,7 +578,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* Unique hash identifier for the GSLB service, used by hash based load balancing methods.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_hashid(long hashid) throws Exception {
@@ -581,7 +587,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* Unique hash identifier for the GSLB service, used by hash based load balancing methods.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_hashid(Long hashid) throws Exception{
@@ -590,7 +596,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* Unique hash identifier for the GSLB service, used by hash based load balancing methods.<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_hashid() throws Exception {
@@ -599,7 +605,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* Comments associated with this gslb service.
+	* Any comments that you might want to associate with the GSLB service.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -608,7 +614,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* Comments associated with this gslb service.
+	* Any comments that you might want to associate with the GSLB service.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {
@@ -653,7 +659,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The name of view for the given IP.<br> Minimum length =  1
+	* Name of the DNS view of the service. A DNS view is used in global server load balancing (GSLB) to return a predetermined IP address to a specific group of clients, which are identified by using a DNS policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_viewname(String viewname) throws Exception{
@@ -662,7 +668,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The name of view for the given IP.<br> Minimum length =  1
+	* Name of the DNS view of the service. A DNS view is used in global server load balancing (GSLB) to return a predetermined IP address to a specific group of clients, which are identified by using a DNS policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_viewname() throws Exception {
@@ -689,7 +695,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. A larger number specifies a greater weight. Contributes to the monitoring threshold, which determines the state of the service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(long weight) throws Exception {
@@ -698,7 +704,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. A larger number specifies a greater weight. Contributes to the monitoring threshold, which determines the state of the service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(Long weight) throws Exception{
@@ -707,7 +713,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. A larger number specifies a greater weight. Contributes to the monitoring threshold, which determines the state of the service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_weight() throws Exception {
@@ -716,7 +722,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The monitor name bound to the selected service.<br> Minimum length =  1
+	* Name of the monitor to bind to the service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_monitor_name_svc(String monitor_name_svc) throws Exception{
@@ -725,7 +731,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The monitor name bound to the selected service.<br> Minimum length =  1
+	* Name of the monitor to bind to the service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_monitor_name_svc() throws Exception {
@@ -734,7 +740,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The new name of the gslb service.<br> Minimum length =  1
+	* New name for the GSLB service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -743,7 +749,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The new name of the gslb service.<br> Minimum length =  1
+	* New name for the GSLB service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
@@ -752,7 +758,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* .<br> Default value: NS_GSLBSVC<br> Possible values = REMOTE, LOCAL
+	* .<br> Default value: GSLB<br> Possible values = REMOTE, LOCAL
 	* </pre>
 	*/
 	public String get_gslb() throws Exception {
@@ -761,7 +767,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* Server state.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* Server state.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_svrstate() throws Exception {
@@ -770,7 +776,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* Effective state of the gslb svc.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* Effective state of the gslb svc.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_svreffgslbstate() throws Exception {
@@ -815,7 +821,7 @@ the siteprefix string will be unset.
 
 	/**
 	* <pre>
-	* The running state of the monitor on this service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* The running state of the monitor on this service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_monitor_state() throws Exception {
@@ -1050,36 +1056,9 @@ the siteprefix string will be unset.
 	* Use this API to unset the properties of gslbservice resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String servicename, String args[]) throws Exception {
-		gslbservice unsetresource = new gslbservice();
-		unsetresource.servicename = servicename;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of gslbservice resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, gslbservice resource, String[] args) throws Exception{
 		gslbservice unsetresource = new gslbservice();
 		unsetresource.servicename = resource.servicename;
-		unsetresource.publicip = resource.publicip;
-		unsetresource.publicport = resource.publicport;
-		unsetresource.cip = resource.cip;
-		unsetresource.cipheader = resource.cipheader;
-		unsetresource.sitepersistence = resource.sitepersistence;
-		unsetresource.siteprefix = resource.siteprefix;
-		unsetresource.maxclient = resource.maxclient;
-		unsetresource.healthmonitor = resource.healthmonitor;
-		unsetresource.maxbandwidth = resource.maxbandwidth;
-		unsetresource.downstateflush = resource.downstateflush;
-		unsetresource.maxaaausers = resource.maxaaausers;
-		unsetresource.viewip = resource.viewip;
-		unsetresource.monthreshold = resource.monthreshold;
-		unsetresource.monitor_name_svc = resource.monitor_name_svc;
-		unsetresource.hashid = resource.hashid;
-		unsetresource.comment = resource.comment;
-		unsetresource.appflowlog = resource.appflowlog;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -1111,23 +1090,6 @@ the siteprefix string will be unset.
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new gslbservice();
 				unsetresources[i].servicename = resources[i].servicename;
-				unsetresources[i].publicip = resources[i].publicip;
-				unsetresources[i].publicport = resources[i].publicport;
-				unsetresources[i].cip = resources[i].cip;
-				unsetresources[i].cipheader = resources[i].cipheader;
-				unsetresources[i].sitepersistence = resources[i].sitepersistence;
-				unsetresources[i].siteprefix = resources[i].siteprefix;
-				unsetresources[i].maxclient = resources[i].maxclient;
-				unsetresources[i].healthmonitor = resources[i].healthmonitor;
-				unsetresources[i].maxbandwidth = resources[i].maxbandwidth;
-				unsetresources[i].downstateflush = resources[i].downstateflush;
-				unsetresources[i].maxaaausers = resources[i].maxaaausers;
-				unsetresources[i].viewip = resources[i].viewip;
-				unsetresources[i].monthreshold = resources[i].monthreshold;
-				unsetresources[i].monitor_name_svc = resources[i].monitor_name_svc;
-				unsetresources[i].hashid = resources[i].hashid;
-				unsetresources[i].comment = resources[i].comment;
-				unsetresources[i].appflowlog = resources[i].appflowlog;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -1298,6 +1260,8 @@ the siteprefix string will be unset.
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class monitor_stateEnum {
 		public static final String UP = "UP";
@@ -1308,6 +1272,8 @@ the siteprefix string will be unset.
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class gslbEnum {
 		public static final String REMOTE = "REMOTE";
@@ -1322,6 +1288,8 @@ the siteprefix string will be unset.
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class cipEnum {
 		public static final String ENABLED = "ENABLED";

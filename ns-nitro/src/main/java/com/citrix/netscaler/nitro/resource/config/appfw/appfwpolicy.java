@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.appfw;
@@ -41,7 +47,11 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* Application Firewall policy name.<br> Minimum length =  1
+	* Name for the policy. 
+Must begin with a letter, number, or the underscore character \(_\), and must contain only letters, numbers, and the hyphen \(-\), period \(.\) pound \(\#\), space \( \), at (@), equals \(=\), colon \(:\), and underscore characters. Can be changed after the policy is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks \(for example, "my policy" or 'my policy'\).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -50,7 +60,11 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* Application Firewall policy name.<br> Minimum length =  1
+	* Name for the policy. 
+Must begin with a letter, number, or the underscore character \(_\), and must contain only letters, numbers, and the hyphen \(-\), period \(.\) pound \(\#\), space \( \), at (@), equals \(=\), colon \(:\), and underscore characters. Can be changed after the policy is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks \(for example, "my policy" or 'my policy'\).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -59,7 +73,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The rule associated with the policy.
+	* Name of the NetScaler named rule, or a NetScaler default syntax expression, that the policy uses to determine whether to filter the connection through the application firewall with the designated profile.
 	* </pre>
 	*/
 	public void set_rule(String rule) throws Exception{
@@ -68,7 +82,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The rule associated with the policy.
+	* Name of the NetScaler named rule, or a NetScaler default syntax expression, that the policy uses to determine whether to filter the connection through the application firewall with the designated profile.
 	* </pre>
 	*/
 	public String get_rule() throws Exception {
@@ -77,7 +91,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* Application Firewall profile name.<br> Minimum length =  1
+	* Name of the application firewall profile to use if the policy matches.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_profilename(String profilename) throws Exception{
@@ -86,7 +100,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* Application Firewall profile name.<br> Minimum length =  1
+	* Name of the application firewall profile to use if the policy matches.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_profilename() throws Exception {
@@ -95,7 +109,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this application firewall policy.
+	* Any comments to preserve information about the policy for later reference.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -104,7 +118,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this application firewall policy.
+	* Any comments to preserve information about the policy for later reference.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {
@@ -113,7 +127,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The log action associated with the application firewall policy.
+	* Where to log information for connections that match this policy.
 	* </pre>
 	*/
 	public void set_logaction(String logaction) throws Exception{
@@ -122,7 +136,7 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The log action associated with the application firewall policy.
+	* Where to log information for connections that match this policy.
 	* </pre>
 	*/
 	public String get_logaction() throws Exception {
@@ -131,7 +145,10 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the application firewall policy.<br> Minimum length =  1
+	* New name for the policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -140,7 +157,10 @@ public class appfwpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the application firewall policy.<br> Minimum length =  1
+	* New name for the policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
@@ -319,21 +339,9 @@ public class appfwpolicy extends base_resource
 	* Use this API to unset the properties of appfwpolicy resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		appfwpolicy unsetresource = new appfwpolicy();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of appfwpolicy resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, appfwpolicy resource, String[] args) throws Exception{
 		appfwpolicy unsetresource = new appfwpolicy();
 		unsetresource.name = resource.name;
-		unsetresource.comment = resource.comment;
-		unsetresource.logaction = resource.logaction;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -365,8 +373,6 @@ public class appfwpolicy extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new appfwpolicy();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].comment = resources[i].comment;
-				unsetresources[i].logaction = resources[i].logaction;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.snmp;
@@ -42,7 +48,10 @@ public class snmpuser extends base_resource
 
 	/**
 	* <pre>
-	* A name for the SNMP user. Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. .<br> Minimum length =  1
+	* Name for the SNMPv3 user. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose it in double or single quotation marks (for example, "my user" or 'my user').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -51,7 +60,10 @@ public class snmpuser extends base_resource
 
 	/**
 	* <pre>
-	* A name for the SNMP user. Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. .<br> Minimum length =  1
+	* Name for the SNMPv3 user. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose it in double or single quotation marks (for example, "my user" or 'my user').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -60,7 +72,7 @@ public class snmpuser extends base_resource
 
 	/**
 	* <pre>
-	* The name of the configured SNMP group to which you want to bind this SNMP user. The access rights (bound SNMP views) and security level set for this group are associated to this user.  .<br> Minimum length =  1
+	* Name of the configured SNMPv3 group to which to bind this SNMPv3 user. The access rights (bound SNMPv3 views) and security level set for this group are assigned to this user.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_group(String group) throws Exception{
@@ -69,7 +81,7 @@ public class snmpuser extends base_resource
 
 	/**
 	* <pre>
-	* The name of the configured SNMP group to which you want to bind this SNMP user. The access rights (bound SNMP views) and security level set for this group are associated to this user.  .<br> Minimum length =  1
+	* Name of the configured SNMPv3 group to which to bind this SNMPv3 user. The access rights (bound SNMPv3 views) and security level set for this group are assigned to this user.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_group() throws Exception {
@@ -78,7 +90,7 @@ public class snmpuser extends base_resource
 
 	/**
 	* <pre>
-	* The authentication algorithm used by the NetScaler appliance and the SNMP user for authenticating the communication between them. You must set the same authentication algorithm while configuring the SNMP user in the SNMP manager.<br> Possible values = MD5, SHA
+	* Authentication algorithm used by the NetScaler appliance and the SNMPv3 user for authenticating the communication between them. You must specify the same authentication algorithm when you configure the SNMPv3 user in the SNMP manager.<br> Possible values = MD5, SHA
 	* </pre>
 	*/
 	public void set_authtype(String authtype) throws Exception{
@@ -87,7 +99,7 @@ public class snmpuser extends base_resource
 
 	/**
 	* <pre>
-	* The authentication algorithm used by the NetScaler appliance and the SNMP user for authenticating the communication between them. You must set the same authentication algorithm while configuring the SNMP user in the SNMP manager.<br> Possible values = MD5, SHA
+	* Authentication algorithm used by the NetScaler appliance and the SNMPv3 user for authenticating the communication between them. You must specify the same authentication algorithm when you configure the SNMPv3 user in the SNMP manager.<br> Possible values = MD5, SHA
 	* </pre>
 	*/
 	public String get_authtype() throws Exception {
@@ -96,9 +108,10 @@ public class snmpuser extends base_resource
 
 	/**
 	* <pre>
-	* A plain-text pass phrase to be used by the authentication algorithm specified by the authType (Authentication Type) parameter. 
-Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. 
-.<br> Minimum length =  8
+	* Plain-text pass phrase to be used by the authentication algorithm specified by the authType (Authentication Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the pass phrase includes one or more spaces, enclose it in double or single quotation marks (for example, "my phrase" or 'my phrase').<br> Minimum length =  8
 	* </pre>
 	*/
 	public void set_authpasswd(String authpasswd) throws Exception{
@@ -107,9 +120,10 @@ Can begin and consist of 1 to 31 characters that include letters, numbers, and t
 
 	/**
 	* <pre>
-	* A plain-text pass phrase to be used by the authentication algorithm specified by the authType (Authentication Type) parameter. 
-Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. 
-.<br> Minimum length =  8
+	* Plain-text pass phrase to be used by the authentication algorithm specified by the authType (Authentication Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the pass phrase includes one or more spaces, enclose it in double or single quotation marks (for example, "my phrase" or 'my phrase').<br> Minimum length =  8
 	* </pre>
 	*/
 	public String get_authpasswd() throws Exception {
@@ -118,7 +132,7 @@ Can begin and consist of 1 to 31 characters that include letters, numbers, and t
 
 	/**
 	* <pre>
-	* The encryption algorithm used by the NetScaler appliance and the SNMP user for encrypting the communication between them. You must set the same encryption algorithm while configuring the SNMP user in the SNMP manager.<br> Possible values = DES, AES
+	* Encryption algorithm used by the NetScaler appliance and the SNMPv3 user for encrypting the communication between them. You must specify the same encryption algorithm when you configure the SNMPv3 user in the SNMP manager.<br> Possible values = DES, AES
 	* </pre>
 	*/
 	public void set_privtype(String privtype) throws Exception{
@@ -127,7 +141,7 @@ Can begin and consist of 1 to 31 characters that include letters, numbers, and t
 
 	/**
 	* <pre>
-	* The encryption algorithm used by the NetScaler appliance and the SNMP user for encrypting the communication between them. You must set the same encryption algorithm while configuring the SNMP user in the SNMP manager.<br> Possible values = DES, AES
+	* Encryption algorithm used by the NetScaler appliance and the SNMPv3 user for encrypting the communication between them. You must specify the same encryption algorithm when you configure the SNMPv3 user in the SNMP manager.<br> Possible values = DES, AES
 	* </pre>
 	*/
 	public String get_privtype() throws Exception {
@@ -136,7 +150,10 @@ Can begin and consist of 1 to 31 characters that include letters, numbers, and t
 
 	/**
 	* <pre>
-	* An encryption key to be used by the encryption algorithm specified by in the privType (Encryption Type) parameter. Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.<br> Minimum length =  8
+	* Encryption key to be used by the encryption algorithm specified by the privType (Encryption Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the key includes one or more spaces, enclose it in double or single quotation marks (for example, "my key" or 'my key').<br> Minimum length =  8
 	* </pre>
 	*/
 	public void set_privpasswd(String privpasswd) throws Exception{
@@ -145,7 +162,10 @@ Can begin and consist of 1 to 31 characters that include letters, numbers, and t
 
 	/**
 	* <pre>
-	* An encryption key to be used by the encryption algorithm specified by in the privType (Encryption Type) parameter. Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.<br> Minimum length =  8
+	* Encryption key to be used by the encryption algorithm specified by the privType (Encryption Type) parameter. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the key includes one or more spaces, enclose it in double or single quotation marks (for example, "my key" or 'my key').<br> Minimum length =  8
 	* </pre>
 	*/
 	public String get_privpasswd() throws Exception {
@@ -350,10 +370,6 @@ Can begin and consist of 1 to 31 characters that include letters, numbers, and t
 	public static base_response unset(nitro_service client, snmpuser resource, String[] args) throws Exception{
 		snmpuser unsetresource = new snmpuser();
 		unsetresource.name = resource.name;
-		unsetresource.authtype = resource.authtype;
-		unsetresource.privtype = resource.privtype;
-		unsetresource.authpasswd = resource.authpasswd;
-		unsetresource.privpasswd = resource.privpasswd;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -385,10 +401,6 @@ Can begin and consist of 1 to 31 characters that include letters, numbers, and t
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new snmpuser();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].authtype = resources[i].authtype;
-				unsetresources[i].privtype = resources[i].privtype;
-				unsetresources[i].authpasswd = resources[i].authpasswd;
-				unsetresources[i].privpasswd = resources[i].privpasswd;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

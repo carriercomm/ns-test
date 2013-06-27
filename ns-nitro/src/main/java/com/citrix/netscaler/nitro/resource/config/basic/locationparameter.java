@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.basic;
@@ -49,7 +55,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The context in which a static proximity decision has to be made.<br> Possible values = geographic, custom
+	* Context for describing locations. In geographic context, qualifier labels are assigned by default in the following sequence: Continent.Country.Region.City.ISP.Organization. In custom context, the qualifiers labels can have any meaning that you designate.<br> Possible values = geographic, custom
 	* </pre>
 	*/
 	public void set_context(String context) throws Exception{
@@ -58,7 +64,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The context in which a static proximity decision has to be made.<br> Possible values = geographic, custom
+	* Context for describing locations. In geographic context, qualifier labels are assigned by default in the following sequence: Continent.Country.Region.City.ISP.Organization. In custom context, the qualifiers labels can have any meaning that you designate.<br> Possible values = geographic, custom
 	* </pre>
 	*/
 	public String get_context() throws Exception {
@@ -67,7 +73,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 1st qualifier. These qualifier labels specify the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the first qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_q1label(String q1label) throws Exception{
@@ -76,7 +82,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 1st qualifier. These qualifier labels specify the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the first qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_q1label() throws Exception {
@@ -85,7 +91,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 2nd qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the second qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_q2label(String q2label) throws Exception{
@@ -94,7 +100,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 2nd qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the second qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_q2label() throws Exception {
@@ -103,7 +109,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 3rd qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the third qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_q3label(String q3label) throws Exception{
@@ -112,7 +118,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 3rd qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the third qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_q3label() throws Exception {
@@ -121,7 +127,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 4th qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the fourth qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_q4label(String q4label) throws Exception{
@@ -130,7 +136,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 4th qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the fourth qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_q4label() throws Exception {
@@ -139,7 +145,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 5th qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the fifth qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_q5label(String q5label) throws Exception{
@@ -148,7 +154,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 5th qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the fifth qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_q5label() throws Exception {
@@ -157,7 +163,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 6th qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the sixth qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_q6label(String q6label) throws Exception{
@@ -166,7 +172,7 @@ public class locationparameter extends base_resource
 
 	/**
 	* <pre>
-	* The label for the 6th qualifier. These qualifier labels characterize the locations mapped with the IP addresses used to make static proximity decisions.<br> Minimum length =  1
+	* Label specifying the meaning of the sixth qualifier. Can be specified for custom context only.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_q6label() throws Exception {
@@ -320,13 +326,6 @@ public class locationparameter extends base_resource
 	*/
 	public static base_response unset(nitro_service client, locationparameter resource, String[] args) throws Exception{
 		locationparameter unsetresource = new locationparameter();
-		unsetresource.context = resource.context;
-		unsetresource.q1label = resource.q1label;
-		unsetresource.q2label = resource.q2label;
-		unsetresource.q3label = resource.q3label;
-		unsetresource.q4label = resource.q4label;
-		unsetresource.q5label = resource.q5label;
-		unsetresource.q6label = resource.q6label;
 		return unsetresource.unset_resource(client,args);
 	}
 

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.aaa;
@@ -38,7 +44,10 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* The name of the Preauthentication action.<br> Minimum length =  1
+	* Name for the preauthentication action. Must begin with a letter, number, or the underscore character (_), and must consist only of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after preauthentication action is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my aaa action or my aaa action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -47,7 +56,10 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* The name of the Preauthentication action.<br> Minimum length =  1
+	* Name for the preauthentication action. Must begin with a letter, number, or the underscore character (_), and must consist only of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after preauthentication action is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my aaa action or my aaa action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -56,7 +68,7 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* Deny or allow login after end point analysis results.<br> Possible values = ALLOW, DENY
+	* Allow or deny logon after endpoint analysis (EPA) results.<br> Possible values = ALLOW, DENY
 	* </pre>
 	*/
 	public void set_preauthenticationaction(String preauthenticationaction) throws Exception{
@@ -65,7 +77,7 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* Deny or allow login after end point analysis results.<br> Possible values = ALLOW, DENY
+	* Allow or deny logon after endpoint analysis (EPA) results.<br> Possible values = ALLOW, DENY
 	* </pre>
 	*/
 	public String get_preauthenticationaction() throws Exception {
@@ -74,7 +86,7 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* Processes to be killed by the EPA tool.
+	* String specifying the name of a process to be terminated by the endpoint analysis (EPA) tool.
 	* </pre>
 	*/
 	public void set_killprocess(String killprocess) throws Exception{
@@ -83,7 +95,7 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* Processes to be killed by the EPA tool.
+	* String specifying the name of a process to be terminated by the endpoint analysis (EPA) tool.
 	* </pre>
 	*/
 	public String get_killprocess() throws Exception {
@@ -92,7 +104,7 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* Files to be deleted by EPA tool.
+	* String specifying the path(s) and name(s) of the files to be deleted by the endpoint analysis (EPA) tool.
 	* </pre>
 	*/
 	public void set_deletefiles(String deletefiles) throws Exception{
@@ -101,7 +113,7 @@ public class aaapreauthenticationaction extends base_resource
 
 	/**
 	* <pre>
-	* Files to be deleted by EPA tool.
+	* String specifying the path(s) and name(s) of the files to be deleted by the endpoint analysis (EPA) tool.
 	* </pre>
 	*/
 	public String get_deletefiles() throws Exception {
@@ -267,21 +279,9 @@ public class aaapreauthenticationaction extends base_resource
 	* Use this API to unset the properties of aaapreauthenticationaction resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		aaapreauthenticationaction unsetresource = new aaapreauthenticationaction();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of aaapreauthenticationaction resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, aaapreauthenticationaction resource, String[] args) throws Exception{
 		aaapreauthenticationaction unsetresource = new aaapreauthenticationaction();
 		unsetresource.name = resource.name;
-		unsetresource.killprocess = resource.killprocess;
-		unsetresource.deletefiles = resource.deletefiles;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -313,8 +313,6 @@ public class aaapreauthenticationaction extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new aaapreauthenticationaction();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].killprocess = resources[i].killprocess;
-				unsetresources[i].deletefiles = resources[i].deletefiles;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

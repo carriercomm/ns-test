@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.transform;
@@ -45,7 +51,11 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* URL Transformation action name.<br> Minimum length =  1
+	* Name for the URL transformation action.
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the URL Transformation action is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my transform action or my transform action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -54,7 +64,11 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* URL Transformation action name.<br> Minimum length =  1
+	* Name for the URL transformation action.
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the URL Transformation action is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my transform action or my transform action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -63,7 +77,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* URL Transformation profile name.<br> Minimum length =  1
+	* Name of the URL Transformation profile with which to associate this action.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_profilename(String profilename) throws Exception{
@@ -72,7 +86,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* URL Transformation profile name.<br> Minimum length =  1
+	* Name of the URL Transformation profile with which to associate this action.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_profilename() throws Exception {
@@ -81,7 +95,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Priority of the Action within the Profile.<br> Minimum value =  1<br> Maximum value =  2147483647
+	* Positive integer specifying the priority of the action within the profile. A lower number specifies a higher priority. Must be unique within the list of actions bound to the profile. Policies are evaluated in the order of their priority numbers, and the first policy that matches is applied.<br> Minimum value =  1<br> Maximum value =  2147483647
 	* </pre>
 	*/
 	public void set_priority(long priority) throws Exception {
@@ -90,7 +104,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Priority of the Action within the Profile.<br> Minimum value =  1<br> Maximum value =  2147483647
+	* Positive integer specifying the priority of the action within the profile. A lower number specifies a higher priority. Must be unique within the list of actions bound to the profile. Policies are evaluated in the order of their priority numbers, and the first policy that matches is applied.<br> Minimum value =  1<br> Maximum value =  2147483647
 	* </pre>
 	*/
 	public void set_priority(Long priority) throws Exception{
@@ -99,7 +113,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Priority of the Action within the Profile.<br> Minimum value =  1<br> Maximum value =  2147483647
+	* Positive integer specifying the priority of the action within the profile. A lower number specifies a higher priority. Must be unique within the list of actions bound to the profile. Policies are evaluated in the order of their priority numbers, and the first policy that matches is applied.<br> Minimum value =  1<br> Maximum value =  2147483647
 	* </pre>
 	*/
 	public Long get_priority() throws Exception {
@@ -108,7 +122,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Enabled flag.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable this action.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -117,7 +131,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Enabled flag.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable this action.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -126,7 +140,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of original request URLs. It corresponds to the way external users view the server, and acts as a source for request transformations.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the request URL pattern to be transformed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_requrlfrom(String requrlfrom) throws Exception{
@@ -135,7 +149,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of original request URLs. It corresponds to the way external users view the server, and acts as a source for request transformations.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the request URL pattern to be transformed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_requrlfrom() throws Exception {
@@ -144,7 +158,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of transformed request URLs. It corresponds to internal addresses and indicates how they are created.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the transformation to be performed on URLs that match the reqUrlFrom pattern.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_requrlinto(String requrlinto) throws Exception{
@@ -153,7 +167,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of transformed request URLs. It corresponds to internal addresses and indicates how they are created.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the transformation to be performed on URLs that match the reqUrlFrom pattern.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_requrlinto() throws Exception {
@@ -162,7 +176,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of original response URLs. It corresponds to the way external users view the server, and acts as a source for response transformations.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the response URL pattern to be transformed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_resurlfrom(String resurlfrom) throws Exception{
@@ -171,7 +185,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of original response URLs. It corresponds to the way external users view the server, and acts as a source for response transformations.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the response URL pattern to be transformed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_resurlfrom() throws Exception {
@@ -180,7 +194,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of transformed response URLs. It corresponds to internal addresses and indicates how they are created.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the transformation to be performed on URLs that match the resUrlFrom pattern.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_resurlinto(String resurlinto) throws Exception{
@@ -189,7 +203,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of transformed response URLs. It corresponds to internal addresses and indicates how they are created.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the transformation to be performed on URLs that match the resUrlFrom pattern.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_resurlinto() throws Exception {
@@ -198,7 +212,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of the original domain in Set-Cookie headers.<br> Minimum length =  1
+	* Pattern that matches the domain to be transformed in Set-Cookie headers.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_cookiedomainfrom(String cookiedomainfrom) throws Exception{
@@ -207,7 +221,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of the original domain in Set-Cookie headers.<br> Minimum length =  1
+	* Pattern that matches the domain to be transformed in Set-Cookie headers.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_cookiedomainfrom() throws Exception {
@@ -216,7 +230,8 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of the transformed domain in Set-Cookie headers.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the transformation to be performed on cookie domains that match the cookieDomainFrom pattern. 
+NOTE: The cookie domain to be transformed is extracted from the request.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_cookiedomaininto(String cookiedomaininto) throws Exception{
@@ -225,7 +240,8 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Pattern of the transformed domain in Set-Cookie headers.<br> Minimum length =  1
+	* PCRE-format regular expression that describes the transformation to be performed on cookie domains that match the cookieDomainFrom pattern. 
+NOTE: The cookie domain to be transformed is extracted from the request.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_cookiedomaininto() throws Exception {
@@ -234,7 +250,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Comments.
+	* Any comments to preserve information about this URL Transformation action.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -243,7 +259,7 @@ public class transformaction extends base_resource
 
 	/**
 	* <pre>
-	* Comments.
+	* Any comments to preserve information about this URL Transformation action.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {
@@ -421,28 +437,9 @@ public class transformaction extends base_resource
 	* Use this API to unset the properties of transformaction resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		transformaction unsetresource = new transformaction();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of transformaction resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, transformaction resource, String[] args) throws Exception{
 		transformaction unsetresource = new transformaction();
 		unsetresource.name = resource.name;
-		unsetresource.priority = resource.priority;
-		unsetresource.requrlfrom = resource.requrlfrom;
-		unsetresource.requrlinto = resource.requrlinto;
-		unsetresource.resurlfrom = resource.resurlfrom;
-		unsetresource.resurlinto = resource.resurlinto;
-		unsetresource.cookiedomainfrom = resource.cookiedomainfrom;
-		unsetresource.cookiedomaininto = resource.cookiedomaininto;
-		unsetresource.state = resource.state;
-		unsetresource.comment = resource.comment;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -474,15 +471,6 @@ public class transformaction extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new transformaction();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].priority = resources[i].priority;
-				unsetresources[i].requrlfrom = resources[i].requrlfrom;
-				unsetresources[i].requrlinto = resources[i].requrlinto;
-				unsetresources[i].resurlfrom = resources[i].resurlfrom;
-				unsetresources[i].resurlinto = resources[i].resurlinto;
-				unsetresources[i].cookiedomainfrom = resources[i].cookiedomainfrom;
-				unsetresources[i].cookiedomaininto = resources[i].cookiedomaininto;
-				unsetresources[i].state = resources[i].state;
-				unsetresources[i].comment = resources[i].comment;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

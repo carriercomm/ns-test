@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -32,7 +38,7 @@ public class ssldhparam extends base_resource
 
 	/**
 	* <pre>
-	* The name of the output file where the generated DH parameter is stored.<br> Maximum length =  63
+	* Name of and, optionally, path to the DH key file. /nsconfig/ssl/ is the default path.<br> Maximum length =  63
 	* </pre>
 	*/
 	public void set_dhfile(String dhfile) throws Exception{
@@ -41,7 +47,7 @@ public class ssldhparam extends base_resource
 
 	/**
 	* <pre>
-	* The name of the output file where the generated DH parameter is stored.<br> Maximum length =  63
+	* Name of and, optionally, path to the DH key file. /nsconfig/ssl/ is the default path.<br> Maximum length =  63
 	* </pre>
 	*/
 	public String get_dhfile() throws Exception {
@@ -50,7 +56,7 @@ public class ssldhparam extends base_resource
 
 	/**
 	* <pre>
-	* The bit value for the DH parameters.Maximum bit value allowed is 2048.<br> Minimum value =  512<br> Maximum value =  2048
+	* Size, in bits, of the DH key being generated.<br> Minimum value =  512<br> Maximum value =  2048
 	* </pre>
 	*/
 	public void set_bits(long bits) throws Exception {
@@ -59,7 +65,7 @@ public class ssldhparam extends base_resource
 
 	/**
 	* <pre>
-	* The bit value for the DH parameters.Maximum bit value allowed is 2048.<br> Minimum value =  512<br> Maximum value =  2048
+	* Size, in bits, of the DH key being generated.<br> Minimum value =  512<br> Maximum value =  2048
 	* </pre>
 	*/
 	public void set_bits(Long bits) throws Exception{
@@ -68,7 +74,7 @@ public class ssldhparam extends base_resource
 
 	/**
 	* <pre>
-	* The bit value for the DH parameters.Maximum bit value allowed is 2048.<br> Minimum value =  512<br> Maximum value =  2048
+	* Size, in bits, of the DH key being generated.<br> Minimum value =  512<br> Maximum value =  2048
 	* </pre>
 	*/
 	public Long get_bits() throws Exception {
@@ -77,7 +83,7 @@ public class ssldhparam extends base_resource
 
 	/**
 	* <pre>
-	* The DH generator value (g) to be used.<br> Default value: 2<br> Possible values = 2, 5
+	* Random number required for generating the DH key. Required as part of the DH key generation algorithm.<br> Default value: 2<br> Possible values = 2, 5
 	* </pre>
 	*/
 	public void set_gen(String gen) throws Exception{
@@ -86,7 +92,7 @@ public class ssldhparam extends base_resource
 
 	/**
 	* <pre>
-	* The DH generator value (g) to be used.<br> Default value: 2<br> Possible values = 2, 5
+	* Random number required for generating the DH key. Required as part of the DH key generation algorithm.<br> Default value: 2<br> Possible values = 2, 5
 	* </pre>
 	*/
 	public String get_gen() throws Exception {

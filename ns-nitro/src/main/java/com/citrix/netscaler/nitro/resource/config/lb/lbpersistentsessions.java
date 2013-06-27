@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.lb;
@@ -27,6 +33,7 @@ class lbpersistentsessions_response extends base_response
 public class lbpersistentsessions extends base_resource
 {
 	private String vserver;
+	private String persistenceparameter;
 
 	//------- Read only Parameter ---------;
 
@@ -40,7 +47,6 @@ public class lbpersistentsessions extends base_resource
 	private String vservername;
 	private Long timeout;
 	private Long referencecount;
-	private String sipcallid;
 	private String persistenceparam;
 	private Long __count;
 
@@ -60,6 +66,24 @@ public class lbpersistentsessions extends base_resource
 	*/
 	public String get_vserver() throws Exception {
 		return this.vserver;
+	}
+
+	/**
+	* <pre>
+	* The persistence parameter whose persistence sessions are to be flushed.
+	* </pre>
+	*/
+	public void set_persistenceparameter(String persistenceparameter) throws Exception{
+		this.persistenceparameter = persistenceparameter;
+	}
+
+	/**
+	* <pre>
+	* The persistence parameter whose persistence sessions are to be flushed.
+	* </pre>
+	*/
+	public String get_persistenceparameter() throws Exception {
+		return this.persistenceparameter;
 	}
 
 	/**
@@ -154,15 +178,6 @@ public class lbpersistentsessions extends base_resource
 
 	/**
 	* <pre>
-	* SIP CALLID.
-	* </pre>
-	*/
-	public String get_sipcallid() throws Exception {
-		return this.sipcallid;
-	}
-
-	/**
-	* <pre>
 	* Specific persistence information . Callid in case of SIP_CALLID persistence entry , RTSP session id in case of RTSP_SESSIONID persistence entry.
 	* </pre>
 	*/
@@ -210,6 +225,7 @@ public class lbpersistentsessions extends base_resource
 	public static base_response clear(nitro_service client, lbpersistentsessions resource) throws Exception {
 		lbpersistentsessions clearresource = new lbpersistentsessions();
 		clearresource.vserver = resource.vserver;
+		clearresource.persistenceparameter = resource.persistenceparameter;
 		return clearresource.perform_operation(client,"clear");
 	}
 
@@ -223,6 +239,7 @@ public class lbpersistentsessions extends base_resource
 			for (int i=0;i<resources.length;i++){
 				clearresources[i] = new lbpersistentsessions();
 				clearresources[i].vserver = resources[i].vserver;
+				clearresources[i].persistenceparameter = resources[i].persistenceparameter;
 			}
 			result = perform_operation_bulk_request(client, clearresources,"clear");
 		}

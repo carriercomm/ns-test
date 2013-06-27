@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.dns;
@@ -45,7 +51,7 @@ public class dnspolicy extends base_resource
 
 	/**
 	* <pre>
-	* Name of the dns policy.
+	* Name for the DNS policy.
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -54,7 +60,7 @@ public class dnspolicy extends base_resource
 
 	/**
 	* <pre>
-	* Name of the dns policy.
+	* Name for the DNS policy.
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -63,7 +69,13 @@ public class dnspolicy extends base_resource
 
 	/**
 	* <pre>
-	* Expression to be used by the dns policy.
+	* Expression against which DNS traffic is evaluated. Written in the default syntax.
+Note:
+* On the command line interface, if the expression includes blank spaces, the entire expression must be enclosed in double quotation marks.
+* If the expression itself includes double quotation marks, you must escape the quotations by using the  character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks. 
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+Example: CLIENT.UDP.DNS.DOMAIN.EQ("domainname").
 	* </pre>
 	*/
 	public void set_rule(String rule) throws Exception{
@@ -72,7 +84,13 @@ public class dnspolicy extends base_resource
 
 	/**
 	* <pre>
-	* Expression to be used by the dns policy.
+	* Expression against which DNS traffic is evaluated. Written in the default syntax.
+Note:
+* On the command line interface, if the expression includes blank spaces, the entire expression must be enclosed in double quotation marks.
+* If the expression itself includes double quotation marks, you must escape the quotations by using the  character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks. 
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+Example: CLIENT.UDP.DNS.DOMAIN.EQ("domainname").
 	* </pre>
 	*/
 	public String get_rule() throws Exception {
@@ -171,7 +189,10 @@ public class dnspolicy extends base_resource
 
 	/**
 	* <pre>
-	* Name of the dns action added using add dns action command.
+	* Name of the DNS action to perform when the rule evaluates to TRUE. The built in actions function as follows:
+* dns_default_act_Drop. Drop the DNS request.
+* dns_default_act_Cachebypass. Bypass the DNS cache and forward the request to the name server.
+You can create custom actions by using the add dns action command in the CLI or the DNS > Actions > Create DNS Action dialog box in the NetScaler configuration utility.
 	* </pre>
 	*/
 	public void set_actionname(String actionname) throws Exception{
@@ -180,7 +201,10 @@ public class dnspolicy extends base_resource
 
 	/**
 	* <pre>
-	* Name of the dns action added using add dns action command.
+	* Name of the DNS action to perform when the rule evaluates to TRUE. The built in actions function as follows:
+* dns_default_act_Drop. Drop the DNS request.
+* dns_default_act_Cachebypass. Bypass the DNS cache and forward the request to the name server.
+You can create custom actions by using the add dns action command in the CLI or the DNS > Actions > Create DNS Action dialog box in the NetScaler configuration utility.
 	* </pre>
 	*/
 	public String get_actionname() throws Exception {

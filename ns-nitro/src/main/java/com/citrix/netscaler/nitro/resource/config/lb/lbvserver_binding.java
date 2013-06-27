@@ -1,15 +1,22 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.lb;
 
+import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_spilloverpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_csvserver_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_auditnslogpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_filterpolicy_binding;
@@ -18,6 +25,7 @@ import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_appflowpolicy_bin
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_responderpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_transformpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_dospolicy_binding;
+import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_copolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_servicegroupmember_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_authorizationpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_cachepolicy_binding;
@@ -27,6 +35,7 @@ import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_scpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_servicegroup_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_service_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_tmtrafficpolicy_binding;
+import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_appqoepolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_auditsyslogpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_appfwpolicy_binding;
 import com.citrix.netscaler.nitro.resource.base.*;
@@ -46,6 +55,7 @@ class lbvserver_binding_response extends base_response
 public class lbvserver_binding extends base_resource
 {
 	private String name;
+	private lbvserver_spilloverpolicy_binding	lbvserver_spilloverpolicy_binding[] = null;
 	private lbvserver_csvserver_binding	lbvserver_csvserver_binding[] = null;
 	private lbvserver_auditnslogpolicy_binding	lbvserver_auditnslogpolicy_binding[] = null;
 	private lbvserver_filterpolicy_binding	lbvserver_filterpolicy_binding[] = null;
@@ -54,6 +64,7 @@ public class lbvserver_binding extends base_resource
 	private lbvserver_responderpolicy_binding	lbvserver_responderpolicy_binding[] = null;
 	private lbvserver_transformpolicy_binding	lbvserver_transformpolicy_binding[] = null;
 	private lbvserver_dospolicy_binding	lbvserver_dospolicy_binding[] = null;
+	private lbvserver_copolicy_binding	lbvserver_copolicy_binding[] = null;
 	private lbvserver_servicegroupmember_binding	lbvserver_servicegroupmember_binding[] = null;
 	private lbvserver_authorizationpolicy_binding	lbvserver_authorizationpolicy_binding[] = null;
 	private lbvserver_cachepolicy_binding	lbvserver_cachepolicy_binding[] = null;
@@ -63,13 +74,13 @@ public class lbvserver_binding extends base_resource
 	private lbvserver_servicegroup_binding	lbvserver_servicegroup_binding[] = null;
 	private lbvserver_service_binding	lbvserver_service_binding[] = null;
 	private lbvserver_tmtrafficpolicy_binding	lbvserver_tmtrafficpolicy_binding[] = null;
+	private lbvserver_appqoepolicy_binding	lbvserver_appqoepolicy_binding[] = null;
 	private lbvserver_auditsyslogpolicy_binding	lbvserver_auditsyslogpolicy_binding[] = null;
 	private lbvserver_appfwpolicy_binding	lbvserver_appfwpolicy_binding[] = null;
 
 	/**
 	* <pre>
-	* The name of the load balancing server. If no load balancing virtual server name is entered, a list of all configured load balancing virtual servers is displayed.
-All the services and priority queuing/SureConnect  policies that are bound to this virtual server are also displayed.<br> Minimum length =  1
+	* Name of the virtual server. If no name is provided, statistical data of all configured virtual servers is displayed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -78,8 +89,7 @@ All the services and priority queuing/SureConnect  policies that are bound to th
 
 	/**
 	* <pre>
-	* The name of the load balancing server. If no load balancing virtual server name is entered, a list of all configured load balancing virtual servers is displayed.
-All the services and priority queuing/SureConnect  policies that are bound to this virtual server are also displayed.<br> Minimum length =  1
+	* Name of the virtual server. If no name is provided, statistical data of all configured virtual servers is displayed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -124,11 +134,29 @@ All the services and priority queuing/SureConnect  policies that are bound to th
 
 	/**
 	* <pre>
+	* spilloverpolicy that can be bound to lbvserver.
+	* </pre>
+	*/
+	public lbvserver_spilloverpolicy_binding[] get_lbvserver_spilloverpolicy_bindings() throws Exception {
+		return this.lbvserver_spilloverpolicy_binding;
+	}
+
+	/**
+	* <pre>
 	* auditnslogpolicy that can be bound to lbvserver.
 	* </pre>
 	*/
 	public lbvserver_auditnslogpolicy_binding[] get_lbvserver_auditnslogpolicy_bindings() throws Exception {
 		return this.lbvserver_auditnslogpolicy_binding;
+	}
+
+	/**
+	* <pre>
+	* appqoepolicy that can be bound to lbvserver.
+	* </pre>
+	*/
+	public lbvserver_appqoepolicy_binding[] get_lbvserver_appqoepolicy_bindings() throws Exception {
+		return this.lbvserver_appqoepolicy_binding;
 	}
 
 	/**
@@ -165,6 +193,15 @@ All the services and priority queuing/SureConnect  policies that are bound to th
 	*/
 	public lbvserver_csvserver_binding[] get_lbvserver_csvserver_bindings() throws Exception {
 		return this.lbvserver_csvserver_binding;
+	}
+
+	/**
+	* <pre>
+	* copolicy that can be bound to lbvserver.
+	* </pre>
+	*/
+	public lbvserver_copolicy_binding[] get_lbvserver_copolicy_bindings() throws Exception {
+		return this.lbvserver_copolicy_binding;
 	}
 
 	/**

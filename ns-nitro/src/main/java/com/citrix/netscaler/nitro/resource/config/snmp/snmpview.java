@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.snmp;
@@ -38,7 +44,10 @@ public class snmpview extends base_resource
 
 	/**
 	* <pre>
-	* A name for the SNMP view. Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. You should choose a name that helps identify the SNMP view.<br> Minimum length =  1
+	* Name for the SNMPv3 view. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. You should choose a name that helps identify the SNMPv3 view.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose it in double or single quotation marks (for example, "my view" or 'my view').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -47,7 +56,10 @@ public class snmpview extends base_resource
 
 	/**
 	* <pre>
-	* A name for the SNMP view. Can begin and consist of 1 to 31 characters that include letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. You should choose a name that helps identify the SNMP view.<br> Minimum length =  1
+	* Name for the SNMPv3 view. Can consist of 1 to 31 characters that include uppercase and lowercase letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (_) characters. You should choose a name that helps identify the SNMPv3 view.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose it in double or single quotation marks (for example, "my view" or 'my view').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -56,7 +68,7 @@ public class snmpview extends base_resource
 
 	/**
 	* <pre>
-	* A particular branch (subtree) of the MIB tree that you want to associate with this SNMP view. You must specify the subtree as an SNMP OID.<br> Minimum length =  1
+	* A particular branch (subtree) of the MIB tree that you want to associate with this SNMPv3 view. You must specify the subtree as an SNMP OID.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_subtree(String subtree) throws Exception{
@@ -65,7 +77,7 @@ public class snmpview extends base_resource
 
 	/**
 	* <pre>
-	* A particular branch (subtree) of the MIB tree that you want to associate with this SNMP view. You must specify the subtree as an SNMP OID.<br> Minimum length =  1
+	* A particular branch (subtree) of the MIB tree that you want to associate with this SNMPv3 view. You must specify the subtree as an SNMP OID.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_subtree() throws Exception {
@@ -74,7 +86,7 @@ public class snmpview extends base_resource
 
 	/**
 	* <pre>
-	* Include or exclude the subtree, specified in the subtree parameter, to or from this view. This setting can be useful when you have included a subtree, such as A, in an SNMP view and you want to exclude a specific subtree of A, such as B, from the SNMP view.<br> Possible values = included, excluded
+	* Include or exclude the subtree, specified by the subtree parameter, in or from this view. This setting can be useful when you have included a subtree, such as A, in an SNMPv3 view and you want to exclude a specific subtree of A, such as B, from the SNMPv3 view.<br> Possible values = included, excluded
 	* </pre>
 	*/
 	public void set_type(String type) throws Exception{
@@ -83,7 +95,7 @@ public class snmpview extends base_resource
 
 	/**
 	* <pre>
-	* Include or exclude the subtree, specified in the subtree parameter, to or from this view. This setting can be useful when you have included a subtree, such as A, in an SNMP view and you want to exclude a specific subtree of A, such as B, from the SNMP view.<br> Possible values = included, excluded
+	* Include or exclude the subtree, specified by the subtree parameter, in or from this view. This setting can be useful when you have included a subtree, such as A, in an SNMPv3 view and you want to exclude a specific subtree of A, such as B, from the SNMPv3 view.<br> Possible values = included, excluded
 	* </pre>
 	*/
 	public String get_type() throws Exception {

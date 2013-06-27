@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.authorization;
@@ -27,6 +33,7 @@ class authorizationpolicylabel_response extends base_response
 public class authorizationpolicylabel extends base_resource
 {
 	private String labelname;
+	private String newname;
 
 	//------- Read only Parameter ---------;
 
@@ -43,7 +50,11 @@ public class authorizationpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the authorization policy label.
+	* Name for the new authorization policy label. 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the authorization policy is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my authorization policy label or authorization policy label).
 	* </pre>
 	*/
 	public void set_labelname(String labelname) throws Exception{
@@ -52,11 +63,33 @@ public class authorizationpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the authorization policy label.
+	* Name for the new authorization policy label. 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the authorization policy is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my authorization policy label or authorization policy label).
 	* </pre>
 	*/
 	public String get_labelname() throws Exception {
 		return this.labelname;
+	}
+
+	/**
+	* <pre>
+	* The new name of the auth policy label.<br> Minimum length =  1
+	* </pre>
+	*/
+	public void set_newname(String newname) throws Exception{
+		this.newname = newname;
+	}
+
+	/**
+	* <pre>
+	* The new name of the auth policy label.<br> Minimum length =  1
+	* </pre>
+	*/
+	public String get_newname() throws Exception {
+		return this.newname;
 	}
 
 	/**
@@ -79,7 +112,7 @@ public class authorizationpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The authorization policy name.
+	* Name of the authorization policy to bind to the policy label.
 	* </pre>
 	*/
 	public String get_policyname() throws Exception {
@@ -106,7 +139,10 @@ public class authorizationpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation.<br> Possible values = reqvserver, resvserver, policylabel
+	* Type of invocation. Available settings function as follows:
+* reqvserver - Send the request to the specified request virtual server.
+* resvserver - Send the response to the specified response virtual server.
+* policylabel - Invoke the specified policy label.<br> Possible values = reqvserver, resvserver, policylabel
 	* </pre>
 	*/
 	public String get_labeltype() throws Exception {
@@ -115,7 +151,7 @@ public class authorizationpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the policy label to invoke if the current policy evaluates to TRUE, the invoke parameter is set, and Label Type is set to Policy Label.
 	* </pre>
 	*/
 	public String get_invoke_labelname() throws Exception {
@@ -247,6 +283,24 @@ public class authorizationpolicylabel extends base_resource
 			result = delete_bulk_request(client, deleteresources);
 		}
 		return result;
+	}
+
+	/**
+	* Use this API to rename a authorizationpolicylabel resource.
+	*/
+	public static base_response rename(nitro_service client, authorizationpolicylabel resource, String new_labelname) throws Exception {
+		authorizationpolicylabel renameresource = new authorizationpolicylabel();
+		renameresource.labelname = resource.labelname;
+		return renameresource.rename_resource(client,new_labelname);
+	}
+
+	/**
+	* Use this API to rename a authorizationpolicylabel resource.
+	*/
+	public static base_response rename(nitro_service client, String labelname, String new_labelname) throws Exception {
+		authorizationpolicylabel renameresource = new authorizationpolicylabel();
+		renameresource.labelname = labelname;
+		return renameresource.rename_resource(client,new_labelname);
 	}
 
 	/**

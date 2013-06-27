@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.basic;
@@ -44,7 +50,7 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* The start of the IP address range in dotted notation.<br> Minimum length =  1
+	* First IP address in the range, in dotted decimal notation.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ipfrom(String ipfrom) throws Exception{
@@ -53,7 +59,7 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* The start of the IP address range in dotted notation.<br> Minimum length =  1
+	* First IP address in the range, in dotted decimal notation.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ipfrom() throws Exception {
@@ -62,7 +68,7 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* The end of the IP address range in dotted notation.<br> Minimum length =  1
+	* Last IP address in the range, in dotted decimal notation.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ipto(String ipto) throws Exception{
@@ -71,7 +77,7 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* The end of the IP address range in dotted notation.<br> Minimum length =  1
+	* Last IP address in the range, in dotted decimal notation.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ipto() throws Exception {
@@ -80,7 +86,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* The qualifiers in dotted notation for the ipaddress range mentioned.<br> Minimum length =  1
+	* String of qualifiers, in dotted notation, describing the geographical location of the IP address range. Each qualifier is more specific than the one that precedes it, as in continent.country.region.city.isp.organization. For example, "NA.US.CA.San Jose.ATT.citrix". 
+Note: A qualifier that includes a dot (.) or space ( ) must be enclosed in double quotation marks.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_preferredlocation(String preferredlocation) throws Exception{
@@ -89,7 +96,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* The qualifiers in dotted notation for the ipaddress range mentioned.<br> Minimum length =  1
+	* String of qualifiers, in dotted notation, describing the geographical location of the IP address range. Each qualifier is more specific than the one that precedes it, as in continent.country.region.city.isp.organization. For example, "NA.US.CA.San Jose.ATT.citrix". 
+Note: A qualifier that includes a dot (.) or space ( ) must be enclosed in double quotation marks.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_preferredlocation() throws Exception {
@@ -98,7 +106,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* Longitude of the location.<br> Minimum value =  -180<br> Maximum value =  180
+	* Numerical value, in degrees, specifying the longitude of the geographical location of the IP address-range. 
+Note: Longitude and latitude parameters are used for selecting a service with the static proximity GSLB method. If they are not specified, selection is based on the qualifiers specified for the location.<br> Minimum value =  -180<br> Maximum value =  180
 	* </pre>
 	*/
 	public void set_longitude(int longitude) throws Exception {
@@ -107,7 +116,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* Longitude of the location.<br> Minimum value =  -180<br> Maximum value =  180
+	* Numerical value, in degrees, specifying the longitude of the geographical location of the IP address-range. 
+Note: Longitude and latitude parameters are used for selecting a service with the static proximity GSLB method. If they are not specified, selection is based on the qualifiers specified for the location.<br> Minimum value =  -180<br> Maximum value =  180
 	* </pre>
 	*/
 	public void set_longitude(Integer longitude) throws Exception{
@@ -116,7 +126,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* Longitude of the location.<br> Minimum value =  -180<br> Maximum value =  180
+	* Numerical value, in degrees, specifying the longitude of the geographical location of the IP address-range. 
+Note: Longitude and latitude parameters are used for selecting a service with the static proximity GSLB method. If they are not specified, selection is based on the qualifiers specified for the location.<br> Minimum value =  -180<br> Maximum value =  180
 	* </pre>
 	*/
 	public Integer get_longitude() throws Exception {
@@ -125,7 +136,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* Latitude of the location.<br> Minimum value =  -90<br> Maximum value =  90
+	* Numerical value, in degrees, specifying the latitude of the geographical location of the IP address-range. 
+Note: Longitude and latitude parameters are used for selecting a service with the static proximity GSLB method. If they are not specified, selection is based on the qualifiers specified for the location.<br> Minimum value =  -90<br> Maximum value =  90
 	* </pre>
 	*/
 	public void set_latitude(int latitude) throws Exception {
@@ -134,7 +146,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* Latitude of the location.<br> Minimum value =  -90<br> Maximum value =  90
+	* Numerical value, in degrees, specifying the latitude of the geographical location of the IP address-range. 
+Note: Longitude and latitude parameters are used for selecting a service with the static proximity GSLB method. If they are not specified, selection is based on the qualifiers specified for the location.<br> Minimum value =  -90<br> Maximum value =  90
 	* </pre>
 	*/
 	public void set_latitude(Integer latitude) throws Exception{
@@ -143,7 +156,8 @@ public class location extends base_resource
 
 	/**
 	* <pre>
-	* Latitude of the location.<br> Minimum value =  -90<br> Maximum value =  90
+	* Numerical value, in degrees, specifying the latitude of the geographical location of the IP address-range. 
+Note: Longitude and latitude parameters are used for selecting a service with the static proximity GSLB method. If they are not specified, selection is based on the qualifiers specified for the location.<br> Minimum value =  -90<br> Maximum value =  90
 	* </pre>
 	*/
 	public Integer get_latitude() throws Exception {

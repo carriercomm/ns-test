@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cluster;
@@ -30,6 +36,7 @@ public class clusternode extends base_resource
 	private String ipaddress;
 	private String state;
 	private String backplane;
+	private Long priority;
 
 	//------- Read only Parameter ---------;
 
@@ -42,11 +49,17 @@ public class clusternode extends base_resource
 	private Boolean islocalnode;
 	private Boolean nodersskeymismatch;
 	private Boolean nodelicensemismatch;
+	private Long nodelist;
+	private String ifaceslist;
+	private String enabledifaces;
+	private String disabledifaces;
+	private String partialfailifaces;
+	private String hamonifaces;
 	private Long __count;
 
 	/**
 	* <pre>
-	* A unique number that identifies the cluster node.<br> Minimum value =  0<br> Maximum value =  31
+	* Unique number that identifies the cluster node.<br> Minimum value =  0<br> Maximum value =  31
 	* </pre>
 	*/
 	public void set_nodeid(long nodeid) throws Exception {
@@ -55,7 +68,7 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* A unique number that identifies the cluster node.<br> Minimum value =  0<br> Maximum value =  31
+	* Unique number that identifies the cluster node.<br> Minimum value =  0<br> Maximum value =  31
 	* </pre>
 	*/
 	public void set_nodeid(Long nodeid) throws Exception{
@@ -64,7 +77,7 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* A unique number that identifies the cluster node.<br> Minimum value =  0<br> Maximum value =  31
+	* Unique number that identifies the cluster node.<br> Minimum value =  0<br> Maximum value =  31
 	* </pre>
 	*/
 	public Long get_nodeid() throws Exception {
@@ -73,7 +86,7 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* The NetScaler IP (NSIP) address of the appliance that you want to add to the cluster. Only IPv4 addresses are supported.<br> Minimum length =  1
+	* NetScaler IP (NSIP) address of the appliance to add to the cluster. Must be an IPv4 address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ipaddress(String ipaddress) throws Exception{
@@ -82,7 +95,7 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* The NetScaler IP (NSIP) address of the appliance that you want to add to the cluster. Only IPv4 addresses are supported.<br> Minimum length =  1
+	* NetScaler IP (NSIP) address of the appliance to add to the cluster. Must be an IPv4 address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ipaddress() throws Exception {
@@ -91,10 +104,10 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* The configured state of the cluster node.
-	ACTIVE - The node serves traffic.
-	SPARE - The node does not serve traffic till an ACTIVE node goes down.
-	PASSIVE - The node does not serve traffic till explicitly made ACTIVE. This state is useful during temporary maintenance activities where it is desirable that the node takes part in the consensus protocol, but does not serve traffic.<br> Default value: NSACL_NODEST_PASSIVE<br> Possible values = ACTIVE, SPARE, PASSIVE
+	* Admin state of the cluster node. The available settings function as follows:
+ACTIVE - The node serves traffic.
+SPARE - The node does not serve traffic unless an ACTIVE node goes down.
+PASSIVE - The node does not serve traffic, unless you change its state. PASSIVE state is useful during temporary maintenance activities in which you want the node to take part in the consensus protocol but not to serve traffic.<br> Default value: PASSIVE<br> Possible values = ACTIVE, SPARE, PASSIVE
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -103,10 +116,10 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* The configured state of the cluster node.
-	ACTIVE - The node serves traffic.
-	SPARE - The node does not serve traffic till an ACTIVE node goes down.
-	PASSIVE - The node does not serve traffic till explicitly made ACTIVE. This state is useful during temporary maintenance activities where it is desirable that the node takes part in the consensus protocol, but does not serve traffic.<br> Default value: NSACL_NODEST_PASSIVE<br> Possible values = ACTIVE, SPARE, PASSIVE
+	* Admin state of the cluster node. The available settings function as follows:
+ACTIVE - The node serves traffic.
+SPARE - The node does not serve traffic unless an ACTIVE node goes down.
+PASSIVE - The node does not serve traffic, unless you change its state. PASSIVE state is useful during temporary maintenance activities in which you want the node to take part in the consensus protocol but not to serve traffic.<br> Default value: PASSIVE<br> Possible values = ACTIVE, SPARE, PASSIVE
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -115,7 +128,7 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* The interface to be used to communicate with the other cluster nodes. The interface must be specified in the three-tuple form, n/c/u, where n represents the node ID.<br> Minimum length =  1
+	* Interface through which the node communicates with the other nodes in the cluster. Must be specified in the three-tuple form n/c/u, where n represents the node ID and c/u refers to the interface on the appliance.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_backplane(String backplane) throws Exception{
@@ -124,11 +137,38 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* The interface to be used to communicate with the other cluster nodes. The interface must be specified in the three-tuple form, n/c/u, where n represents the node ID.<br> Minimum length =  1
+	* Interface through which the node communicates with the other nodes in the cluster. Must be specified in the three-tuple form n/c/u, where n represents the node ID and c/u refers to the interface on the appliance.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_backplane() throws Exception {
 		return this.backplane;
+	}
+
+	/**
+	* <pre>
+	* Priority for a cluster node to be chosen as Configuration Coordinator.<br> Default value: 31<br> Minimum value =  0<br> Maximum value =  31
+	* </pre>
+	*/
+	public void set_priority(long priority) throws Exception {
+		this.priority = new Long(priority);
+	}
+
+	/**
+	* <pre>
+	* Priority for a cluster node to be chosen as Configuration Coordinator.<br> Default value: 31<br> Minimum value =  0<br> Maximum value =  31
+	* </pre>
+	*/
+	public void set_priority(Long priority) throws Exception{
+		this.priority = priority;
+	}
+
+	/**
+	* <pre>
+	* Priority for a cluster node to be chosen as Configuration Coordinator.<br> Default value: 31<br> Minimum value =  0<br> Maximum value =  31
+	* </pre>
+	*/
+	public Long get_priority() throws Exception {
+		return this.priority;
 	}
 
 	/**
@@ -169,7 +209,7 @@ public class clusternode extends base_resource
 
 	/**
 	* <pre>
-	* Node Health state.<br> Possible values = UNKNOWN, INIT, DOWN, UP, Some enabled and HAMON interfaces of the node are down, All interfaces of the node are down or disabled, SSL card(s) of the node have failed, Route Monitor(s) of the node have failed, Service state is being synchronized with the cluster, The backplane interface is not set,  is down,  or is disabled, The CLAG member(s) of the node are down, Persistence sessions are being synchronized with the cluster, The Syn Cookie is being synchronized with the cluster, Unknown Health
+	* Node Health state.<br> Possible values = UNKNOWN, INIT, DOWN, UP, Some enabled and HAMON interfaces of the node are down, All interfaces of the node are down or disabled, SSL card(s) of the node have failed, Route Monitor(s) of the node have failed, Service state is being synchronized with the cluster, The backplane interface is not set,  is down,  or is disabled, The CLAG member(s) of the node are down, Persistence sessions are being synchronized with the cluster, The Syn Cookie is being synchronized with the cluster, Unknown Health, AAA keys are being sychronized with the cluster
 	* </pre>
 	*/
 	public String get_health() throws Exception {
@@ -210,6 +250,60 @@ public class clusternode extends base_resource
 	*/
 	public Boolean get_nodelicensemismatch() throws Exception {
 		return this.nodelicensemismatch;
+	}
+
+	/**
+	* <pre>
+	* Nodelist for displaying Heartbeat not seen interfaces on a cluster node.
+	* </pre>
+	*/
+	public Long get_nodelist() throws Exception {
+		return this.nodelist;
+	}
+
+	/**
+	* <pre>
+	* Interface list corresponding to nodelist for Heartbeat not seen interfaces on a cluster node.
+	* </pre>
+	*/
+	public String get_ifaceslist() throws Exception {
+		return this.ifaceslist;
+	}
+
+	/**
+	* <pre>
+	* Enabled Interfaces on a cluster node.
+	* </pre>
+	*/
+	public String get_enabledifaces() throws Exception {
+		return this.enabledifaces;
+	}
+
+	/**
+	* <pre>
+	* Disabled Interfaces on a cluster node.
+	* </pre>
+	*/
+	public String get_disabledifaces() throws Exception {
+		return this.disabledifaces;
+	}
+
+	/**
+	* <pre>
+	* Partial Failure Interfaces on a cluster node.
+	* </pre>
+	*/
+	public String get_partialfailifaces() throws Exception {
+		return this.partialfailifaces;
+	}
+
+	/**
+	* <pre>
+	* Hamon Interfaces on a cluster node.
+	* </pre>
+	*/
+	public String get_hamonifaces() throws Exception {
+		return this.hamonifaces;
 	}
 
 	/**
@@ -258,6 +352,7 @@ public class clusternode extends base_resource
 		addresource.ipaddress = resource.ipaddress;
 		addresource.state = resource.state;
 		addresource.backplane = resource.backplane;
+		addresource.priority = resource.priority;
 		return addresource.add_resource(client);
 	}
 
@@ -274,6 +369,7 @@ public class clusternode extends base_resource
 				addresources[i].ipaddress = resources[i].ipaddress;
 				addresources[i].state = resources[i].state;
 				addresources[i].backplane = resources[i].backplane;
+				addresources[i].priority = resources[i].priority;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -288,6 +384,7 @@ public class clusternode extends base_resource
 		updateresource.nodeid = resource.nodeid;
 		updateresource.state = resource.state;
 		updateresource.backplane = resource.backplane;
+		updateresource.priority = resource.priority;
 		return updateresource.update_resource(client);
 	}
 
@@ -303,6 +400,7 @@ public class clusternode extends base_resource
 				updateresources[i].nodeid = resources[i].nodeid;
 				updateresources[i].state = resources[i].state;
 				updateresources[i].backplane = resources[i].backplane;
+				updateresources[i].priority = resources[i].priority;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -313,21 +411,9 @@ public class clusternode extends base_resource
 	* Use this API to unset the properties of clusternode resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, Long nodeid, String args[]) throws Exception {
-		clusternode unsetresource = new clusternode();
-		unsetresource.nodeid = nodeid;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of clusternode resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, clusternode resource, String[] args) throws Exception{
 		clusternode unsetresource = new clusternode();
 		unsetresource.nodeid = resource.nodeid;
-		unsetresource.state = resource.state;
-		unsetresource.backplane = resource.backplane;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -359,8 +445,6 @@ public class clusternode extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new clusternode();
 				unsetresources[i].nodeid = resources[i].nodeid;
-				unsetresources[i].state = resources[i].state;
-				unsetresources[i].backplane = resources[i].backplane;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -566,6 +650,7 @@ public class clusternode extends base_resource
 		public static final String Persistence_sessions_are_being_synchronized_with_the_cluster = "Persistence sessions are being synchronized with the cluster";
 		public static final String The_Syn_Cookie_is_being_synchronized_with_the_cluster = "The Syn Cookie is being synchronized with the cluster";
 		public static final String Unknown_Health = "Unknown Health";
+		public static final String AAA_keys_are_being_sychronized_with_the_cluster = "AAA keys are being sychronized with the cluster";
 	}
 	public static class clusterhealthEnum {
 		public static final String UP = "UP";

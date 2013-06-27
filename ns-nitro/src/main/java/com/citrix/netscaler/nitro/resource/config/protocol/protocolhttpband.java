@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.protocol;
@@ -41,7 +47,10 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Band size for HTTP request band statistics.<br> Default value: 100<br> Minimum value =  50
+	* Band size, in bytes, for HTTP request band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.<br> Default value: 100<br> Minimum value =  50
 	* </pre>
 	*/
 	public void set_reqbandsize(int reqbandsize) throws Exception {
@@ -50,7 +59,10 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Band size for HTTP request band statistics.<br> Default value: 100<br> Minimum value =  50
+	* Band size, in bytes, for HTTP request band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.<br> Default value: 100<br> Minimum value =  50
 	* </pre>
 	*/
 	public void set_reqbandsize(Integer reqbandsize) throws Exception{
@@ -59,7 +71,10 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Band size for HTTP request band statistics.<br> Default value: 100<br> Minimum value =  50
+	* Band size, in bytes, for HTTP request band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.<br> Default value: 100<br> Minimum value =  50
 	* </pre>
 	*/
 	public Integer get_reqbandsize() throws Exception {
@@ -68,7 +83,10 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Band size for HTTP response band statistics.<br> Default value: 1024<br> Minimum value =  50
+	* Band size, in bytes, for HTTP response band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.<br> Default value: 1024<br> Minimum value =  50
 	* </pre>
 	*/
 	public void set_respbandsize(int respbandsize) throws Exception {
@@ -77,7 +95,10 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Band size for HTTP response band statistics.<br> Default value: 1024<br> Minimum value =  50
+	* Band size, in bytes, for HTTP response band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.<br> Default value: 1024<br> Minimum value =  50
 	* </pre>
 	*/
 	public void set_respbandsize(Integer respbandsize) throws Exception{
@@ -86,7 +107,10 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Band size for HTTP response band statistics.<br> Default value: 1024<br> Minimum value =  50
+	* Band size, in bytes, for HTTP response band statistics. For example, if you specify a band size of 100 bytes, statistics will be maintained and displayed for the following size ranges:
+0 - 99 bytes
+100 - 199 bytes
+200 - 299 bytes and so on.<br> Default value: 1024<br> Minimum value =  50
 	* </pre>
 	*/
 	public Integer get_respbandsize() throws Exception {
@@ -95,7 +119,7 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Specify whether to display request/response band statistics.<br> Possible values = REQUEST, RESPONSE
+	* Type of statistics to display.<br> Possible values = REQUEST, RESPONSE
 	* </pre>
 	*/
 	public void set_type(String type) throws Exception{
@@ -104,7 +128,7 @@ public class protocolhttpband extends base_resource
 
 	/**
 	* <pre>
-	* Specify whether to display request/response band statistics.<br> Possible values = REQUEST, RESPONSE
+	* Type of statistics to display.<br> Possible values = REQUEST, RESPONSE
 	* </pre>
 	*/
 	public String get_type() throws Exception {
@@ -217,8 +241,6 @@ public class protocolhttpband extends base_resource
 	*/
 	public static base_response unset(nitro_service client, protocolhttpband resource, String[] args) throws Exception{
 		protocolhttpband unsetresource = new protocolhttpband();
-		unsetresource.reqbandsize = resource.reqbandsize;
-		unsetresource.respbandsize = resource.respbandsize;
 		return unsetresource.unset_resource(client,args);
 	}
 

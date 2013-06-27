@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.vpn;
@@ -23,6 +29,7 @@ class vpn_response extends base_response
 
 public class vpn_stats extends base_resource
 {
+	private String clearstats;
 	private Long indexhtmlhit;
 	private Long indexhtmlnoserved;
 	private Long cfghtmlserved;
@@ -88,7 +95,25 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of STA connection failure.
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
+	}
+
+	/**
+	* <pre>
+	* Rate (/s) counter for staconnfailure
 	* </pre>
 	*/
 	public Long get_staconnfailurerate() throws Exception {
@@ -106,7 +131,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of probes from VPN to back-end non-HTTP servers that have been accessed by the VPN client.
+	* Rate (/s) counter for csnonhttpprobehit
 	* </pre>
 	*/
 	public Long get_csnonhttpprobehitrate() throws Exception {
@@ -124,7 +149,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of times MIP is used on IIP Spillover.
+	* Rate (/s) counter for iipspillovermipused
 	* </pre>
 	*/
 	public Long get_iipspillovermipusedrate() throws Exception {
@@ -142,7 +167,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of probes from VPN to back-end HTTP servers that have been accessed by the VPN client.
+	* Rate (/s) counter for cshttpprobehit
 	* </pre>
 	*/
 	public Long get_cshttpprobehitrate() throws Exception {
@@ -151,7 +176,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of sent SOCKS connect response.
+	* Rate (/s) counter for socksconnrespsent
 	* </pre>
 	*/
 	public Long get_socksconnrespsentrate() throws Exception {
@@ -169,7 +194,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SOCKS server error.
+	* Rate (/s) counter for socksservererror
 	* </pre>
 	*/
 	public Long get_socksservererrorrate() throws Exception {
@@ -178,7 +203,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of WINS queries resolved by VPN server.
+	* Rate (/s) counter for winsrequesthit
 	* </pre>
 	*/
 	public Long get_winsrequesthitrate() throws Exception {
@@ -196,7 +221,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of received SOCKS method response.
+	* Rate (/s) counter for socksmethresprcvd
 	* </pre>
 	*/
 	public Long get_socksmethresprcvdrate() throws Exception {
@@ -223,7 +248,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of received SOCKS method request.
+	* Rate (/s) counter for socksmethreqrcvd
 	* </pre>
 	*/
 	public Long get_socksmethreqrcvdrate() throws Exception {
@@ -232,7 +257,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of sent SOCKS method request.
+	* Rate (/s) counter for socksmethreqsent
 	* </pre>
 	*/
 	public Long get_socksmethreqsentrate() throws Exception {
@@ -241,7 +266,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of CPS connection failure.
+	* Rate (/s) counter for cpsconnfailure
 	* </pre>
 	*/
 	public Long get_cpsconnfailurerate() throws Exception {
@@ -286,7 +311,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of times MIP is used as IIP is disabled.
+	* Rate (/s) counter for iipdisabledmipused
 	* </pre>
 	*/
 	public Long get_iipdisabledmipusedrate() throws Exception {
@@ -295,7 +320,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of sent SOCKS method response.
+	* Rate (/s) counter for socksmethrespsent
 	* </pre>
 	*/
 	public Long get_socksmethrespsentrate() throws Exception {
@@ -313,7 +338,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of ICA license failure.
+	* Rate (/s) counter for icalicensefailure
 	* </pre>
 	*/
 	public Long get_icalicensefailurerate() throws Exception {
@@ -331,7 +356,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of received SOCKS connect request.
+	* Rate (/s) counter for socksconnreqrcvd
 	* </pre>
 	*/
 	public Long get_socksconnreqrcvdrate() throws Exception {
@@ -340,7 +365,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SOCKS client error.
+	* Rate (/s) counter for socksclienterror
 	* </pre>
 	*/
 	public Long get_socksclienterrorrate() throws Exception {
@@ -367,7 +392,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of DNS queries resolved by VPN server.
+	* Rate (/s) counter for dnsreqhit
 	* </pre>
 	*/
 	public Long get_dnsreqhitrate() throws Exception {
@@ -394,7 +419,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of successful probes to all back-end servers.
+	* Rate (/s) counter for totalcsconnsucc
 	* </pre>
 	*/
 	public Long get_csconnsuccrate() throws Exception {
@@ -421,7 +446,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of STA connection success.
+	* Rate (/s) counter for staconnsuccess
 	* </pre>
 	*/
 	public Long get_staconnsuccessrate() throws Exception {
@@ -430,7 +455,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of times MIP is used as IIP assignment failed.
+	* Rate (/s) counter for iipfailedmipused
 	* </pre>
 	*/
 	public Long get_iipfailedmipusedrate() throws Exception {
@@ -448,7 +473,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of client configuration requests received by VPN server.
+	* Rate (/s) counter for cfghtmlserved
 	* </pre>
 	*/
 	public Long get_cfghtmlservedrate() throws Exception {
@@ -457,7 +482,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of STA response received.
+	* Rate (/s) counter for staresponserecvd
 	* </pre>
 	*/
 	public Long get_staresponserecvdrate() throws Exception {
@@ -475,7 +500,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL VPN tunnels formed between VPN server and client.
+	* Rate (/s) counter for csrequesthit
 	* </pre>
 	*/
 	public Long get_csrequesthitrate() throws Exception {
@@ -493,7 +518,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of times IIP assignment failed and MIP is disabled.
+	* Rate (/s) counter for iipfailedmipdisabled
 	* </pre>
 	*/
 	public Long get_iipfailedmipdisabledrate() throws Exception {
@@ -502,7 +527,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of CPS connection success.
+	* Rate (/s) counter for cpsconnsuccess
 	* </pre>
 	*/
 	public Long get_cpsconnsuccessrate() throws Exception {
@@ -511,7 +536,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of received SOCKS connect response.
+	* Rate (/s) counter for socksconnresprcvd
 	* </pre>
 	*/
 	public Long get_socksconnresprcvdrate() throws Exception {
@@ -529,7 +554,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of file system requests received by VPN server.
+	* Rate (/s) counter for totalfsrequest
 	* </pre>
 	*/
 	public Long get_fsrequestrate() throws Exception {
@@ -583,7 +608,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Both IIP and MIP is disabled.
+	* Rate (/s) counter for iipdisabledmipdisabled
 	* </pre>
 	*/
 	public Long get_iipdisabledmipdisabledrate() throws Exception {
@@ -628,7 +653,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of sent SOCKS connect request.
+	* Rate (/s) counter for socksconnreqsent
 	* </pre>
 	*/
 	public Long get_socksconnreqsentrate() throws Exception {
@@ -637,7 +662,7 @@ public class vpn_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of STA request sent.
+	* Rate (/s) counter for starequestsent
 	* </pre>
 	*/
 	public Long get_starequestsentrate() throws Exception {
@@ -698,4 +723,8 @@ public class vpn_stats extends base_resource
 		return response[0];
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

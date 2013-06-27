@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.lb;
@@ -43,7 +49,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The weight for the specified service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the specified service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(long weight) throws Exception {
@@ -52,7 +58,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The weight for the specified service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the specified service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(Long weight) throws Exception{
@@ -61,7 +67,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The weight for the specified service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the specified service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_weight() throws Exception {
@@ -70,7 +76,9 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name to which the service is bound.<br> Minimum length =  1
+	* Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -79,7 +87,9 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name to which the service is bound.<br> Minimum length =  1
+	* Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -88,7 +98,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The service name bound to the selected load balancing virtual server.<br> Minimum length =  1
+	* Service to bind to the virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicename(String servicename) throws Exception{
@@ -97,7 +107,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The service name bound to the selected load balancing virtual server.<br> Minimum length =  1
+	* Service to bind to the virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicename() throws Exception {
@@ -106,7 +116,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service group that is bound.<br> Minimum length =  1
+	* Name of the service group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicegroupname(String servicegroupname) throws Exception{
@@ -115,7 +125,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service group that is bound.<br> Minimum length =  1
+	* Name of the service group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicegroupname() throws Exception {
@@ -133,7 +143,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* A port number for the virtual server.<br> Range 1 - 65535
+	* Port number for the virtual server.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public Integer get_port() throws Exception {
@@ -151,7 +161,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* Current LB vserver state.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* Current LB vserver state.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_curstate() throws Exception {
@@ -169,7 +179,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the virtual server.
+	* IPv4 or IPv6 address to assign to the virtual server.
 	* </pre>
 	*/
 	public String get_ipv46() throws Exception {
@@ -196,7 +206,7 @@ public class lbvserver_service_binding extends base_resource
 
 	/**
 	* <pre>
-	* The service type.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, DNS, DHCPRA, ANY, SIP_UDP, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER
+	* Protocol used by the service (also called the service type).<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, DNS, DHCPRA, ANY, SIP_UDP, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, TFTP
 	* </pre>
 	*/
 	public String get_servicetype() throws Exception {
@@ -378,6 +388,7 @@ public class lbvserver_service_binding extends base_resource
 		public static final String SSL = "SSL";
 		public static final String SSL_BRIDGE = "SSL_BRIDGE";
 		public static final String SSL_TCP = "SSL_TCP";
+		public static final String DTLS = "DTLS";
 		public static final String NNTP = "NNTP";
 		public static final String DNS = "DNS";
 		public static final String DHCPRA = "DHCPRA";
@@ -393,6 +404,7 @@ public class lbvserver_service_binding extends base_resource
 		public static final String MSSQL = "MSSQL";
 		public static final String DIAMETER = "DIAMETER";
 		public static final String SSL_DIAMETER = "SSL_DIAMETER";
+		public static final String TFTP = "TFTP";
 	}
 	public static class bindpointEnum {
 		public static final String REQUEST = "REQUEST";
@@ -412,6 +424,8 @@ public class lbvserver_service_binding extends base_resource
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 
 }

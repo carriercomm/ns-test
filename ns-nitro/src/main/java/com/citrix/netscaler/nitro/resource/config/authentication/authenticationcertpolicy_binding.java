@@ -1,19 +1,25 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.authentication;
 
+import com.citrix.netscaler.nitro.resource.config.authentication.authenticationcertpolicy_vpnglobal_binding;
 import com.citrix.netscaler.nitro.resource.config.authentication.authenticationcertpolicy_vpnvserver_binding;
 import com.citrix.netscaler.nitro.resource.config.authentication.authenticationcertpolicy_systemglobal_binding;
 import com.citrix.netscaler.nitro.resource.config.authentication.authenticationcertpolicy_authenticationvserver_binding;
-import com.citrix.netscaler.nitro.resource.config.authentication.authenticationcertpolicy_vpnglobal_binding;
 import com.citrix.netscaler.nitro.resource.base.*;
 import com.citrix.netscaler.nitro.service.nitro_service;
 import com.citrix.netscaler.nitro.service.options;
@@ -31,14 +37,14 @@ class authenticationcertpolicy_binding_response extends base_response
 public class authenticationcertpolicy_binding extends base_resource
 {
 	private String name;
+	private authenticationcertpolicy_vpnglobal_binding	authenticationcertpolicy_vpnglobal_binding[] = null;
 	private authenticationcertpolicy_vpnvserver_binding	authenticationcertpolicy_vpnvserver_binding[] = null;
 	private authenticationcertpolicy_systemglobal_binding	authenticationcertpolicy_systemglobal_binding[] = null;
 	private authenticationcertpolicy_authenticationvserver_binding	authenticationcertpolicy_authenticationvserver_binding[] = null;
-	private authenticationcertpolicy_vpnglobal_binding	authenticationcertpolicy_vpnglobal_binding[] = null;
 
 	/**
 	* <pre>
-	* The name of the policy. If a name is not provided, all of the configured policies are displayed.<br> Minimum length =  1
+	* Name of the client cert authentication policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -47,7 +53,7 @@ public class authenticationcertpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the policy. If a name is not provided, all of the configured policies are displayed.<br> Minimum length =  1
+	* Name of the client cert authentication policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {

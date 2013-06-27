@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -33,9 +39,10 @@ public class sslcipher extends base_resource
 
 	/**
 	* <pre>
-	* The name of the user-defined cipher group.
-	If the cipher group does not exist on the system, a new group is created with the specified name. The ciphers are added to this group.
-	If a group identified by cipherGroupName already exists on the system, the ciphers are added to it.<br> Minimum length =  1
+	* Name for the user-defined cipher group. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the cipher group is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my ciphergroup" or 'my ciphergroup').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ciphergroupname(String ciphergroupname) throws Exception{
@@ -44,9 +51,10 @@ public class sslcipher extends base_resource
 
 	/**
 	* <pre>
-	* The name of the user-defined cipher group.
-	If the cipher group does not exist on the system, a new group is created with the specified name. The ciphers are added to this group.
-	If a group identified by cipherGroupName already exists on the system, the ciphers are added to it.<br> Minimum length =  1
+	* Name for the user-defined cipher group. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the cipher group is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my ciphergroup" or 'my ciphergroup').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ciphergroupname() throws Exception {

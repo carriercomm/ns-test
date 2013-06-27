@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.wi;
@@ -32,7 +38,9 @@ public class wipackage extends base_resource
 
 	/**
 	* <pre>
-	* The location from where to get the java runtime package. Java package can be downloaded from http://ftp.riken.jp/pub/FreeBSD/ports/amd64/packages-6-stable/java/openjdk6-b17_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz.<br> Default value: "file://tmp/diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz"<br> Minimum length =  1<br> Maximum length =  255
+	* Complete path to the JRE tar file. 
+You can use the Diablo Latte JRE version 1.6.0-7 for 64-bit FreeBSD 6.x/amd64 platform available on the FreeBSD Foundation web site.
+Alternatively, you can use OpenJDK6 package for FreeBSD 6.x/amd63.The Java package can be downloaded from http://ftp.riken.jp/pub/FreeBSD/ports/amd64/packages-6-stable/java/openjdk6-b17_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz.<br> Default value: "file://tmp/diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz"<br> Minimum length =  1<br> Maximum length =  255
 	* </pre>
 	*/
 	public void set_jre(String jre) throws Exception{
@@ -41,7 +49,9 @@ public class wipackage extends base_resource
 
 	/**
 	* <pre>
-	* The location from where to get the java runtime package. Java package can be downloaded from http://ftp.riken.jp/pub/FreeBSD/ports/amd64/packages-6-stable/java/openjdk6-b17_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz.<br> Default value: "file://tmp/diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz"<br> Minimum length =  1<br> Maximum length =  255
+	* Complete path to the JRE tar file. 
+You can use the Diablo Latte JRE version 1.6.0-7 for 64-bit FreeBSD 6.x/amd64 platform available on the FreeBSD Foundation web site.
+Alternatively, you can use OpenJDK6 package for FreeBSD 6.x/amd63.The Java package can be downloaded from http://ftp.riken.jp/pub/FreeBSD/ports/amd64/packages-6-stable/java/openjdk6-b17_2.tbz or http://www.freebsdfoundation.org/cgi-bin/download?download=diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz.<br> Default value: "file://tmp/diablo-jdk-freebsd6.amd64.1.6.0.07.02.tbz"<br> Minimum length =  1<br> Maximum length =  255
 	* </pre>
 	*/
 	public String get_jre() throws Exception {
@@ -50,7 +60,7 @@ public class wipackage extends base_resource
 
 	/**
 	* <pre>
-	* The location from where to get the web interface package.<br> Default value: "http://citrix.com/downloads/nswi-1.5.tgz"<br> Minimum length =  1<br> Maximum length =  255
+	* Complete path to the Web Interface tar file for installing the Web Interface on the NetScaler appliance. This file includes Apache Tomcat Web server. The file name has the following format: nswi-<version number>.tgz (for example, nswi-1.5.tgz).<br> Default value: "http://citrix.com/downloads/nswi-1.7.tgz"<br> Minimum length =  1<br> Maximum length =  255
 	* </pre>
 	*/
 	public void set_wi(String wi) throws Exception{
@@ -59,7 +69,7 @@ public class wipackage extends base_resource
 
 	/**
 	* <pre>
-	* The location from where to get the web interface package.<br> Default value: "http://citrix.com/downloads/nswi-1.5.tgz"<br> Minimum length =  1<br> Maximum length =  255
+	* Complete path to the Web Interface tar file for installing the Web Interface on the NetScaler appliance. This file includes Apache Tomcat Web server. The file name has the following format: nswi-<version number>.tgz (for example, nswi-1.5.tgz).<br> Default value: "http://citrix.com/downloads/nswi-1.7.tgz"<br> Minimum length =  1<br> Maximum length =  255
 	* </pre>
 	*/
 	public String get_wi() throws Exception {
@@ -68,7 +78,7 @@ public class wipackage extends base_resource
 
 	/**
 	* <pre>
-	* Maximum number of WI sites that can be created; changes the amount of RAM reserved for WI usage; changing its value results in restart of Tomcat & invalidates any existing WI session.<br> Possible values = 3, 25, 50, 100, 200, 500
+	* Maximum number of Web Interface sites that can be created on the NetScaler appliance; changes the amount of RAM reserved for Web Interface usage; changing its value results in restart of Tomcat server and invalidates any existing Web Interface sessions.<br> Possible values = 3, 25, 50, 100, 200, 500
 	* </pre>
 	*/
 	public void set_maxsites(String maxsites) throws Exception{
@@ -77,7 +87,7 @@ public class wipackage extends base_resource
 
 	/**
 	* <pre>
-	* Maximum number of WI sites that can be created; changes the amount of RAM reserved for WI usage; changing its value results in restart of Tomcat & invalidates any existing WI session.<br> Possible values = 3, 25, 50, 100, 200, 500
+	* Maximum number of Web Interface sites that can be created on the NetScaler appliance; changes the amount of RAM reserved for Web Interface usage; changing its value results in restart of Tomcat server and invalidates any existing Web Interface sessions.<br> Possible values = 3, 25, 50, 100, 200, 500
 	* </pre>
 	*/
 	public String get_maxsites() throws Exception {

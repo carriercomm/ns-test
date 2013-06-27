@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -41,7 +47,10 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The object name for the FIPS key.<br> Minimum length =  1
+	* Name for the FIPS key. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the FIPS key is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my fipskey" or 'my fipskey').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_fipskeyname(String fipskeyname) throws Exception{
@@ -50,7 +59,10 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The object name for the FIPS key.<br> Minimum length =  1
+	* Name for the FIPS key. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the FIPS key is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my fipskey" or 'my fipskey').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_fipskeyname() throws Exception {
@@ -59,7 +71,7 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The modulus of the key to be created. The modulus value should be a multiple of 64.<br> Minimum value =  1024<br> Maximum value =  4096
+	* Modulus, in multiples of 64, of the FIPS key to be created.<br> Minimum value =  1024<br> Maximum value =  4096
 	* </pre>
 	*/
 	public void set_modulus(long modulus) throws Exception {
@@ -68,7 +80,7 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The modulus of the key to be created. The modulus value should be a multiple of 64.<br> Minimum value =  1024<br> Maximum value =  4096
+	* Modulus, in multiples of 64, of the FIPS key to be created.<br> Minimum value =  1024<br> Maximum value =  4096
 	* </pre>
 	*/
 	public void set_modulus(Long modulus) throws Exception{
@@ -77,7 +89,7 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The modulus of the key to be created. The modulus value should be a multiple of 64.<br> Minimum value =  1024<br> Maximum value =  4096
+	* Modulus, in multiples of 64, of the FIPS key to be created.<br> Minimum value =  1024<br> Maximum value =  4096
 	* </pre>
 	*/
 	public Long get_modulus() throws Exception {
@@ -86,9 +98,9 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The exponent value for the key to be created.
-	3	: Hex value 0x3
-	F4	: Hex value 0x10001.<br> Default value: 3<br> Possible values = 3, F4
+	* Exponent value for the FIPS key to be created. Available values function as follows:
+ 3=3 (hexadecimal)
+F4=10001 (hexadecimal).<br> Default value: 3<br> Possible values = 3, F4
 	* </pre>
 	*/
 	public void set_exponent(String exponent) throws Exception{
@@ -97,9 +109,9 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The exponent value for the key to be created.
-	3	: Hex value 0x3
-	F4	: Hex value 0x10001.<br> Default value: 3<br> Possible values = 3, F4
+	* Exponent value for the FIPS key to be created. Available values function as follows:
+ 3=3 (hexadecimal)
+F4=10001 (hexadecimal).<br> Default value: 3<br> Possible values = 3, F4
 	* </pre>
 	*/
 	public String get_exponent() throws Exception {
@@ -108,7 +120,8 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The path to the key file. The default input path for the key is /nsconfig/ssl/.<br> Minimum length =  1
+	* Name of and, optionally, path to the key file to be imported.
+ /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_key(String key) throws Exception{
@@ -117,7 +130,8 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The path to the key file. The default input path for the key is /nsconfig/ssl/.<br> Minimum length =  1
+	* Name of and, optionally, path to the key file to be imported.
+ /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_key() throws Exception {
@@ -126,11 +140,10 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The input format of the key file.
-	SIM: Secure Information Management. This is used when a FIPS key is transferred from one FIPS system to other.
-	DER: Distinguished Encoding Rule. This is used when a non-FIPS key is to be imported inside a FIPS system.
-		The non-FIPS key has to be converted to PKCS#8 form using the CLI command "convert pkcs8".
-<br> Default value: FORMAT_SIM<br> Possible values = SIM, DER, PEM
+	* Input format of the key file. Available formats are:
+SIM - Secure Information Management; select when importing a FIPS key. If the external FIPS key is encrypted, first decrypt it, and then import it.
+PEM - Privacy Enhanced Mail; select when importing a non-FIPS key.
+<br> Default value: SIM<br> Possible values = SIM, DER, PEM
 	* </pre>
 	*/
 	public void set_inform(String inform) throws Exception{
@@ -139,11 +152,10 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The input format of the key file.
-	SIM: Secure Information Management. This is used when a FIPS key is transferred from one FIPS system to other.
-	DER: Distinguished Encoding Rule. This is used when a non-FIPS key is to be imported inside a FIPS system.
-		The non-FIPS key has to be converted to PKCS#8 form using the CLI command "convert pkcs8".
-<br> Default value: FORMAT_SIM<br> Possible values = SIM, DER, PEM
+	* Input format of the key file. Available formats are:
+SIM - Secure Information Management; select when importing a FIPS key. If the external FIPS key is encrypted, first decrypt it, and then import it.
+PEM - Privacy Enhanced Mail; select when importing a non-FIPS key.
+<br> Default value: SIM<br> Possible values = SIM, DER, PEM
 	* </pre>
 	*/
 	public String get_inform() throws Exception {
@@ -152,9 +164,7 @@ public class sslfipskey extends base_resource
 
 	/**
 	* <pre>
-	* The object name of the wrapkey to use for importing the key. The wrapkey is created using the CLI command "create ssl wrapkey".
-
-This is required if the key being imported is a non-FIPS key.<br> Minimum length =  1
+	* Name of the wrap key to use for importing the key. Required for importing a non-FIPS key.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_wrapkeyname(String wrapkeyname) throws Exception{
@@ -163,9 +173,7 @@ This is required if the key being imported is a non-FIPS key.<br> Minimum length
 
 	/**
 	* <pre>
-	* The object name of the wrapkey to use for importing the key. The wrapkey is created using the CLI command "create ssl wrapkey".
-
-This is required if the key being imported is a non-FIPS key.<br> Minimum length =  1
+	* Name of the wrap key to use for importing the key. Required for importing a non-FIPS key.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_wrapkeyname() throws Exception {
@@ -174,9 +182,7 @@ This is required if the key being imported is a non-FIPS key.<br> Minimum length
 
 	/**
 	* <pre>
-	* The Initialization Vector (IV) to use for importing the key.
-
-This is required if the key being imported is a non-FIPS key.<br> Minimum length =  1
+	* Initialization Vector (IV) to use for importing the key. Required for importing a non-FIPS key.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_iv(String iv) throws Exception{
@@ -185,9 +191,7 @@ This is required if the key being imported is a non-FIPS key.<br> Minimum length
 
 	/**
 	* <pre>
-	* The Initialization Vector (IV) to use for importing the key.
-
-This is required if the key being imported is a non-FIPS key.<br> Minimum length =  1
+	* Initialization Vector (IV) to use for importing the key. Required for importing a non-FIPS key.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_iv() throws Exception {

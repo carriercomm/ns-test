@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -33,7 +39,7 @@ public class iptunnelparam extends base_resource
 
 	/**
 	* <pre>
-	* The common source IP address for all tunnels. For a specific tunnel, this global setting is overridden if you have specified another source IP address. Must be a MIP or SNIP address.<br> Minimum length =  1
+	* Common source-IP address for all tunnels. For a specific tunnel, this global setting is overridden if you have specified another source IP address. Must be a MIP or SNIP address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_srcip(String srcip) throws Exception{
@@ -42,7 +48,7 @@ public class iptunnelparam extends base_resource
 
 	/**
 	* <pre>
-	* The common source IP address for all tunnels. For a specific tunnel, this global setting is overridden if you have specified another source IP address. Must be a MIP or SNIP address.<br> Minimum length =  1
+	* Common source-IP address for all tunnels. For a specific tunnel, this global setting is overridden if you have specified another source IP address. Must be a MIP or SNIP address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_srcip() throws Exception {
@@ -69,7 +75,7 @@ public class iptunnelparam extends base_resource
 
 	/**
 	* <pre>
-	* Threshold value, as a percentage of CPU usage, at which to drop packets that require fragmentation to use the IP tunnel. Applies only if dropFrag paramenter is set to NO. Minimum value: 1. Maximum value: 100. Default: 0 (not set).<br> Minimum value =  1<br> Maximum value =  100
+	* Threshold value, as a percentage of CPU usage, at which to drop packets that require fragmentation to use the IP tunnel. Applies only if dropFragparameter is set to NO. The default value, 0, specifies that this parameter is not set.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_dropfragcputhreshold(long dropfragcputhreshold) throws Exception {
@@ -78,7 +84,7 @@ public class iptunnelparam extends base_resource
 
 	/**
 	* <pre>
-	* Threshold value, as a percentage of CPU usage, at which to drop packets that require fragmentation to use the IP tunnel. Applies only if dropFrag paramenter is set to NO. Minimum value: 1. Maximum value: 100. Default: 0 (not set).<br> Minimum value =  1<br> Maximum value =  100
+	* Threshold value, as a percentage of CPU usage, at which to drop packets that require fragmentation to use the IP tunnel. Applies only if dropFragparameter is set to NO. The default value, 0, specifies that this parameter is not set.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_dropfragcputhreshold(Long dropfragcputhreshold) throws Exception{
@@ -87,7 +93,7 @@ public class iptunnelparam extends base_resource
 
 	/**
 	* <pre>
-	* Threshold value, as a percentage of CPU usage, at which to drop packets that require fragmentation to use the IP tunnel. Applies only if dropFrag paramenter is set to NO. Minimum value: 1. Maximum value: 100. Default: 0 (not set).<br> Minimum value =  1<br> Maximum value =  100
+	* Threshold value, as a percentage of CPU usage, at which to drop packets that require fragmentation to use the IP tunnel. Applies only if dropFragparameter is set to NO. The default value, 0, specifies that this parameter is not set.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_dropfragcputhreshold() throws Exception {
@@ -96,7 +102,7 @@ public class iptunnelparam extends base_resource
 
 	/**
 	* <pre>
-	* If the source IP is not configured, apply round-robin selection from the configured SNIPs.<br> Default value: NO<br> Possible values = YES, NO
+	* Use a different source IP address for each new session through a particular IP tunnel, as determined by round robin selection of one of the SNIP addresses. This setting is ignored if a common global source IP address has been specified for all the IP tunnels. This setting does not apply to a tunnel for which a source IP address has been specified.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_srciproundrobin(String srciproundrobin) throws Exception{
@@ -105,7 +111,7 @@ public class iptunnelparam extends base_resource
 
 	/**
 	* <pre>
-	* If the source IP is not configured, apply round-robin selection from the configured SNIPs.<br> Default value: NO<br> Possible values = YES, NO
+	* Use a different source IP address for each new session through a particular IP tunnel, as determined by round robin selection of one of the SNIP addresses. This setting is ignored if a common global source IP address has been specified for all the IP tunnels. This setting does not apply to a tunnel for which a source IP address has been specified.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_srciproundrobin() throws Exception {
@@ -166,10 +172,6 @@ public class iptunnelparam extends base_resource
 	*/
 	public static base_response unset(nitro_service client, iptunnelparam resource, String[] args) throws Exception{
 		iptunnelparam unsetresource = new iptunnelparam();
-		unsetresource.srcip = resource.srcip;
-		unsetresource.dropfrag = resource.dropfrag;
-		unsetresource.dropfragcputhreshold = resource.dropfragcputhreshold;
-		unsetresource.srciproundrobin = resource.srciproundrobin;
 		return unsetresource.unset_resource(client,args);
 	}
 

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ns;
@@ -49,6 +55,7 @@ public class nsconfig extends base_resource
 	private Long exclusivequotamaxclient;
 	private Long grantquotaspillover;
 	private Long exclusivequotaspillover;
+	private String nwfwmode;
 	private String config1;
 	private String config2;
 	private String outtype;
@@ -60,18 +67,18 @@ public class nsconfig extends base_resource
 	private String message;
 	private String mappedip;
 	private Long range;
-	private String failover;
 	private String systemtype;
 	private String primaryip;
 	private Long flags;
 	private String lastconfigchangedtime;
 	private String lastconfigsavetime;
+	private String currentsytemtime;
 	private Long systemtime;
 	private String response;
 
 	/**
 	* <pre>
-	* Specifies whether the configurations must be cleared without prompting for confirmation.
+	* Configurations will be cleared without prompting for confirmation.
 	* </pre>
 	*/
 	public void set_force(boolean force) throws Exception {
@@ -80,7 +87,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* Specifies whether the configurations must be cleared without prompting for confirmation.
+	* Configurations will be cleared without prompting for confirmation.
 	* </pre>
 	*/
 	public void set_force(Boolean force) throws Exception{
@@ -89,7 +96,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* Specifies whether the configurations must be cleared without prompting for confirmation.
+	* Configurations will be cleared without prompting for confirmation.
 	* </pre>
 	*/
 	public Boolean get_force() throws Exception {
@@ -98,17 +105,17 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The types of configurations to be cleared.
-                    Possible values
-					basic: Clears all configurations except the following:
-                           NSIP, default route (gateway), MIPs, and SNIPs
-                           Network settings (DG, VLAN, RHI, NTP and DNS settings)
-                           Cluster settings
-                           HA node definitions
-                           Feature and mode settings
-                           nsroot password
-                   extended: Clears the same configurations as the .basic. option. In addition, it clears the nsroot password and feature and mode settings.
-                   full: Clears all configurations except NSIP, default route, and interface settings.<br> Possible values = basic, extended, full
+	* Types of configurations to be cleared.
+* basic: Clears all configurations except the following: 
+  - NSIP, default route (gateway), MIPs, and SNIPs
+  - Network settings (DG, VLAN, RHI, NTP and DNS settings)
+  - Cluster settings
+  - HA node definitions
+  - Feature and mode settings
+  - nsroot password
+* extended: Clears the same configurations as the 'basic' option. In addition, it clears the nsroot password and feature and mode settings.
+* full: Clears all configurations except NSIP, default route, and interface settings.
+Note: When you clear the configurations through the cluster IP address, by specifying the level as 'full', the cluster is deleted and all cluster nodes become standalone appliances. The 'basic' and 'extended' levels are propagated to the cluster nodes.<br> Possible values = basic, extended, full
 	* </pre>
 	*/
 	public void set_level(String level) throws Exception{
@@ -117,17 +124,17 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The types of configurations to be cleared.
-                    Possible values
-					basic: Clears all configurations except the following:
-                           NSIP, default route (gateway), MIPs, and SNIPs
-                           Network settings (DG, VLAN, RHI, NTP and DNS settings)
-                           Cluster settings
-                           HA node definitions
-                           Feature and mode settings
-                           nsroot password
-                   extended: Clears the same configurations as the .basic. option. In addition, it clears the nsroot password and feature and mode settings.
-                   full: Clears all configurations except NSIP, default route, and interface settings.<br> Possible values = basic, extended, full
+	* Types of configurations to be cleared.
+* basic: Clears all configurations except the following: 
+  - NSIP, default route (gateway), MIPs, and SNIPs
+  - Network settings (DG, VLAN, RHI, NTP and DNS settings)
+  - Cluster settings
+  - HA node definitions
+  - Feature and mode settings
+  - nsroot password
+* extended: Clears the same configurations as the 'basic' option. In addition, it clears the nsroot password and feature and mode settings.
+* full: Clears all configurations except NSIP, default route, and interface settings.
+Note: When you clear the configurations through the cluster IP address, by specifying the level as 'full', the cluster is deleted and all cluster nodes become standalone appliances. The 'basic' and 'extended' levels are propagated to the cluster nodes.<br> Possible values = basic, extended, full
 	* </pre>
 	*/
 	public String get_level() throws Exception {
@@ -136,7 +143,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the system.<br> Minimum length =  1
+	* IP address of the NetScaler appliance. Commonly referred to as NSIP address. This parameter is mandatory to bring up the appliance.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ipaddress(String ipaddress) throws Exception{
@@ -145,7 +152,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the system.<br> Minimum length =  1
+	* IP address of the NetScaler appliance. Commonly referred to as NSIP address. This parameter is mandatory to bring up the appliance.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ipaddress() throws Exception {
@@ -154,7 +161,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The netmask corresponding to the IP address.
+	* Netmask corresponding to the IP address. This parameter is mandatory to bring up the appliance.
 	* </pre>
 	*/
 	public void set_netmask(String netmask) throws Exception{
@@ -163,7 +170,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The netmask corresponding to the IP address.
+	* Netmask corresponding to the IP address. This parameter is mandatory to bring up the appliance.
 	* </pre>
 	*/
 	public String get_netmask() throws Exception {
@@ -172,7 +179,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The VLAN (NSVLAN) for the subnet on which the IP resides.<br> Minimum value =  2<br> Maximum value =  4094
+	* VLAN (NSVLAN) for the subnet on which the IP address resides.<br> Minimum value =  2<br> Maximum value =  4094
 	* </pre>
 	*/
 	public void set_nsvlan(long nsvlan) throws Exception {
@@ -181,7 +188,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The VLAN (NSVLAN) for the subnet on which the IP resides.<br> Minimum value =  2<br> Maximum value =  4094
+	* VLAN (NSVLAN) for the subnet on which the IP address resides.<br> Minimum value =  2<br> Maximum value =  4094
 	* </pre>
 	*/
 	public void set_nsvlan(Long nsvlan) throws Exception{
@@ -190,7 +197,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* The VLAN (NSVLAN) for the subnet on which the IP resides.<br> Minimum value =  2<br> Maximum value =  4094
+	* VLAN (NSVLAN) for the subnet on which the IP address resides.<br> Minimum value =  2<br> Maximum value =  4094
 	* </pre>
 	*/
 	public Long get_nsvlan() throws Exception {
@@ -199,7 +206,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* Bind the given ports to the NSVLAN.<br> Minimum length =  1
+	* Interfaces of the appliances that must be bound to the NSVLAN.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ifnum(String[] ifnum) throws Exception{
@@ -208,7 +215,7 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* Bind the given ports to the NSVLAN.<br> Minimum length =  1
+	* Interfaces of the appliances that must be bound to the NSVLAN.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String[] get_ifnum() throws Exception {
@@ -217,7 +224,8 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* Specifies that the interfaces will be added as 802.1q tagged interfaces. Packets sent on these interface on this VLAN will have an additional 4-byte 802.1q tag which identifies the VLAN. To use 802.1q tagging, the switch connected to the  system interfaces must also be configured for tagging.<br> Default value: YES<br> Possible values = YES, NO
+	* Specifies that the interfaces will be added as 802.1q tagged interfaces. Packets sent on these interface on this VLAN will have an additional 4-byte 802.1q tag which identifies the VLAN.
+To use 802.1q tagging, the switch connected to the appliance's interfaces must also be configured for tagging.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_tagged(String tagged) throws Exception{
@@ -226,7 +234,8 @@ public class nsconfig extends base_resource
 
 	/**
 	* <pre>
-	* Specifies that the interfaces will be added as 802.1q tagged interfaces. Packets sent on these interface on this VLAN will have an additional 4-byte 802.1q tag which identifies the VLAN. To use 802.1q tagging, the switch connected to the  system interfaces must also be configured for tagging.<br> Default value: YES<br> Possible values = YES, NO
+	* Specifies that the interfaces will be added as 802.1q tagged interfaces. Packets sent on these interface on this VLAN will have an additional 4-byte 802.1q tag which identifies the VLAN.
+To use 802.1q tagging, the switch connected to the appliance's interfaces must also be configured for tagging.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_tagged() throws Exception {
@@ -310,7 +319,7 @@ public class nsconfig extends base_resource
 	* The option to control (enable or disable) the insertion of the actual client IP address into the HTTP header request passed from the client to one, some, or all servers attached to the system.
 The passed address can then be accessed through a minor modification to the server.
 l	If cipHeader is specified, it will be used as the client IP header.
-l	If it is not specified, then the value that has been set by the set ns param CLI command will be used as the client IP header.<br> Possible values = ENABLED, DISABLED
+l	If it is not specified, then the value that has been set by the set ns config CLI command will be used as the client IP header.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_cip(String cip) throws Exception{
@@ -322,7 +331,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 	* The option to control (enable or disable) the insertion of the actual client IP address into the HTTP header request passed from the client to one, some, or all servers attached to the system.
 The passed address can then be accessed through a minor modification to the server.
 l	If cipHeader is specified, it will be used as the client IP header.
-l	If it is not specified, then the value that has been set by the set ns param CLI command will be used as the client IP header.<br> Possible values = ENABLED, DISABLED
+l	If it is not specified, then the value that has been set by the set ns config CLI command will be used as the client IP header.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_cip() throws Exception {
@@ -601,7 +610,35 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Config options.
+	* Network Firewall mode to be used.
+NOFIREWALL   - No Network firewall setting
+BASIC 	     - DENY-ALL behavior and DENY-ALL AT BOOTUP
+EXTENDED     - NS_NWFWMODE_BASIC + drop IP fragments + TCP and ACL logging + packet drop on closed port
+EXTENDEDPLUS - NS_NWFWMODE_EXTENDED + block traffic on 3008-3011 + drop non-session packets
+FULL         - NS_NWFWMODE_EXTENDEDPLUS + drop  non-ip packets.<br> Default value: NOFIREWALL<br> Possible values = NOFIREWALL, BASIC, EXTENDED, EXTENDEDPLUS, FULL
+	* </pre>
+	*/
+	public void set_nwfwmode(String nwfwmode) throws Exception{
+		this.nwfwmode = nwfwmode;
+	}
+
+	/**
+	* <pre>
+	* Network Firewall mode to be used.
+NOFIREWALL   - No Network firewall setting
+BASIC 	     - DENY-ALL behavior and DENY-ALL AT BOOTUP
+EXTENDED     - NS_NWFWMODE_BASIC + drop IP fragments + TCP and ACL logging + packet drop on closed port
+EXTENDEDPLUS - NS_NWFWMODE_EXTENDED + block traffic on 3008-3011 + drop non-session packets
+FULL         - NS_NWFWMODE_EXTENDEDPLUS + drop  non-ip packets.<br> Default value: NOFIREWALL<br> Possible values = NOFIREWALL, BASIC, EXTENDED, EXTENDEDPLUS, FULL
+	* </pre>
+	*/
+	public String get_nwfwmode() throws Exception {
+		return this.nwfwmode;
+	}
+
+	/**
+	* <pre>
+	* Location of the configurations.
 	* </pre>
 	*/
 	public void set_config1(String config1) throws Exception{
@@ -610,7 +647,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Config options.
+	* Location of the configurations.
 	* </pre>
 	*/
 	public String get_config1() throws Exception {
@@ -619,7 +656,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Config options.
+	* Location of the configurations.
 	* </pre>
 	*/
 	public void set_config2(String config2) throws Exception{
@@ -628,7 +665,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Config options.
+	* Location of the configurations.
 	* </pre>
 	*/
 	public String get_config2() throws Exception {
@@ -637,7 +674,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* The format in which result is desired.<br> Possible values = cli, xml
+	* Format to display the difference in configurations.<br> Possible values = cli, xml
 	* </pre>
 	*/
 	public void set_outtype(String outtype) throws Exception{
@@ -646,7 +683,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* The format in which result is desired.<br> Possible values = cli, xml
+	* Format to display the difference in configurations.<br> Possible values = cli, xml
 	* </pre>
 	*/
 	public String get_outtype() throws Exception {
@@ -655,7 +692,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Enable template diff.This will only compare commands given in template file.
+	* File that contains the commands to be compared.
 	* </pre>
 	*/
 	public void set_template(boolean template) throws Exception {
@@ -664,7 +701,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Enable template diff.This will only compare commands given in template file.
+	* File that contains the commands to be compared.
 	* </pre>
 	*/
 	public void set_template(Boolean template) throws Exception{
@@ -673,7 +710,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Enable template diff.This will only compare commands given in template file.
+	* File that contains the commands to be compared.
 	* </pre>
 	*/
 	public Boolean get_template() throws Exception {
@@ -736,15 +773,6 @@ l	If it is not specified, then the value that has been set by the set ns param C
 
 	/**
 	* <pre>
-	* Standalone node.<br> Possible values = NO, YES, Cluster
-	* </pre>
-	*/
-	public String get_failover() throws Exception {
-		return this.failover;
-	}
-
-	/**
-	* <pre>
 	* The type of the System. Possible Values: Standalone, HA, Cluster.<br> Possible values = Stand-alone, HA, Cluster
 	* </pre>
 	*/
@@ -786,6 +814,15 @@ l	If it is not specified, then the value that has been set by the set ns param C
 	*/
 	public String get_lastconfigsavetime() throws Exception {
 		return this.lastconfigsavetime;
+	}
+
+	/**
+	* <pre>
+	* current system time in date format.
+	* </pre>
+	*/
+	public String get_currentsytemtime() throws Exception {
+		return this.currentsytemtime;
 	}
 
 	/**
@@ -878,6 +915,7 @@ l	If it is not specified, then the value that has been set by the set ns param C
 		updateresource.exclusivequotamaxclient = resource.exclusivequotamaxclient;
 		updateresource.grantquotaspillover = resource.grantquotaspillover;
 		updateresource.exclusivequotaspillover = resource.exclusivequotaspillover;
+		updateresource.nwfwmode = resource.nwfwmode;
 		return updateresource.update_resource(client);
 	}
 
@@ -887,27 +925,6 @@ l	If it is not specified, then the value that has been set by the set ns param C
 	*/
 	public static base_response unset(nitro_service client, nsconfig resource, String[] args) throws Exception{
 		nsconfig unsetresource = new nsconfig();
-		unsetresource.nsvlan = resource.nsvlan;
-		unsetresource.ftpportrange = resource.ftpportrange;
-		unsetresource.crportrange = resource.crportrange;
-		unsetresource.timezone = resource.timezone;
-		unsetresource.ipaddress = resource.ipaddress;
-		unsetresource.netmask = resource.netmask;
-		unsetresource.ifnum = resource.ifnum;
-		unsetresource.tagged = resource.tagged;
-		unsetresource.httpport = resource.httpport;
-		unsetresource.maxconn = resource.maxconn;
-		unsetresource.maxreq = resource.maxreq;
-		unsetresource.cip = resource.cip;
-		unsetresource.cipheader = resource.cipheader;
-		unsetresource.cookieversion = resource.cookieversion;
-		unsetresource.securecookie = resource.securecookie;
-		unsetresource.pmtumin = resource.pmtumin;
-		unsetresource.pmtutimeout = resource.pmtutimeout;
-		unsetresource.grantquotamaxclient = resource.grantquotamaxclient;
-		unsetresource.exclusivequotamaxclient = resource.exclusivequotamaxclient;
-		unsetresource.grantquotaspillover = resource.grantquotaspillover;
-		unsetresource.exclusivequotaspillover = resource.exclusivequotaspillover;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -950,6 +967,13 @@ l	If it is not specified, then the value that has been set by the set ns param C
 		return response[0];
 	}
 
+	public static class nwfwmodeEnum {
+		public static final String NOFIREWALL = "NOFIREWALL";
+		public static final String BASIC = "BASIC";
+		public static final String EXTENDED = "EXTENDED";
+		public static final String EXTENDEDPLUS = "EXTENDEDPLUS";
+		public static final String FULL = "FULL";
+	}
 	public static class outtypeEnum {
 		public static final String cli = "cli";
 		public static final String xml = "xml";
@@ -1379,11 +1403,6 @@ l	If it is not specified, then the value that has been set by the set ns param C
 		public static final String basic = "basic";
 		public static final String extended = "extended";
 		public static final String full = "full";
-	}
-	public static class failoverEnum {
-		public static final String NO = "NO";
-		public static final String YES = "YES";
-		public static final String Cluster = "Cluster";
 	}
 	public static class cipEnum {
 		public static final String ENABLED = "ENABLED";

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -27,11 +33,12 @@ class ipset_response extends base_response
 public class ipset extends base_resource
 {
 	private String name;
+	private Long td;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name of the IP set.<br> Minimum length =  1
+	* Name for the IP set. Must begin with a letter, number, or the underscore character (_), and can consist of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore characters. Cannot be changed after the IP set is created. Choose a name that helps identify the IP set.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -40,11 +47,38 @@ public class ipset extends base_resource
 
 	/**
 	* <pre>
-	* The name of the IP set.<br> Minimum length =  1
+	* Name for the IP set. Must begin with a letter, number, or the underscore character (_), and can consist of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore characters. Cannot be changed after the IP set is created. Choose a name that helps identify the IP set.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
 		return this.name;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
 	}
 
 	/**
@@ -87,6 +121,7 @@ public class ipset extends base_resource
 	public static base_response add(nitro_service client, ipset resource) throws Exception {
 		ipset addresource = new ipset();
 		addresource.name = resource.name;
+		addresource.td = resource.td;
 		return addresource.add_resource(client);
 	}
 
@@ -100,6 +135,7 @@ public class ipset extends base_resource
 			for (int i=0;i<resources.length;i++){
 				addresources[i] = new ipset();
 				addresources[i].name = resources[i].name;
+				addresources[i].td = resources[i].td;
 			}
 			result = add_bulk_request(client, addresources);
 		}

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.policy;
@@ -27,6 +33,7 @@ class policypatset_response extends base_response
 public class policypatset extends base_resource
 {
 	private String name;
+	private String indextype;
 
 	//------- Read only Parameter ---------;
 
@@ -35,7 +42,7 @@ public class policypatset extends base_resource
 
 	/**
 	* <pre>
-	* The name of the patset. The name must not exceed 127 characters.<br> Minimum length =  1
+	* Unique name of the pattern set. Not case sensitive. Must begin with an ASCII letter or underscore (_) character and must contain only alphanumeric and underscore characters. Must not be the name of an existing named expression, pattern set, dataset, string map, or HTTP callout.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -44,11 +51,29 @@ public class policypatset extends base_resource
 
 	/**
 	* <pre>
-	* The name of the patset. The name must not exceed 127 characters.<br> Minimum length =  1
+	* Unique name of the pattern set. Not case sensitive. Must begin with an ASCII letter or underscore (_) character and must contain only alphanumeric and underscore characters. Must not be the name of an existing named expression, pattern set, dataset, string map, or HTTP callout.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
 		return this.name;
+	}
+
+	/**
+	* <pre>
+	* Index type.<br> Possible values = Auto-generated, User-defined
+	* </pre>
+	*/
+	public void set_indextype(String indextype) throws Exception{
+		this.indextype = indextype;
+	}
+
+	/**
+	* <pre>
+	* Index type.<br> Possible values = Auto-generated, User-defined
+	* </pre>
+	*/
+	public String get_indextype() throws Exception {
+		return this.indextype;
 	}
 
 	/**
@@ -100,6 +125,7 @@ public class policypatset extends base_resource
 	public static base_response add(nitro_service client, policypatset resource) throws Exception {
 		policypatset addresource = new policypatset();
 		addresource.name = resource.name;
+		addresource.indextype = resource.indextype;
 		return addresource.add_resource(client);
 	}
 
@@ -113,6 +139,7 @@ public class policypatset extends base_resource
 			for (int i=0;i<resources.length;i++){
 				addresources[i] = new policypatset();
 				addresources[i].name = resources[i].name;
+				addresources[i].indextype = resources[i].indextype;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -281,4 +308,8 @@ public class policypatset extends base_resource
 		return 0;
 	}
 
+	public static class indextypeEnum {
+		public static final String Auto_generated = "Auto-generated";
+		public static final String User_defined = "User-defined";
+	}
 }

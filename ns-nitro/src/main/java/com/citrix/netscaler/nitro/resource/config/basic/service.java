@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.basic;
@@ -64,6 +70,7 @@ public class service extends base_resource
 	private String comment;
 	private String appflowlog;
 	private String netprofile;
+	private Long td;
 	private String ipaddress;
 	private Long weight;
 	private String monitor_name_svc;
@@ -77,8 +84,6 @@ public class service extends base_resource
 
 	private Integer numofconnections;
 	private String policyname;
-	private Boolean serviceconftpye;
-	private Boolean serviceconftype;
 	private String serviceconftype2;
 	private String value;
 	private String gslb;
@@ -95,7 +100,6 @@ public class service extends base_resource
 	private Integer monstatparam3;
 	private String statechangetimesec;
 	private Long statechangetimemsec;
-	private Long timesincelaststatechange;
 	private Long tickssincelaststatechange;
 	private Long stateupdatereason;
 	private Long clmonowner;
@@ -105,7 +109,7 @@ public class service extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service.<br> Minimum length =  1
+	* Name for the service. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the service has been created.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -114,7 +118,7 @@ public class service extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service.<br> Minimum length =  1
+	* Name for the service. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the service has been created.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -123,7 +127,7 @@ public class service extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the server for which a service will be added.<br> Minimum length =  1
+	* IP to assign to the service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ip(String ip) throws Exception{
@@ -132,7 +136,7 @@ public class service extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the server for which a service will be added.<br> Minimum length =  1
+	* IP to assign to the service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ip() throws Exception {
@@ -141,7 +145,7 @@ public class service extends base_resource
 
 	/**
 	* <pre>
-	* The name of the server for which a service will be added.<br> Minimum length =  1
+	* Name of the server that hosts the service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servername(String servername) throws Exception{
@@ -150,7 +154,7 @@ public class service extends base_resource
 
 	/**
 	* <pre>
-	* The name of the server for which a service will be added.<br> Minimum length =  1
+	* Name of the server that hosts the service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servername() throws Exception {
@@ -159,19 +163,7 @@ public class service extends base_resource
 
 	/**
 	* <pre>
-	* The type of service. The supported protocols are:
-HTTP - To load balance web servers and provide connection multiplexing, latency improvement, and other content and TCP protection benefits for HTTP traffic.
-FTP - To load balance FTP servers. In FTP mode, the system provides TCP protection benefits, protection against SYN attacks, and surge protection.
-TCP - To host any other TCP protocols that are not HTTP, FTP, NNTP, or SSL. In TCP mode, the system provides TCP protection benefits, protection against SYN attack, and surge protection.
-UDP - To load balance servers with UDP-based services (other than DNS).
-SSL - To provide end-to-end encryption and SSL acceleration.
-SSL_BRIDGE - To load balance SSL servers.
-SSL_TCP - To offload SSL traffic for TCP applications.
-NNTP - To load balance NNTP servers.
-DNS - To load balance DNS servers.
-ADNS: To create an authoritative DNS service.
-ANY - To load balance a service type not listed above (for example, for IP traffic when load balancing firewalls).
-Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, RADIUS, RDP, DIAMETER, SSL_DIAMETER
+	* Protocol in which data is exchanged with the service.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, RADIUS, RDP, DIAMETER, SSL_DIAMETER, TFTP
 	* </pre>
 	*/
 	public void set_servicetype(String servicetype) throws Exception{
@@ -180,19 +172,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The type of service. The supported protocols are:
-HTTP - To load balance web servers and provide connection multiplexing, latency improvement, and other content and TCP protection benefits for HTTP traffic.
-FTP - To load balance FTP servers. In FTP mode, the system provides TCP protection benefits, protection against SYN attacks, and surge protection.
-TCP - To host any other TCP protocols that are not HTTP, FTP, NNTP, or SSL. In TCP mode, the system provides TCP protection benefits, protection against SYN attack, and surge protection.
-UDP - To load balance servers with UDP-based services (other than DNS).
-SSL - To provide end-to-end encryption and SSL acceleration.
-SSL_BRIDGE - To load balance SSL servers.
-SSL_TCP - To offload SSL traffic for TCP applications.
-NNTP - To load balance NNTP servers.
-DNS - To load balance DNS servers.
-ADNS: To create an authoritative DNS service.
-ANY - To load balance a service type not listed above (for example, for IP traffic when load balancing firewalls).
-Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, RADIUS, RDP, DIAMETER, SSL_DIAMETER
+	* Protocol in which data is exchanged with the service.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, RADIUS, RDP, DIAMETER, SSL_DIAMETER, TFTP
 	* </pre>
 	*/
 	public String get_servicetype() throws Exception {
@@ -201,7 +181,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The port number to be used for the service.<br> Range 1 - 65535
+	* Port number of the service.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(int port) throws Exception {
@@ -210,7 +190,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The port number to be used for the service.<br> Range 1 - 65535
+	* Port number of the service.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(Integer port) throws Exception{
@@ -219,7 +199,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The port number to be used for the service.<br> Range 1 - 65535
+	* Port number of the service.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public Integer get_port() throws Exception {
@@ -228,7 +208,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The clear text port number where clear text data is sent. Used with SSL offload service.<br> Minimum value =  1
+	* Port to which clear text data must be sent after the appliance decrypts incoming SSL traffic. Applicable to transparent SSL services.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_cleartextport(int cleartextport) throws Exception {
@@ -237,7 +217,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The clear text port number where clear text data is sent. Used with SSL offload service.<br> Minimum value =  1
+	* Port to which clear text data must be sent after the appliance decrypts incoming SSL traffic. Applicable to transparent SSL services.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_cleartextport(Integer cleartextport) throws Exception{
@@ -246,7 +226,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The clear text port number where clear text data is sent. Used with SSL offload service.<br> Minimum value =  1
+	* Port to which clear text data must be sent after the appliance decrypts incoming SSL traffic. Applicable to transparent SSL services.<br> Minimum value =  1
 	* </pre>
 	*/
 	public Integer get_cleartextport() throws Exception {
@@ -255,7 +235,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The cache type option supported by the cache server.<br> Possible values = TRANSPARENT, REVERSE, FORWARD
+	* Cache type supported by the cache server.<br> Possible values = TRANSPARENT, REVERSE, FORWARD
 	* </pre>
 	*/
 	public void set_cachetype(String cachetype) throws Exception{
@@ -264,7 +244,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The cache type option supported by the cache server.<br> Possible values = TRANSPARENT, REVERSE, FORWARD
+	* Cache type supported by the cache server.<br> Possible values = TRANSPARENT, REVERSE, FORWARD
 	* </pre>
 	*/
 	public String get_cachetype() throws Exception {
@@ -273,7 +253,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The maximum number of open connections to the service.<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Maximum number of simultaneous open connections to the service.<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_maxclient(long maxclient) throws Exception {
@@ -282,7 +262,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The maximum number of open connections to the service.<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Maximum number of simultaneous open connections to the service.<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_maxclient(Long maxclient) throws Exception{
@@ -291,7 +271,7 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The maximum number of open connections to the service.<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Maximum number of simultaneous open connections to the service.<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public Long get_maxclient() throws Exception {
@@ -300,7 +280,9 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* Health monitoring state of the service.<br> Default value: YES<br> Possible values = YES, NO
+	* Monitor the health of this service. Available settings function as follows:
+YES - Send probes to check the health of the service.
+NO - Do not send probes to check the health of the service. With the NO option, the appliance shows the service as UP at all times.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_healthmonitor(String healthmonitor) throws Exception{
@@ -309,7 +291,9 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* Health monitoring state of the service.<br> Default value: YES<br> Possible values = YES, NO
+	* Monitor the health of this service. Available settings function as follows:
+YES - Send probes to check the health of the service.
+NO - Do not send probes to check the health of the service. With the NO option, the appliance shows the service as UP at all times.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_healthmonitor() throws Exception {
@@ -318,7 +302,8 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The maximum number of requests that can be sent on a persistent connection to the service.<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum number of requests that can be sent on a persistent connection to the service. 
+Note: Connection requests beyond this value are rejected.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_maxreq(long maxreq) throws Exception {
@@ -327,7 +312,8 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The maximum number of requests that can be sent on a persistent connection to the service.<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum number of requests that can be sent on a persistent connection to the service. 
+Note: Connection requests beyond this value are rejected.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_maxreq(Long maxreq) throws Exception{
@@ -336,7 +322,8 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The maximum number of requests that can be sent on a persistent connection to the service.<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum number of requests that can be sent on a persistent connection to the service. 
+Note: Connection requests beyond this value are rejected.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public Long get_maxreq() throws Exception {
@@ -345,8 +332,8 @@ Note:	The NNTP service is for cache redirection.<br> Possible values = HTTP, FTP
 
 	/**
 	* <pre>
-	* The virtual server (used in load balancing or content switching) routes a request to the virtual server (used in transparent cache redirection) on the same system before sending it to the configured servers. The virtual server used for transparent cache redirection determines if the request is directed to the cache servers or configured servers.
-Note:	This argument is disabled by default. Do not specify this argument if a -cacheType cacheType is specified.<br> Default value: NO<br> Possible values = YES, NO
+	* Use the transparent cache redirection virtual server to forward requests to the cache server.
+Note: Do not specify this parameter if you set the Cache Type parameter.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_cacheable(String cacheable) throws Exception{
@@ -355,8 +342,8 @@ Note:	This argument is disabled by default. Do not specify this argument if a -c
 
 	/**
 	* <pre>
-	* The virtual server (used in load balancing or content switching) routes a request to the virtual server (used in transparent cache redirection) on the same system before sending it to the configured servers. The virtual server used for transparent cache redirection determines if the request is directed to the cache servers or configured servers.
-Note:	This argument is disabled by default. Do not specify this argument if a -cacheType cacheType is specified.<br> Default value: NO<br> Possible values = YES, NO
+	* Use the transparent cache redirection virtual server to forward requests to the cache server.
+Note: Do not specify this parameter if you set the Cache Type parameter.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_cacheable() throws Exception {
@@ -365,7 +352,7 @@ Note:	This argument is disabled by default. Do not specify this argument if a -c
 
 	/**
 	* <pre>
-	* The Client IP header insertion option for the service.<br> Possible values = ENABLED, DISABLED
+	* Before forwarding a request to the service, insert an HTTP header with the client's IPv4 or IPv6 address as its value. Used if the server needs the client's IP address for security, accounting, or other purposes, and setting the Use Source IP parameter is not a viable option.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_cip(String cip) throws Exception{
@@ -374,7 +361,7 @@ Note:	This argument is disabled by default. Do not specify this argument if a -c
 
 	/**
 	* <pre>
-	* The Client IP header insertion option for the service.<br> Possible values = ENABLED, DISABLED
+	* Before forwarding a request to the service, insert an HTTP header with the client's IPv4 or IPv6 address as its value. Used if the server needs the client's IP address for security, accounting, or other purposes, and setting the Use Source IP parameter is not a viable option.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_cip() throws Exception {
@@ -383,7 +370,7 @@ Note:	This argument is disabled by default. Do not specify this argument if a -c
 
 	/**
 	* <pre>
-	* The client IP header. If client IP insertion is enabled and the client IP header is not specified, then the value set by the ###set ns param### command will be used as the Client IP header.<br> Minimum length =  1
+	* Name for the HTTP header whose value must be set to the IP address of the client. Used with the Client IP parameter. If you set the Client IP parameter, and you do not specify a name for the header, the appliance uses the header name specified for the global Client IP Header parameter (the cipHeader parameter in the set ns param CLI command or the Client IP Header parameter in the Configure HTTP Parameters dialog box at System > Settings > Change HTTP parameters). If the global Client IP Header parameter is not specified, the appliance inserts a header with the name "client-ip.".<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_cipheader(String cipheader) throws Exception{
@@ -392,7 +379,7 @@ Note:	This argument is disabled by default. Do not specify this argument if a -c
 
 	/**
 	* <pre>
-	* The client IP header. If client IP insertion is enabled and the client IP header is not specified, then the value set by the ###set ns param### command will be used as the Client IP header.<br> Minimum length =  1
+	* Name for the HTTP header whose value must be set to the IP address of the client. Used with the Client IP parameter. If you set the Client IP parameter, and you do not specify a name for the header, the appliance uses the header name specified for the global Client IP Header parameter (the cipHeader parameter in the set ns param CLI command or the Client IP Header parameter in the Configure HTTP Parameters dialog box at System > Settings > Change HTTP parameters). If the global Client IP Header parameter is not specified, the appliance inserts a header with the name "client-ip.".<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_cipheader() throws Exception {
@@ -401,8 +388,7 @@ Note:	This argument is disabled by default. Do not specify this argument if a -c
 
 	/**
 	* <pre>
-	* The use of client's IP Address option to the source IP Address while connecting to this server.
-By default, the system uses a mapped IP address for its server connection; however, you can use this option to tell the system to use the client's IP address when it communicates with the server.<br> Possible values = YES, NO
+	* Use the client's IP address as the source IP address when initiating a connection to the server. When creating a service, if you do not set this parameter, the service inherits the global Use Source IP setting (available in the enable ns mode and disable ns mode CLI commands, or in the System > Settings > Configure modes > Configure Modes dialog box). However, you can override this setting after you create the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_usip(String usip) throws Exception{
@@ -411,8 +397,7 @@ By default, the system uses a mapped IP address for its server connection; howev
 
 	/**
 	* <pre>
-	* The use of client's IP Address option to the source IP Address while connecting to this server.
-By default, the system uses a mapped IP address for its server connection; however, you can use this option to tell the system to use the client's IP address when it communicates with the server.<br> Possible values = YES, NO
+	* Use the client's IP address as the source IP address when initiating a connection to the server. When creating a service, if you do not set this parameter, the service inherits the global Use Source IP setting (available in the enable ns mode and disable ns mode CLI commands, or in the System > Settings > Configure modes > Configure Modes dialog box). However, you can override this setting after you create the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_usip() throws Exception {
@@ -457,7 +442,8 @@ By default, the system uses a mapped IP address for its server connection; howev
 
 	/**
 	* <pre>
-	* When USIP is enabled, based on the setting of this variable proxy port or the client port will be used as the source port for the backend connection.<br> Possible values = YES, NO
+	* Use the proxy port as the source port when initiating connections with the server. With the NO setting, the client-side connection port is used as the source port for the server-side connection. 
+Note: This parameter is available only when the Use Source IP (USIP) parameter is set to YES.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_useproxyport(String useproxyport) throws Exception{
@@ -466,7 +452,8 @@ By default, the system uses a mapped IP address for its server connection; howev
 
 	/**
 	* <pre>
-	* When USIP is enabled, based on the setting of this variable proxy port or the client port will be used as the source port for the backend connection.<br> Possible values = YES, NO
+	* Use the proxy port as the source port when initiating connections with the server. With the NO setting, the client-side connection port is used as the source port for the server-side connection. 
+Note: This parameter is available only when the Use Source IP (USIP) parameter is set to YES.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_useproxyport() throws Exception {
@@ -475,8 +462,7 @@ By default, the system uses a mapped IP address for its server connection; howev
 
 	/**
 	* <pre>
-	* The state of SureConnect for the service.
-Note:	This parameter is supported for legacy purposes only. It has no effect on this system, and its only valid value is OFF.<br> Default value: OFF<br> Possible values = ON, OFF
+	* State of SureConnect for the service.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_sc(String sc) throws Exception{
@@ -485,8 +471,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of SureConnect for the service.
-Note:	This parameter is supported for legacy purposes only. It has no effect on this system, and its only valid value is OFF.<br> Default value: OFF<br> Possible values = ON, OFF
+	* State of SureConnect for the service.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_sc() throws Exception {
@@ -495,7 +480,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of Surge protection for the the service.<br> Possible values = ON, OFF
+	* Enable surge protection for the service.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_sp(String sp) throws Exception{
@@ -504,7 +489,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of Surge protection for the the service.<br> Possible values = ON, OFF
+	* Enable surge protection for the service.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_sp() throws Exception {
@@ -513,7 +498,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Use this parameter to enable mapping of RTSP sessionid.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Enable RTSP session ID mapping for the service.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_rtspsessionidremap(String rtspsessionidremap) throws Exception{
@@ -522,7 +507,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Use this parameter to enable mapping of RTSP sessionid.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Enable RTSP session ID mapping for the service.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_rtspsessionidremap() throws Exception {
@@ -531,7 +516,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The idle time (in seconds) after which the client connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Time, in seconds, after which to terminate an idle client connection.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_clttimeout(long clttimeout) throws Exception {
@@ -540,7 +525,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The idle time (in seconds) after which the client connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Time, in seconds, after which to terminate an idle client connection.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_clttimeout(Long clttimeout) throws Exception{
@@ -549,7 +534,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The idle time (in seconds) after which the client connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Time, in seconds, after which to terminate an idle client connection.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public Long get_clttimeout() throws Exception {
@@ -558,7 +543,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The idle time (in seconds) after which the server connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Time, in seconds, after which to terminate an idle server connection.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_svrtimeout(long svrtimeout) throws Exception {
@@ -567,7 +552,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The idle time (in seconds) after which the server connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Time, in seconds, after which to terminate an idle server connection.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_svrtimeout(Long svrtimeout) throws Exception{
@@ -576,7 +561,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The idle time (in seconds) after which the server connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Time, in seconds, after which to terminate an idle server connection.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public Long get_svrtimeout() throws Exception {
@@ -585,7 +570,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The  identifier for the service. This is used when the persistency type is set to Custom Server ID.<br> Default value: "None"
+	* Unique identifier for the service. Used when the persistency type for the virtual server is set to Custom Server ID.<br> Default value: "None"
 	* </pre>
 	*/
 	public void set_customserverid(String customserverid) throws Exception{
@@ -594,7 +579,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The  identifier for the service. This is used when the persistency type is set to Custom Server ID.<br> Default value: "None"
+	* Unique identifier for the service. Used when the persistency type for the virtual server is set to Custom Server ID.<br> Default value: "None"
 	* </pre>
 	*/
 	public String get_customserverid() throws Exception {
@@ -630,7 +615,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the Client Keep-Alive feature for the service.<br> Possible values = YES, NO
+	* Enable client keep-alive for the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_cka(String cka) throws Exception{
@@ -639,7 +624,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the Client Keep-Alive feature for the service.<br> Possible values = YES, NO
+	* Enable client keep-alive for the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_cka() throws Exception {
@@ -648,7 +633,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the TCP Buffering feature for the service.<br> Possible values = YES, NO
+	* Enable TCP buffering for the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_tcpb(String tcpb) throws Exception{
@@ -657,7 +642,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the TCP Buffering feature for the service.<br> Possible values = YES, NO
+	* Enable TCP buffering for the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_tcpb() throws Exception {
@@ -666,7 +651,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the HTTP Compression feature for the service.<br> Possible values = YES, NO
+	* Enable compression for the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_cmp(String cmp) throws Exception{
@@ -675,7 +660,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the HTTP Compression feature for the service.<br> Possible values = YES, NO
+	* Enable compression for the service.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_cmp() throws Exception {
@@ -684,7 +669,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The maximum bandwidth in kbps allowed for the service.<br> Minimum value =  0<br> Maximum value =  4294967287
+	* Maximum bandwidth, in Kbps, allocated to the service.<br> Minimum value =  0<br> Maximum value =  4294967287
 	* </pre>
 	*/
 	public void set_maxbandwidth(long maxbandwidth) throws Exception {
@@ -693,7 +678,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The maximum bandwidth in kbps allowed for the service.<br> Minimum value =  0<br> Maximum value =  4294967287
+	* Maximum bandwidth, in Kbps, allocated to the service.<br> Minimum value =  0<br> Maximum value =  4294967287
 	* </pre>
 	*/
 	public void set_maxbandwidth(Long maxbandwidth) throws Exception{
@@ -702,7 +687,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The maximum bandwidth in kbps allowed for the service.<br> Minimum value =  0<br> Maximum value =  4294967287
+	* Maximum bandwidth, in Kbps, allocated to the service.<br> Minimum value =  0<br> Maximum value =  4294967287
 	* </pre>
 	*/
 	public Long get_maxbandwidth() throws Exception {
@@ -711,7 +696,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The option to allow access to disabled or down services. If enabled, all packets to this service are bridged.  If disabled, they are dropped.<br> Default value: NO<br> Possible values = YES, NO
+	* Use Layer 2 mode to bridge the packets sent to this service if it is marked as DOWN. If the service is DOWN, and this parameter is disabled, the packets are dropped.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_accessdown(String accessdown) throws Exception{
@@ -720,7 +705,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The option to allow access to disabled or down services. If enabled, all packets to this service are bridged.  If disabled, they are dropped.<br> Default value: NO<br> Possible values = YES, NO
+	* Use Layer 2 mode to bridge the packets sent to this service if it is marked as DOWN. If the service is DOWN, and this parameter is disabled, the packets are dropped.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_accessdown() throws Exception {
@@ -729,7 +714,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The monitoring threshold.<br> Minimum value =  0<br> Maximum value =  65535
+	* Minimum sum of weights of the monitors that are bound to this service. Used to determine whether to mark a service as UP or DOWN.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_monthreshold(long monthreshold) throws Exception {
@@ -738,7 +723,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The monitoring threshold.<br> Minimum value =  0<br> Maximum value =  65535
+	* Minimum sum of weights of the monitors that are bound to this service. Used to determine whether to mark a service as UP or DOWN.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_monthreshold(Long monthreshold) throws Exception{
@@ -747,7 +732,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The monitoring threshold.<br> Minimum value =  0<br> Maximum value =  65535
+	* Minimum sum of weights of the monitors that are bound to this service. Used to determine whether to mark a service as UP or DOWN.<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public Long get_monthreshold() throws Exception {
@@ -756,7 +741,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the service after it is added.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Initial state of the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -765,7 +750,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the service after it is added.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Initial state of the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -774,7 +759,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Perform delayed clean up of connections on this service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Perform delayed clean-up of connections to the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_downstateflush(String downstateflush) throws Exception{
@@ -783,7 +768,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Perform delayed clean up of connections on this service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Perform delayed clean-up of connections to the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_downstateflush() throws Exception {
@@ -792,7 +777,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The name of the TCP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the TCP profile that contains TCP configuration settings for the service.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public void set_tcpprofilename(String tcpprofilename) throws Exception{
@@ -801,7 +786,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The name of the TCP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the TCP profile that contains TCP configuration settings for the service.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public String get_tcpprofilename() throws Exception {
@@ -810,7 +795,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Name of the HTTP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the HTTP profile that contains HTTP configuration settings for the service.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public void set_httpprofilename(String httpprofilename) throws Exception{
@@ -819,7 +804,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Name of the HTTP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the HTTP profile that contains HTTP configuration settings for the service.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public String get_httpprofilename() throws Exception {
@@ -828,7 +813,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* A numerical identifier that can be used by hash based load balancing methods. Must be unique for each service.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_hashid(long hashid) throws Exception {
@@ -837,7 +822,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* A numerical identifier that can be used by hash based load balancing methods. Must be unique for each service.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_hashid(Long hashid) throws Exception{
@@ -846,7 +831,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* A numerical identifier that can be used by hash based load balancing methods. Must be unique for each service.<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_hashid() throws Exception {
@@ -855,7 +840,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Comments associated with this server.
+	* Any information about the service.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -864,7 +849,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Comments associated with this server.
+	* Any information about the service.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {
@@ -873,7 +858,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Enable logging appflow flow information.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable logging of AppFlow information.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_appflowlog(String appflowlog) throws Exception{
@@ -882,7 +867,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Enable logging appflow flow information.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable logging of AppFlow information.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_appflowlog() throws Exception {
@@ -891,7 +876,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The name of the network profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Network profile to use for the service.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public void set_netprofile(String netprofile) throws Exception{
@@ -900,11 +885,38 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The name of the network profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Network profile to use for the service.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public String get_netprofile() throws Exception {
 		return this.netprofile;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
 	}
 
 	/**
@@ -927,7 +939,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(long weight) throws Exception {
@@ -936,7 +948,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(Long weight) throws Exception{
@@ -945,7 +957,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_weight() throws Exception {
@@ -954,7 +966,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The monitor name bound to the selected service.<br> Minimum length =  1
+	* Name of the monitor bound to the specified service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_monitor_name_svc(String monitor_name_svc) throws Exception{
@@ -963,7 +975,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The monitor name bound to the selected service.<br> Minimum length =  1
+	* Name of the monitor bound to the specified service.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_monitor_name_svc() throws Exception {
@@ -972,7 +984,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The time allowed (in seconds) for a graceful shutdown. During this period, new connections and requests continue to be sent to the service for clients who already have persistent sessions on the system. Connections or requests from fresh or new clients who do not yet have a persistence sessions on the NetScaler system are not sent to the service. Instead, they are load balanced among other available services. After the delay time has passed, no new requests or connections are sent to the service.
+	* Time, in seconds, allocated to the NetScaler appliance for a graceful shutdown of the service. During this period, new requests are sent to the service only for clients who already have persistent sessions on the appliance. Requests from new clients are load balanced among other available services. After the delay time expires, no requests are sent to the service, and the service is marked as unavailable (OUT OF SERVICE).
 	* </pre>
 	*/
 	public void set_delay(long delay) throws Exception {
@@ -981,7 +993,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The time allowed (in seconds) for a graceful shutdown. During this period, new connections and requests continue to be sent to the service for clients who already have persistent sessions on the system. Connections or requests from fresh or new clients who do not yet have a persistence sessions on the NetScaler system are not sent to the service. Instead, they are load balanced among other available services. After the delay time has passed, no new requests or connections are sent to the service.
+	* Time, in seconds, allocated to the NetScaler appliance for a graceful shutdown of the service. During this period, new requests are sent to the service only for clients who already have persistent sessions on the appliance. Requests from new clients are load balanced among other available services. After the delay time expires, no requests are sent to the service, and the service is marked as unavailable (OUT OF SERVICE).
 	* </pre>
 	*/
 	public void set_delay(Long delay) throws Exception{
@@ -990,7 +1002,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The time allowed (in seconds) for a graceful shutdown. During this period, new connections and requests continue to be sent to the service for clients who already have persistent sessions on the system. Connections or requests from fresh or new clients who do not yet have a persistence sessions on the NetScaler system are not sent to the service. Instead, they are load balanced among other available services. After the delay time has passed, no new requests or connections are sent to the service.
+	* Time, in seconds, allocated to the NetScaler appliance for a graceful shutdown of the service. During this period, new requests are sent to the service only for clients who already have persistent sessions on the appliance. Requests from new clients are load balanced among other available services. After the delay time expires, no requests are sent to the service, and the service is marked as unavailable (OUT OF SERVICE).
 	* </pre>
 	*/
 	public Long get_delay() throws Exception {
@@ -999,7 +1011,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Indicates graceful shutdown of the service. System will wait for all outstanding connections to this service to be closed before disabling the service.<br> Default value: NO<br> Possible values = YES, NO
+	* Shut down gracefully, not accepting any new connections, and disabling the service when all of its connections are closed.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_graceful(String graceful) throws Exception{
@@ -1008,7 +1020,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Indicates graceful shutdown of the service. System will wait for all outstanding connections to this service to be closed before disabling the service.<br> Default value: NO<br> Possible values = YES, NO
+	* Shut down gracefully, not accepting any new connections, and disabling the service when all of its connections are closed.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_graceful() throws Exception {
@@ -1017,7 +1029,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Display both configured and dynamically learned services. If you do not use this option, only the configured services are displayed.
+	* Display both user-configured and dynamically learned services.
 	* </pre>
 	*/
 	public void set_all(boolean all) throws Exception {
@@ -1026,7 +1038,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Display both configured and dynamically learned services. If you do not use this option, only the configured services are displayed.
+	* Display both user-configured and dynamically learned services.
 	* </pre>
 	*/
 	public void set_all(Boolean all) throws Exception{
@@ -1035,7 +1047,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Display both configured and dynamically learned services. If you do not use this option, only the configured services are displayed.
+	* Display both user-configured and dynamically learned services.
 	* </pre>
 	*/
 	public Boolean get_all() throws Exception {
@@ -1044,7 +1056,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Display internally created named services.
+	* Display only dynamically learned services.
 	* </pre>
 	*/
 	public void set_Internal(boolean Internal) throws Exception {
@@ -1053,7 +1065,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Display internally created named services.
+	* Display only dynamically learned services.
 	* </pre>
 	*/
 	public void set_Internal(Boolean Internal) throws Exception{
@@ -1062,7 +1074,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* Display internally created named services.
+	* Display only dynamically learned services.
 	* </pre>
 	*/
 	public Boolean get_Internal() throws Exception {
@@ -1071,7 +1083,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The new name of the service.<br> Minimum length =  1
+	* New name for the service. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -1080,7 +1092,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The new name of the service.<br> Minimum length =  1
+	* New name for the service. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
@@ -1103,24 +1115,6 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 	*/
 	public String get_policyname() throws Exception {
 		return this.policyname;
-	}
-
-	/**
-	* <pre>
-	* The configuration type of the service.
-	* </pre>
-	*/
-	public Boolean get_serviceconftpye() throws Exception {
-		return this.serviceconftpye;
-	}
-
-	/**
-	* <pre>
-	* The configuration type of the service.
-	* </pre>
-	*/
-	public Boolean get_serviceconftype() throws Exception {
-		return this.serviceconftype;
 	}
 
 	/**
@@ -1179,7 +1173,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The state of the service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* The state of the service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_svrstate() throws Exception {
@@ -1188,7 +1182,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 
 	/**
 	* <pre>
-	* The running state of the monitor on this service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* The running state of the monitor on this service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_monitor_state() throws Exception {
@@ -1265,15 +1259,6 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 	*/
 	public Long get_statechangetimemsec() throws Exception {
 		return this.statechangetimemsec;
-	}
-
-	/**
-	* <pre>
-	* Time in milliseconds since the last state change.
-	* </pre>
-	*/
-	public Long get_timesincelaststatechange() throws Exception {
-		return this.timesincelaststatechange;
 	}
 
 	/**
@@ -1398,6 +1383,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 		addresource.comment = resource.comment;
 		addresource.appflowlog = resource.appflowlog;
 		addresource.netprofile = resource.netprofile;
+		addresource.td = resource.td;
 		return addresource.add_resource(client);
 	}
 
@@ -1448,6 +1434,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 				addresources[i].comment = resources[i].comment;
 				addresources[i].appflowlog = resources[i].appflowlog;
 				addresources[i].netprofile = resources[i].netprofile;
+				addresources[i].td = resources[i].td;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -1599,50 +1586,9 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 	* Use this API to unset the properties of service resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		service unsetresource = new service();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of service resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, service resource, String[] args) throws Exception{
 		service unsetresource = new service();
 		unsetresource.name = resource.name;
-		unsetresource.maxclient = resource.maxclient;
-		unsetresource.maxreq = resource.maxreq;
-		unsetresource.cacheable = resource.cacheable;
-		unsetresource.cip = resource.cip;
-		unsetresource.usip = resource.usip;
-		unsetresource.pathmonitor = resource.pathmonitor;
-		unsetresource.pathmonitorindv = resource.pathmonitorindv;
-		unsetresource.useproxyport = resource.useproxyport;
-		unsetresource.sc = resource.sc;
-		unsetresource.sp = resource.sp;
-		unsetresource.rtspsessionidremap = resource.rtspsessionidremap;
-		unsetresource.customserverid = resource.customserverid;
-		unsetresource.serverid = resource.serverid;
-		unsetresource.cka = resource.cka;
-		unsetresource.tcpb = resource.tcpb;
-		unsetresource.cmp = resource.cmp;
-		unsetresource.maxbandwidth = resource.maxbandwidth;
-		unsetresource.accessdown = resource.accessdown;
-		unsetresource.monthreshold = resource.monthreshold;
-		unsetresource.clttimeout = resource.clttimeout;
-		unsetresource.svrtimeout = resource.svrtimeout;
-		unsetresource.tcpprofilename = resource.tcpprofilename;
-		unsetresource.httpprofilename = resource.httpprofilename;
-		unsetresource.hashid = resource.hashid;
-		unsetresource.appflowlog = resource.appflowlog;
-		unsetresource.netprofile = resource.netprofile;
-		unsetresource.cipheader = resource.cipheader;
-		unsetresource.healthmonitor = resource.healthmonitor;
-		unsetresource.monitor_name_svc = resource.monitor_name_svc;
-		unsetresource.downstateflush = resource.downstateflush;
-		unsetresource.comment = resource.comment;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -1674,37 +1620,6 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new service();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].maxclient = resources[i].maxclient;
-				unsetresources[i].maxreq = resources[i].maxreq;
-				unsetresources[i].cacheable = resources[i].cacheable;
-				unsetresources[i].cip = resources[i].cip;
-				unsetresources[i].usip = resources[i].usip;
-				unsetresources[i].pathmonitor = resources[i].pathmonitor;
-				unsetresources[i].pathmonitorindv = resources[i].pathmonitorindv;
-				unsetresources[i].useproxyport = resources[i].useproxyport;
-				unsetresources[i].sc = resources[i].sc;
-				unsetresources[i].sp = resources[i].sp;
-				unsetresources[i].rtspsessionidremap = resources[i].rtspsessionidremap;
-				unsetresources[i].customserverid = resources[i].customserverid;
-				unsetresources[i].serverid = resources[i].serverid;
-				unsetresources[i].cka = resources[i].cka;
-				unsetresources[i].tcpb = resources[i].tcpb;
-				unsetresources[i].cmp = resources[i].cmp;
-				unsetresources[i].maxbandwidth = resources[i].maxbandwidth;
-				unsetresources[i].accessdown = resources[i].accessdown;
-				unsetresources[i].monthreshold = resources[i].monthreshold;
-				unsetresources[i].clttimeout = resources[i].clttimeout;
-				unsetresources[i].svrtimeout = resources[i].svrtimeout;
-				unsetresources[i].tcpprofilename = resources[i].tcpprofilename;
-				unsetresources[i].httpprofilename = resources[i].httpprofilename;
-				unsetresources[i].hashid = resources[i].hashid;
-				unsetresources[i].appflowlog = resources[i].appflowlog;
-				unsetresources[i].netprofile = resources[i].netprofile;
-				unsetresources[i].cipheader = resources[i].cipheader;
-				unsetresources[i].healthmonitor = resources[i].healthmonitor;
-				unsetresources[i].monitor_name_svc = resources[i].monitor_name_svc;
-				unsetresources[i].downstateflush = resources[i].downstateflush;
-				unsetresources[i].comment = resources[i].comment;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -1986,6 +1901,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 		public static final String SSL = "SSL";
 		public static final String SSL_BRIDGE = "SSL_BRIDGE";
 		public static final String SSL_TCP = "SSL_TCP";
+		public static final String DTLS = "DTLS";
 		public static final String NNTP = "NNTP";
 		public static final String RPCSVR = "RPCSVR";
 		public static final String DNS = "DNS";
@@ -2003,6 +1919,7 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 		public static final String RDP = "RDP";
 		public static final String DIAMETER = "DIAMETER";
 		public static final String SSL_DIAMETER = "SSL_DIAMETER";
+		public static final String TFTP = "TFTP";
 	}
 	public static class svrstateEnum {
 		public static final String UP = "UP";
@@ -2013,6 +1930,8 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class monitor_stateEnum {
 		public static final String UP = "UP";
@@ -2023,6 +1942,8 @@ Note:	This parameter is supported for legacy purposes only. It has no effect on 
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class valueEnum {
 		public static final String Certkey_not_bound = "Certkey not bound";

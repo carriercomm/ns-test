@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.tm;
@@ -32,11 +38,16 @@ public class tmtrafficaction extends base_resource
 	private String formssoaction;
 	private String persistentcookie;
 	private String initiatelogout;
+	private String kcdaccount;
+	private String samlssoprofile;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name for the action.<br> Minimum length =  1
+	* Name for the traffic action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after a traffic action is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -45,7 +56,10 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* The name for the action.<br> Minimum length =  1
+	* Name for the traffic action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after a traffic action is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -54,7 +68,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* The inactivity timeout after which the system closes a connection.<br> Minimum value =  1<br> Maximum value =  715827
+	* Time interval, in minutes, of user inactivity after which the connection is closed.<br> Minimum value =  1<br> Maximum value =  715827
 	* </pre>
 	*/
 	public void set_apptimeout(long apptimeout) throws Exception {
@@ -63,7 +77,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* The inactivity timeout after which the system closes a connection.<br> Minimum value =  1<br> Maximum value =  715827
+	* Time interval, in minutes, of user inactivity after which the connection is closed.<br> Minimum value =  1<br> Maximum value =  715827
 	* </pre>
 	*/
 	public void set_apptimeout(Long apptimeout) throws Exception{
@@ -72,7 +86,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* The inactivity timeout after which the system closes a connection.<br> Minimum value =  1<br> Maximum value =  715827
+	* Time interval, in minutes, of user inactivity after which the connection is closed.<br> Minimum value =  1<br> Maximum value =  715827
 	* </pre>
 	*/
 	public Long get_apptimeout() throws Exception {
@@ -81,7 +95,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Enable or disable Single Sign-On.<br> Possible values = ON, OFF
+	* Use single sign-on for the resource that the user is accessing now.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_sso(String sso) throws Exception{
@@ -90,7 +104,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Enable or disable Single Sign-On.<br> Possible values = ON, OFF
+	* Use single sign-on for the resource that the user is accessing now.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_sso() throws Exception {
@@ -99,7 +113,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Name of configured tm formssoaction.
+	* Name of the configured form-based single sign-on profile.
 	* </pre>
 	*/
 	public void set_formssoaction(String formssoaction) throws Exception{
@@ -108,7 +122,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Name of configured tm formssoaction.
+	* Name of the configured form-based single sign-on profile.
 	* </pre>
 	*/
 	public String get_formssoaction() throws Exception {
@@ -117,7 +131,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Whether persistent cookie should be allowed on this traffic action.<br> Possible values = ON, OFF
+	* Use persistent cookies for the traffic session. A persistent cookie remains on the user device and is sent with each HTTP request. The cookie becomes stale if the session ends.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_persistentcookie(String persistentcookie) throws Exception{
@@ -126,7 +140,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Whether persistent cookie should be allowed on this traffic action.<br> Possible values = ON, OFF
+	* Use persistent cookies for the traffic session. A persistent cookie remains on the user device and is sent with each HTTP request. The cookie becomes stale if the session ends.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_persistentcookie() throws Exception {
@@ -135,7 +149,7 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Initiate Logout on this session.<br> Possible values = ON, OFF
+	* Initiate logout for the traffic management (TM) session if the policy evaluates to true. The session is then terminated after two minutes.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_initiatelogout(String initiatelogout) throws Exception{
@@ -144,11 +158,47 @@ public class tmtrafficaction extends base_resource
 
 	/**
 	* <pre>
-	* Initiate Logout on this session.<br> Possible values = ON, OFF
+	* Initiate logout for the traffic management (TM) session if the policy evaluates to true. The session is then terminated after two minutes.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_initiatelogout() throws Exception {
 		return this.initiatelogout;
+	}
+
+	/**
+	* <pre>
+	* Kerberos constrained delegation account name.<br> Default value: "None"<br> Minimum length =  1<br> Maximum length =  32
+	* </pre>
+	*/
+	public void set_kcdaccount(String kcdaccount) throws Exception{
+		this.kcdaccount = kcdaccount;
+	}
+
+	/**
+	* <pre>
+	* Kerberos constrained delegation account name.<br> Default value: "None"<br> Minimum length =  1<br> Maximum length =  32
+	* </pre>
+	*/
+	public String get_kcdaccount() throws Exception {
+		return this.kcdaccount;
+	}
+
+	/**
+	* <pre>
+	* Profile to be used for doing SAML SSO to remote relying party.<br> Minimum length =  1
+	* </pre>
+	*/
+	public void set_samlssoprofile(String samlssoprofile) throws Exception{
+		this.samlssoprofile = samlssoprofile;
+	}
+
+	/**
+	* <pre>
+	* Profile to be used for doing SAML SSO to remote relying party.<br> Minimum length =  1
+	* </pre>
+	*/
+	public String get_samlssoprofile() throws Exception {
+		return this.samlssoprofile;
 	}
 
 	/**
@@ -196,6 +246,8 @@ public class tmtrafficaction extends base_resource
 		addresource.formssoaction = resource.formssoaction;
 		addresource.persistentcookie = resource.persistentcookie;
 		addresource.initiatelogout = resource.initiatelogout;
+		addresource.kcdaccount = resource.kcdaccount;
+		addresource.samlssoprofile = resource.samlssoprofile;
 		return addresource.add_resource(client);
 	}
 
@@ -214,6 +266,8 @@ public class tmtrafficaction extends base_resource
 				addresources[i].formssoaction = resources[i].formssoaction;
 				addresources[i].persistentcookie = resources[i].persistentcookie;
 				addresources[i].initiatelogout = resources[i].initiatelogout;
+				addresources[i].kcdaccount = resources[i].kcdaccount;
+				addresources[i].samlssoprofile = resources[i].samlssoprofile;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -281,6 +335,8 @@ public class tmtrafficaction extends base_resource
 		updateresource.formssoaction = resource.formssoaction;
 		updateresource.persistentcookie = resource.persistentcookie;
 		updateresource.initiatelogout = resource.initiatelogout;
+		updateresource.kcdaccount = resource.kcdaccount;
+		updateresource.samlssoprofile = resource.samlssoprofile;
 		return updateresource.update_resource(client);
 	}
 
@@ -299,6 +355,8 @@ public class tmtrafficaction extends base_resource
 				updateresources[i].formssoaction = resources[i].formssoaction;
 				updateresources[i].persistentcookie = resources[i].persistentcookie;
 				updateresources[i].initiatelogout = resources[i].initiatelogout;
+				updateresources[i].kcdaccount = resources[i].kcdaccount;
+				updateresources[i].samlssoprofile = resources[i].samlssoprofile;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -309,20 +367,9 @@ public class tmtrafficaction extends base_resource
 	* Use this API to unset the properties of tmtrafficaction resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		tmtrafficaction unsetresource = new tmtrafficaction();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of tmtrafficaction resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, tmtrafficaction resource, String[] args) throws Exception{
 		tmtrafficaction unsetresource = new tmtrafficaction();
 		unsetresource.name = resource.name;
-		unsetresource.persistentcookie = resource.persistentcookie;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -354,7 +401,6 @@ public class tmtrafficaction extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new tmtrafficaction();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].persistentcookie = resources[i].persistentcookie;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

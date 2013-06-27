@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.lb;
@@ -43,6 +49,7 @@ public class lbvserver extends base_resource
 	private Long hashlength;
 	private String netmask;
 	private Long v6netmasklen;
+	private String cookiename;
 	private String rule;
 	private String listenpolicy;
 	private Long listenpriority;
@@ -65,7 +72,9 @@ public class lbvserver extends base_resource
 	private String somethod;
 	private String sopersistence;
 	private Long sopersistencetimeout;
+	private Long healththreshold;
 	private Long sothreshold;
+	private String sobackupaction;
 	private String redirectportrewrite;
 	private String downstateflush;
 	private String backupvserver;
@@ -82,6 +91,7 @@ public class lbvserver extends base_resource
 	private String pushmulticlients;
 	private String tcpprofilename;
 	private String httpprofilename;
+	private String dbprofilename;
 	private String comment;
 	private String l2conn;
 	private String mssqlserverversion;
@@ -95,7 +105,14 @@ public class lbvserver extends base_resource
 	private Long newservicerequest;
 	private String newservicerequestunit;
 	private Long newservicerequestincrementinterval;
+	private Long minautoscalemembers;
+	private Long maxautoscalemembers;
 	private Long[] persistavpno;
+	private String skippersistency;
+	private Long td;
+	private String authnprofile;
+	private String macmoderetainvlan;
+	private String dbslb;
 	private Long weight;
 	private String servicename;
 	private Boolean redirurlflags;
@@ -104,8 +121,8 @@ public class lbvserver extends base_resource
 	//------- Read only Parameter ---------;
 
 	private String value;
-	private String ip;
 	private String ipmapping;
+	private String ngname;
 	private String type;
 	private String curstate;
 	private String effectivestate;
@@ -125,6 +142,8 @@ public class lbvserver extends base_resource
 	private String cookiedomain;
 	private String map;
 	private String gt2gb;
+	private String consolidatedlconn;
+	private String consolidatedlconngbl;
 	private Integer thresholdvalue;
 	private String bindpoint;
 	private Boolean invoke;
@@ -142,7 +161,9 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The name of the load balancing virtual server being added.<br> Minimum length =  1
+	* Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -151,7 +172,9 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The name of the load balancing virtual server being added.<br> Minimum length =  1
+	* Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -160,7 +183,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The service type.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, DNS, DHCPRA, ANY, SIP_UDP, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER
+	* Protocol used by the service (also called the service type).<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, DNS, DHCPRA, ANY, SIP_UDP, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, TFTP
 	* </pre>
 	*/
 	public void set_servicetype(String servicetype) throws Exception{
@@ -169,7 +192,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The service type.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, DNS, DHCPRA, ANY, SIP_UDP, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER
+	* Protocol used by the service (also called the service type).<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, DNS, DHCPRA, ANY, SIP_UDP, DNS_TCP, RTSP, PUSH, SSL_PUSH, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, TFTP
 	* </pre>
 	*/
 	public String get_servicetype() throws Exception {
@@ -178,7 +201,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the virtual server.
+	* IPv4 or IPv6 address to assign to the virtual server.
 	* </pre>
 	*/
 	public void set_ipv46(String ipv46) throws Exception{
@@ -187,7 +210,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the virtual server.
+	* IPv4 or IPv6 address to assign to the virtual server.
 	* </pre>
 	*/
 	public String get_ipv46() throws Exception {
@@ -196,7 +219,9 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP Pattern of the virtual server.
+	* IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern.  Mutually exclusive with the IP Address parameter. 
+For example, if the IP pattern assigned to the virtual server is 198.51.100.0 and the IP mask is 255.255.240.0 (a forward mask), the first 20 bits in the destination IP addresses are matched with the first 20 bits in the pattern. The virtual server accepts requests with IP addresses that range from 198.51.96.1 to 198.51.111.254.  You can also use a pattern such as 0.0.2.2 and a mask such as 0.0.255.255 (a reverse mask).
+If a destination IP address matches more than one IP pattern, the pattern with the longest match is selected, and the associated virtual server processes the request. For example, if virtual servers vs1 and vs2 have the same IP pattern, 0.0.100.128, but different IP masks of 0.0.255.255 and 0.0.224.255, a destination IP address of 198.51.100.128 has the longest match with the IP pattern of vs1. If a destination IP address matches two or more virtual servers to the same extent, the request is processed by the virtual server whose port number matches the port number in the request.
 	* </pre>
 	*/
 	public void set_ippattern(String ippattern) throws Exception{
@@ -205,7 +230,9 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP Pattern of the virtual server.
+	* IP address pattern, in dotted decimal notation, for identifying packets to be accepted by the virtual server. The IP Mask parameter specifies which part of the destination IP address is matched against the pattern.  Mutually exclusive with the IP Address parameter. 
+For example, if the IP pattern assigned to the virtual server is 198.51.100.0 and the IP mask is 255.255.240.0 (a forward mask), the first 20 bits in the destination IP addresses are matched with the first 20 bits in the pattern. The virtual server accepts requests with IP addresses that range from 198.51.96.1 to 198.51.111.254.  You can also use a pattern such as 0.0.2.2 and a mask such as 0.0.255.255 (a reverse mask).
+If a destination IP address matches more than one IP pattern, the pattern with the longest match is selected, and the associated virtual server processes the request. For example, if virtual servers vs1 and vs2 have the same IP pattern, 0.0.100.128, but different IP masks of 0.0.255.255 and 0.0.224.255, a destination IP address of 198.51.100.128 has the longest match with the IP pattern of vs1. If a destination IP address matches two or more virtual servers to the same extent, the request is processed by the virtual server whose port number matches the port number in the request.
 	* </pre>
 	*/
 	public String get_ippattern() throws Exception {
@@ -214,7 +241,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP Mask of the virtual server IP Pattern.
+	* IP mask, in dotted decimal notation, for the IP Pattern parameter. Can have leading or trailing non-zero octets (for example, 255.255.240.0 or 0.0.255.255). Accordingly, the mask specifies whether the first n bits or the last n bits of the destination IP address in a client request are to be matched with the corresponding bits in the IP pattern. The former is called a forward mask. The latter is called a reverse mask.
 	* </pre>
 	*/
 	public void set_ipmask(String ipmask) throws Exception{
@@ -223,7 +250,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP Mask of the virtual server IP Pattern.
+	* IP mask, in dotted decimal notation, for the IP Pattern parameter. Can have leading or trailing non-zero octets (for example, 255.255.240.0 or 0.0.255.255). Accordingly, the mask specifies whether the first n bits or the last n bits of the destination IP address in a client request are to be matched with the corresponding bits in the IP pattern. The former is called a forward mask. The latter is called a reverse mask.
 	* </pre>
 	*/
 	public String get_ipmask() throws Exception {
@@ -232,7 +259,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* A port number for the virtual server.<br> Range 1 - 65535
+	* Port number for the virtual server.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(int port) throws Exception {
@@ -241,7 +268,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* A port number for the virtual server.<br> Range 1 - 65535
+	* Port number for the virtual server.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(Integer port) throws Exception{
@@ -250,7 +277,7 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* A port number for the virtual server.<br> Range 1 - 65535
+	* Port number for the virtual server.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public Integer get_port() throws Exception {
@@ -259,7 +286,11 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP range for the network vserver.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  254
+	* Number of IP addresses that the appliance must generate and assign to the virtual server. The virtual server then functions as a network virtual server, accepting traffic on any of the generated IP addresses. The IP addresses are generated automatically, as follows: 
+* For a range of n, the last octet of the address specified by the IP Address parameter increments n-1 times. 
+* If the last octet exceeds 255, it rolls over to 0 and the third octet increments by 1.
+Note: The Range parameter assigns multiple IP addresses to one virtual server. To generate an array of virtual servers, each of which owns only one IP address, use brackets in the IP Address and Name parameters to specify the range. For example:
+add lb vserver my_vserver[1-3] HTTP 192.0.2.[1-3] 80.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  254
 	* </pre>
 	*/
 	public void set_range(long range) throws Exception {
@@ -268,7 +299,11 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP range for the network vserver.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  254
+	* Number of IP addresses that the appliance must generate and assign to the virtual server. The virtual server then functions as a network virtual server, accepting traffic on any of the generated IP addresses. The IP addresses are generated automatically, as follows: 
+* For a range of n, the last octet of the address specified by the IP Address parameter increments n-1 times. 
+* If the last octet exceeds 255, it rolls over to 0 and the third octet increments by 1.
+Note: The Range parameter assigns multiple IP addresses to one virtual server. To generate an array of virtual servers, each of which owns only one IP address, use brackets in the IP Address and Name parameters to specify the range. For example:
+add lb vserver my_vserver[1-3] HTTP 192.0.2.[1-3] 80.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  254
 	* </pre>
 	*/
 	public void set_range(Long range) throws Exception{
@@ -277,7 +312,11 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP range for the network vserver.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  254
+	* Number of IP addresses that the appliance must generate and assign to the virtual server. The virtual server then functions as a network virtual server, accepting traffic on any of the generated IP addresses. The IP addresses are generated automatically, as follows: 
+* For a range of n, the last octet of the address specified by the IP Address parameter increments n-1 times. 
+* If the last octet exceeds 255, it rolls over to 0 and the third octet increments by 1.
+Note: The Range parameter assigns multiple IP addresses to one virtual server. To generate an array of virtual servers, each of which owns only one IP address, use brackets in the IP Address and Name parameters to specify the range. For example:
+add lb vserver my_vserver[1-3] HTTP 192.0.2.[1-3] 80.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  254
 	* </pre>
 	*/
 	public Long get_range() throws Exception {
@@ -286,20 +325,17 @@ public class lbvserver extends base_resource
 
 	/**
 	* <pre>
-	* Persistence type for the virtual server.
-Note:
-The <persistenceType> parameter can take one of the following options:
-	SOURCEIP - When configured, the system selects a physical service based on the Load Balancing method, and then directs all the subsequent requests arriving from the same IP as the first request to the same physical service.
-	COOKIEINSERT - When configured, the system inserts an HTTP cookie into the client responses. The cookie is inserted into the "Cookie" header field of the HTTP response. The client stores the cookie (if enabled) and includes it in all the subsequent requests, which then match the cookie criteria. The cookie contains information about the service where the requests have to be sent.
-	SSLSESSION ID - When configured, the system creates a persistence that is session based on the arriving SSL Session ID, which is part of the SSL handshake process. All requests with the same SSL session ID are directed to the initially selected physical service.
-	CUSTOM SERVER ID -This mode of Persistence requires the server to provide its Server-ID in such a way that it can be extracted from subsequent requests. The system extracts the Server-ID from subsequent client requests and uses it to select a server. The server embeds the Server-ID into the URL query of the HTML links, accessible from the initial page that has to generate persistent HTTP requests.
-	RULE - When configured, the system maintains persistence based on the contents of the matched rule. This persistence requires an expression to be configured. The expression is created using the add expression CLI command and is configured on a virtual server, using the -rule option of the add lb vserver or set lb vserver CLI command.After successful evaluation of the expression, a persistence session is created and all subsequent matching client requests are directed to the previously selected server.
-	URLPASSIVE - This mode of Persistence requires the server to provide its Server-ID in such a way that it can be extracted from subsequent requests.The system extracts the Server-ID from subsequent client requests and uses it to select a server. The servers which require persistence, embed the Server-ID into the URL query of the HTML links, accessible from the initial page. The Server-ID is its IP address and port specified as a hexadecimal number.URL Passive persistence type requires an expression to be configured that specifies the location of the Server-ID in the client's requests. The expression is created using the CLI command add expression. This expression is configured on a virtual server, using option -rule of the add lb vserver or set lb vserver CLI command.
-	DESTIP -When configured, the system selects a physical service based on the Load Balancing method, and then directs all the subsequent requests with the same destination as the first packet to the same physical service. This will be used in LLB deployment scenarios.
-	SRCIPDESTIP - When configured, the system selects a physical service based on the Load Balancing method, and then directs all the subsequent requests with the same Source IP and Destination IP as the first packet to the same physical service. This will be used in IDS LB depolyments.
-	CALLID - When configured, the system maintains persistence based on CALLID used in the SIP transactions. All the SIP transactions with same CALLID are directed to the same server.
-	RTSPSID - When configured, the system maintains persistence based on RTSP sessionID provided by the server. The client also sends the same RTSP sessionID in the subsequent requests which are then directed to the same server.
-	DIAMETER - When configured, the system mantains persistence based on an AVP code value found in Diameter Message. This persistence requires an AVP code to be configured as persist AVP code. This persist Avp Code is configured in cli using using option -persistAVPno. After successfully finding persist AVP code in diameter request, a persistence session is created with AVP contents and all subsequent matching Diameter messages are directed to the previously selected server.<br> Possible values = SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
+	* Type of persistence for the virtual server. Available settings function as follows:
+* SOURCEIP - Connections from the same client IP address belong to the same persistence session.
+* COOKIEINSERT - Connections that have the same HTTP Cookie, inserted by a Set-Cookie directive from a server, belong to the same persistence session. 
+* SSLSESSION - Connections that have the same SSL Session ID belong to the same persistence session.
+* CUSTOMSERVERID - Connections with the same server ID form part of the same session. For this persistence type, set the Server ID (CustomServerID) parameter for each service and configure the Rule parameter to identify the server ID in a request.
+* RULE - All connections that match a user defined rule belong to the same persistence session. 
+* URLPASSIVE - Requests that have the same server ID in the URL query belong to the same persistence session. The server ID is the hexadecimal representation of the IP address and port of the service to which the request must be forwarded. This persistence type requires a rule to identify the server ID in the request. 
+* DESTIP - Connections to the same destination IP address belong to the same persistence session.
+* SRCIPDESTIP - Connections that have the same source IP address and destination IP address belong to the same persistence session.
+* CALLID - Connections that have the same CALL-ID SIP header belong to the same persistence session.
+* RTSPSID - Connections that have the same RTSP Session ID belong to the same persistence session.<br> Possible values = SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
 	* </pre>
 	*/
 	public void set_persistencetype(String persistencetype) throws Exception{
@@ -308,20 +344,17 @@ The <persistenceType> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* Persistence type for the virtual server.
-Note:
-The <persistenceType> parameter can take one of the following options:
-	SOURCEIP - When configured, the system selects a physical service based on the Load Balancing method, and then directs all the subsequent requests arriving from the same IP as the first request to the same physical service.
-	COOKIEINSERT - When configured, the system inserts an HTTP cookie into the client responses. The cookie is inserted into the "Cookie" header field of the HTTP response. The client stores the cookie (if enabled) and includes it in all the subsequent requests, which then match the cookie criteria. The cookie contains information about the service where the requests have to be sent.
-	SSLSESSION ID - When configured, the system creates a persistence that is session based on the arriving SSL Session ID, which is part of the SSL handshake process. All requests with the same SSL session ID are directed to the initially selected physical service.
-	CUSTOM SERVER ID -This mode of Persistence requires the server to provide its Server-ID in such a way that it can be extracted from subsequent requests. The system extracts the Server-ID from subsequent client requests and uses it to select a server. The server embeds the Server-ID into the URL query of the HTML links, accessible from the initial page that has to generate persistent HTTP requests.
-	RULE - When configured, the system maintains persistence based on the contents of the matched rule. This persistence requires an expression to be configured. The expression is created using the add expression CLI command and is configured on a virtual server, using the -rule option of the add lb vserver or set lb vserver CLI command.After successful evaluation of the expression, a persistence session is created and all subsequent matching client requests are directed to the previously selected server.
-	URLPASSIVE - This mode of Persistence requires the server to provide its Server-ID in such a way that it can be extracted from subsequent requests.The system extracts the Server-ID from subsequent client requests and uses it to select a server. The servers which require persistence, embed the Server-ID into the URL query of the HTML links, accessible from the initial page. The Server-ID is its IP address and port specified as a hexadecimal number.URL Passive persistence type requires an expression to be configured that specifies the location of the Server-ID in the client's requests. The expression is created using the CLI command add expression. This expression is configured on a virtual server, using option -rule of the add lb vserver or set lb vserver CLI command.
-	DESTIP -When configured, the system selects a physical service based on the Load Balancing method, and then directs all the subsequent requests with the same destination as the first packet to the same physical service. This will be used in LLB deployment scenarios.
-	SRCIPDESTIP - When configured, the system selects a physical service based on the Load Balancing method, and then directs all the subsequent requests with the same Source IP and Destination IP as the first packet to the same physical service. This will be used in IDS LB depolyments.
-	CALLID - When configured, the system maintains persistence based on CALLID used in the SIP transactions. All the SIP transactions with same CALLID are directed to the same server.
-	RTSPSID - When configured, the system maintains persistence based on RTSP sessionID provided by the server. The client also sends the same RTSP sessionID in the subsequent requests which are then directed to the same server.
-	DIAMETER - When configured, the system mantains persistence based on an AVP code value found in Diameter Message. This persistence requires an AVP code to be configured as persist AVP code. This persist Avp Code is configured in cli using using option -persistAVPno. After successfully finding persist AVP code in diameter request, a persistence session is created with AVP contents and all subsequent matching Diameter messages are directed to the previously selected server.<br> Possible values = SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
+	* Type of persistence for the virtual server. Available settings function as follows:
+* SOURCEIP - Connections from the same client IP address belong to the same persistence session.
+* COOKIEINSERT - Connections that have the same HTTP Cookie, inserted by a Set-Cookie directive from a server, belong to the same persistence session. 
+* SSLSESSION - Connections that have the same SSL Session ID belong to the same persistence session.
+* CUSTOMSERVERID - Connections with the same server ID form part of the same session. For this persistence type, set the Server ID (CustomServerID) parameter for each service and configure the Rule parameter to identify the server ID in a request.
+* RULE - All connections that match a user defined rule belong to the same persistence session. 
+* URLPASSIVE - Requests that have the same server ID in the URL query belong to the same persistence session. The server ID is the hexadecimal representation of the IP address and port of the service to which the request must be forwarded. This persistence type requires a rule to identify the server ID in the request. 
+* DESTIP - Connections to the same destination IP address belong to the same persistence session.
+* SRCIPDESTIP - Connections that have the same source IP address and destination IP address belong to the same persistence session.
+* CALLID - Connections that have the same CALL-ID SIP header belong to the same persistence session.
+* RTSPSID - Connections that have the same RTSP Session ID belong to the same persistence session.<br> Possible values = SOURCEIP, COOKIEINSERT, SSLSESSION, RULE, URLPASSIVE, CUSTOMSERVERID, DESTIP, SRCIPDESTIP, CALLID, RTSPSID, DIAMETER, NONE
 	* </pre>
 	*/
 	public String get_persistencetype() throws Exception {
@@ -330,7 +363,7 @@ The <persistenceType> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* The time period for which the persistence is in effect for a specific client. The value ranges from 2 to 1440 minutes.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
+	* Time period for which a persistence session is in effect.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_timeout(long timeout) throws Exception {
@@ -339,7 +372,7 @@ The <persistenceType> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* The time period for which the persistence is in effect for a specific client. The value ranges from 2 to 1440 minutes.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
+	* Time period for which a persistence session is in effect.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_timeout(Long timeout) throws Exception{
@@ -348,7 +381,7 @@ The <persistenceType> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* The time period for which the persistence is in effect for a specific client. The value ranges from 2 to 1440 minutes.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
+	* Time period for which a persistence session is in effect.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public Long get_timeout() throws Exception {
@@ -357,11 +390,7 @@ The <persistenceType> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* Use this parameter to specify a backup persistence type for the virtual server.
-The Backup persistence option is used when the primary configured persistence mechanism on virtual server fails.
-The <persistenceBacup> parameter can take one of the following options:
-    SOURCEIP
-    NONE.<br> Possible values = SOURCEIP, NONE
+	* Backup persistence type for the virtual server. Becomes operational if the primary persistence mechanism fails.<br> Possible values = SOURCEIP, NONE
 	* </pre>
 	*/
 	public void set_persistencebackup(String persistencebackup) throws Exception{
@@ -370,11 +399,7 @@ The <persistenceBacup> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* Use this parameter to specify a backup persistence type for the virtual server.
-The Backup persistence option is used when the primary configured persistence mechanism on virtual server fails.
-The <persistenceBacup> parameter can take one of the following options:
-    SOURCEIP
-    NONE.<br> Possible values = SOURCEIP, NONE
+	* Backup persistence type for the virtual server. Becomes operational if the primary persistence mechanism fails.<br> Possible values = SOURCEIP, NONE
 	* </pre>
 	*/
 	public String get_persistencebackup() throws Exception {
@@ -437,7 +462,7 @@ The <persistenceBacup> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* The maximum time backup persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Time period for which backup persistence is in effect.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_backuppersistencetimeout(long backuppersistencetimeout) throws Exception {
@@ -446,7 +471,7 @@ The <persistenceBacup> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* The maximum time backup persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Time period for which backup persistence is in effect.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_backuppersistencetimeout(Long backuppersistencetimeout) throws Exception{
@@ -455,7 +480,7 @@ The <persistenceBacup> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* The maximum time backup persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Time period for which backup persistence is in effect.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public Long get_backuppersistencetimeout() throws Exception {
@@ -464,31 +489,23 @@ The <persistenceBacup> parameter can take one of the following options:
 
 	/**
 	* <pre>
-	* The load balancing method for the virtual server. The valid options for this parameter are:
-ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH,LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPDESTIPHASH, CUSTOMLOAD, SRCIPSRCPORTHASH, LRTM, CALLIDHASSH.
-When the load balancing policy is configured as:
-	ROUNDROBIN - When configured, the system distributes incoming requests to each server in rotation, regardless of the load. When different weights are assigned to services then weighted round robin occurs and requests go to services according to how much weighting has been set.
-	LEASTCONNECTION (default value)- When configured, the system selects the service that has the least number of connections. For TCP, HTTP, HTTPS and SSL_TCP services the least number of connections includes:
-	Established, active connections to a service. Connection reuse applies to HTTP and HTTPS. Hence the count includes only those connections which have outstanding HTTP or HTTPS requests, and does not include inactive, reusable connections.
-	Connections to a service waiting in the Surge Queue, which exists only if the Surge Protection feature is enabled.
-For UDP services the least number of connections includes:
-	The number of sessions between client and a physical service. These sessions are the logical, time-based entities, created on first arriving UDP packet. If configured, weights are taken into account when server selection is performed.
-	LEASTRESPONSETIME - When configured, the system selects the service with the minimum average response time. The response time is the time interval taken when a request is sent to a service and first response packet comes back from the service, that is Time to First Byte (TTFB).
-	URLHASH - The system selects the service based on the hashed value of the incoming URL.To specify the number of bytes of the URL that is used to calculate the hash value use the optional argument [-hashLength <positive_integer>] in either the add lb vserver or set lb vserver CLI command. The default value is 80.
-	DOMAINHASH - When configured with this load balancing method, the system selects the service based on the hashed value of the domain name in the HTTP request. The domain name is taken either from the incoming URL or from the Host header of the HTTP request.
-Note:	The system defaults to LEASTCONNECTION if the request does not contain a domain name.
-If the domain name appears in both the URL and the host header, the system gives preference to the URL domain.
-
-	DESTINATIONIPHASH - The system selects the service based on the hashed value of the destination IP address in the TCP IP header.
-	SOURCEIPHASH - The system selects the service based on the hashed value of the client's IP address in the IP header.
-	LEASTBANDWIDTH - The system selects the service that is currently serving the least traffic, measured in megabits per second.
-	LEASTPACKETS - The system selects the service that is currently serving the lowest number of packets per second.
-	Token -The system selects the service based on the value, calculated from a token, extracted from the client's request (location and size of the token is configurable or by evaluating the rule configured). For subsequent requests with the same token, the systems will select the same physical server.
-	SRCIPDESTIPHASH - The system selects the service based on the hashed value of the client's SOURCE IP and DESTINATION IP address in the TCP IP header.
- 	CUSTOMLOAD - The system selects the service based on the it load which was determined by the LOAD monitors bound to the service.
-	SRCIPSRCPORTHASH - The system selects the service based on the hashed value of the client's SOURCE IP and SOURCE PORT in the TCP/UDP+IP header.
-	LRTM - When configured, the system selects the service with least response time learned through probing(number of active connections taken into account in addition to the response time).
-	CALLIDHASSH - The system selects the service based on the hashed value of SIP callid.<br> Default value: PEMGMT_LB_LEASTCONNS<br> Possible values = ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD
+	* Load balancing method.  The available settings function as follows:
+* ROUNDROBIN - Distribute requests in rotation, regardless of the load. Weights can be assigned to services to enforce weighted round robin distribution.
+* LEASTCONNECTION (default) - Select the service with the fewest connections. 
+* LEASTRESPONSETIME - Select the service with the lowest average response time. 
+* LEASTBANDWIDTH - Select the service currently handling the least traffic.
+* LEASTPACKETS - Select the service currently serving the lowest number of packets per second.
+* CUSTOMLOAD - Base service selection on the SNMP metrics obtained by custom load monitors.
+* LRTM - Select the service with the lowest response time. Response times are learned through monitoring probes. This method also takes the number of active connections into account.
+Also available are a number of hashing methods, in which the appliance extracts a predetermined portion of the request, creates a hash of the portion, and then checks whether any previous requests had the same hash value. If it finds a match, it forwards the request to the service that served those previous requests. Following are the hashing methods: 
+* URLHASH - Create a hash of the request URL (or part of the URL).
+* DOMAINHASH - Create a hash of the domain name in the request (or part of the domain name). The domain name is taken from either the URL or the Host header. If the domain name appears in both locations, the URL is preferred. If the request does not contain a domain name, the load balancing method defaults to LEASTCONNECTION.
+* DESTINATIONIPHASH - Create a hash of the destination IP address in the IP header. 
+* SOURCEIPHASH - Create a hash of the source IP address in the IP header.  
+* TOKEN - Extract a token from the request, create a hash of the token, and then select the service to which any previous requests with the same token hash value were sent. 
+* SRCIPDESTIPHASH - Create a hash of the string obtained by concatenating the source IP address and destination IP address in the IP header.  
+* SRCIPSRCPORTHASH - Create a hash of the source IP address and source port in the IP header.  
+* CALLIDHASH - Create a hash of the SIP Call-ID header.<br> Default value: LEASTCONNECTION<br> Possible values = ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD, LEASTREQUEST
 	* </pre>
 	*/
 	public void set_lbmethod(String lbmethod) throws Exception{
@@ -497,31 +514,23 @@ If the domain name appears in both the URL and the host header, the system gives
 
 	/**
 	* <pre>
-	* The load balancing method for the virtual server. The valid options for this parameter are:
-ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH,LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPDESTIPHASH, CUSTOMLOAD, SRCIPSRCPORTHASH, LRTM, CALLIDHASSH.
-When the load balancing policy is configured as:
-	ROUNDROBIN - When configured, the system distributes incoming requests to each server in rotation, regardless of the load. When different weights are assigned to services then weighted round robin occurs and requests go to services according to how much weighting has been set.
-	LEASTCONNECTION (default value)- When configured, the system selects the service that has the least number of connections. For TCP, HTTP, HTTPS and SSL_TCP services the least number of connections includes:
-	Established, active connections to a service. Connection reuse applies to HTTP and HTTPS. Hence the count includes only those connections which have outstanding HTTP or HTTPS requests, and does not include inactive, reusable connections.
-	Connections to a service waiting in the Surge Queue, which exists only if the Surge Protection feature is enabled.
-For UDP services the least number of connections includes:
-	The number of sessions between client and a physical service. These sessions are the logical, time-based entities, created on first arriving UDP packet. If configured, weights are taken into account when server selection is performed.
-	LEASTRESPONSETIME - When configured, the system selects the service with the minimum average response time. The response time is the time interval taken when a request is sent to a service and first response packet comes back from the service, that is Time to First Byte (TTFB).
-	URLHASH - The system selects the service based on the hashed value of the incoming URL.To specify the number of bytes of the URL that is used to calculate the hash value use the optional argument [-hashLength <positive_integer>] in either the add lb vserver or set lb vserver CLI command. The default value is 80.
-	DOMAINHASH - When configured with this load balancing method, the system selects the service based on the hashed value of the domain name in the HTTP request. The domain name is taken either from the incoming URL or from the Host header of the HTTP request.
-Note:	The system defaults to LEASTCONNECTION if the request does not contain a domain name.
-If the domain name appears in both the URL and the host header, the system gives preference to the URL domain.
-
-	DESTINATIONIPHASH - The system selects the service based on the hashed value of the destination IP address in the TCP IP header.
-	SOURCEIPHASH - The system selects the service based on the hashed value of the client's IP address in the IP header.
-	LEASTBANDWIDTH - The system selects the service that is currently serving the least traffic, measured in megabits per second.
-	LEASTPACKETS - The system selects the service that is currently serving the lowest number of packets per second.
-	Token -The system selects the service based on the value, calculated from a token, extracted from the client's request (location and size of the token is configurable or by evaluating the rule configured). For subsequent requests with the same token, the systems will select the same physical server.
-	SRCIPDESTIPHASH - The system selects the service based on the hashed value of the client's SOURCE IP and DESTINATION IP address in the TCP IP header.
- 	CUSTOMLOAD - The system selects the service based on the it load which was determined by the LOAD monitors bound to the service.
-	SRCIPSRCPORTHASH - The system selects the service based on the hashed value of the client's SOURCE IP and SOURCE PORT in the TCP/UDP+IP header.
-	LRTM - When configured, the system selects the service with least response time learned through probing(number of active connections taken into account in addition to the response time).
-	CALLIDHASSH - The system selects the service based on the hashed value of SIP callid.<br> Default value: PEMGMT_LB_LEASTCONNS<br> Possible values = ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD
+	* Load balancing method.  The available settings function as follows:
+* ROUNDROBIN - Distribute requests in rotation, regardless of the load. Weights can be assigned to services to enforce weighted round robin distribution.
+* LEASTCONNECTION (default) - Select the service with the fewest connections. 
+* LEASTRESPONSETIME - Select the service with the lowest average response time. 
+* LEASTBANDWIDTH - Select the service currently handling the least traffic.
+* LEASTPACKETS - Select the service currently serving the lowest number of packets per second.
+* CUSTOMLOAD - Base service selection on the SNMP metrics obtained by custom load monitors.
+* LRTM - Select the service with the lowest response time. Response times are learned through monitoring probes. This method also takes the number of active connections into account.
+Also available are a number of hashing methods, in which the appliance extracts a predetermined portion of the request, creates a hash of the portion, and then checks whether any previous requests had the same hash value. If it finds a match, it forwards the request to the service that served those previous requests. Following are the hashing methods: 
+* URLHASH - Create a hash of the request URL (or part of the URL).
+* DOMAINHASH - Create a hash of the domain name in the request (or part of the domain name). The domain name is taken from either the URL or the Host header. If the domain name appears in both locations, the URL is preferred. If the request does not contain a domain name, the load balancing method defaults to LEASTCONNECTION.
+* DESTINATIONIPHASH - Create a hash of the destination IP address in the IP header. 
+* SOURCEIPHASH - Create a hash of the source IP address in the IP header.  
+* TOKEN - Extract a token from the request, create a hash of the token, and then select the service to which any previous requests with the same token hash value were sent. 
+* SRCIPDESTIPHASH - Create a hash of the string obtained by concatenating the source IP address and destination IP address in the IP header.  
+* SRCIPSRCPORTHASH - Create a hash of the source IP address and source port in the IP header.  
+* CALLIDHASH - Create a hash of the SIP Call-ID header.<br> Default value: LEASTCONNECTION<br> Possible values = ROUNDROBIN, LEASTCONNECTION, LEASTRESPONSETIME, URLHASH, DOMAINHASH, DESTINATIONIPHASH, SOURCEIPHASH, SRCIPDESTIPHASH, LEASTBANDWIDTH, LEASTPACKETS, TOKEN, SRCIPSRCPORTHASH, LRTM, CALLIDHASH, CUSTOMLOAD, LEASTREQUEST
 	* </pre>
 	*/
 	public String get_lbmethod() throws Exception {
@@ -530,7 +539,7 @@ If the domain name appears in both the URL and the host header, the system gives
 
 	/**
 	* <pre>
-	* This parameter is used when the URLHASH or DOMAINHASH policy is set. Enter the number of bytes that will be hashed in the URL or DOMAIN name. Valid values are from 1 to 4096 bytes.<br> Default value: 80<br> Minimum value =  1<br> Maximum value =  4096
+	* Number of bytes to consider for the hash value used in the URLHASH and DOMAINHASH load balancing methods.<br> Default value: 80<br> Minimum value =  1<br> Maximum value =  4096
 	* </pre>
 	*/
 	public void set_hashlength(long hashlength) throws Exception {
@@ -539,7 +548,7 @@ If the domain name appears in both the URL and the host header, the system gives
 
 	/**
 	* <pre>
-	* This parameter is used when the URLHASH or DOMAINHASH policy is set. Enter the number of bytes that will be hashed in the URL or DOMAIN name. Valid values are from 1 to 4096 bytes.<br> Default value: 80<br> Minimum value =  1<br> Maximum value =  4096
+	* Number of bytes to consider for the hash value used in the URLHASH and DOMAINHASH load balancing methods.<br> Default value: 80<br> Minimum value =  1<br> Maximum value =  4096
 	* </pre>
 	*/
 	public void set_hashlength(Long hashlength) throws Exception{
@@ -548,7 +557,7 @@ If the domain name appears in both the URL and the host header, the system gives
 
 	/**
 	* <pre>
-	* This parameter is used when the URLHASH or DOMAINHASH policy is set. Enter the number of bytes that will be hashed in the URL or DOMAIN name. Valid values are from 1 to 4096 bytes.<br> Default value: 80<br> Minimum value =  1<br> Maximum value =  4096
+	* Number of bytes to consider for the hash value used in the URLHASH and DOMAINHASH load balancing methods.<br> Default value: 80<br> Minimum value =  1<br> Maximum value =  4096
 	* </pre>
 	*/
 	public Long get_hashlength() throws Exception {
@@ -557,8 +566,7 @@ If the domain name appears in both the URL and the host header, the system gives
 
 	/**
 	* <pre>
-	* Use this parameter to set the DESTINATIONIPHASH or SOURCEIPHASH policy.
-Enter the netmask to be used in modifying the destination or source IP address or network.<br> Minimum length =  1
+	* IPv4 subnet mask to apply to the destination IP address or source IP address when the load balancing method is DESTINATIONIPHASH or SOURCEIPHASH.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_netmask(String netmask) throws Exception{
@@ -567,8 +575,7 @@ Enter the netmask to be used in modifying the destination or source IP address o
 
 	/**
 	* <pre>
-	* Use this parameter to set the DESTINATIONIPHASH or SOURCEIPHASH policy.
-Enter the netmask to be used in modifying the destination or source IP address or network.<br> Minimum length =  1
+	* IPv4 subnet mask to apply to the destination IP address or source IP address when the load balancing method is DESTINATIONIPHASH or SOURCEIPHASH.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_netmask() throws Exception {
@@ -577,7 +584,7 @@ Enter the netmask to be used in modifying the destination or source IP address o
 
 	/**
 	* <pre>
-	* The Network mask. Use this parameter if you are setting the DESTINATIONIPHASH or SOURCEIPHASH policy. Enter the netmask to be used in modifying the destination or source IP address or network.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Number of bits to consider in an IPv6 destination or source IP address, for creating the hash that is required by the DESTINATIONIPHASH and SOURCEIPHASH load balancing methods.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public void set_v6netmasklen(long v6netmasklen) throws Exception {
@@ -586,7 +593,7 @@ Enter the netmask to be used in modifying the destination or source IP address o
 
 	/**
 	* <pre>
-	* The Network mask. Use this parameter if you are setting the DESTINATIONIPHASH or SOURCEIPHASH policy. Enter the netmask to be used in modifying the destination or source IP address or network.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Number of bits to consider in an IPv6 destination or source IP address, for creating the hash that is required by the DESTINATIONIPHASH and SOURCEIPHASH load balancing methods.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public void set_v6netmasklen(Long v6netmasklen) throws Exception{
@@ -595,7 +602,7 @@ Enter the netmask to be used in modifying the destination or source IP address o
 
 	/**
 	* <pre>
-	* The Network mask. Use this parameter if you are setting the DESTINATIONIPHASH or SOURCEIPHASH policy. Enter the netmask to be used in modifying the destination or source IP address or network.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Number of bits to consider in an IPv6 destination or source IP address, for creating the hash that is required by the DESTINATIONIPHASH and SOURCEIPHASH load balancing methods.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public Long get_v6netmasklen() throws Exception {
@@ -604,8 +611,31 @@ Enter the netmask to be used in modifying the destination or source IP address o
 
 	/**
 	* <pre>
-	* Use this parameter to specify the string value used to set the RULE persistence type.
-The string can be either an existing rule name (configured using add expression command) or else it can be an in-line expression with a maximum of 1499 characters.<br> Default value: "none"
+	* Use this parameter to specify the cookie name for COOKIE peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.
+	* </pre>
+	*/
+	public void set_cookiename(String cookiename) throws Exception{
+		this.cookiename = cookiename;
+	}
+
+	/**
+	* <pre>
+	* Use this parameter to specify the cookie name for COOKIE peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.
+	* </pre>
+	*/
+	public String get_cookiename() throws Exception {
+		return this.cookiename;
+	}
+
+	/**
+	* <pre>
+	* Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax.
+Note:
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.<br> Default value: "none"
 	* </pre>
 	*/
 	public void set_rule(String rule) throws Exception{
@@ -614,8 +644,13 @@ The string can be either an existing rule name (configured using add expression 
 
 	/**
 	* <pre>
-	* Use this parameter to specify the string value used to set the RULE persistence type.
-The string can be either an existing rule name (configured using add expression command) or else it can be an in-line expression with a maximum of 1499 characters.<br> Default value: "none"
+	* Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax.
+Note:
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.<br> Default value: "none"
 	* </pre>
 	*/
 	public String get_rule() throws Exception {
@@ -624,8 +659,7 @@ The string can be either an existing rule name (configured using add expression 
 
 	/**
 	* <pre>
-	* Use this parameter to specify the listen policy for LB Vserver.
-The string can be either an existing expression name (configured using add policy expression command) or else it can be an in-line expression with a maximum of 1499 characters.<br> Default value: "none"
+	* Default syntax expression identifying traffic accepted by the virtual server. Can be either an expression (for example, CLIENT.IP.DST.IN_SUBNET(192.0.2.0/24) or the name of a named expression. In the above example, the virtual server accepts all requests whose destination IP address is in the 192.0.2.0/24 subnet.<br> Default value: "none"
 	* </pre>
 	*/
 	public void set_listenpolicy(String listenpolicy) throws Exception{
@@ -634,8 +668,7 @@ The string can be either an existing expression name (configured using add polic
 
 	/**
 	* <pre>
-	* Use this parameter to specify the listen policy for LB Vserver.
-The string can be either an existing expression name (configured using add policy expression command) or else it can be an in-line expression with a maximum of 1499 characters.<br> Default value: "none"
+	* Default syntax expression identifying traffic accepted by the virtual server. Can be either an expression (for example, CLIENT.IP.DST.IN_SUBNET(192.0.2.0/24) or the name of a named expression. In the above example, the virtual server accepts all requests whose destination IP address is in the 192.0.2.0/24 subnet.<br> Default value: "none"
 	* </pre>
 	*/
 	public String get_listenpolicy() throws Exception {
@@ -644,7 +677,7 @@ The string can be either an existing expression name (configured using add polic
 
 	/**
 	* <pre>
-	* Use this parameter to specify the priority for listen policy of LB Vserver.<br> Default value: 101<br> Minimum value =  0<br> Maximum value =  101
+	* Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.<br> Default value: 101<br> Minimum value =  0<br> Maximum value =  101
 	* </pre>
 	*/
 	public void set_listenpriority(long listenpriority) throws Exception {
@@ -653,7 +686,7 @@ The string can be either an existing expression name (configured using add polic
 
 	/**
 	* <pre>
-	* Use this parameter to specify the priority for listen policy of LB Vserver.<br> Default value: 101<br> Minimum value =  0<br> Maximum value =  101
+	* Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.<br> Default value: 101<br> Minimum value =  0<br> Maximum value =  101
 	* </pre>
 	*/
 	public void set_listenpriority(Long listenpriority) throws Exception{
@@ -662,7 +695,7 @@ The string can be either an existing expression name (configured using add polic
 
 	/**
 	* <pre>
-	* Use this parameter to specify the priority for listen policy of LB Vserver.<br> Default value: 101<br> Minimum value =  0<br> Maximum value =  101
+	* Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.<br> Default value: 101<br> Minimum value =  0<br> Maximum value =  101
 	* </pre>
 	*/
 	public Long get_listenpriority() throws Exception {
@@ -671,8 +704,9 @@ The string can be either an existing expression name (configured using add polic
 
 	/**
 	* <pre>
-	* Use this parameter to specify the expression to be used in response for RULE persistence type.
-The string  is an in-line expression with a maximum of 1499 characters.<br> Default value: "none"
+	* Default syntax expression specifying which part of a server's response to use for creating rule based persistence sessions (persistence type RULE). Can be either an expression or the name of a named expression.
+Example:
+HTTP.RES.HEADER("setcookie").VALUE(0).TYPECAST_NVLIST_T('=',';').VALUE("server1").<br> Default value: "none"
 	* </pre>
 	*/
 	public void set_resrule(String resrule) throws Exception{
@@ -681,8 +715,9 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the expression to be used in response for RULE persistence type.
-The string  is an in-line expression with a maximum of 1499 characters.<br> Default value: "none"
+	* Default syntax expression specifying which part of a server's response to use for creating rule based persistence sessions (persistence type RULE). Can be either an expression or the name of a named expression.
+Example:
+HTTP.RES.HEADER("setcookie").VALUE(0).TYPECAST_NVLIST_T('=',';').VALUE("server1").<br> Default value: "none"
 	* </pre>
 	*/
 	public String get_resrule() throws Exception {
@@ -691,7 +726,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify if the persistency is IP based. This parameter is Optional.<br> Minimum length =  1
+	* Persistence mask for IP based persistence types, for IPv4 virtual servers.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_persistmask(String persistmask) throws Exception{
@@ -700,7 +735,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify if the persistency is IP based. This parameter is Optional.<br> Minimum length =  1
+	* Persistence mask for IP based persistence types, for IPv4 virtual servers.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_persistmask() throws Exception {
@@ -709,7 +744,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* The persistence mask. Use this parameter if you are using IP based persistence type on a ipv6 vserver.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Persistence mask for IP based persistence types, for IPv6 virtual servers.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public void set_v6persistmasklen(long v6persistmasklen) throws Exception {
@@ -718,7 +753,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* The persistence mask. Use this parameter if you are using IP based persistence type on a ipv6 vserver.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Persistence mask for IP based persistence types, for IPv6 virtual servers.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public void set_v6persistmasklen(Long v6persistmasklen) throws Exception{
@@ -727,7 +762,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* The persistence mask. Use this parameter if you are using IP based persistence type on a ipv6 vserver.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Persistence mask for IP based persistence types, for IPv6 virtual servers.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public Long get_v6persistmasklen() throws Exception {
@@ -736,7 +771,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable priority queuing on the specified virtual server.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Use priority queuing on the virtual server. based persistence types, for IPv6 virtual servers.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_pq(String pq) throws Exception{
@@ -745,7 +780,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable priority queuing on the specified virtual server.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Use priority queuing on the virtual server. based persistence types, for IPv6 virtual servers.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_pq() throws Exception {
@@ -754,7 +789,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable SureConnect on the specified virtual server.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Use SureConnect on the virtual server.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_sc(String sc) throws Exception{
@@ -763,7 +798,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable SureConnect on the specified virtual server.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Use SureConnect on the virtual server.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_sc() throws Exception {
@@ -772,7 +807,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable natting for RTSP data connection.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Use network address translation (NAT) for RTSP data connections.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_rtspnat(String rtspnat) throws Exception{
@@ -781,7 +816,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable natting for RTSP data connection.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Use network address translation (NAT) for RTSP data connections.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_rtspnat() throws Exception {
@@ -790,7 +825,12 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the LB mode. If the value is specified as IP then the traffic is sent to the physical servers by changing the destination IP address to that of the physical server. If the value is MAC then the traffic is sent to the physical servers , by changing the destination MAC address to that of one of the physical servers, the destination IP is not changed. MAC mode is used mostly in Firewall Load Balancing scenario.<br> Default value: NSFWD_IP<br> Possible values = IP, MAC, IPTUNNEL, TOS
+	* Redirection mode for load balancing. Available settings function as follows:
+* IP - Before forwarding a request to a server, change the destination IP address to the server's IP address. 
+* MAC - Before forwarding a request to a server, change the destination MAC address to the server's MAC address.  The destination IP address is not changed. MAC-based redirection mode is used mostly in firewall load balancing deployments. 
+* IPTUNNEL - Perform IP-in-IP encapsulation for client IP packets. In the outer IP headers, set the destination IP address to the IP address of the server and the source IP address to the subnet IP (SNIP). The client IP packets are not modified. Applicable to both IPv4 and IPv6 packets. 
+* TOS - Encode the virtual server's TOS ID in the TOS field of the IP header. 
+You can use either the IPTUNNEL or the TOS option to implement Direct Server Return (DSR).<br> Default value: IP<br> Possible values = IP, MAC, IPTUNNEL, TOS
 	* </pre>
 	*/
 	public void set_m(String m) throws Exception{
@@ -799,7 +839,12 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the LB mode. If the value is specified as IP then the traffic is sent to the physical servers by changing the destination IP address to that of the physical server. If the value is MAC then the traffic is sent to the physical servers , by changing the destination MAC address to that of one of the physical servers, the destination IP is not changed. MAC mode is used mostly in Firewall Load Balancing scenario.<br> Default value: NSFWD_IP<br> Possible values = IP, MAC, IPTUNNEL, TOS
+	* Redirection mode for load balancing. Available settings function as follows:
+* IP - Before forwarding a request to a server, change the destination IP address to the server's IP address. 
+* MAC - Before forwarding a request to a server, change the destination MAC address to the server's MAC address.  The destination IP address is not changed. MAC-based redirection mode is used mostly in firewall load balancing deployments. 
+* IPTUNNEL - Perform IP-in-IP encapsulation for client IP packets. In the outer IP headers, set the destination IP address to the IP address of the server and the source IP address to the subnet IP (SNIP). The client IP packets are not modified. Applicable to both IPv4 and IPv6 packets. 
+* TOS - Encode the virtual server's TOS ID in the TOS field of the IP header. 
+You can use either the IPTUNNEL or the TOS option to implement Direct Server Return (DSR).<br> Default value: IP<br> Possible values = IP, MAC, IPTUNNEL, TOS
 	* </pre>
 	*/
 	public String get_m() throws Exception {
@@ -808,7 +853,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the TOS ID of this vserver. Applicable only when the LB mode is TOS.<br> Minimum value =  1<br> Maximum value =  63
+	* TOS ID of the virtual server. Applicable only when the load balancing redirection mode is set to TOS.<br> Minimum value =  1<br> Maximum value =  63
 	* </pre>
 	*/
 	public void set_tosid(long tosid) throws Exception {
@@ -817,7 +862,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the TOS ID of this vserver. Applicable only when the LB mode is TOS.<br> Minimum value =  1<br> Maximum value =  63
+	* TOS ID of the virtual server. Applicable only when the load balancing redirection mode is set to TOS.<br> Minimum value =  1<br> Maximum value =  63
 	* </pre>
 	*/
 	public void set_tosid(Long tosid) throws Exception{
@@ -826,7 +871,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the TOS ID of this vserver. Applicable only when the LB mode is TOS.<br> Minimum value =  1<br> Maximum value =  63
+	* TOS ID of the virtual server. Applicable only when the load balancing redirection mode is set to TOS.<br> Minimum value =  1<br> Maximum value =  63
 	* </pre>
 	*/
 	public Long get_tosid() throws Exception {
@@ -835,7 +880,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the length of the token in bytes. Applicable to TCP virtual servers, when Token Load Balancing method is selected. The datalength should not be more than 24k.<br> Minimum value =  0<br> Maximum value =  100
+	* Length of the token to be extracted from the data segment of an incoming packet, for use in the token method of load balancing. The length of the token, specified in bytes, must not be greater than 24 KB. Applicable to virtual servers of type TCP.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_datalength(long datalength) throws Exception {
@@ -844,7 +889,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the length of the token in bytes. Applicable to TCP virtual servers, when Token Load Balancing method is selected. The datalength should not be more than 24k.<br> Minimum value =  0<br> Maximum value =  100
+	* Length of the token to be extracted from the data segment of an incoming packet, for use in the token method of load balancing. The length of the token, specified in bytes, must not be greater than 24 KB. Applicable to virtual servers of type TCP.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_datalength(Long datalength) throws Exception{
@@ -853,7 +898,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specify the length of the token in bytes. Applicable to TCP virtual servers, when Token Load Balancing method is selected. The datalength should not be more than 24k.<br> Minimum value =  0<br> Maximum value =  100
+	* Length of the token to be extracted from the data segment of an incoming packet, for use in the token method of load balancing. The length of the token, specified in bytes, must not be greater than 24 KB. Applicable to virtual servers of type TCP.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_datalength() throws Exception {
@@ -862,7 +907,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specifies offset of the data to be taken as token. Applicable to the TCP type virtual servers, when Token load balancing method is used.  Must be within the first 24k of the client TCP data.<br> Minimum value =  0<br> Maximum value =  25400
+	* Offset to be considered when extracting a token from the TCP payload. Applicable to virtual servers, of type TCP, using the token method of load balancing. Must be within the first 24 KB of the TCP payload.<br> Minimum value =  0<br> Maximum value =  25400
 	* </pre>
 	*/
 	public void set_dataoffset(long dataoffset) throws Exception {
@@ -871,7 +916,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specifies offset of the data to be taken as token. Applicable to the TCP type virtual servers, when Token load balancing method is used.  Must be within the first 24k of the client TCP data.<br> Minimum value =  0<br> Maximum value =  25400
+	* Offset to be considered when extracting a token from the TCP payload. Applicable to virtual servers, of type TCP, using the token method of load balancing. Must be within the first 24 KB of the TCP payload.<br> Minimum value =  0<br> Maximum value =  25400
 	* </pre>
 	*/
 	public void set_dataoffset(Long dataoffset) throws Exception{
@@ -880,7 +925,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to specifies offset of the data to be taken as token. Applicable to the TCP type virtual servers, when Token load balancing method is used.  Must be within the first 24k of the client TCP data.<br> Minimum value =  0<br> Maximum value =  25400
+	* Offset to be considered when extracting a token from the TCP payload. Applicable to virtual servers, of type TCP, using the token method of load balancing. Must be within the first 24 KB of the TCP payload.<br> Minimum value =  0<br> Maximum value =  25400
 	* </pre>
 	*/
 	public Long get_dataoffset() throws Exception {
@@ -889,7 +934,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable sessionless load balancing.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Perform load balancing on a per-packet basis, without establishing sessions. Recommended for load balancing of intrusion detection system (IDS) servers and scenarios involving direct server return (DSR), where session information is unnecessary.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_sessionless(String sessionless) throws Exception{
@@ -898,7 +943,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Use this parameter to enable sessionless load balancing.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Perform load balancing on a per-packet basis, without establishing sessions. Recommended for load balancing of intrusion detection system (IDS) servers and scenarios involving direct server return (DSR), where session information is unnecessary.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_sessionless() throws Exception {
@@ -907,7 +952,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* The state of the load balancing virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of the load balancing virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -916,7 +961,7 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* The state of the load balancing virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of the load balancing virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -925,7 +970,10 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Specifies the connection failover mode of the virtual server.<br> Default value: DISABLED<br> Possible values = DISABLED, STATEFUL, STATELESS
+	* Mode in which the connection failover feature must operate for the virtual server. After a failover, established TCP connections and UDP packet flows are kept active and resumed on the secondary appliance. Clients remain connected to the same servers. Available settings function as follows:
+* STATEFUL - The primary appliance shares state information with the secondary appliance, in real time, resulting in some runtime processing overhead. 
+* STATELESS - State information is not shared, and the new primary appliance tries to re-create the packet flow on the basis of the information contained in the packets it receives. 
+* DISABLED - Connection failover does not occur.<br> Default value: DISABLED<br> Possible values = DISABLED, STATEFUL, STATELESS
 	* </pre>
 	*/
 	public void set_connfailover(String connfailover) throws Exception{
@@ -934,7 +982,10 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* Specifies the connection failover mode of the virtual server.<br> Default value: DISABLED<br> Possible values = DISABLED, STATEFUL, STATELESS
+	* Mode in which the connection failover feature must operate for the virtual server. After a failover, established TCP connections and UDP packet flows are kept active and resumed on the secondary appliance. Clients remain connected to the same servers. Available settings function as follows:
+* STATEFUL - The primary appliance shares state information with the secondary appliance, in real time, resulting in some runtime processing overhead. 
+* STATELESS - State information is not shared, and the new primary appliance tries to re-create the packet flow on the basis of the information contained in the packets it receives. 
+* DISABLED - Connection failover does not occur.<br> Default value: DISABLED<br> Possible values = DISABLED, STATEFUL, STATELESS
 	* </pre>
 	*/
 	public String get_connfailover() throws Exception {
@@ -943,9 +994,8 @@ The string  is an in-line expression with a maximum of 1499 characters.<br> Defa
 
 	/**
 	* <pre>
-	* The URL where traffic is redirected if the virtual server in the system becomes unavailable. You can enter up to 127 characters as the URL argument.
-WARNING!	Make sure that the domain you specify in the URL does not match the domain specified in the -d domainName argument of the add cs policy CLI command. If the same domain is specified in both arguments, the request will be
-continuously redirected to the same unavailable virtual server in the system  -  then the user may not get the requested content.<br> Minimum length =  1
+	* URL to which to redirect traffic if the virtual server becomes unavailable. 
+WARNING! Make sure that the domain in the URL does not match the domain specified for a content switching policy. If it does, requests are continuously redirected to the unavailable virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_redirurl(String redirurl) throws Exception{
@@ -954,9 +1004,8 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The URL where traffic is redirected if the virtual server in the system becomes unavailable. You can enter up to 127 characters as the URL argument.
-WARNING!	Make sure that the domain you specify in the URL does not match the domain specified in the -d domainName argument of the add cs policy CLI command. If the same domain is specified in both arguments, the request will be
-continuously redirected to the same unavailable virtual server in the system  -  then the user may not get the requested content.<br> Minimum length =  1
+	* URL to which to redirect traffic if the virtual server becomes unavailable. 
+WARNING! Make sure that the domain in the URL does not match the domain specified for a content switching policy. If it does, requests are continuously redirected to the unavailable virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_redirurl() throws Exception {
@@ -965,7 +1014,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Use this option to specify whether a virtual server, used for load balancing or content switching, routes requests to the cache redirection virtual server before sending it to the configured servers.<br> Default value: NO<br> Possible values = YES, NO
+	* Route cacheable requests to a cache redirection virtual server. The load balancing virtual server can forward requests only to a transparent cache redirection virtual server that has an IP address and port combination of *:80, so such a cache redirection virtual server must be configured on the appliance.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_cacheable(String cacheable) throws Exception{
@@ -974,7 +1023,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Use this option to specify whether a virtual server, used for load balancing or content switching, routes requests to the cache redirection virtual server before sending it to the configured servers.<br> Default value: NO<br> Possible values = YES, NO
+	* Route cacheable requests to a cache redirection virtual server. The load balancing virtual server can forward requests only to a transparent cache redirection virtual server that has an IP address and port combination of *:80, so such a cache redirection virtual server must be configured on the appliance.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_cacheable() throws Exception {
@@ -983,7 +1032,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The timeout value in seconds for idle client connection.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a client connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_clttimeout(long clttimeout) throws Exception {
@@ -992,7 +1041,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The timeout value in seconds for idle client connection.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a client connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_clttimeout(Long clttimeout) throws Exception{
@@ -1001,7 +1050,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The timeout value in seconds for idle client connection.<br> Minimum value =  0<br> Maximum value =  31536000
+	* Idle time, in seconds, after which a client connection is terminated.<br> Minimum value =  0<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public Long get_clttimeout() throws Exception {
@@ -1010,7 +1059,12 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The spillover factor based on which the traffic will be given to the backupvserver once the main virtual server reaches the spillover threshold.<br> Possible values = CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
+	* Type of threshold that, when exceeded, triggers spillover. Available settings function as follows:
+* CONNECTION - Spillover occurs when the number of client connections exceeds the threshold.
+* DYNAMICCONNECTION - Spillover occurs when the number of client connections at the virtual server exceeds the sum of the maximum client (Max Clients) settings for bound services. Do not specify a spillover threshold for this setting, because the threshold is implied by the Max Clients settings of bound services.
+* BANDWIDTH - Spillover occurs when the bandwidth consumed by the virtual server's incoming and outgoing traffic exceeds the threshold. 
+* HEALTH - Spillover occurs when the percentage of weights of the services that are UP drops below the threshold. For example, if services svc1, svc2, and svc3 are bound to a virtual server, with weights 1, 2, and 3, and the spillover threshold is 50%, spillover occurs if svc1 and svc3 or svc2 and svc3 transition to DOWN. 
+* NONE - Spillover does not occur.<br> Possible values = CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
 	* </pre>
 	*/
 	public void set_somethod(String somethod) throws Exception{
@@ -1019,7 +1073,12 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The spillover factor based on which the traffic will be given to the backupvserver once the main virtual server reaches the spillover threshold.<br> Possible values = CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
+	* Type of threshold that, when exceeded, triggers spillover. Available settings function as follows:
+* CONNECTION - Spillover occurs when the number of client connections exceeds the threshold.
+* DYNAMICCONNECTION - Spillover occurs when the number of client connections at the virtual server exceeds the sum of the maximum client (Max Clients) settings for bound services. Do not specify a spillover threshold for this setting, because the threshold is implied by the Max Clients settings of bound services.
+* BANDWIDTH - Spillover occurs when the bandwidth consumed by the virtual server's incoming and outgoing traffic exceeds the threshold. 
+* HEALTH - Spillover occurs when the percentage of weights of the services that are UP drops below the threshold. For example, if services svc1, svc2, and svc3 are bound to a virtual server, with weights 1, 2, and 3, and the spillover threshold is 50%, spillover occurs if svc1 and svc3 or svc2 and svc3 transition to DOWN. 
+* NONE - Spillover does not occur.<br> Possible values = CONNECTION, DYNAMICCONNECTION, BANDWIDTH, HEALTH, NONE
 	* </pre>
 	*/
 	public String get_somethod() throws Exception {
@@ -1028,7 +1087,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The state of the spillover persistence.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* If spillover occurs, maintain source IP address based persistence for both primary and backup virtual servers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_sopersistence(String sopersistence) throws Exception{
@@ -1037,7 +1096,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The state of the spillover persistence.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* If spillover occurs, maintain source IP address based persistence for both primary and backup virtual servers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_sopersistence() throws Exception {
@@ -1046,7 +1105,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The spillover persistency entry timeout.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Timeout for spillover persistence, in minutes.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_sopersistencetimeout(long sopersistencetimeout) throws Exception {
@@ -1055,7 +1114,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The spillover persistency entry timeout.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Timeout for spillover persistence, in minutes.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_sopersistencetimeout(Long sopersistencetimeout) throws Exception{
@@ -1064,7 +1123,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The spillover persistency entry timeout.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Timeout for spillover persistence, in minutes.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public Long get_sopersistencetimeout() throws Exception {
@@ -1073,7 +1132,34 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* In case of CONNECTION (or) DYNAMICCONNECTION type spillover method this value is treated as Maximum number of connections an lb vserver will handle before spillover takes place. In case of BANDWIDTH type spillover method this value is treated as the amount of incoming and outgoing traffic (in Kbps) a Vserver will handle before spillover takes place. In case of HEALTH type spillover method if the percentage of active services (by weight) becomes lower than this value, spillover takes place .<br> Minimum value =  1<br> Maximum value =  4294967287
+	* Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up.<br> Minimum value =  0<br> Maximum value =  100
+	* </pre>
+	*/
+	public void set_healththreshold(long healththreshold) throws Exception {
+		this.healththreshold = new Long(healththreshold);
+	}
+
+	/**
+	* <pre>
+	* Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up.<br> Minimum value =  0<br> Maximum value =  100
+	* </pre>
+	*/
+	public void set_healththreshold(Long healththreshold) throws Exception{
+		this.healththreshold = healththreshold;
+	}
+
+	/**
+	* <pre>
+	* Threshold in percent of active services below which vserver state is made down. If this threshold is 0, vserver state will be up even if one bound service is up.<br> Minimum value =  0<br> Maximum value =  100
+	* </pre>
+	*/
+	public Long get_healththreshold() throws Exception {
+		return this.healththreshold;
+	}
+
+	/**
+	* <pre>
+	* Threshold at which spillover occurs. Specify an integer for the CONNECTION spillover method, a bandwidth value in kilobits per second for the BANDWIDTH method (do not enter the units), or a percentage for the HEALTH method (do not enter the percentage symbol).<br> Minimum value =  1<br> Maximum value =  4294967287
 	* </pre>
 	*/
 	public void set_sothreshold(long sothreshold) throws Exception {
@@ -1082,7 +1168,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* In case of CONNECTION (or) DYNAMICCONNECTION type spillover method this value is treated as Maximum number of connections an lb vserver will handle before spillover takes place. In case of BANDWIDTH type spillover method this value is treated as the amount of incoming and outgoing traffic (in Kbps) a Vserver will handle before spillover takes place. In case of HEALTH type spillover method if the percentage of active services (by weight) becomes lower than this value, spillover takes place .<br> Minimum value =  1<br> Maximum value =  4294967287
+	* Threshold at which spillover occurs. Specify an integer for the CONNECTION spillover method, a bandwidth value in kilobits per second for the BANDWIDTH method (do not enter the units), or a percentage for the HEALTH method (do not enter the percentage symbol).<br> Minimum value =  1<br> Maximum value =  4294967287
 	* </pre>
 	*/
 	public void set_sothreshold(Long sothreshold) throws Exception{
@@ -1091,7 +1177,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* In case of CONNECTION (or) DYNAMICCONNECTION type spillover method this value is treated as Maximum number of connections an lb vserver will handle before spillover takes place. In case of BANDWIDTH type spillover method this value is treated as the amount of incoming and outgoing traffic (in Kbps) a Vserver will handle before spillover takes place. In case of HEALTH type spillover method if the percentage of active services (by weight) becomes lower than this value, spillover takes place .<br> Minimum value =  1<br> Maximum value =  4294967287
+	* Threshold at which spillover occurs. Specify an integer for the CONNECTION spillover method, a bandwidth value in kilobits per second for the BANDWIDTH method (do not enter the units), or a percentage for the HEALTH method (do not enter the percentage symbol).<br> Minimum value =  1<br> Maximum value =  4294967287
 	* </pre>
 	*/
 	public Long get_sothreshold() throws Exception {
@@ -1100,7 +1186,25 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The state of port rewrite while performing HTTP redirect.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Action to be performed if spillover is to take effect, but no backup chain to spillover is usable or exists.<br> Possible values = DROP, ACCEPT, REDIRECT
+	* </pre>
+	*/
+	public void set_sobackupaction(String sobackupaction) throws Exception{
+		this.sobackupaction = sobackupaction;
+	}
+
+	/**
+	* <pre>
+	* Action to be performed if spillover is to take effect, but no backup chain to spillover is usable or exists.<br> Possible values = DROP, ACCEPT, REDIRECT
+	* </pre>
+	*/
+	public String get_sobackupaction() throws Exception {
+		return this.sobackupaction;
+	}
+
+	/**
+	* <pre>
+	* Rewrite the port and change the protocol to ensure successful HTTP redirects from services.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_redirectportrewrite(String redirectportrewrite) throws Exception{
@@ -1109,7 +1213,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The state of port rewrite while performing HTTP redirect.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Rewrite the port and change the protocol to ensure successful HTTP redirects from services.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_redirectportrewrite() throws Exception {
@@ -1118,7 +1222,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Perform delayed clean up of connections on this vserver.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Flush all active transactions associated with a virtual server whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_downstateflush(String downstateflush) throws Exception{
@@ -1127,7 +1231,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Perform delayed clean up of connections on this vserver.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Flush all active transactions associated with a virtual server whose state transitions from UP to DOWN. Do not enable this option for applications that must complete their transactions.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_downstateflush() throws Exception {
@@ -1136,7 +1240,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The Backup Virtual Server.<br> Minimum length =  1
+	* Name of the backup virtual server to which to forward requests if the primary virtual server goes DOWN or reaches its spillover threshold.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_backupvserver(String backupvserver) throws Exception{
@@ -1145,7 +1249,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The Backup Virtual Server.<br> Minimum length =  1
+	* Name of the backup virtual server to which to forward requests if the primary virtual server goes DOWN or reaches its spillover threshold.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_backupvserver() throws Exception {
@@ -1154,7 +1258,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* When this argument is enabled, traffic will continue reaching backup vservers even after primary comes UP from DOWN state.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* If the primary virtual server goes down, do not allow it to return to primary status until manually enabled.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_disableprimaryondown(String disableprimaryondown) throws Exception{
@@ -1163,7 +1267,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* When this argument is enabled, traffic will continue reaching backup vservers even after primary comes UP from DOWN state.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* If the primary virtual server goes down, do not allow it to return to primary status until manually enabled.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_disableprimaryondown() throws Exception {
@@ -1172,10 +1276,10 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The virtual IP and port header insertion option for the vserver.
-	VIPADDR		- Header contains the vserver's IP address and port number without any translation.
-	OFF		- The virtual IP and port header insertion option is disabled.
-	V6TOV4MAPPING 	- Header contains the mapped IPv4 address corresponding to the IPv6 address of the vserver and the port number. An IPv6 address can be mapped to a user-specified IPv4 address using the set ns ip6 command.<br> Possible values = OFF, VIPADDR, V6TOV4MAPPING
+	* Insert an HTTP header, whose value is the IP address and port number of the virtual server, before forwarding a request to the server. The format of the header is <vipHeader>: <virtual server IP address>_<port number >, where vipHeader is the name that you specify for the header. If the virtual server has an IPv6 address, the address in the header is enclosed in brackets ([ and ]) to separate it from the port number. If you have mapped an IPv4 address to a virtual server's IPv6 address, the value of this parameter determines which IP address is inserted in the header, as follows:
+* VIPADDR - Insert the IP address of the virtual server in the HTTP header regardless of whether the virtual server has an IPv4 address or an IPv6 address. A mapped IPv4 address, if configured, is ignored.
+* V6TOV4MAPPING - Insert the IPv4 address that is mapped to the virtual server's IPv6 address. If a mapped IPv4 address is not configured, insert the IPv6 address.
+* OFF - Disable header insertion.<br> Possible values = OFF, VIPADDR, V6TOV4MAPPING
 	* </pre>
 	*/
 	public void set_insertvserveripport(String insertvserveripport) throws Exception{
@@ -1184,10 +1288,10 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The virtual IP and port header insertion option for the vserver.
-	VIPADDR		- Header contains the vserver's IP address and port number without any translation.
-	OFF		- The virtual IP and port header insertion option is disabled.
-	V6TOV4MAPPING 	- Header contains the mapped IPv4 address corresponding to the IPv6 address of the vserver and the port number. An IPv6 address can be mapped to a user-specified IPv4 address using the set ns ip6 command.<br> Possible values = OFF, VIPADDR, V6TOV4MAPPING
+	* Insert an HTTP header, whose value is the IP address and port number of the virtual server, before forwarding a request to the server. The format of the header is <vipHeader>: <virtual server IP address>_<port number >, where vipHeader is the name that you specify for the header. If the virtual server has an IPv6 address, the address in the header is enclosed in brackets ([ and ]) to separate it from the port number. If you have mapped an IPv4 address to a virtual server's IPv6 address, the value of this parameter determines which IP address is inserted in the header, as follows:
+* VIPADDR - Insert the IP address of the virtual server in the HTTP header regardless of whether the virtual server has an IPv4 address or an IPv6 address. A mapped IPv4 address, if configured, is ignored.
+* V6TOV4MAPPING - Insert the IPv4 address that is mapped to the virtual server's IPv6 address. If a mapped IPv4 address is not configured, insert the IPv6 address.
+* OFF - Disable header insertion.<br> Possible values = OFF, VIPADDR, V6TOV4MAPPING
 	* </pre>
 	*/
 	public String get_insertvserveripport() throws Exception {
@@ -1196,7 +1300,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The name of virtual IP and port header.<br> Minimum length =  1
+	* Name for the inserted header. The default name is vip-header.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_vipheader(String vipheader) throws Exception{
@@ -1205,7 +1309,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The name of virtual IP and port header.<br> Minimum length =  1
+	* Name for the inserted header. The default name is vip-header.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_vipheader() throws Exception {
@@ -1214,7 +1318,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* FQDN of authentication vserver.<br> Minimum length =  3<br> Maximum length =  252
+	* Fully qualified domain name (FQDN) of the authentication virtual server to which the user must be redirected for authentication. Make sure that the Authentication parameter is set to ENABLED.<br> Minimum length =  3<br> Maximum length =  252
 	* </pre>
 	*/
 	public void set_authenticationhost(String authenticationhost) throws Exception{
@@ -1223,7 +1327,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* FQDN of authentication vserver.<br> Minimum length =  3<br> Maximum length =  252
+	* Fully qualified domain name (FQDN) of the authentication virtual server to which the user must be redirected for authentication. Make sure that the Authentication parameter is set to ENABLED.<br> Minimum length =  3<br> Maximum length =  252
 	* </pre>
 	*/
 	public String get_authenticationhost() throws Exception {
@@ -1232,7 +1336,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* This option toggles on or off the application of authentication of incoming users to the vserver.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Enable or disable user authentication.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_authentication(String authentication) throws Exception{
@@ -1241,7 +1345,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* This option toggles on or off the application of authentication of incoming users to the vserver.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Enable or disable user authentication.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_authentication() throws Exception {
@@ -1250,7 +1354,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* This option toggles on or off the HTTP 401 response based authentication.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Enable or disable user authentication with HTTP 401 responses.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_authn401(String authn401) throws Exception{
@@ -1259,7 +1363,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* This option toggles on or off the HTTP 401 response based authentication.<br> Default value: OFF<br> Possible values = ON, OFF
+	* Enable or disable user authentication with HTTP 401 responses.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_authn401() throws Exception {
@@ -1268,7 +1372,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Name of authentication vserver.<br> Minimum length =  1<br> Maximum length =  252
+	* Name of an authentication virtual server with which to authenticate users.<br> Minimum length =  1<br> Maximum length =  252
 	* </pre>
 	*/
 	public void set_authnvsname(String authnvsname) throws Exception{
@@ -1277,7 +1381,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Name of authentication vserver.<br> Minimum length =  1<br> Maximum length =  252
+	* Name of an authentication virtual server with which to authenticate users.<br> Minimum length =  1<br> Maximum length =  252
 	* </pre>
 	*/
 	public String get_authnvsname() throws Exception {
@@ -1286,7 +1390,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Process traffic on bound Push vserver.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Process traffic with the push virtual server that is bound to this load balancing virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_push(String push) throws Exception{
@@ -1295,7 +1399,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Process traffic on bound Push vserver.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Process traffic with the push virtual server that is bound to this load balancing virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_push() throws Exception {
@@ -1304,7 +1408,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The lb vserver of type PUSH/SSL_PUSH to which server pushes the updates received on the client facing non-push lb vserver.<br> Minimum length =  1
+	* Name of the load balancing virtual server, of type PUSH or SSL_PUSH, to which the server pushes updates received on the load balancing virtual server that you are configuring.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_pushvserver(String pushvserver) throws Exception{
@@ -1313,7 +1417,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* The lb vserver of type PUSH/SSL_PUSH to which server pushes the updates received on the client facing non-push lb vserver.<br> Minimum length =  1
+	* Name of the load balancing virtual server, of type PUSH or SSL_PUSH, to which the server pushes updates received on the load balancing virtual server that you are configuring.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_pushvserver() throws Exception {
@@ -1322,8 +1426,7 @@ continuously redirected to the same unavailable virtual server in the system  - 
 
 	/**
 	* <pre>
-	* Use this parameter to specify the expression to extract the label in response from server.
-The string can be either a named expression (configured using add policy expression command) or else it can be an in-line expression with a maximum of 63 characters.<br> Default value: "none"
+	* Expression for extracting a label from the server's response. Can be either an expression or the name of a named expression.<br> Default value: "none"
 	* </pre>
 	*/
 	public void set_pushlabel(String pushlabel) throws Exception{
@@ -1332,8 +1435,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Use this parameter to specify the expression to extract the label in response from server.
-The string can be either a named expression (configured using add policy expression command) or else it can be an in-line expression with a maximum of 63 characters.<br> Default value: "none"
+	* Expression for extracting a label from the server's response. Can be either an expression or the name of a named expression.<br> Default value: "none"
 	* </pre>
 	*/
 	public String get_pushlabel() throws Exception {
@@ -1342,7 +1444,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Specify if multiple web 2.0 connections from the same client can connect to this vserver and expect updates.<br> Default value: NO<br> Possible values = YES, NO
+	* Allow multiple Web 2.0 connections from the same client to connect to the virtual server and expect updates.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_pushmulticlients(String pushmulticlients) throws Exception{
@@ -1351,7 +1453,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Specify if multiple web 2.0 connections from the same client can connect to this vserver and expect updates.<br> Default value: NO<br> Possible values = YES, NO
+	* Allow multiple Web 2.0 connections from the same client to connect to the virtual server and expect updates.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_pushmulticlients() throws Exception {
@@ -1360,7 +1462,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The name of the TCP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the TCP profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public void set_tcpprofilename(String tcpprofilename) throws Exception{
@@ -1369,7 +1471,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The name of the TCP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the TCP profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public String get_tcpprofilename() throws Exception {
@@ -1378,7 +1480,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Name of the HTTP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the HTTP profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public void set_httpprofilename(String httpprofilename) throws Exception{
@@ -1387,7 +1489,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Name of the HTTP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the HTTP profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public String get_httpprofilename() throws Exception {
@@ -1396,7 +1498,25 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Comments associated with this virtual server.
+	* Name of the DB profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
+	* </pre>
+	*/
+	public void set_dbprofilename(String dbprofilename) throws Exception{
+		this.dbprofilename = dbprofilename;
+	}
+
+	/**
+	* <pre>
+	* Name of the DB profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
+	* </pre>
+	*/
+	public String get_dbprofilename() throws Exception {
+		return this.dbprofilename;
+	}
+
+	/**
+	* <pre>
+	* Any comments that you might want to associate with the virtual server.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -1405,7 +1525,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Comments associated with this virtual server.
+	* Any comments that you might want to associate with the virtual server.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {
@@ -1414,7 +1534,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Use L2 Parameters to identify a connection.<br> Possible values = ON, OFF
+	* Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (<source IP>:<source port>::<destination IP>:<destination port>) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_l2conn(String l2conn) throws Exception{
@@ -1423,7 +1543,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Use L2 Parameters to identify a connection.<br> Possible values = ON, OFF
+	* Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (<source IP>:<source port>::<destination IP>:<destination port>) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to co-exist on the NetScaler appliance.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_l2conn() throws Exception {
@@ -1432,7 +1552,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The version of the MSSQL server.<br> Default value: TDS_PROT_2008B<br> Possible values = 70, 2000, 2000SP1, 2005, 2008, 2008R2
+	* For a load balancing virtual server of type MSSQL, the Microsoft SQL Server version. Set this parameter if you expect some clients to run a version different from the version of the database. This setting provides compatibility between the client-side and server-side connections by ensuring that all communication conforms to the server's version.<br> Default value: 2008R2<br> Possible values = 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
 	* </pre>
 	*/
 	public void set_mssqlserverversion(String mssqlserverversion) throws Exception{
@@ -1441,7 +1561,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The version of the MSSQL server.<br> Default value: TDS_PROT_2008B<br> Possible values = 70, 2000, 2000SP1, 2005, 2008, 2008R2
+	* For a load balancing virtual server of type MSSQL, the Microsoft SQL Server version. Set this parameter if you expect some clients to run a version different from the version of the database. This setting provides compatibility between the client-side and server-side connections by ensuring that all communication conforms to the server's version.<br> Default value: 2008R2<br> Possible values = 70, 2000, 2000SP1, 2005, 2008, 2008R2, 2012
 	* </pre>
 	*/
 	public String get_mssqlserverversion() throws Exception {
@@ -1450,7 +1570,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The protocol version returned by the mysql vserver.
+	* MySQL protocol version that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public void set_mysqlprotocolversion(long mysqlprotocolversion) throws Exception {
@@ -1459,7 +1579,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The protocol version returned by the mysql vserver.
+	* MySQL protocol version that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public void set_mysqlprotocolversion(Long mysqlprotocolversion) throws Exception{
@@ -1468,7 +1588,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The protocol version returned by the mysql vserver.
+	* MySQL protocol version that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public Long get_mysqlprotocolversion() throws Exception {
@@ -1477,7 +1597,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The server version string returned by the mysql vserver.<br> Minimum length =  1<br> Maximum length =  31
+	* MySQL server version string that the virtual server advertises to clients.<br> Minimum length =  1<br> Maximum length =  31
 	* </pre>
 	*/
 	public void set_mysqlserverversion(String mysqlserverversion) throws Exception{
@@ -1486,7 +1606,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The server version string returned by the mysql vserver.<br> Minimum length =  1<br> Maximum length =  31
+	* MySQL server version string that the virtual server advertises to clients.<br> Minimum length =  1<br> Maximum length =  31
 	* </pre>
 	*/
 	public String get_mysqlserverversion() throws Exception {
@@ -1495,7 +1615,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The character set returned by the mysql vserver.
+	* Character set that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public void set_mysqlcharacterset(long mysqlcharacterset) throws Exception {
@@ -1504,7 +1624,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The character set returned by the mysql vserver.
+	* Character set that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public void set_mysqlcharacterset(Long mysqlcharacterset) throws Exception{
@@ -1513,7 +1633,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The character set returned by the mysql vserver.
+	* Character set that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public Long get_mysqlcharacterset() throws Exception {
@@ -1522,7 +1642,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The server capabilities returned by the mysql vserver.
+	* Server capabilities that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public void set_mysqlservercapabilities(long mysqlservercapabilities) throws Exception {
@@ -1531,7 +1651,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The server capabilities returned by the mysql vserver.
+	* Server capabilities that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public void set_mysqlservercapabilities(Long mysqlservercapabilities) throws Exception{
@@ -1540,7 +1660,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The server capabilities returned by the mysql vserver.
+	* Server capabilities that the virtual server advertises to clients.
 	* </pre>
 	*/
 	public Long get_mysqlservercapabilities() throws Exception {
@@ -1549,7 +1669,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Enable logging appflow flow information.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Apply AppFlow logging to the virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_appflowlog(String appflowlog) throws Exception{
@@ -1558,7 +1678,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Enable logging appflow flow information.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Apply AppFlow logging to the virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_appflowlog() throws Exception {
@@ -1567,7 +1687,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The name of the network profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the network profile to associate with the virtual server. If you set this parameter, the virtual server uses only the IP addresses in the network profile as source IP addresses when initiating connections with servers.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public void set_netprofile(String netprofile) throws Exception{
@@ -1576,7 +1696,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The name of the network profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name of the network profile to associate with the virtual server. If you set this parameter, the virtual server uses only the IP addresses in the network profile as source IP addresses when initiating connections with servers.<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public String get_netprofile() throws Exception {
@@ -1585,7 +1705,11 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Can be active or passive.<br> Default value: NS_VSR_PASSIVE<br> Possible values = PASSIVE, ACTIVE
+	* How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows:
+* If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests.
+* If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond.
+* If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond.
+Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI.<br> Default value: PASSIVE<br> Possible values = PASSIVE, ACTIVE
 	* </pre>
 	*/
 	public void set_icmpvsrresponse(String icmpvsrresponse) throws Exception{
@@ -1594,7 +1718,11 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* Can be active or passive.<br> Default value: NS_VSR_PASSIVE<br> Possible values = PASSIVE, ACTIVE
+	* How the NetScaler appliance responds to ping requests received for an IP address that is common to one or more virtual servers. Available settings function as follows:
+* If set to PASSIVE on all the virtual servers that share the IP address, the appliance always responds to the ping requests.
+* If set to ACTIVE on all the virtual servers that share the IP address, the appliance responds to the ping requests if at least one of the virtual servers is UP. Otherwise, the appliance does not respond.
+* If set to ACTIVE on some virtual servers and PASSIVE on the others, the appliance responds if at least one virtual server with the ACTIVE setting is UP. Otherwise, the appliance does not respond.
+Note: This parameter is available at the virtual server level. A similar parameter, ICMP Response, is available at the IP address level, for IPv4 addresses of type VIP. To set that parameter, use the add ip command in the CLI or the Create IP dialog box in the GUI.<br> Default value: PASSIVE<br> Possible values = PASSIVE, ACTIVE
 	* </pre>
 	*/
 	public String get_icmpvsrresponse() throws Exception {
@@ -1603,8 +1731,7 @@ The string can be either a named expression (configured using add policy express
 
 	/**
 	* <pre>
-	* The number of requests/sec or percentage of requests/sec a new service should receive compared to the existing services.
-The maximum possible value for requests/sec is 65536 and percentage of requests is 100.
+	* Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A value of 0 disables slow start for new services, and any services still ramping up. They immediately receive their full share of the load. If you use the CLI, be sure to set the newServiceRequestUnit parameter to specify the unit as number of requests or percentage of load.
 	* </pre>
 	*/
 	public void set_newservicerequest(long newservicerequest) throws Exception {
@@ -1613,8 +1740,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The number of requests/sec or percentage of requests/sec a new service should receive compared to the existing services.
-The maximum possible value for requests/sec is 65536 and percentage of requests is 100.
+	* Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A value of 0 disables slow start for new services, and any services still ramping up. They immediately receive their full share of the load. If you use the CLI, be sure to set the newServiceRequestUnit parameter to specify the unit as number of requests or percentage of load.
 	* </pre>
 	*/
 	public void set_newservicerequest(Long newservicerequest) throws Exception{
@@ -1623,8 +1749,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The number of requests/sec or percentage of requests/sec a new service should receive compared to the existing services.
-The maximum possible value for requests/sec is 65536 and percentage of requests is 100.
+	* Number of requests, or percentage of the load on existing services, by which to increase the load on a new service at each interval in slow-start mode. A value of 0 disables slow start for new services, and any services still ramping up. They immediately receive their full share of the load. If you use the CLI, be sure to set the newServiceRequestUnit parameter to specify the unit as number of requests or percentage of load.
 	* </pre>
 	*/
 	public Long get_newservicerequest() throws Exception {
@@ -1633,7 +1758,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The unit for new service request value.<br> Default value: NEWSVC_REQTYPE_REQS_PER_SEC<br> Possible values = PER_SECOND, PERCENT
+	* Units in which to increment load at each interval in slow-start mode.<br> Default value: PER_SECOND<br> Possible values = PER_SECOND, PERCENT
 	* </pre>
 	*/
 	public void set_newservicerequestunit(String newservicerequestunit) throws Exception{
@@ -1642,7 +1767,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The unit for new service request value.<br> Default value: NEWSVC_REQTYPE_REQS_PER_SEC<br> Possible values = PER_SECOND, PERCENT
+	* Units in which to increment load at each interval in slow-start mode.<br> Default value: PER_SECOND<br> Possible values = PER_SECOND, PERCENT
 	* </pre>
 	*/
 	public String get_newservicerequestunit() throws Exception {
@@ -1651,7 +1776,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The interval in seconds after which the new services requests limit should be automatically increased.<br> Minimum value =  0<br> Maximum value =  3600
+	* Interval, in seconds, between successive increments in the load on a new service or a service whose state has just changed from DOWN to UP. A value of 0 (zero) specifies manual slow start.<br> Minimum value =  0<br> Maximum value =  3600
 	* </pre>
 	*/
 	public void set_newservicerequestincrementinterval(long newservicerequestincrementinterval) throws Exception {
@@ -1660,7 +1785,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The interval in seconds after which the new services requests limit should be automatically increased.<br> Minimum value =  0<br> Maximum value =  3600
+	* Interval, in seconds, between successive increments in the load on a new service or a service whose state has just changed from DOWN to UP. A value of 0 (zero) specifies manual slow start.<br> Minimum value =  0<br> Maximum value =  3600
 	* </pre>
 	*/
 	public void set_newservicerequestincrementinterval(Long newservicerequestincrementinterval) throws Exception{
@@ -1669,11 +1794,65 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The interval in seconds after which the new services requests limit should be automatically increased.<br> Minimum value =  0<br> Maximum value =  3600
+	* Interval, in seconds, between successive increments in the load on a new service or a service whose state has just changed from DOWN to UP. A value of 0 (zero) specifies manual slow start.<br> Minimum value =  0<br> Maximum value =  3600
 	* </pre>
 	*/
 	public Long get_newservicerequestincrementinterval() throws Exception {
 		return this.newservicerequestincrementinterval;
+	}
+
+	/**
+	* <pre>
+	* Minimum number of members expected to be present when vserver is used in Autoscale.<br> Minimum value =  0<br> Maximum value =  5000
+	* </pre>
+	*/
+	public void set_minautoscalemembers(long minautoscalemembers) throws Exception {
+		this.minautoscalemembers = new Long(minautoscalemembers);
+	}
+
+	/**
+	* <pre>
+	* Minimum number of members expected to be present when vserver is used in Autoscale.<br> Minimum value =  0<br> Maximum value =  5000
+	* </pre>
+	*/
+	public void set_minautoscalemembers(Long minautoscalemembers) throws Exception{
+		this.minautoscalemembers = minautoscalemembers;
+	}
+
+	/**
+	* <pre>
+	* Minimum number of members expected to be present when vserver is used in Autoscale.<br> Minimum value =  0<br> Maximum value =  5000
+	* </pre>
+	*/
+	public Long get_minautoscalemembers() throws Exception {
+		return this.minautoscalemembers;
+	}
+
+	/**
+	* <pre>
+	* Maximum number of members expected to be present when vserver is used in Autoscale.<br> Minimum value =  0<br> Maximum value =  5000
+	* </pre>
+	*/
+	public void set_maxautoscalemembers(long maxautoscalemembers) throws Exception {
+		this.maxautoscalemembers = new Long(maxautoscalemembers);
+	}
+
+	/**
+	* <pre>
+	* Maximum number of members expected to be present when vserver is used in Autoscale.<br> Minimum value =  0<br> Maximum value =  5000
+	* </pre>
+	*/
+	public void set_maxautoscalemembers(Long maxautoscalemembers) throws Exception{
+		this.maxautoscalemembers = maxautoscalemembers;
+	}
+
+	/**
+	* <pre>
+	* Maximum number of members expected to be present when vserver is used in Autoscale.<br> Minimum value =  0<br> Maximum value =  5000
+	* </pre>
+	*/
+	public Long get_maxautoscalemembers() throws Exception {
+		return this.maxautoscalemembers;
 	}
 
 	/**
@@ -1702,7 +1881,106 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The weight for the specified service.<br> Minimum value =  1<br> Maximum value =  100
+	* This argument decides the behavior incase the service which is selected from an existing persistence session has reached threshold.<br> Default value: None<br> Possible values = Bypass, ReLb, None
+	* </pre>
+	*/
+	public void set_skippersistency(String skippersistency) throws Exception{
+		this.skippersistency = skippersistency;
+	}
+
+	/**
+	* <pre>
+	* This argument decides the behavior incase the service which is selected from an existing persistence session has reached threshold.<br> Default value: None<br> Possible values = Bypass, ReLb, None
+	* </pre>
+	*/
+	public String get_skippersistency() throws Exception {
+		return this.skippersistency;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain ID.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain ID.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain ID.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
+	}
+
+	/**
+	* <pre>
+	* Name of the authentication profile to be used when authentication is turned on.
+	* </pre>
+	*/
+	public void set_authnprofile(String authnprofile) throws Exception{
+		this.authnprofile = authnprofile;
+	}
+
+	/**
+	* <pre>
+	* Name of the authentication profile to be used when authentication is turned on.
+	* </pre>
+	*/
+	public String get_authnprofile() throws Exception {
+		return this.authnprofile;
+	}
+
+	/**
+	* <pre>
+	* This option is used to retain vlan information of incoming packet when macmode is enabled.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_macmoderetainvlan(String macmoderetainvlan) throws Exception{
+		this.macmoderetainvlan = macmoderetainvlan;
+	}
+
+	/**
+	* <pre>
+	* This option is used to retain vlan information of incoming packet when macmode is enabled.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_macmoderetainvlan() throws Exception {
+		return this.macmoderetainvlan;
+	}
+
+	/**
+	* <pre>
+	* For enabling database specific load-balacing..<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_dbslb(String dbslb) throws Exception{
+		this.dbslb = dbslb;
+	}
+
+	/**
+	* <pre>
+	* For enabling database specific load-balacing..<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_dbslb() throws Exception {
+		return this.dbslb;
+	}
+
+	/**
+	* <pre>
+	* Weight to assign to the specified service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(long weight) throws Exception {
@@ -1711,7 +1989,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The weight for the specified service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the specified service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(Long weight) throws Exception{
@@ -1720,7 +1998,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The weight for the specified service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the specified service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_weight() throws Exception {
@@ -1729,7 +2007,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The service name bound to the selected load balancing virtual server.<br> Minimum length =  1
+	* Service to bind to the virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicename(String servicename) throws Exception{
@@ -1738,7 +2016,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The service name bound to the selected load balancing virtual server.<br> Minimum length =  1
+	* Service to bind to the virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicename() throws Exception {
@@ -1774,7 +2052,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The new name of the virtual server.<br> Minimum length =  1
+	* New name for the virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -1783,7 +2061,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The new name of the virtual server.<br> Minimum length =  1
+	* New name for the virtual server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
@@ -1801,20 +2079,20 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* The IP address of the virtual server.
-	* </pre>
-	*/
-	public String get_ip() throws Exception {
-		return this.ip;
-	}
-
-	/**
-	* <pre>
 	* The permanent mapping for the V6 Address.
 	* </pre>
 	*/
 	public String get_ipmapping() throws Exception {
 		return this.ipmapping;
+	}
+
+	/**
+	* <pre>
+	* Nodegroup name to which this lbvsever belongs to.
+	* </pre>
+	*/
+	public String get_ngname() throws Exception {
+		return this.ngname;
 	}
 
 	/**
@@ -1828,7 +2106,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* Current LB vserver state.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* Current LB vserver state.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_curstate() throws Exception {
@@ -1837,7 +2115,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* Effective state of the LB vserver , based on the state of backup vservers.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* Effective state of the LB vserver , based on the state of backup vservers.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_effectivestate() throws Exception {
@@ -2004,6 +2282,24 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
+	* Use consolidated stats for LeastConnection.<br> Default value: GLOBAL<br> Possible values = GLOBAL, NO, YES
+	* </pre>
+	*/
+	public String get_consolidatedlconn() throws Exception {
+		return this.consolidatedlconn;
+	}
+
+	/**
+	* <pre>
+	* Fetches Global setting.<br> Possible values = YES, NO
+	* </pre>
+	*/
+	public String get_consolidatedlconngbl() throws Exception {
+		return this.consolidatedlconngbl;
+	}
+
+	/**
+	* <pre>
 	* Tells whether threshold exceeded for this service participating in CUSTOMLB.
 	* </pre>
 	*/
@@ -2022,7 +2318,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 
 	/**
 	* <pre>
-	* Invoke flag.
+	* Invoke policies bound to a virtual server or policy label.
 	* </pre>
 	*/
 	public Boolean get_invoke() throws Exception {
@@ -2175,6 +2471,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		addresource.hashlength = resource.hashlength;
 		addresource.netmask = resource.netmask;
 		addresource.v6netmasklen = resource.v6netmasklen;
+		addresource.cookiename = resource.cookiename;
 		addresource.rule = resource.rule;
 		addresource.listenpolicy = resource.listenpolicy;
 		addresource.listenpriority = resource.listenpriority;
@@ -2197,7 +2494,9 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		addresource.somethod = resource.somethod;
 		addresource.sopersistence = resource.sopersistence;
 		addresource.sopersistencetimeout = resource.sopersistencetimeout;
+		addresource.healththreshold = resource.healththreshold;
 		addresource.sothreshold = resource.sothreshold;
+		addresource.sobackupaction = resource.sobackupaction;
 		addresource.redirectportrewrite = resource.redirectportrewrite;
 		addresource.downstateflush = resource.downstateflush;
 		addresource.backupvserver = resource.backupvserver;
@@ -2214,6 +2513,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		addresource.pushmulticlients = resource.pushmulticlients;
 		addresource.tcpprofilename = resource.tcpprofilename;
 		addresource.httpprofilename = resource.httpprofilename;
+		addresource.dbprofilename = resource.dbprofilename;
 		addresource.comment = resource.comment;
 		addresource.l2conn = resource.l2conn;
 		addresource.mssqlserverversion = resource.mssqlserverversion;
@@ -2227,7 +2527,14 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		addresource.newservicerequest = resource.newservicerequest;
 		addresource.newservicerequestunit = resource.newservicerequestunit;
 		addresource.newservicerequestincrementinterval = resource.newservicerequestincrementinterval;
+		addresource.minautoscalemembers = resource.minautoscalemembers;
+		addresource.maxautoscalemembers = resource.maxautoscalemembers;
 		addresource.persistavpno = resource.persistavpno;
+		addresource.skippersistency = resource.skippersistency;
+		addresource.td = resource.td;
+		addresource.authnprofile = resource.authnprofile;
+		addresource.macmoderetainvlan = resource.macmoderetainvlan;
+		addresource.dbslb = resource.dbslb;
 		return addresource.add_resource(client);
 	}
 
@@ -2257,6 +2564,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				addresources[i].hashlength = resources[i].hashlength;
 				addresources[i].netmask = resources[i].netmask;
 				addresources[i].v6netmasklen = resources[i].v6netmasklen;
+				addresources[i].cookiename = resources[i].cookiename;
 				addresources[i].rule = resources[i].rule;
 				addresources[i].listenpolicy = resources[i].listenpolicy;
 				addresources[i].listenpriority = resources[i].listenpriority;
@@ -2279,7 +2587,9 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				addresources[i].somethod = resources[i].somethod;
 				addresources[i].sopersistence = resources[i].sopersistence;
 				addresources[i].sopersistencetimeout = resources[i].sopersistencetimeout;
+				addresources[i].healththreshold = resources[i].healththreshold;
 				addresources[i].sothreshold = resources[i].sothreshold;
+				addresources[i].sobackupaction = resources[i].sobackupaction;
 				addresources[i].redirectportrewrite = resources[i].redirectportrewrite;
 				addresources[i].downstateflush = resources[i].downstateflush;
 				addresources[i].backupvserver = resources[i].backupvserver;
@@ -2296,6 +2606,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				addresources[i].pushmulticlients = resources[i].pushmulticlients;
 				addresources[i].tcpprofilename = resources[i].tcpprofilename;
 				addresources[i].httpprofilename = resources[i].httpprofilename;
+				addresources[i].dbprofilename = resources[i].dbprofilename;
 				addresources[i].comment = resources[i].comment;
 				addresources[i].l2conn = resources[i].l2conn;
 				addresources[i].mssqlserverversion = resources[i].mssqlserverversion;
@@ -2309,7 +2620,14 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				addresources[i].newservicerequest = resources[i].newservicerequest;
 				addresources[i].newservicerequestunit = resources[i].newservicerequestunit;
 				addresources[i].newservicerequestincrementinterval = resources[i].newservicerequestincrementinterval;
+				addresources[i].minautoscalemembers = resources[i].minautoscalemembers;
+				addresources[i].maxautoscalemembers = resources[i].maxautoscalemembers;
 				addresources[i].persistavpno = resources[i].persistavpno;
+				addresources[i].skippersistency = resources[i].skippersistency;
+				addresources[i].td = resources[i].td;
+				addresources[i].authnprofile = resources[i].authnprofile;
+				addresources[i].macmoderetainvlan = resources[i].macmoderetainvlan;
+				addresources[i].dbslb = resources[i].dbslb;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -2386,6 +2704,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		updateresource.netmask = resource.netmask;
 		updateresource.v6netmasklen = resource.v6netmasklen;
 		updateresource.rule = resource.rule;
+		updateresource.cookiename = resource.cookiename;
 		updateresource.resrule = resource.resrule;
 		updateresource.persistmask = resource.persistmask;
 		updateresource.v6persistmasklen = resource.v6persistmasklen;
@@ -2406,6 +2725,8 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		updateresource.sothreshold = resource.sothreshold;
 		updateresource.sopersistence = resource.sopersistence;
 		updateresource.sopersistencetimeout = resource.sopersistencetimeout;
+		updateresource.healththreshold = resource.healththreshold;
+		updateresource.sobackupaction = resource.sobackupaction;
 		updateresource.redirectportrewrite = resource.redirectportrewrite;
 		updateresource.downstateflush = resource.downstateflush;
 		updateresource.insertvserveripport = resource.insertvserveripport;
@@ -2423,6 +2744,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		updateresource.listenpriority = resource.listenpriority;
 		updateresource.tcpprofilename = resource.tcpprofilename;
 		updateresource.httpprofilename = resource.httpprofilename;
+		updateresource.dbprofilename = resource.dbprofilename;
 		updateresource.comment = resource.comment;
 		updateresource.l2conn = resource.l2conn;
 		updateresource.mssqlserverversion = resource.mssqlserverversion;
@@ -2436,7 +2758,13 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		updateresource.newservicerequest = resource.newservicerequest;
 		updateresource.newservicerequestunit = resource.newservicerequestunit;
 		updateresource.newservicerequestincrementinterval = resource.newservicerequestincrementinterval;
+		updateresource.minautoscalemembers = resource.minautoscalemembers;
+		updateresource.maxautoscalemembers = resource.maxautoscalemembers;
 		updateresource.persistavpno = resource.persistavpno;
+		updateresource.skippersistency = resource.skippersistency;
+		updateresource.authnprofile = resource.authnprofile;
+		updateresource.macmoderetainvlan = resource.macmoderetainvlan;
+		updateresource.dbslb = resource.dbslb;
 		return updateresource.update_resource(client);
 	}
 
@@ -2464,6 +2792,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				updateresources[i].netmask = resources[i].netmask;
 				updateresources[i].v6netmasklen = resources[i].v6netmasklen;
 				updateresources[i].rule = resources[i].rule;
+				updateresources[i].cookiename = resources[i].cookiename;
 				updateresources[i].resrule = resources[i].resrule;
 				updateresources[i].persistmask = resources[i].persistmask;
 				updateresources[i].v6persistmasklen = resources[i].v6persistmasklen;
@@ -2484,6 +2813,8 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				updateresources[i].sothreshold = resources[i].sothreshold;
 				updateresources[i].sopersistence = resources[i].sopersistence;
 				updateresources[i].sopersistencetimeout = resources[i].sopersistencetimeout;
+				updateresources[i].healththreshold = resources[i].healththreshold;
+				updateresources[i].sobackupaction = resources[i].sobackupaction;
 				updateresources[i].redirectportrewrite = resources[i].redirectportrewrite;
 				updateresources[i].downstateflush = resources[i].downstateflush;
 				updateresources[i].insertvserveripport = resources[i].insertvserveripport;
@@ -2501,6 +2832,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				updateresources[i].listenpriority = resources[i].listenpriority;
 				updateresources[i].tcpprofilename = resources[i].tcpprofilename;
 				updateresources[i].httpprofilename = resources[i].httpprofilename;
+				updateresources[i].dbprofilename = resources[i].dbprofilename;
 				updateresources[i].comment = resources[i].comment;
 				updateresources[i].l2conn = resources[i].l2conn;
 				updateresources[i].mssqlserverversion = resources[i].mssqlserverversion;
@@ -2514,7 +2846,13 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 				updateresources[i].newservicerequest = resources[i].newservicerequest;
 				updateresources[i].newservicerequestunit = resources[i].newservicerequestunit;
 				updateresources[i].newservicerequestincrementinterval = resources[i].newservicerequestincrementinterval;
+				updateresources[i].minautoscalemembers = resources[i].minautoscalemembers;
+				updateresources[i].maxautoscalemembers = resources[i].maxautoscalemembers;
 				updateresources[i].persistavpno = resources[i].persistavpno;
+				updateresources[i].skippersistency = resources[i].skippersistency;
+				updateresources[i].authnprofile = resources[i].authnprofile;
+				updateresources[i].macmoderetainvlan = resources[i].macmoderetainvlan;
+				updateresources[i].dbslb = resources[i].dbslb;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -2525,81 +2863,9 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 	* Use this API to unset the properties of lbvserver resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		lbvserver unsetresource = new lbvserver();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of lbvserver resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, lbvserver resource, String[] args) throws Exception{
 		lbvserver unsetresource = new lbvserver();
 		unsetresource.name = resource.name;
-		unsetresource.backupvserver = resource.backupvserver;
-		unsetresource.clttimeout = resource.clttimeout;
-		unsetresource.redirurl = resource.redirurl;
-		unsetresource.redirurlflags = resource.redirurlflags;
-		unsetresource.authenticationhost = resource.authenticationhost;
-		unsetresource.authnvsname = resource.authnvsname;
-		unsetresource.pushvserver = resource.pushvserver;
-		unsetresource.pushlabel = resource.pushlabel;
-		unsetresource.tcpprofilename = resource.tcpprofilename;
-		unsetresource.httpprofilename = resource.httpprofilename;
-		unsetresource.rule = resource.rule;
-		unsetresource.sothreshold = resource.sothreshold;
-		unsetresource.l2conn = resource.l2conn;
-		unsetresource.mysqlprotocolversion = resource.mysqlprotocolversion;
-		unsetresource.mysqlserverversion = resource.mysqlserverversion;
-		unsetresource.mysqlcharacterset = resource.mysqlcharacterset;
-		unsetresource.mysqlservercapabilities = resource.mysqlservercapabilities;
-		unsetresource.appflowlog = resource.appflowlog;
-		unsetresource.netprofile = resource.netprofile;
-		unsetresource.icmpvsrresponse = resource.icmpvsrresponse;
-		unsetresource.servicename = resource.servicename;
-		unsetresource.persistencetype = resource.persistencetype;
-		unsetresource.timeout = resource.timeout;
-		unsetresource.persistencebackup = resource.persistencebackup;
-		unsetresource.backuppersistencetimeout = resource.backuppersistencetimeout;
-		unsetresource.lbmethod = resource.lbmethod;
-		unsetresource.hashlength = resource.hashlength;
-		unsetresource.netmask = resource.netmask;
-		unsetresource.v6netmasklen = resource.v6netmasklen;
-		unsetresource.resrule = resource.resrule;
-		unsetresource.persistmask = resource.persistmask;
-		unsetresource.v6persistmasklen = resource.v6persistmasklen;
-		unsetresource.pq = resource.pq;
-		unsetresource.sc = resource.sc;
-		unsetresource.rtspnat = resource.rtspnat;
-		unsetresource.m = resource.m;
-		unsetresource.tosid = resource.tosid;
-		unsetresource.datalength = resource.datalength;
-		unsetresource.dataoffset = resource.dataoffset;
-		unsetresource.sessionless = resource.sessionless;
-		unsetresource.connfailover = resource.connfailover;
-		unsetresource.cacheable = resource.cacheable;
-		unsetresource.somethod = resource.somethod;
-		unsetresource.sopersistence = resource.sopersistence;
-		unsetresource.sopersistencetimeout = resource.sopersistencetimeout;
-		unsetresource.redirectportrewrite = resource.redirectportrewrite;
-		unsetresource.downstateflush = resource.downstateflush;
-		unsetresource.insertvserveripport = resource.insertvserveripport;
-		unsetresource.vipheader = resource.vipheader;
-		unsetresource.disableprimaryondown = resource.disableprimaryondown;
-		unsetresource.authentication = resource.authentication;
-		unsetresource.authn401 = resource.authn401;
-		unsetresource.push = resource.push;
-		unsetresource.pushmulticlients = resource.pushmulticlients;
-		unsetresource.listenpolicy = resource.listenpolicy;
-		unsetresource.listenpriority = resource.listenpriority;
-		unsetresource.comment = resource.comment;
-		unsetresource.mssqlserverversion = resource.mssqlserverversion;
-		unsetresource.newservicerequest = resource.newservicerequest;
-		unsetresource.newservicerequestunit = resource.newservicerequestunit;
-		unsetresource.newservicerequestincrementinterval = resource.newservicerequestincrementinterval;
-		unsetresource.persistavpno = resource.persistavpno;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -2631,68 +2897,6 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new lbvserver();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].backupvserver = resources[i].backupvserver;
-				unsetresources[i].clttimeout = resources[i].clttimeout;
-				unsetresources[i].redirurl = resources[i].redirurl;
-				unsetresources[i].redirurlflags = resources[i].redirurlflags;
-				unsetresources[i].authenticationhost = resources[i].authenticationhost;
-				unsetresources[i].authnvsname = resources[i].authnvsname;
-				unsetresources[i].pushvserver = resources[i].pushvserver;
-				unsetresources[i].pushlabel = resources[i].pushlabel;
-				unsetresources[i].tcpprofilename = resources[i].tcpprofilename;
-				unsetresources[i].httpprofilename = resources[i].httpprofilename;
-				unsetresources[i].rule = resources[i].rule;
-				unsetresources[i].sothreshold = resources[i].sothreshold;
-				unsetresources[i].l2conn = resources[i].l2conn;
-				unsetresources[i].mysqlprotocolversion = resources[i].mysqlprotocolversion;
-				unsetresources[i].mysqlserverversion = resources[i].mysqlserverversion;
-				unsetresources[i].mysqlcharacterset = resources[i].mysqlcharacterset;
-				unsetresources[i].mysqlservercapabilities = resources[i].mysqlservercapabilities;
-				unsetresources[i].appflowlog = resources[i].appflowlog;
-				unsetresources[i].netprofile = resources[i].netprofile;
-				unsetresources[i].icmpvsrresponse = resources[i].icmpvsrresponse;
-				unsetresources[i].servicename = resources[i].servicename;
-				unsetresources[i].persistencetype = resources[i].persistencetype;
-				unsetresources[i].timeout = resources[i].timeout;
-				unsetresources[i].persistencebackup = resources[i].persistencebackup;
-				unsetresources[i].backuppersistencetimeout = resources[i].backuppersistencetimeout;
-				unsetresources[i].lbmethod = resources[i].lbmethod;
-				unsetresources[i].hashlength = resources[i].hashlength;
-				unsetresources[i].netmask = resources[i].netmask;
-				unsetresources[i].v6netmasklen = resources[i].v6netmasklen;
-				unsetresources[i].resrule = resources[i].resrule;
-				unsetresources[i].persistmask = resources[i].persistmask;
-				unsetresources[i].v6persistmasklen = resources[i].v6persistmasklen;
-				unsetresources[i].pq = resources[i].pq;
-				unsetresources[i].sc = resources[i].sc;
-				unsetresources[i].rtspnat = resources[i].rtspnat;
-				unsetresources[i].m = resources[i].m;
-				unsetresources[i].tosid = resources[i].tosid;
-				unsetresources[i].datalength = resources[i].datalength;
-				unsetresources[i].dataoffset = resources[i].dataoffset;
-				unsetresources[i].sessionless = resources[i].sessionless;
-				unsetresources[i].connfailover = resources[i].connfailover;
-				unsetresources[i].cacheable = resources[i].cacheable;
-				unsetresources[i].somethod = resources[i].somethod;
-				unsetresources[i].sopersistence = resources[i].sopersistence;
-				unsetresources[i].sopersistencetimeout = resources[i].sopersistencetimeout;
-				unsetresources[i].redirectportrewrite = resources[i].redirectportrewrite;
-				unsetresources[i].downstateflush = resources[i].downstateflush;
-				unsetresources[i].insertvserveripport = resources[i].insertvserveripport;
-				unsetresources[i].vipheader = resources[i].vipheader;
-				unsetresources[i].disableprimaryondown = resources[i].disableprimaryondown;
-				unsetresources[i].authentication = resources[i].authentication;
-				unsetresources[i].authn401 = resources[i].authn401;
-				unsetresources[i].push = resources[i].push;
-				unsetresources[i].pushmulticlients = resources[i].pushmulticlients;
-				unsetresources[i].listenpolicy = resources[i].listenpolicy;
-				unsetresources[i].listenpriority = resources[i].listenpriority;
-				unsetresources[i].comment = resources[i].comment;
-				unsetresources[i].mssqlserverversion = resources[i].mssqlserverversion;
-				unsetresources[i].newservicerequest = resources[i].newservicerequest;
-				unsetresources[i].newservicerequestunit = resources[i].newservicerequestunit;
-				unsetresources[i].newservicerequestincrementinterval = resources[i].newservicerequestincrementinterval;
-				unsetresources[i].persistavpno = resources[i].persistavpno;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -2937,6 +3141,10 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String ON = "ON";
 		public static final String OFF = "OFF";
 	}
+	public static class macmoderetainvlanEnum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
+	}
 	public static class authenticationEnum {
 		public static final String ON = "ON";
 		public static final String OFF = "OFF";
@@ -2952,6 +3160,15 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 	public static class mapEnum {
 		public static final String ON = "ON";
 		public static final String OFF = "OFF";
+	}
+	public static class skippersistencyEnum {
+		public static final String Bypass = "Bypass";
+		public static final String ReLb = "ReLb";
+		public static final String None = "None";
+	}
+	public static class dbslbEnum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class newservicerequestunitEnum {
 		public static final String PER_SECOND = "PER_SECOND";
@@ -2969,6 +3186,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String SSL = "SSL";
 		public static final String SSL_BRIDGE = "SSL_BRIDGE";
 		public static final String SSL_TCP = "SSL_TCP";
+		public static final String DTLS = "DTLS";
 		public static final String NNTP = "NNTP";
 		public static final String DNS = "DNS";
 		public static final String DHCPRA = "DHCPRA";
@@ -2984,6 +3202,7 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String MSSQL = "MSSQL";
 		public static final String DIAMETER = "DIAMETER";
 		public static final String SSL_DIAMETER = "SSL_DIAMETER";
+		public static final String TFTP = "TFTP";
 	}
 	public static class icmpvsrresponseEnum {
 		public static final String PASSIVE = "PASSIVE";
@@ -3000,6 +3219,11 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 	public static class l2connEnum {
 		public static final String ON = "ON";
 		public static final String OFF = "OFF";
+	}
+	public static class sobackupactionEnum {
+		public static final String DROP = "DROP";
+		public static final String ACCEPT = "ACCEPT";
+		public static final String REDIRECT = "REDIRECT";
 	}
 	public static class gt2gbEnum {
 		public static final String ENABLED = "ENABLED";
@@ -3040,6 +3264,11 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String REQUEST = "REQUEST";
 		public static final String RESPONSE = "RESPONSE";
 	}
+	public static class consolidatedlconnEnum {
+		public static final String GLOBAL = "GLOBAL";
+		public static final String NO = "NO";
+		public static final String YES = "YES";
+	}
 	public static class sopersistenceEnum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
@@ -3060,6 +3289,11 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String LRTM = "LRTM";
 		public static final String CALLIDHASH = "CALLIDHASH";
 		public static final String CUSTOMLOAD = "CUSTOMLOAD";
+		public static final String LEASTREQUEST = "LEASTREQUEST";
+	}
+	public static class consolidatedlconngblEnum {
+		public static final String YES = "YES";
+		public static final String NO = "NO";
 	}
 	public static class redirectEnum {
 		public static final String CACHE = "CACHE";
@@ -3075,6 +3309,8 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class connfailoverEnum {
 		public static final String DISABLED = "DISABLED";
@@ -3117,6 +3353,8 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class persistencetypeEnum {
 		public static final String SOURCEIP = "SOURCEIP";
@@ -3144,5 +3382,6 @@ The maximum possible value for requests/sec is 65536 and percentage of requests 
 		public static final String _2005 = "2005";
 		public static final String _2008 = "2008";
 		public static final String _2008R2 = "2008R2";
+		public static final String _2012 = "2012";
 	}
 }

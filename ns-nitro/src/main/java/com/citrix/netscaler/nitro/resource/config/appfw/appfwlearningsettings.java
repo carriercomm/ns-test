@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.appfw;
@@ -49,7 +55,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Application Firewall profile name.<br> Minimum length =  1
+	* Name of the profile.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_profilename(String profilename) throws Exception{
@@ -58,7 +64,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Application Firewall profile name.<br> Minimum length =  1
+	* Name of the profile.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_profilename() throws Exception {
@@ -67,7 +73,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn Start URLs.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn start URLs.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_starturlminthreshold(long starturlminthreshold) throws Exception {
@@ -76,7 +82,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn Start URLs.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn start URLs.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_starturlminthreshold(Long starturlminthreshold) throws Exception{
@@ -85,7 +91,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn Start URLs.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn start URLs.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_starturlminthreshold() throws Exception {
@@ -94,7 +100,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn Start URLs.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular start URL pattern for the learning engine to learn that start URL.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_starturlpercentthreshold(long starturlpercentthreshold) throws Exception {
@@ -103,7 +109,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn Start URLs.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular start URL pattern for the learning engine to learn that start URL.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_starturlpercentthreshold(Long starturlpercentthreshold) throws Exception{
@@ -112,7 +118,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn Start URLs.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular start URL pattern for the learning engine to learn that start URL.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_starturlpercentthreshold() throws Exception {
@@ -121,7 +127,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn cookie consistency information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn cookies.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_cookieconsistencyminthreshold(long cookieconsistencyminthreshold) throws Exception {
@@ -130,7 +136,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn cookie consistency information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn cookies.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_cookieconsistencyminthreshold(Long cookieconsistencyminthreshold) throws Exception{
@@ -139,7 +145,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn cookie consistency information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn cookies.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_cookieconsistencyminthreshold() throws Exception {
@@ -148,7 +154,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn cookie consistency information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular cookie pattern for the learning engine to learn that cookie.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_cookieconsistencypercentthreshold(long cookieconsistencypercentthreshold) throws Exception {
@@ -157,7 +163,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn cookie consistency information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular cookie pattern for the learning engine to learn that cookie.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_cookieconsistencypercentthreshold(Long cookieconsistencypercentthreshold) throws Exception{
@@ -166,7 +172,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn cookie consistency information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular cookie pattern for the learning engine to learn that cookie.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_cookieconsistencypercentthreshold() throws Exception {
@@ -175,7 +181,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn CSRF tag information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn cross-site request forgery (CSRF) tags.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_csrftagminthreshold(long csrftagminthreshold) throws Exception {
@@ -184,7 +190,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn CSRF tag information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn cross-site request forgery (CSRF) tags.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_csrftagminthreshold(Long csrftagminthreshold) throws Exception{
@@ -193,7 +199,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn CSRF tag information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn cross-site request forgery (CSRF) tags.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_csrftagminthreshold() throws Exception {
@@ -202,7 +208,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn CSRF tag information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular CSRF tag for the learning engine to learn that CSRF tag.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_csrftagpercentthreshold(long csrftagpercentthreshold) throws Exception {
@@ -211,7 +217,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn CSRF tag information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular CSRF tag for the learning engine to learn that CSRF tag.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_csrftagpercentthreshold(Long csrftagpercentthreshold) throws Exception{
@@ -220,7 +226,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn CSRF tag information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular CSRF tag for the learning engine to learn that CSRF tag.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_csrftagpercentthreshold() throws Exception {
@@ -229,7 +235,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn field consistency information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn field consistency information.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_fieldconsistencyminthreshold(long fieldconsistencyminthreshold) throws Exception {
@@ -238,7 +244,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn field consistency information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn field consistency information.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_fieldconsistencyminthreshold(Long fieldconsistencyminthreshold) throws Exception{
@@ -247,7 +253,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn field consistency information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn field consistency information.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_fieldconsistencyminthreshold() throws Exception {
@@ -256,7 +262,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn field consistency information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular field consistency pattern for the learning engine to learn that field consistency pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_fieldconsistencypercentthreshold(long fieldconsistencypercentthreshold) throws Exception {
@@ -265,7 +271,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn field consistency information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular field consistency pattern for the learning engine to learn that field consistency pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_fieldconsistencypercentthreshold(Long fieldconsistencypercentthreshold) throws Exception{
@@ -274,7 +280,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn field consistency information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular field consistency pattern for the learning engine to learn that field consistency pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_fieldconsistencypercentthreshold() throws Exception {
@@ -283,7 +289,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn cross-site scripting information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn HTML cross-site scripting patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_crosssitescriptingminthreshold(long crosssitescriptingminthreshold) throws Exception {
@@ -292,7 +298,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn cross-site scripting information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn HTML cross-site scripting patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_crosssitescriptingminthreshold(Long crosssitescriptingminthreshold) throws Exception{
@@ -301,7 +307,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn cross-site scripting information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn HTML cross-site scripting patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_crosssitescriptingminthreshold() throws Exception {
@@ -310,7 +316,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn cross-site scripting information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular cross-site scripting pattern for the learning engine to learn that cross-site scripting pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_crosssitescriptingpercentthreshold(long crosssitescriptingpercentthreshold) throws Exception {
@@ -319,7 +325,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn cross-site scripting information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular cross-site scripting pattern for the learning engine to learn that cross-site scripting pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_crosssitescriptingpercentthreshold(Long crosssitescriptingpercentthreshold) throws Exception{
@@ -328,7 +334,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn cross-site scripting information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular cross-site scripting pattern for the learning engine to learn that cross-site scripting pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_crosssitescriptingpercentthreshold() throws Exception {
@@ -337,7 +343,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn SQL injection information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn HTML SQL injection patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_sqlinjectionminthreshold(long sqlinjectionminthreshold) throws Exception {
@@ -346,7 +352,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn SQL injection information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn HTML SQL injection patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_sqlinjectionminthreshold(Long sqlinjectionminthreshold) throws Exception{
@@ -355,7 +361,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn SQL injection information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn HTML SQL injection patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_sqlinjectionminthreshold() throws Exception {
@@ -364,7 +370,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn SQL injection information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular HTML SQL injection pattern for the learning engine to learn that HTML SQL injection pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_sqlinjectionpercentthreshold(long sqlinjectionpercentthreshold) throws Exception {
@@ -373,7 +379,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn SQL injection information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular HTML SQL injection pattern for the learning engine to learn that HTML SQL injection pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_sqlinjectionpercentthreshold(Long sqlinjectionpercentthreshold) throws Exception{
@@ -382,7 +388,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn SQL injection information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular HTML SQL injection pattern for the learning engine to learn that HTML SQL injection pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_sqlinjectionpercentthreshold() throws Exception {
@@ -391,7 +397,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn field format information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn field formats.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_fieldformatminthreshold(long fieldformatminthreshold) throws Exception {
@@ -400,7 +406,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn field format information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn field formats.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_fieldformatminthreshold(Long fieldformatminthreshold) throws Exception{
@@ -409,7 +415,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn field format information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn field formats.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_fieldformatminthreshold() throws Exception {
@@ -418,7 +424,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn field format information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular web form field pattern for the learning engine to recommend a field format for that form field.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_fieldformatpercentthreshold(long fieldformatpercentthreshold) throws Exception {
@@ -427,7 +433,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn field format information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular web form field pattern for the learning engine to recommend a field format for that form field.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_fieldformatpercentthreshold(Long fieldformatpercentthreshold) throws Exception{
@@ -436,7 +442,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn field format information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular web form field pattern for the learning engine to recommend a field format for that form field.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_fieldformatpercentthreshold() throws Exception {
@@ -445,7 +451,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn XML Web Services Interoperability information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn web services interoperability (WSI) information.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_xmlwsiminthreshold(long xmlwsiminthreshold) throws Exception {
@@ -454,7 +460,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn XML Web Services Interoperability information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn web services interoperability (WSI) information.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_xmlwsiminthreshold(Long xmlwsiminthreshold) throws Exception{
@@ -463,7 +469,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn XML Web Services Interoperability information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn web services interoperability (WSI) information.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_xmlwsiminthreshold() throws Exception {
@@ -472,7 +478,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn XML Web Services Interoperability information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular pattern for the learning engine to learn a web services interoperability (WSI) pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_xmlwsipercentthreshold(long xmlwsipercentthreshold) throws Exception {
@@ -481,7 +487,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn XML Web Services Interoperability information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular pattern for the learning engine to learn a web services interoperability (WSI) pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_xmlwsipercentthreshold(Long xmlwsipercentthreshold) throws Exception{
@@ -490,7 +496,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn XML Web Services Interoperability information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular pattern for the learning engine to learn a web services interoperability (WSI) pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_xmlwsipercentthreshold() throws Exception {
@@ -499,7 +505,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn XML Attachment information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn XML attachment patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_xmlattachmentminthreshold(long xmlattachmentminthreshold) throws Exception {
@@ -508,7 +514,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn XML Attachment information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn XML attachment patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_xmlattachmentminthreshold(Long xmlattachmentminthreshold) throws Exception{
@@ -517,7 +523,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold to learn XML Attachment information.<br> Default value: 1<br> Minimum value =  1
+	* Minimum number of application firewall sessions that the learning engine must observe to learn XML attachment patterns.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_xmlattachmentminthreshold() throws Exception {
@@ -526,7 +532,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn XML Attachment information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular XML attachment pattern for the learning engine to learn that XML attachment pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_xmlattachmentpercentthreshold(long xmlattachmentpercentthreshold) throws Exception {
@@ -535,7 +541,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn XML Attachment information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular XML attachment pattern for the learning engine to learn that XML attachment pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_xmlattachmentpercentthreshold(Long xmlattachmentpercentthreshold) throws Exception{
@@ -544,7 +550,7 @@ public class appfwlearningsettings extends base_resource
 
 	/**
 	* <pre>
-	* Minimum threshold (in percent) to learn XML Attachment information.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
+	* Minimum percentage of application firewall sessions that must contain a particular XML attachment pattern for the learning engine to learn that XML attachment pattern.<br> Default value: 0<br> Minimum value =  0<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_xmlattachmentpercentthreshold() throws Exception {
@@ -650,37 +656,9 @@ public class appfwlearningsettings extends base_resource
 	* Use this API to unset the properties of appfwlearningsettings resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String profilename, String args[]) throws Exception {
-		appfwlearningsettings unsetresource = new appfwlearningsettings();
-		unsetresource.profilename = profilename;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of appfwlearningsettings resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, appfwlearningsettings resource, String[] args) throws Exception{
 		appfwlearningsettings unsetresource = new appfwlearningsettings();
 		unsetresource.profilename = resource.profilename;
-		unsetresource.starturlminthreshold = resource.starturlminthreshold;
-		unsetresource.starturlpercentthreshold = resource.starturlpercentthreshold;
-		unsetresource.cookieconsistencyminthreshold = resource.cookieconsistencyminthreshold;
-		unsetresource.cookieconsistencypercentthreshold = resource.cookieconsistencypercentthreshold;
-		unsetresource.csrftagminthreshold = resource.csrftagminthreshold;
-		unsetresource.csrftagpercentthreshold = resource.csrftagpercentthreshold;
-		unsetresource.fieldconsistencyminthreshold = resource.fieldconsistencyminthreshold;
-		unsetresource.fieldconsistencypercentthreshold = resource.fieldconsistencypercentthreshold;
-		unsetresource.crosssitescriptingminthreshold = resource.crosssitescriptingminthreshold;
-		unsetresource.crosssitescriptingpercentthreshold = resource.crosssitescriptingpercentthreshold;
-		unsetresource.sqlinjectionminthreshold = resource.sqlinjectionminthreshold;
-		unsetresource.sqlinjectionpercentthreshold = resource.sqlinjectionpercentthreshold;
-		unsetresource.fieldformatminthreshold = resource.fieldformatminthreshold;
-		unsetresource.fieldformatpercentthreshold = resource.fieldformatpercentthreshold;
-		unsetresource.xmlwsiminthreshold = resource.xmlwsiminthreshold;
-		unsetresource.xmlwsipercentthreshold = resource.xmlwsipercentthreshold;
-		unsetresource.xmlattachmentminthreshold = resource.xmlattachmentminthreshold;
-		unsetresource.xmlattachmentpercentthreshold = resource.xmlattachmentpercentthreshold;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -712,24 +690,6 @@ public class appfwlearningsettings extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new appfwlearningsettings();
 				unsetresources[i].profilename = resources[i].profilename;
-				unsetresources[i].starturlminthreshold = resources[i].starturlminthreshold;
-				unsetresources[i].starturlpercentthreshold = resources[i].starturlpercentthreshold;
-				unsetresources[i].cookieconsistencyminthreshold = resources[i].cookieconsistencyminthreshold;
-				unsetresources[i].cookieconsistencypercentthreshold = resources[i].cookieconsistencypercentthreshold;
-				unsetresources[i].csrftagminthreshold = resources[i].csrftagminthreshold;
-				unsetresources[i].csrftagpercentthreshold = resources[i].csrftagpercentthreshold;
-				unsetresources[i].fieldconsistencyminthreshold = resources[i].fieldconsistencyminthreshold;
-				unsetresources[i].fieldconsistencypercentthreshold = resources[i].fieldconsistencypercentthreshold;
-				unsetresources[i].crosssitescriptingminthreshold = resources[i].crosssitescriptingminthreshold;
-				unsetresources[i].crosssitescriptingpercentthreshold = resources[i].crosssitescriptingpercentthreshold;
-				unsetresources[i].sqlinjectionminthreshold = resources[i].sqlinjectionminthreshold;
-				unsetresources[i].sqlinjectionpercentthreshold = resources[i].sqlinjectionpercentthreshold;
-				unsetresources[i].fieldformatminthreshold = resources[i].fieldformatminthreshold;
-				unsetresources[i].fieldformatpercentthreshold = resources[i].fieldformatpercentthreshold;
-				unsetresources[i].xmlwsiminthreshold = resources[i].xmlwsiminthreshold;
-				unsetresources[i].xmlwsipercentthreshold = resources[i].xmlwsipercentthreshold;
-				unsetresources[i].xmlattachmentminthreshold = resources[i].xmlattachmentminthreshold;
-				unsetresources[i].xmlattachmentpercentthreshold = resources[i].xmlattachmentpercentthreshold;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

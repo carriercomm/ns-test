@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.tm;
@@ -39,7 +45,10 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* The name for the action.<br> Minimum length =  1
+	* Name for the new form-based single sign-on profile. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an SSO action is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -48,7 +57,10 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* The name for the action.<br> Minimum length =  1
+	* Name for the new form-based single sign-on profile. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an SSO action is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -57,7 +69,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* The url to which form will be submitted.<br> Minimum length =  1
+	* URL to which the completed form is submitted.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_actionurl(String actionurl) throws Exception{
@@ -66,7 +78,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* The url to which form will be submitted.<br> Minimum length =  1
+	* URL to which the completed form is submitted.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_actionurl() throws Exception {
@@ -75,7 +87,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Username field in the form to be filled with sessions username.<br> Minimum length =  1
+	* Name of the form field in which the user types in the user ID.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_userfield(String userfield) throws Exception{
@@ -84,7 +96,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Username field in the form to be filled with sessions username.<br> Minimum length =  1
+	* Name of the form field in which the user types in the user ID.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_userfield() throws Exception {
@@ -93,7 +105,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Password field in the form to be filled with sessions username.<br> Minimum length =  1
+	* Name of the form field in which the user types in the password.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_passwdfield(String passwdfield) throws Exception{
@@ -102,7 +114,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Password field in the form to be filled with sessions username.<br> Minimum length =  1
+	* Name of the form field in which the user types in the password.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_passwdfield() throws Exception {
@@ -111,7 +123,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* The rule to be used to check whether sso is successfull or not . Rules are combinations of Expressions. Expressions are simple conditions, such as a test for equality, applied to operands, such as a URL string or an IP address. Expression syntax is described in the Installation and Configuration Guide.
+	* Expression, that checks to see if single sign-on is successful.
 	* </pre>
 	*/
 	public void set_ssosuccessrule(String ssosuccessrule) throws Exception{
@@ -120,7 +132,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* The rule to be used to check whether sso is successfull or not . Rules are combinations of Expressions. Expressions are simple conditions, such as a test for equality, applied to operands, such as a URL string or an IP address. Expression syntax is described in the Installation and Configuration Guide.
+	* Expression, that checks to see if single sign-on is successful.
 	* </pre>
 	*/
 	public String get_ssosuccessrule() throws Exception {
@@ -129,7 +141,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Name Value pairs to be submitted. Name value pairs have to separated by '&'. EX: name1=value1&name2=value2.
+	* Name-value pair attributes to send to the server in addition to sending the username and password. Value names are separated by an ampersand (&) (for example, name1=value1&name2=value2).
 	* </pre>
 	*/
 	public void set_namevaluepair(String namevaluepair) throws Exception{
@@ -138,7 +150,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Name Value pairs to be submitted. Name value pairs have to separated by '&'. EX: name1=value1&name2=value2.
+	* Name-value pair attributes to send to the server in addition to sending the username and password. Value names are separated by an ampersand (&) (for example, name1=value1&name2=value2).
 	* </pre>
 	*/
 	public String get_namevaluepair() throws Exception {
@@ -147,7 +159,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Size of the body to be parsed to get the forms.<br> Default value: 8096
+	* Number of bytes, in the response, to parse for extracting the forms.<br> Default value: 8096
 	* </pre>
 	*/
 	public void set_responsesize(long responsesize) throws Exception {
@@ -156,7 +168,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Size of the body to be parsed to get the forms.<br> Default value: 8096
+	* Number of bytes, in the response, to parse for extracting the forms.<br> Default value: 8096
 	* </pre>
 	*/
 	public void set_responsesize(Long responsesize) throws Exception{
@@ -165,7 +177,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Size of the body to be parsed to get the forms.<br> Default value: 8096
+	* Number of bytes, in the response, to parse for extracting the forms.<br> Default value: 8096
 	* </pre>
 	*/
 	public Long get_responsesize() throws Exception {
@@ -174,7 +186,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Bypass Form extraction.<br> Default value: DYNAMIC<br> Possible values = STATIC, DYNAMIC
+	* Type of processing of the name-value pair. If you specify STATIC, the values configured by the administrator are used. For DYNAMIC, the response is parsed, and the form is extracted and then submitted.<br> Default value: DYNAMIC<br> Possible values = STATIC, DYNAMIC
 	* </pre>
 	*/
 	public void set_nvtype(String nvtype) throws Exception{
@@ -183,7 +195,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* Bypass Form extraction.<br> Default value: DYNAMIC<br> Possible values = STATIC, DYNAMIC
+	* Type of processing of the name-value pair. If you specify STATIC, the values configured by the administrator are used. For DYNAMIC, the response is parsed, and the form is extracted and then submitted.<br> Default value: DYNAMIC<br> Possible values = STATIC, DYNAMIC
 	* </pre>
 	*/
 	public String get_nvtype() throws Exception {
@@ -192,7 +204,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* submit method.<br> Default value: GET<br> Possible values = GET, POST
+	* HTTP method used by the single sign-on form to send the logon credentials to the logon server. Applies only to STATIC name-value type.<br> Default value: GET<br> Possible values = GET, POST
 	* </pre>
 	*/
 	public void set_submitmethod(String submitmethod) throws Exception{
@@ -201,7 +213,7 @@ public class tmformssoaction extends base_resource
 
 	/**
 	* <pre>
-	* submit method.<br> Default value: GET<br> Possible values = GET, POST
+	* HTTP method used by the single sign-on form to send the logon credentials to the logon server. Applies only to STATIC name-value type.<br> Default value: GET<br> Possible values = GET, POST
 	* </pre>
 	*/
 	public String get_submitmethod() throws Exception {
@@ -378,23 +390,9 @@ public class tmformssoaction extends base_resource
 	* Use this API to unset the properties of tmformssoaction resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		tmformssoaction unsetresource = new tmformssoaction();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of tmformssoaction resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, tmformssoaction resource, String[] args) throws Exception{
 		tmformssoaction unsetresource = new tmformssoaction();
 		unsetresource.name = resource.name;
-		unsetresource.responsesize = resource.responsesize;
-		unsetresource.namevaluepair = resource.namevaluepair;
-		unsetresource.nvtype = resource.nvtype;
-		unsetresource.submitmethod = resource.submitmethod;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -426,10 +424,6 @@ public class tmformssoaction extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new tmformssoaction();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].responsesize = resources[i].responsesize;
-				unsetresources[i].namevaluepair = resources[i].namevaluepair;
-				unsetresources[i].nvtype = resources[i].nvtype;
-				unsetresources[i].submitmethod = resources[i].submitmethod;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.gslb;
@@ -40,12 +46,14 @@ public class gslbvserver_gslbservice_binding extends base_resource
 	private String preferredlocation;
 	private Integer thresholdvalue;
 	private String iscname;
+	private String sitepersistence;
+	private String domainname;
 	private String name;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The new weight for the given service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the GSLB service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(long weight) throws Exception {
@@ -54,7 +62,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The new weight for the given service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the GSLB service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(Long weight) throws Exception{
@@ -63,7 +71,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The new weight for the given service.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the GSLB service.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_weight() throws Exception {
@@ -72,7 +80,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The vserver for which the binding operation is to be done.<br> Minimum length =  1
+	* Name of the virtual server on which to perform the binding operation.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -81,7 +89,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The vserver for which the binding operation is to be done.<br> Minimum length =  1
+	* Name of the virtual server on which to perform the binding operation.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -90,7 +98,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The service for which the weight needs to be changed.<br> Minimum length =  1
+	* Name of the GSLB service for which to change the weight.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicename(String servicename) throws Exception{
@@ -99,11 +107,29 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The service for which the weight needs to be changed.<br> Minimum length =  1
+	* Name of the GSLB service for which to change the weight.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicename() throws Exception {
 		return this.servicename;
+	}
+
+	/**
+	* <pre>
+	* Domain name for which to change the time to live (TTL) and/or backup service IP address.<br> Minimum length =  1
+	* </pre>
+	*/
+	public void set_domainname(String domainname) throws Exception{
+		this.domainname = domainname;
+	}
+
+	/**
+	* <pre>
+	* Domain name for which to change the time to live (TTL) and/or backup service IP address.<br> Minimum length =  1
+	* </pre>
+	*/
+	public String get_domainname() throws Exception {
+		return this.domainname;
 	}
 
 	/**
@@ -144,7 +170,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* State of the gslb vserver.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* State of the gslb vserver.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_curstate() throws Exception {
@@ -162,7 +188,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* Effective state of the gslb svc.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* Effective state of the gslb svc.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_svreffgslbstate() throws Exception {
@@ -180,6 +206,15 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
+	* Type of Site Persistence set.<br> Possible values = ConnectionProxy, HTTPRedirect, NONE
+	* </pre>
+	*/
+	public String get_sitepersistence() throws Exception {
+		return this.sitepersistence;
+	}
+
+	/**
+	* <pre>
 	* Tells whether threshold exceeded for this service participating in CUSTOMLB.
 	* </pre>
 	*/
@@ -189,7 +224,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The service type of the virtual server.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL
+	* Protocol used by services bound to the virtual server.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, ANY, SIP_UDP, RADIUS, RDP, RTSP, MYSQL, MSSQL
 	* </pre>
 	*/
 	public String get_servicetype() throws Exception {
@@ -253,6 +288,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 		updateresource.name = resource.name;
 		updateresource.servicename = resource.servicename;
 		updateresource.weight = resource.weight;
+		updateresource.domainname = resource.domainname;
 		return updateresource.update_resource(client);
 	}
 
@@ -265,6 +301,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 				updateresources[i].name = resources[i].name;
 				updateresources[i].servicename = resources[i].servicename;
 				updateresources[i].weight = resources[i].weight;
+				updateresources[i].domainname = resources[i].domainname;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -275,6 +312,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 		gslbvserver_gslbservice_binding deleteresource = new gslbvserver_gslbservice_binding();
 		deleteresource.name = resource.name;
 		deleteresource.servicename = resource.servicename;
+		deleteresource.domainname = resource.domainname;
 		return deleteresource.delete_resource(client);
 	}
 
@@ -286,6 +324,7 @@ public class gslbvserver_gslbservice_binding extends base_resource
 				deleteresources[i] = new gslbvserver_gslbservice_binding();
 				deleteresources[i].name = resources[i].name;
 				deleteresources[i].servicename = resources[i].servicename;
+				deleteresources[i].domainname = resources[i].domainname;
 			}
 			result = delete_bulk_request(client, deleteresources);
 		}
@@ -403,6 +442,13 @@ public class gslbvserver_gslbservice_binding extends base_resource
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
+	}
+	public static class sitepersistenceEnum {
+		public static final String ConnectionProxy = "ConnectionProxy";
+		public static final String HTTPRedirect = "HTTPRedirect";
+		public static final String NONE = "NONE";
 	}
 	public static class iscnameEnum {
 		public static final String ENABLED = "ENABLED";
@@ -417,6 +463,8 @@ public class gslbvserver_gslbservice_binding extends base_resource
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 
 }

@@ -1,15 +1,23 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cs;
 
+import com.citrix.netscaler.nitro.resource.config.cs.csvserver_copolicy_binding;
+import com.citrix.netscaler.nitro.resource.config.cs.csvserver_spilloverpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.cs.csvserver_auditnslogpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.cs.csvserver_authorizationpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.cs.csvserver_filterpolicy_binding;
@@ -41,6 +49,8 @@ class csvserver_binding_response extends base_response
 public class csvserver_binding extends base_resource
 {
 	private String name;
+	private csvserver_copolicy_binding	csvserver_copolicy_binding[] = null;
+	private csvserver_spilloverpolicy_binding	csvserver_spilloverpolicy_binding[] = null;
 	private csvserver_auditnslogpolicy_binding	csvserver_auditnslogpolicy_binding[] = null;
 	private csvserver_authorizationpolicy_binding	csvserver_authorizationpolicy_binding[] = null;
 	private csvserver_filterpolicy_binding	csvserver_filterpolicy_binding[] = null;
@@ -58,7 +68,7 @@ public class csvserver_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the content switching virtual server.<br> Minimum length =  1
+	* Name of a content switching virtual server for which to display information, including the policies bound to the virtual server. To display a list of all configured Content Switching virtual servers, do not specify a value for this parameter.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -67,7 +77,7 @@ public class csvserver_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the content switching virtual server.<br> Minimum length =  1
+	* Name of a content switching virtual server for which to display information, including the policies bound to the virtual server. To display a list of all configured Content Switching virtual servers, do not specify a value for this parameter.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -166,6 +176,15 @@ public class csvserver_binding extends base_resource
 
 	/**
 	* <pre>
+	* spilloverpolicy that can be bound to csvserver.
+	* </pre>
+	*/
+	public csvserver_spilloverpolicy_binding[] get_csvserver_spilloverpolicy_bindings() throws Exception {
+		return this.csvserver_spilloverpolicy_binding;
+	}
+
+	/**
+	* <pre>
 	* filterpolicy that can be bound to csvserver.
 	* </pre>
 	*/
@@ -189,6 +208,15 @@ public class csvserver_binding extends base_resource
 	*/
 	public csvserver_cspolicy_binding[] get_csvserver_cspolicy_bindings() throws Exception {
 		return this.csvserver_cspolicy_binding;
+	}
+
+	/**
+	* <pre>
+	* copolicy that can be bound to csvserver.
+	* </pre>
+	*/
+	public csvserver_copolicy_binding[] get_csvserver_copolicy_bindings() throws Exception {
+		return this.csvserver_copolicy_binding;
 	}
 
 	/**

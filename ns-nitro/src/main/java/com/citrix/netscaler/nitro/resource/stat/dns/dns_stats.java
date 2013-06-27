@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.dns;
@@ -23,6 +29,7 @@ class dns_response extends base_response
 
 public class dns_stats extends base_resource
 {
+	private String clearstats;
 	private Long dnstotqueries;
 	private Long dnsqueriesrate;
 	private Long dnstotmultiquery;
@@ -115,6 +122,24 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
+	}
+
+	/**
+	* <pre>
 	* Total number of CNAME responses received.
 	* </pre>
 	*/
@@ -124,7 +149,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of A responses received.
+	* Rate (/s) counter for dnstotaresponse
 	* </pre>
 	*/
 	public Long get_dnsaresponserate() throws Exception {
@@ -232,7 +257,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of AAAA responses received.
+	* Rate (/s) counter for dnstotaaaaresponse
 	* </pre>
 	*/
 	public Long get_dnsaaaaresponserate() throws Exception {
@@ -241,7 +266,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of AAAA queries received.
+	* Rate (/s) counter for dnstotaaaarecqueries
 	* </pre>
 	*/
 	public Long get_dnsaaaarecqueriesrate() throws Exception {
@@ -295,7 +320,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of A queries received.
+	* Rate (/s) counter for dnstotarecqueries
 	* </pre>
 	*/
 	public Long get_dnsarecqueriesrate() throws Exception {
@@ -322,7 +347,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of ANY queries received.
+	* Rate (/s) counter for dnstotanyqueries
 	* </pre>
 	*/
 	public Long get_dnsanyqueriesrate() throws Exception {
@@ -367,7 +392,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of PTR responses received.
+	* Rate (/s) counter for dnstotptrresponse
 	* </pre>
 	*/
 	public Long get_dnsptrresponserate() throws Exception {
@@ -376,7 +401,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of SOA queries received.
+	* Rate (/s) counter for dnstotsoarecqueries
 	* </pre>
 	*/
 	public Long get_dnssoarecqueriesrate() throws Exception {
@@ -385,7 +410,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of PTR queries received.
+	* Rate (/s) counter for dnstotptrrecqueries
 	* </pre>
 	*/
 	public Long get_dnsptrrecqueriesrate() throws Exception {
@@ -430,7 +455,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of SRV responses received.
+	* Rate (/s) counter for dnstotsrvresponse
 	* </pre>
 	*/
 	public Long get_dnssrvresponserate() throws Exception {
@@ -439,7 +464,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of NS queries received.
+	* Rate (/s) counter for dnstotnsrecqueries
 	* </pre>
 	*/
 	public Long get_dnsnsrecqueriesrate() throws Exception {
@@ -457,7 +482,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of SOA responses received.
+	* Rate (/s) counter for dnstotsoaresponse
 	* </pre>
 	*/
 	public Long get_dnssoaresponserate() throws Exception {
@@ -484,7 +509,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of DNS queries received.
+	* Rate (/s) counter for dnstotqueries
 	* </pre>
 	*/
 	public Long get_dnsqueriesrate() throws Exception {
@@ -493,7 +518,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of ANY responses received.
+	* Rate (/s) counter for dnstotanyresponse
 	* </pre>
 	*/
 	public Long get_dnsanyresponserate() throws Exception {
@@ -502,7 +527,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of DNS responses received.
+	* Rate (/s) counter for dnstotanswers
 	* </pre>
 	*/
 	public Long get_dnsanswersrate() throws Exception {
@@ -520,7 +545,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of CNAME responses received.
+	* Rate (/s) counter for dnstotcnameresponse
 	* </pre>
 	*/
 	public Long get_dnscnameresponserate() throws Exception {
@@ -646,7 +671,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of SRV queries received.
+	* Rate (/s) counter for dnstotsrvrecqueries
 	* </pre>
 	*/
 	public Long get_dnssrvrecqueriesrate() throws Exception {
@@ -691,7 +716,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of Server responses received.
+	* Rate (/s) counter for dnstotserverresponse
 	* </pre>
 	*/
 	public Long get_dnsserverresponserate() throws Exception {
@@ -700,7 +725,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of NS responses received.
+	* Rate (/s) counter for dnstotnsresponse
 	* </pre>
 	*/
 	public Long get_dnsnsresponserate() throws Exception {
@@ -718,7 +743,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of MX queries received.
+	* Rate (/s) counter for dnstotmxrecqueries
 	* </pre>
 	*/
 	public Long get_dnsmxrecqueriesrate() throws Exception {
@@ -754,7 +779,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of CNAME queries received.
+	* Rate (/s) counter for dnstotcnamerecqueries
 	* </pre>
 	*/
 	public Long get_dnscnamerecqueriesrate() throws Exception {
@@ -817,7 +842,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of Server queries sent.
+	* Rate (/s) counter for dnstotserverquery
 	* </pre>
 	*/
 	public Long get_dnsserverqueryrate() throws Exception {
@@ -907,7 +932,7 @@ public class dns_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of MX responses received.
+	* Rate (/s) counter for dnstotmxresponse
 	* </pre>
 	*/
 	public Long get_dnsmxresponserate() throws Exception {
@@ -968,4 +993,8 @@ public class dns_stats extends base_resource
 		return response[0];
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

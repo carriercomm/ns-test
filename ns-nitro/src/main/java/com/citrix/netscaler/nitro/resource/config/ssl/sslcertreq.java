@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -43,7 +49,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The file name where the generated Certificate Signing Requests are stored. The default output path for the CSR file is /nsconfig/ssl/.<br> Maximum length =  63
+	* Name for and, optionally, path to the certificate signing request (CSR). /nsconfig/ssl/ is the default path.<br> Maximum length =  63
 	* </pre>
 	*/
 	public void set_reqfile(String reqfile) throws Exception{
@@ -52,7 +58,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The file name where the generated Certificate Signing Requests are stored. The default output path for the CSR file is /nsconfig/ssl/.<br> Maximum length =  63
+	* Name for and, optionally, path to the certificate signing request (CSR). /nsconfig/ssl/ is the default path.<br> Maximum length =  63
 	* </pre>
 	*/
 	public String get_reqfile() throws Exception {
@@ -61,7 +67,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The key file name to be used. The key can be an RSA or a DSA key. The default input path for the key file is /nsconfig/ssl/.<br> Maximum length =  63
+	* Name of and, optionally, path to the private key used to create the certificate signing request, which then becomes part of the certificate-key pair. The private key can be either an RSA or a DSA key. The key must be present in the appliance's local storage. /nsconfig/ssl is the default path.<br> Maximum length =  63
 	* </pre>
 	*/
 	public void set_keyfile(String keyfile) throws Exception{
@@ -70,7 +76,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The key file name to be used. The key can be an RSA or a DSA key. The default input path for the key file is /nsconfig/ssl/.<br> Maximum length =  63
+	* Name of and, optionally, path to the private key used to create the certificate signing request, which then becomes part of the certificate-key pair. The private key can be either an RSA or a DSA key. The key must be present in the appliance's local storage. /nsconfig/ssl is the default path.<br> Maximum length =  63
 	* </pre>
 	*/
 	public String get_keyfile() throws Exception {
@@ -79,7 +85,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The FIPS key name to be used. FIPS keys are created inside the FIPS HSM (Hardware Security Module). This is applicable only to the SSL FIPS system.<br> Minimum length =  1<br> Maximum length =  31
+	* Name of the FIPS key used to create the certificate signing request. FIPS keys are created inside the Hardware Security Module of the FIPS card.<br> Minimum length =  1<br> Maximum length =  31
 	* </pre>
 	*/
 	public void set_fipskeyname(String fipskeyname) throws Exception{
@@ -88,7 +94,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The FIPS key name to be used. FIPS keys are created inside the FIPS HSM (Hardware Security Module). This is applicable only to the SSL FIPS system.<br> Minimum length =  1<br> Maximum length =  31
+	* Name of the FIPS key used to create the certificate signing request. FIPS keys are created inside the Hardware Security Module of the FIPS card.<br> Minimum length =  1<br> Maximum length =  31
 	* </pre>
 	*/
 	public String get_fipskeyname() throws Exception {
@@ -97,9 +103,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The format for the input key file specified in the keyFileName:
-				PEM: Privacy Enhanced Mail
-				DER: Distinguished Encoding Rule.<br> Default value: FORMAT_PEM<br> Possible values = DER, PEM
+	* Format in which the key is stored on the appliance.<br> Default value: PEM<br> Possible values = DER, PEM
 	* </pre>
 	*/
 	public void set_keyform(String keyform) throws Exception{
@@ -108,9 +112,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* The format for the input key file specified in the keyFileName:
-				PEM: Privacy Enhanced Mail
-				DER: Distinguished Encoding Rule.<br> Default value: FORMAT_PEM<br> Possible values = DER, PEM
+	* Format in which the key is stored on the appliance.<br> Default value: PEM<br> Possible values = DER, PEM
 	* </pre>
 	*/
 	public String get_keyform() throws Exception {
@@ -137,7 +139,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Country Name - Two letter ISO code for your country. For example, US for United States.<br> Minimum length =  2<br> Maximum length =  2
+	* Two letter ISO code for your country. For example, US for United States.<br> Minimum length =  2<br> Maximum length =  2
 	* </pre>
 	*/
 	public void set_countryname(String countryname) throws Exception{
@@ -146,7 +148,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Country Name - Two letter ISO code for your country. For example, US for United States.<br> Minimum length =  2<br> Maximum length =  2
+	* Two letter ISO code for your country. For example, US for United States.<br> Minimum length =  2<br> Maximum length =  2
 	* </pre>
 	*/
 	public String get_countryname() throws Exception {
@@ -155,7 +157,8 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* State or Province Name - Full name for the state or province where your organization is located. Maximum characters allowed are 63. Do not abbreviate.<br> Minimum length =  1
+	* Full name of the state or province where your organization is located. 
+Do not abbreviate.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_statename(String statename) throws Exception{
@@ -164,7 +167,8 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* State or Province Name - Full name for the state or province where your organization is located. Maximum characters allowed are 63. Do not abbreviate.<br> Minimum length =  1
+	* Full name of the state or province where your organization is located. 
+Do not abbreviate.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_statename() throws Exception {
@@ -173,7 +177,9 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Organization Name - Name of the organization. The organization name (corporation, limited partnership, university, or government agency) must be registered with some authority at the national, state, or city level. Use the legal name under which the organization is registered. Maximum characters allowed are 63. Do not abbreviate the organization name and do not use the following characters in the name: < > ~ ! @ # 0 ^ * /  ( )?.<br> Minimum length =  1
+	* Name of the organization that will use this certificate. The organization name (corporation, limited partnership, university, or government agency) must be registered with some authority at the national, state, or city level. Use the legal name under which the organization is registered. 
+Do not abbreviate the organization name and do not use the following characters in the name: 
+Angle brackets (< >) tilde (~), exclamation mark, at (@), pound (#), zero (0), caret (^), asterisk (*), forward slash (/), square brackets ([ ]), question mark (?).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_organizationname(String organizationname) throws Exception{
@@ -182,7 +188,9 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Organization Name - Name of the organization. The organization name (corporation, limited partnership, university, or government agency) must be registered with some authority at the national, state, or city level. Use the legal name under which the organization is registered. Maximum characters allowed are 63. Do not abbreviate the organization name and do not use the following characters in the name: < > ~ ! @ # 0 ^ * /  ( )?.<br> Minimum length =  1
+	* Name of the organization that will use this certificate. The organization name (corporation, limited partnership, university, or government agency) must be registered with some authority at the national, state, or city level. Use the legal name under which the organization is registered. 
+Do not abbreviate the organization name and do not use the following characters in the name: 
+Angle brackets (< >) tilde (~), exclamation mark, at (@), pound (#), zero (0), caret (^), asterisk (*), forward slash (/), square brackets ([ ]), question mark (?).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_organizationname() throws Exception {
@@ -191,7 +199,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Organization Unit Name - Division or Section name in the organization that will use the certificate. Maximum characters allowed are 63.<br> Minimum length =  1
+	* Name of the division or section in the organization that will use the certificate.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_organizationunitname(String organizationunitname) throws Exception{
@@ -200,7 +208,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Organization Unit Name - Division or Section name in the organization that will use the certificate. Maximum characters allowed are 63.<br> Minimum length =  1
+	* Name of the division or section in the organization that will use the certificate.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_organizationunitname() throws Exception {
@@ -209,7 +217,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Locality Name - Name of the city or town in which your organization's head office is located.Maximum characters allowed are 127.<br> Minimum length =  1
+	* Name of the city or town in which your organization's head office is located.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_localityname(String localityname) throws Exception{
@@ -218,7 +226,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Locality Name - Name of the city or town in which your organization's head office is located.Maximum characters allowed are 127.<br> Minimum length =  1
+	* Name of the city or town in which your organization's head office is located.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_localityname() throws Exception {
@@ -227,9 +235,8 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Common Name - Fully qualified domain name for the company/Web site. The common name is the fully qualified domain name (FQDN) for the company/Web site. The common name must match the name used by DNS servers to do a DNS lookup of your server (for example, www.mywebsite.com <http://www.mywebsite.com>). Most browsers use this information for authenticating the server's certificate during the SSL handshake. If the server name does not match the common name as given in the server certificate, the browsers will terminate the SSL handshake or prompt the user with a warning message. The maximum characters allowed are 63.
-
-				CAUTION: Do not use wildcard characters such as * or ? and do not use an IP address as the common name. The common name should be without the protocol specifier <http://> or <https://>.<br> Minimum length =  1
+	* Fully qualified domain name for the company or web site. The common name must match the name used by DNS servers to do a DNS lookup of your server. Most browsers use this information for authenticating the server's certificate during the SSL handshake. If the server name in the URL does not match the common name as given in the server certificate, the browser terminates the SSL handshake or prompts the user with a warning message. 
+Do not use wildcard characters, such as asterisk (*) or question mark (?), and do not use an IP address as the common name. The common name must not contain the protocol specifier <http://> or <https://>.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_commonname(String commonname) throws Exception{
@@ -238,9 +245,8 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Common Name - Fully qualified domain name for the company/Web site. The common name is the fully qualified domain name (FQDN) for the company/Web site. The common name must match the name used by DNS servers to do a DNS lookup of your server (for example, www.mywebsite.com <http://www.mywebsite.com>). Most browsers use this information for authenticating the server's certificate during the SSL handshake. If the server name does not match the common name as given in the server certificate, the browsers will terminate the SSL handshake or prompt the user with a warning message. The maximum characters allowed are 63.
-
-				CAUTION: Do not use wildcard characters such as * or ? and do not use an IP address as the common name. The common name should be without the protocol specifier <http://> or <https://>.<br> Minimum length =  1
+	* Fully qualified domain name for the company or web site. The common name must match the name used by DNS servers to do a DNS lookup of your server. Most browsers use this information for authenticating the server's certificate during the SSL handshake. If the server name in the URL does not match the common name as given in the server certificate, the browser terminates the SSL handshake or prompts the user with a warning message. 
+Do not use wildcard characters, such as asterisk (*) or question mark (?), and do not use an IP address as the common name. The common name must not contain the protocol specifier <http://> or <https://>.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_commonname() throws Exception {
@@ -249,7 +255,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Challenge Password - The contact person's E-mail address.<br> Minimum length =  1
+	* Contact person's e-mail address. This address is publically displayed as part of the certificate. Provide an e-mail address that is monitored by an administrator who can be contacted about the certificate.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_emailaddress(String emailaddress) throws Exception{
@@ -258,7 +264,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Challenge Password - The contact person's E-mail address.<br> Minimum length =  1
+	* Contact person's e-mail address. This address is publically displayed as part of the certificate. Provide an e-mail address that is monitored by an administrator who can be contacted about the certificate.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_emailaddress() throws Exception {
@@ -267,7 +273,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Challenge Password - Challenge password for this certificate.<br> Minimum length =  4
+	* Pass phrase, embedded in the certificate signing request that is shared only between the client or server requesting the certificate and the SSL certificate issuer (typically the certificate authority). This pass phrase can be used to authenticate a client or server that is requesting a certificate from the certificate authority.<br> Minimum length =  4
 	* </pre>
 	*/
 	public void set_challengepassword(String challengepassword) throws Exception{
@@ -276,7 +282,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Challenge Password - Challenge password for this certificate.<br> Minimum length =  4
+	* Pass phrase, embedded in the certificate signing request that is shared only between the client or server requesting the certificate and the SSL certificate issuer (typically the certificate authority). This pass phrase can be used to authenticate a client or server that is requesting a certificate from the certificate authority.<br> Minimum length =  4
 	* </pre>
 	*/
 	public String get_challengepassword() throws Exception {
@@ -285,7 +291,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Optional Company Name - Additional name of the company/web-site.<br> Minimum length =  1
+	* Additional name for the company or web site.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_companyname(String companyname) throws Exception{
@@ -294,7 +300,7 @@ public class sslcertreq extends base_resource
 
 	/**
 	* <pre>
-	* Optional Company Name - Additional name of the company/web-site.<br> Minimum length =  1
+	* Additional name for the company or web site.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_companyname() throws Exception {

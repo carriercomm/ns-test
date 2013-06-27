@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.cs;
@@ -27,6 +33,7 @@ class csvserver_response extends base_response
 public class csvserver_stats extends base_resource
 {
 	private String name;
+	private String clearstats;
 	private Long establishedconn;
 	private String primaryipaddress;
 	private Integer primaryport;
@@ -56,11 +63,10 @@ public class csvserver_stats extends base_resource
 	private Long deferredreqrate;
 	private Long invalidrequestresponse;
 	private Long invalidrequestresponsedropped;
-	private Long svrestablishedconn;
 
 	/**
 	* <pre>
-	* The name of the vserver for which statistics will be displayed.  If not given statistics are shown for all cs vservers.
+	* Name of the content switching virtual server for which to display statistics. To display statistics for all configured Content Switching virtual servers, do not specify a value for this parameter.
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -69,7 +75,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* The name of the vserver for which statistics will be displayed.  If not given statistics are shown for all cs vservers.<br> Minimum length =  1
+	* Name of the content switching virtual server for which to display statistics. To display statistics for all configured Content Switching virtual servers, do not specify a value for this parameter.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -78,11 +84,20 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of server connections in ESTABLISHED state.
+	* Clear the statsistics / counters
 	* </pre>
 	*/
-	public Long get_svrestablishedconn() throws Exception {
-		return this.svrestablishedconn;
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
 	}
 
 	/**
@@ -150,7 +165,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of response bytes received by this service or virtual server.
+	* Rate (/s) counter for totalresponsebytes
 	* </pre>
 	*/
 	public Long get_responsebytesrate() throws Exception {
@@ -177,7 +192,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of request bytes received on this service or virtual server.
+	* Rate (/s) counter for totalrequestbytes
 	* </pre>
 	*/
 	public Long get_requestbytesrate() throws Exception {
@@ -195,7 +210,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total vserver hits
+	* Rate (/s) counter for tothits
 	* </pre>
 	*/
 	public Long get_hitsrate() throws Exception {
@@ -213,7 +228,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of packets received by this service or virtual server.
+	* Rate (/s) counter for totalpktsrecvd
 	* </pre>
 	*/
 	public Long get_pktsrecvdrate() throws Exception {
@@ -240,7 +255,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of responses received on this service or virtual server. (This applies to HTTP/SSL services and servers.)
+	* Rate (/s) counter for totalresponses
 	* </pre>
 	*/
 	public Long get_responsesrate() throws Exception {
@@ -285,7 +300,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Current state of the server.
+	* Current state of the server. Possible values are UP, DOWN, UNKNOWN, OFS(Out of Service), TROFS(Transition Out of Service), TROFS_DOWN(Down When going Out of Service)
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -294,7 +309,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of deferred request on this vserver
+	* Rate (/s) counter for deferredreq
 	* </pre>
 	*/
 	public Long get_deferredreqrate() throws Exception {
@@ -312,7 +327,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of packets sent.
+	* Rate (/s) counter for totalpktssent
 	* </pre>
 	*/
 	public Long get_pktssentrate() throws Exception {
@@ -339,7 +354,7 @@ public class csvserver_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of requests received on this service or virtual server. (This applies to HTTP/SSL services and servers.)
+	* Rate (/s) counter for totalrequests
 	* </pre>
 	*/
 	public Long get_requestsrate() throws Exception {
@@ -408,4 +423,8 @@ public class csvserver_stats extends base_resource
 		return response;
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

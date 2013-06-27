@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.aaa;
@@ -29,6 +35,8 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 	private String policy;
 	private Long priority;
 	private Long bindpolicytype;
+	private String[] builtin;
+	private String windowsprofile;
 	private Long __count;
 
 	/**
@@ -60,7 +68,7 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The policy to be unbound to the AAA user.<br> Minimum length =  1
+	* Name of the policy to be unbound.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_policy(String policy) throws Exception{
@@ -69,11 +77,47 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The policy to be unbound to the AAA user.<br> Minimum length =  1
+	* Name of the policy to be unbound.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_policy() throws Exception {
 		return this.policy;
+	}
+
+	/**
+	* <pre>
+	* Indicates that a variable is a built-in (SYSTEM INTERNAL) type.<br> Possible values = MODIFIABLE, DELETABLE, IMMUTABLE
+	* </pre>
+	*/
+	public void set_builtin(String[] builtin) throws Exception{
+		this.builtin = builtin;
+	}
+
+	/**
+	* <pre>
+	* Indicates that a variable is a built-in (SYSTEM INTERNAL) type.<br> Possible values = MODIFIABLE, DELETABLE, IMMUTABLE
+	* </pre>
+	*/
+	public String[] get_builtin() throws Exception {
+		return this.builtin;
+	}
+
+	/**
+	* <pre>
+	* Name of the negotiate profile to be bound.<br> Minimum length =  1<br> Maximum length =  32
+	* </pre>
+	*/
+	public void set_windowsprofile(String windowsprofile) throws Exception{
+		this.windowsprofile = windowsprofile;
+	}
+
+	/**
+	* <pre>
+	* Name of the negotiate profile to be bound.<br> Minimum length =  1<br> Maximum length =  32
+	* </pre>
+	*/
+	public String get_windowsprofile() throws Exception {
+		return this.windowsprofile;
 	}
 
 	/**
@@ -123,6 +167,7 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 		aaaglobal_aaapreauthenticationpolicy_binding updateresource = new aaaglobal_aaapreauthenticationpolicy_binding();
 		updateresource.policy = resource.policy;
 		updateresource.priority = resource.priority;
+		updateresource.windowsprofile = resource.windowsprofile;
 		return updateresource.update_resource(client);
 	}
 
@@ -134,6 +179,7 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 				updateresources[i] = new aaaglobal_aaapreauthenticationpolicy_binding();
 				updateresources[i].policy = resources[i].policy;
 				updateresources[i].priority = resources[i].priority;
+				updateresources[i].windowsprofile = resources[i].windowsprofile;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -143,6 +189,7 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 	public static base_response delete(nitro_service client, aaaglobal_aaapreauthenticationpolicy_binding resource) throws Exception {
 		aaaglobal_aaapreauthenticationpolicy_binding deleteresource = new aaaglobal_aaapreauthenticationpolicy_binding();
 		deleteresource.policy = resource.policy;
+		deleteresource.windowsprofile = resource.windowsprofile;
 		return deleteresource.delete_resource(client);
 	}
 
@@ -153,6 +200,7 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 			for (int i=0;i<resources.length;i++){
 				deleteresources[i] = new aaaglobal_aaapreauthenticationpolicy_binding();
 				deleteresources[i].policy = resources[i].policy;
+				deleteresources[i].windowsprofile = resources[i].windowsprofile;
 			}
 			result = delete_bulk_request(client, deleteresources);
 		}
@@ -238,5 +286,10 @@ public class aaaglobal_aaapreauthenticationpolicy_binding extends base_resource
 		return 0;
 	}
 
+	public static class builtinEnum {
+		public static final String MODIFIABLE = "MODIFIABLE";
+		public static final String DELETABLE = "DELETABLE";
+		public static final String IMMUTABLE = "IMMUTABLE";
+	}
 
 }

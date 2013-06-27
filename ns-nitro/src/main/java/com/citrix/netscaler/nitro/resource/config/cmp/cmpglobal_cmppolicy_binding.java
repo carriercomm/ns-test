@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cmp;
@@ -35,7 +41,8 @@ public class cmpglobal_cmppolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority assigned to the policy binding.
+	* Positive integer specifying the priority of the policy. The lower the number, the higher the priority. By default, polices within a label are evaluated in the order of their priority numbers.
+In the configuration utility, you can click the Priority field and edit the priority level or drag the entry to a new position in the list. If you drag the entry to a new position, the priority level is updated automatically.
 	* </pre>
 	*/
 	public void set_priority(long priority) throws Exception {
@@ -44,7 +51,8 @@ public class cmpglobal_cmppolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority assigned to the policy binding.
+	* Positive integer specifying the priority of the policy. The lower the number, the higher the priority. By default, polices within a label are evaluated in the order of their priority numbers.
+In the configuration utility, you can click the Priority field and edit the priority level or drag the entry to a new position in the list. If you drag the entry to a new position, the priority level is updated automatically.
 	* </pre>
 	*/
 	public void set_priority(Long priority) throws Exception{
@@ -53,7 +61,8 @@ public class cmpglobal_cmppolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority assigned to the policy binding.
+	* Positive integer specifying the priority of the policy. The lower the number, the higher the priority. By default, polices within a label are evaluated in the order of their priority numbers.
+In the configuration utility, you can click the Priority field and edit the priority level or drag the entry to a new position in the list. If you drag the entry to a new position, the priority level is updated automatically.
 	* </pre>
 	*/
 	public Long get_priority() throws Exception {
@@ -98,7 +107,7 @@ public class cmpglobal_cmppolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The bindpoint to which the policy is bound.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
+	* Bind point to which the policy is bound.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
 	* </pre>
 	*/
 	public void set_type(String type) throws Exception{
@@ -107,7 +116,7 @@ public class cmpglobal_cmppolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The bindpoint to which the policy is bound.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
+	* Bind point to which the policy is bound.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
 	* </pre>
 	*/
 	public String get_type() throws Exception {

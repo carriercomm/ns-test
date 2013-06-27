@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.wi;
@@ -34,7 +40,7 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* Client's Ip Address.
+	* IPv4 or network address of the client for which you want to associate an access method.
 	* </pre>
 	*/
 	public void set_clientipaddress(String clientipaddress) throws Exception{
@@ -43,7 +49,7 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* Client's Ip Address.
+	* IPv4 or network address of the client for which you want to associate an access method.
 	* </pre>
 	*/
 	public String get_clientipaddress() throws Exception {
@@ -52,7 +58,7 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* client NetMask.
+	* Subnet mask associated with the IPv4 or network address specified by the Client IP Address parameter.
 	* </pre>
 	*/
 	public void set_clientnetmask(String clientnetmask) throws Exception{
@@ -61,7 +67,7 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* client NetMask.
+	* Subnet mask associated with the IPv4 or network address specified by the Client IP Address parameter.
 	* </pre>
 	*/
 	public String get_clientnetmask() throws Exception {
@@ -70,7 +76,8 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* secure access method to be applied for client ip range.<br> Possible values = Direct, Alternate, Translated, GatewayDirect, GatewayAlternate, GatewayTranslated
+	* Secure access method to be applied to the IPv4 or network address of the client specified by the Client IP Address parameter.
+            Depending on whether the Web Interface site is configured to use an HTTP or HTTPS virtual server or to use access gateway, you can send clients or access gateway the IP address, or the alternate address, of a XenApp or XenDesktop server. Or, you can send the IP address translated from a mapping entry, which defines mapping of an internal address and port to an external address and port.<br> Possible values = Direct, Alternate, Translated, GatewayDirect, GatewayAlternate, GatewayTranslated
 	* </pre>
 	*/
 	public void set_accessmethod(String accessmethod) throws Exception{
@@ -79,7 +86,8 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* secure access method to be applied for client ip range.<br> Possible values = Direct, Alternate, Translated, GatewayDirect, GatewayAlternate, GatewayTranslated
+	* Secure access method to be applied to the IPv4 or network address of the client specified by the Client IP Address parameter.
+            Depending on whether the Web Interface site is configured to use an HTTP or HTTPS virtual server or to use access gateway, you can send clients or access gateway the IP address, or the alternate address, of a XenApp or XenDesktop server. Or, you can send the IP address translated from a mapping entry, which defines mapping of an internal address and port to an external address and port.<br> Possible values = Direct, Alternate, Translated, GatewayDirect, GatewayAlternate, GatewayTranslated
 	* </pre>
 	*/
 	public String get_accessmethod() throws Exception {
@@ -88,7 +96,7 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* The path of Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
+	* Path to the Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
 	* </pre>
 	*/
 	public void set_sitepath(String sitepath) throws Exception{
@@ -97,7 +105,7 @@ public class wisite_accessmethod_binding extends base_resource
 
 	/**
 	* <pre>
-	* The path of Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
+	* Path to the Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
 	* </pre>
 	*/
 	public String get_sitepath() throws Exception {
@@ -290,6 +298,10 @@ public class wisite_accessmethod_binding extends base_resource
 		public static final String SSLRELAY = "SSLRELAY";
 	}
 	public static class loadbalanceEnum {
+		public static final String ON = "ON";
+		public static final String OFF = "OFF";
+	}
+	public static class recoveryfarmEnum {
 		public static final String ON = "ON";
 		public static final String OFF = "OFF";
 	}

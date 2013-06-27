@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.lb;
@@ -34,7 +40,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* In the rnat path if the sip packet has the src port matching this port configured by the user, we will do SIP processing on it like creating persistence sessions and appending the rport.
+	* Port number with which to match the source port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.
 	* </pre>
 	*/
 	public void set_rnatsrcport(int rnatsrcport) throws Exception {
@@ -43,7 +49,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* In the rnat path if the sip packet has the src port matching this port configured by the user, we will do SIP processing on it like creating persistence sessions and appending the rport.
+	* Port number with which to match the source port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.
 	* </pre>
 	*/
 	public void set_rnatsrcport(Integer rnatsrcport) throws Exception{
@@ -52,7 +58,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* In the rnat path if the sip packet has the src port matching this port configured by the user, we will do SIP processing on it like creating persistence sessions and appending the rport.
+	* Port number with which to match the source port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.
 	* </pre>
 	*/
 	public Integer get_rnatsrcport() throws Exception {
@@ -61,7 +67,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* In the rnat path if the sip packet has the dst port matching this port configured by the user, we will do SIP processing on it like creating persistence sessions and appending the rport.
+	* Port number with which to match the destination port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.
 	* </pre>
 	*/
 	public void set_rnatdstport(int rnatdstport) throws Exception {
@@ -70,7 +76,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* In the rnat path if the sip packet has the dst port matching this port configured by the user, we will do SIP processing on it like creating persistence sessions and appending the rport.
+	* Port number with which to match the destination port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.
 	* </pre>
 	*/
 	public void set_rnatdstport(Integer rnatdstport) throws Exception{
@@ -79,7 +85,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* In the rnat path if the sip packet has the dst port matching this port configured by the user, we will do SIP processing on it like creating persistence sessions and appending the rport.
+	* Port number with which to match the destination port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.
 	* </pre>
 	*/
 	public Integer get_rnatdstport() throws Exception {
@@ -88,7 +94,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* When the 503 message is generated we will inform the client to retry after X seconds which is specified by retryDur.<br> Default value: 120<br> Minimum value =  1
+	* Time, in seconds, for which a client must wait before initiating a connection after receiving a 503 Service Unavailable response from the SIP server. The time value is sent in the "Retry-After" header in the 503 response.<br> Default value: 120<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_retrydur(int retrydur) throws Exception {
@@ -97,7 +103,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* When the 503 message is generated we will inform the client to retry after X seconds which is specified by retryDur.<br> Default value: 120<br> Minimum value =  1
+	* Time, in seconds, for which a client must wait before initiating a connection after receiving a 503 Service Unavailable response from the SIP server. The time value is sent in the "Retry-After" header in the 503 response.<br> Default value: 120<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_retrydur(Integer retrydur) throws Exception{
@@ -106,7 +112,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* When the 503 message is generated we will inform the client to retry after X seconds which is specified by retryDur.<br> Default value: 120<br> Minimum value =  1
+	* Time, in seconds, for which a client must wait before initiating a connection after receiving a 503 Service Unavailable response from the SIP server. The time value is sent in the "Retry-After" header in the 503 response.<br> Default value: 120<br> Minimum value =  1
 	* </pre>
 	*/
 	public Integer get_retrydur() throws Exception {
@@ -115,7 +121,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* Add rport to SIP requests coming on VIP.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Add the rport parameter to the VIA headers of SIP requests that virtual servers receive from clients or servers.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_addrportvip(String addrportvip) throws Exception{
@@ -124,7 +130,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* Add rport to SIP requests coming on VIP.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Add the rport parameter to the VIA headers of SIP requests that virtual servers receive from clients or servers.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_addrportvip() throws Exception {
@@ -133,7 +139,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* If the sip vserver is down we will send the send a 503 message indicating that the service is unavailable. The variable will govern the number of messages we will generate per 10ms.<br> Default value: 100
+	* Maximum number of 503 Service Unavailable responses to generate, once every 10 milliseconds, when a SIP virtual server becomes unavailable.<br> Default value: 100
 	* </pre>
 	*/
 	public void set_sip503ratethreshold(long sip503ratethreshold) throws Exception {
@@ -142,7 +148,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* If the sip vserver is down we will send the send a 503 message indicating that the service is unavailable. The variable will govern the number of messages we will generate per 10ms.<br> Default value: 100
+	* Maximum number of 503 Service Unavailable responses to generate, once every 10 milliseconds, when a SIP virtual server becomes unavailable.<br> Default value: 100
 	* </pre>
 	*/
 	public void set_sip503ratethreshold(Long sip503ratethreshold) throws Exception{
@@ -151,7 +157,7 @@ public class lbsipparameters extends base_resource
 
 	/**
 	* <pre>
-	* If the sip vserver is down we will send the send a 503 message indicating that the service is unavailable. The variable will govern the number of messages we will generate per 10ms.<br> Default value: 100
+	* Maximum number of 503 Service Unavailable responses to generate, once every 10 milliseconds, when a SIP virtual server becomes unavailable.<br> Default value: 100
 	* </pre>
 	*/
 	public Long get_sip503ratethreshold() throws Exception {
@@ -213,11 +219,6 @@ public class lbsipparameters extends base_resource
 	*/
 	public static base_response unset(nitro_service client, lbsipparameters resource, String[] args) throws Exception{
 		lbsipparameters unsetresource = new lbsipparameters();
-		unsetresource.rnatsrcport = resource.rnatsrcport;
-		unsetresource.rnatdstport = resource.rnatdstport;
-		unsetresource.retrydur = resource.retrydur;
-		unsetresource.addrportvip = resource.addrportvip;
-		unsetresource.sip503ratethreshold = resource.sip503ratethreshold;
 		return unsetresource.unset_resource(client,args);
 	}
 

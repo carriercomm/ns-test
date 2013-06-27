@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -30,6 +36,7 @@ public class nd6 extends base_resource
 	private String mac;
 	private String ifnum;
 	private Integer vlan;
+	private Long td;
 
 	//------- Read only Parameter ---------;
 
@@ -41,7 +48,7 @@ public class nd6 extends base_resource
 
 	/**
 	* <pre>
-	* IPv6 address of the adjacent network device that you want to add to the ND6 table.
+	* Link-local IPv6 address of the adjacent network device to add to the ND6 table.
 	* </pre>
 	*/
 	public void set_neighbor(String neighbor) throws Exception{
@@ -50,7 +57,7 @@ public class nd6 extends base_resource
 
 	/**
 	* <pre>
-	* IPv6 address of the adjacent network device that you want to add to the ND6 table.
+	* Link-local IPv6 address of the adjacent network device to add to the ND6 table.
 	* </pre>
 	*/
 	public String get_neighbor() throws Exception {
@@ -77,7 +84,7 @@ public class nd6 extends base_resource
 
 	/**
 	* <pre>
-	* The interface through which the adjacent network device is available, specified in slot/port notation, (for example, 1/3).
+	* Interface through which the adjacent network device is available, specified in slot/port notation (for example, 1/3). Use spaces to separate multiple entries.
 	* </pre>
 	*/
 	public void set_ifnum(String ifnum) throws Exception{
@@ -86,7 +93,7 @@ public class nd6 extends base_resource
 
 	/**
 	* <pre>
-	* The interface through which the adjacent network device is available, specified in slot/port notation, (for example, 1/3).
+	* Interface through which the adjacent network device is available, specified in slot/port notation (for example, 1/3). Use spaces to separate multiple entries.
 	* </pre>
 	*/
 	public String get_ifnum() throws Exception {
@@ -95,7 +102,7 @@ public class nd6 extends base_resource
 
 	/**
 	* <pre>
-	* An integer value that uniquely identifies the VLAN on which the adjacent network device exists. Minimum value: 2. Maximum value: 4094.
+	* Integer value that uniquely identifies the VLAN on which the adjacent network device exists.<br> Minimum value =  1<br> Maximum value =  4094
 	* </pre>
 	*/
 	public void set_vlan(int vlan) throws Exception {
@@ -104,7 +111,7 @@ public class nd6 extends base_resource
 
 	/**
 	* <pre>
-	* An integer value that uniquely identifies the VLAN on which the adjacent network device exists. Minimum value: 2. Maximum value: 4094.
+	* Integer value that uniquely identifies the VLAN on which the adjacent network device exists.<br> Minimum value =  1<br> Maximum value =  4094
 	* </pre>
 	*/
 	public void set_vlan(Integer vlan) throws Exception{
@@ -113,11 +120,38 @@ public class nd6 extends base_resource
 
 	/**
 	* <pre>
-	* An integer value that uniquely identifies the VLAN on which the adjacent network device exists. Minimum value: 2. Maximum value: 4094.
+	* Integer value that uniquely identifies the VLAN on which the adjacent network device exists.<br> Minimum value =  1<br> Maximum value =  4094
 	* </pre>
 	*/
 	public Integer get_vlan() throws Exception {
 		return this.vlan;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
 	}
 
 	/**
@@ -199,6 +233,7 @@ public class nd6 extends base_resource
 		addresource.mac = resource.mac;
 		addresource.ifnum = resource.ifnum;
 		addresource.vlan = resource.vlan;
+		addresource.td = resource.td;
 		return addresource.add_resource(client);
 	}
 
@@ -215,6 +250,7 @@ public class nd6 extends base_resource
 				addresources[i].mac = resources[i].mac;
 				addresources[i].ifnum = resources[i].ifnum;
 				addresources[i].vlan = resources[i].vlan;
+				addresources[i].td = resources[i].td;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -260,6 +296,7 @@ public class nd6 extends base_resource
 		nd6 deleteresource = new nd6();
 		deleteresource.neighbor = resource.neighbor;
 		deleteresource.vlan = resource.vlan;
+		deleteresource.td = resource.td;
 		return deleteresource.delete_resource(client);
 	}
 
@@ -290,6 +327,7 @@ public class nd6 extends base_resource
 				deleteresources[i] = new nd6();
 				deleteresources[i].neighbor = resources[i].neighbor;
 				deleteresources[i].vlan = resources[i].vlan;
+				deleteresources[i].td = resources[i].td;
 			}
 			result = delete_bulk_request(client, deleteresources);
 		}
@@ -313,26 +351,25 @@ public class nd6 extends base_resource
 		return response;
 	}
 	/**
-	* Use this API to fetch nd6 resource of given name .
+	* Use this API to fetch a nd6 resource.
 	*/
-	public static nd6 get(nitro_service service, String neighbor) throws Exception{
-		nd6 obj = new nd6();
-		obj.set_neighbor(neighbor);
-		nd6 response = (nd6) obj.get_resource(service);
+	public static nd6 get(nitro_service service, nd6 obj) throws Exception{
+		options option = new options();
+		option.set_args(nitro_util.object_to_string_withoutquotes(obj));
+		nd6 response = (nd6) obj.get_resource(service,option);
 		return response;
 	}
 
 	/**
-	* Use this API to fetch nd6 resources of given names .
+	* Use this API to fetch a nd6 resources.
 	*/
-	public static nd6[] get(nitro_service service, String neighbor[]) throws Exception{
-		if (neighbor !=null && neighbor.length>0) {
-			nd6 response[] = new nd6[neighbor.length];
-			nd6 obj[] = new nd6[neighbor.length];
-			for (int i=0;i<neighbor.length;i++) {
-				obj[i] = new nd6();
-				obj[i].set_neighbor(neighbor[i]);
-				response[i] = (nd6) obj[i].get_resource(service);
+	public static nd6[] get(nitro_service service, nd6 obj[]) throws Exception{
+		if (obj != null && obj.length > 0) {
+			nd6 response[] = new nd6[obj.length];
+			for (int i=0;i<obj.length;i++) {
+				options option = new options();
+				option.set_args(nitro_util.object_to_string_withoutquotes(obj[i]));
+				response[i] = (nd6) obj[i].get_resource(service,option);
 			}
 			return response;
 		}

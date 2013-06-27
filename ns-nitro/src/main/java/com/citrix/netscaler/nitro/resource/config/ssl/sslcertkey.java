@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -35,6 +41,7 @@ public class sslcertkey extends base_resource
 	private String passplain;
 	private String expirymonitor;
 	private Long notificationperiod;
+	private String bundle;
 	private String linkcertkeyname;
 	private Boolean nodomaincheck;
 
@@ -59,7 +66,10 @@ public class sslcertkey extends base_resource
 
 	/**
 	* <pre>
-	* The name of the certificate and private-key pair.<br> Minimum length =  1
+	* Name for the certificate and private-key pair. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the certificate-key pair is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my cert" or 'my cert').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_certkey(String certkey) throws Exception{
@@ -68,7 +78,10 @@ public class sslcertkey extends base_resource
 
 	/**
 	* <pre>
-	* The name of the certificate and private-key pair.<br> Minimum length =  1
+	* Name for the certificate and private-key pair. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the certificate-key pair is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my cert" or 'my cert').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_certkey() throws Exception {
@@ -77,7 +90,7 @@ public class sslcertkey extends base_resource
 
 	/**
 	* <pre>
-	* The file name and path for the X509 certificate file. The certificate file should be present on the system device (HDD). The default input path for the certificate file is /nsconfig/ssl/.<br> Minimum length =  1
+	* Name of and, optionally, path to the X509 certificate file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_cert(String cert) throws Exception{
@@ -86,7 +99,7 @@ public class sslcertkey extends base_resource
 
 	/**
 	* <pre>
-	* The file name and path for the X509 certificate file. The certificate file should be present on the system device (HDD). The default input path for the certificate file is /nsconfig/ssl/.<br> Minimum length =  1
+	* Name of and, optionally, path to the X509 certificate file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_cert() throws Exception {
@@ -95,11 +108,7 @@ public class sslcertkey extends base_resource
 
 	/**
 	* <pre>
-	* The file name and path for the private-key file. The private-key file should be present on the system device (HDD). The default input path for the key file is /nsconfig/ssl/.
-
-Notes:
-1) This argument is optional when adding a Certificate-Authority (CA) certificate file. In this case the CA's private-key will not be available to the user.
-2) The System's FIPS system does not support external keys (non-FIPS keys). On a System's FIPS system, you will not be able to load keys from a local storage device such as a hard disc or flash memory.<br> Minimum length =  1
+	* Name of and, optionally, path to the private-key file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_key(String key) throws Exception{
@@ -108,11 +117,7 @@ Notes:
 
 	/**
 	* <pre>
-	* The file name and path for the private-key file. The private-key file should be present on the system device (HDD). The default input path for the key file is /nsconfig/ssl/.
-
-Notes:
-1) This argument is optional when adding a Certificate-Authority (CA) certificate file. In this case the CA's private-key will not be available to the user.
-2) The System's FIPS system does not support external keys (non-FIPS keys). On a System's FIPS system, you will not be able to load keys from a local storage device such as a hard disc or flash memory.<br> Minimum length =  1
+	* Name of and, optionally, path to the private-key file that is used to form the certificate-key pair. The certificate file should be present on the appliance's hard-disk drive or solid-state drive. Storing a certificate in any location other than the default might cause inconsistency in a high availability setup. /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_key() throws Exception {
@@ -121,9 +126,7 @@ Notes:
 
 	/**
 	* <pre>
-	* The pass-phrase that was used to encrypt the private-key. This option can be used to load encrypted private-keys. The maximum length of the pass-phrase supported is 32 characters.
-
-			Note: Password protected private key is supported only for the PEM format.
+	* Passphrase that was used to encrypt the private-key. Use this option to load encrypted private-keys in PEM format.
 	* </pre>
 	*/
 	public void set_password(boolean password) throws Exception {
@@ -132,9 +135,7 @@ Notes:
 
 	/**
 	* <pre>
-	* The pass-phrase that was used to encrypt the private-key. This option can be used to load encrypted private-keys. The maximum length of the pass-phrase supported is 32 characters.
-
-			Note: Password protected private key is supported only for the PEM format.
+	* Passphrase that was used to encrypt the private-key. Use this option to load encrypted private-keys in PEM format.
 	* </pre>
 	*/
 	public void set_password(Boolean password) throws Exception{
@@ -143,9 +144,7 @@ Notes:
 
 	/**
 	* <pre>
-	* The pass-phrase that was used to encrypt the private-key. This option can be used to load encrypted private-keys. The maximum length of the pass-phrase supported is 32 characters.
-
-			Note: Password protected private key is supported only for the PEM format.
+	* Passphrase that was used to encrypt the private-key. Use this option to load encrypted private-keys in PEM format.
 	* </pre>
 	*/
 	public Boolean get_password() throws Exception {
@@ -154,7 +153,7 @@ Notes:
 
 	/**
 	* <pre>
-	* The name of the FIPS key. The FIPS key is created inside the FIPS HSM (Hardware Security Module). This is applicable only to the SSL FIPS system.<br> Minimum length =  1
+	* Name of the FIPS key that was created inside the Hardware Security Module (HSM) of a FIPS appliance, or a key that was imported into the HSM.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_fipskey(String fipskey) throws Exception{
@@ -163,7 +162,7 @@ Notes:
 
 	/**
 	* <pre>
-	* The name of the FIPS key. The FIPS key is created inside the FIPS HSM (Hardware Security Module). This is applicable only to the SSL FIPS system.<br> Minimum length =  1
+	* Name of the FIPS key that was created inside the Hardware Security Module (HSM) of a FIPS appliance, or a key that was imported into the HSM.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_fipskey() throws Exception {
@@ -172,9 +171,9 @@ Notes:
 
 	/**
 	* <pre>
-	* The input format of the certificate and the private-key files. The two formats supported by the system are:
-	PEM: Privacy Enhanced Mail
-	DER: Distinguished Encoding Rule.<br> Default value: FORMAT_PEM<br> Possible values = DER, PEM
+	* Input format of the certificate and the private-key files. The two formats supported by the appliance are:
+PEM - Privacy Enhanced Mail
+DER - Distinguished Encoding Rule.<br> Default value: PEM<br> Possible values = DER, PEM
 	* </pre>
 	*/
 	public void set_inform(String inform) throws Exception{
@@ -183,9 +182,9 @@ Notes:
 
 	/**
 	* <pre>
-	* The input format of the certificate and the private-key files. The two formats supported by the system are:
-	PEM: Privacy Enhanced Mail
-	DER: Distinguished Encoding Rule.<br> Default value: FORMAT_PEM<br> Possible values = DER, PEM
+	* Input format of the certificate and the private-key files. The two formats supported by the appliance are:
+PEM - Privacy Enhanced Mail
+DER - Distinguished Encoding Rule.<br> Default value: PEM<br> Possible values = DER, PEM
 	* </pre>
 	*/
 	public String get_inform() throws Exception {
@@ -194,8 +193,7 @@ Notes:
 
 	/**
 	* <pre>
-	* This is mostly used for API purpose.The pass-phrase that was used to encrypt the private-key. This option can be used to load encrypted private-keys. The maximum length of the pass-phrase supported is 32 characters.
-                      Note: Password protected private key is supported only for the PEM format.<br> Minimum length =  1
+	* Pass phrase used to encrypt the private-key. Required when adding an encrypted private-key in PEM format.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_passplain(String passplain) throws Exception{
@@ -204,8 +202,7 @@ Notes:
 
 	/**
 	* <pre>
-	* This is mostly used for API purpose.The pass-phrase that was used to encrypt the private-key. This option can be used to load encrypted private-keys. The maximum length of the pass-phrase supported is 32 characters.
-                      Note: Password protected private key is supported only for the PEM format.<br> Minimum length =  1
+	* Pass phrase used to encrypt the private-key. Required when adding an encrypted private-key in PEM format.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_passplain() throws Exception {
@@ -214,7 +211,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Alert before the certificate is about to expire.<br> Possible values = ENABLED, DISABLED
+	* Issue an alert when the certificate is about to expire.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_expirymonitor(String expirymonitor) throws Exception{
@@ -223,7 +220,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Alert before the certificate is about to expire.<br> Possible values = ENABLED, DISABLED
+	* Issue an alert when the certificate is about to expire.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_expirymonitor() throws Exception {
@@ -232,7 +229,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Number of days in advance when an alert needs to be generated for a certificate which is about to expire.<br> Minimum value =  10<br> Maximum value =  100
+	* Time, in number of days, before certificate expiration, at which to generate an alert that the certificate is about to expire.<br> Minimum value =  10<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_notificationperiod(long notificationperiod) throws Exception {
@@ -241,7 +238,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Number of days in advance when an alert needs to be generated for a certificate which is about to expire.<br> Minimum value =  10<br> Maximum value =  100
+	* Time, in number of days, before certificate expiration, at which to generate an alert that the certificate is about to expire.<br> Minimum value =  10<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_notificationperiod(Long notificationperiod) throws Exception{
@@ -250,7 +247,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Number of days in advance when an alert needs to be generated for a certificate which is about to expire.<br> Minimum value =  10<br> Maximum value =  100
+	* Time, in number of days, before certificate expiration, at which to generate an alert that the certificate is about to expire.<br> Minimum value =  10<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_notificationperiod() throws Exception {
@@ -259,7 +256,25 @@ Notes:
 
 	/**
 	* <pre>
-	* The name of the Certificate-Authority.<br> Minimum length =  1
+	* Parse the certificate chain as a single file after linking the server certificate to its issuer's certificate within the file.<br> Default value: NO<br> Possible values = YES, NO
+	* </pre>
+	*/
+	public void set_bundle(String bundle) throws Exception{
+		this.bundle = bundle;
+	}
+
+	/**
+	* <pre>
+	* Parse the certificate chain as a single file after linking the server certificate to its issuer's certificate within the file.<br> Default value: NO<br> Possible values = YES, NO
+	* </pre>
+	*/
+	public String get_bundle() throws Exception {
+		return this.bundle;
+	}
+
+	/**
+	* <pre>
+	* Name of the Certificate Authority certificate-key pair to which to link a certificate-key pair.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_linkcertkeyname(String linkcertkeyname) throws Exception{
@@ -268,7 +283,7 @@ Notes:
 
 	/**
 	* <pre>
-	* The name of the Certificate-Authority.<br> Minimum length =  1
+	* Name of the Certificate Authority certificate-key pair to which to link a certificate-key pair.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_linkcertkeyname() throws Exception {
@@ -277,7 +292,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Specify this option to override the check for matching domain names during certificate update operation.
+	* Override the check for matching domain names during a certificate update operation.
 	* </pre>
 	*/
 	public void set_nodomaincheck(boolean nodomaincheck) throws Exception {
@@ -286,7 +301,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Specify this option to override the check for matching domain names during certificate update operation.
+	* Override the check for matching domain names during a certificate update operation.
 	* </pre>
 	*/
 	public void set_nodomaincheck(Boolean nodomaincheck) throws Exception{
@@ -295,7 +310,7 @@ Notes:
 
 	/**
 	* <pre>
-	* Specify this option to override the check for matching domain names during certificate update operation.
+	* Override the check for matching domain names during a certificate update operation.
 	* </pre>
 	*/
 	public Boolean get_nodomaincheck() throws Exception {
@@ -485,6 +500,7 @@ Notes:
 		addresource.passplain = resource.passplain;
 		addresource.expirymonitor = resource.expirymonitor;
 		addresource.notificationperiod = resource.notificationperiod;
+		addresource.bundle = resource.bundle;
 		return addresource.add_resource(client);
 	}
 
@@ -506,6 +522,7 @@ Notes:
 				addresources[i].passplain = resources[i].passplain;
 				addresources[i].expirymonitor = resources[i].expirymonitor;
 				addresources[i].notificationperiod = resources[i].notificationperiod;
+				addresources[i].bundle = resources[i].bundle;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -595,21 +612,9 @@ Notes:
 	* Use this API to unset the properties of sslcertkey resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String certkey, String args[]) throws Exception {
-		sslcertkey unsetresource = new sslcertkey();
-		unsetresource.certkey = certkey;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of sslcertkey resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, sslcertkey resource, String[] args) throws Exception{
 		sslcertkey unsetresource = new sslcertkey();
 		unsetresource.certkey = resource.certkey;
-		unsetresource.expirymonitor = resource.expirymonitor;
-		unsetresource.notificationperiod = resource.notificationperiod;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -641,8 +646,6 @@ Notes:
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new sslcertkey();
 				unsetresources[i].certkey = resources[i].certkey;
-				unsetresources[i].expirymonitor = resources[i].expirymonitor;
-				unsetresources[i].notificationperiod = resources[i].notificationperiod;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -852,6 +855,10 @@ Notes:
 		return 0;
 	}
 
+	public static class bundleEnum {
+		public static final String YES = "YES";
+		public static final String NO = "NO";
+	}
 	public static class statusEnum {
 		public static final String Valid = "Valid";
 		public static final String Not_yet_valid = "Not yet valid";

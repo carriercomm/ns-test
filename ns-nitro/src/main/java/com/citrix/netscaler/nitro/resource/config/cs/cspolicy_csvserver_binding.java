@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cs;
@@ -40,7 +46,7 @@ public class cspolicy_csvserver_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the policy to be displayed. if no name is given then all policies will be displayed.<br> Minimum length =  1
+	* Name of the content switching policy to display. If this parameter is omitted, details of all the policies are displayed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_policyname(String policyname) throws Exception{
@@ -49,7 +55,7 @@ public class cspolicy_csvserver_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the policy to be displayed. if no name is given then all policies will be displayed.<br> Minimum length =  1
+	* Name of the content switching policy to display. If this parameter is omitted, details of all the policies are displayed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_policyname() throws Exception {
@@ -112,9 +118,7 @@ public class cspolicy_csvserver_binding extends base_resource
 
 	/**
 	* <pre>
-	* The URL, with wildcards.
-Specify the string value in this format:
-// [[prefix ] [*]] [.suffix].<br> Minimum length =  1<br> Maximum length =  208
+	* URL string that is matched with the URL of a request. Can contain a wildcard character. Specify the string value in the following format: [[prefix] [*]] [.suffix].<br> Minimum length =  1<br> Maximum length =  208
 	* </pre>
 	*/
 	public String get_url() throws Exception {
@@ -123,7 +127,7 @@ Specify the string value in this format:
 
 	/**
 	* <pre>
-	* Content switching action to be used by the policy.
+	* Content switching action that names the target load balancing virtual server to which the traffic is switched.
 	* </pre>
 	*/
 	public String get_action() throws Exception {

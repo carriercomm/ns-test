@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ns;
@@ -32,7 +38,7 @@ public class nshostname extends base_resource
 
 	/**
 	* <pre>
-	* Desired host name.<br> Minimum length =  1<br> Maximum length =  255
+	* Host name for the NetScaler appliance.<br> Minimum length =  1<br> Maximum length =  255
 	* </pre>
 	*/
 	public void set_hostname(String hostname) throws Exception{
@@ -41,7 +47,7 @@ public class nshostname extends base_resource
 
 	/**
 	* <pre>
-	* Desired host name.<br> Minimum length =  1<br> Maximum length =  255
+	* Host name for the NetScaler appliance.<br> Minimum length =  1<br> Maximum length =  255
 	* </pre>
 	*/
 	public String get_hostname() throws Exception {
@@ -50,7 +56,7 @@ public class nshostname extends base_resource
 
 	/**
 	* <pre>
-	* The owner node in a Cluster for which we are setting the hostname. Owner node can vary from 0 to 31.<br> Default value: 255<br> Minimum value =  0<br> Maximum value =  31
+	* ID of the cluster node for which you are setting the hostname. Can be configured only through the cluster IP address.<br> Default value: 255<br> Minimum value =  0<br> Maximum value =  31
 	* </pre>
 	*/
 	public void set_ownernode(long ownernode) throws Exception {
@@ -59,7 +65,7 @@ public class nshostname extends base_resource
 
 	/**
 	* <pre>
-	* The owner node in a Cluster for which we are setting the hostname. Owner node can vary from 0 to 31.<br> Default value: 255<br> Minimum value =  0<br> Maximum value =  31
+	* ID of the cluster node for which you are setting the hostname. Can be configured only through the cluster IP address.<br> Default value: 255<br> Minimum value =  0<br> Maximum value =  31
 	* </pre>
 	*/
 	public void set_ownernode(Long ownernode) throws Exception{
@@ -68,7 +74,7 @@ public class nshostname extends base_resource
 
 	/**
 	* <pre>
-	* The owner node in a Cluster for which we are setting the hostname. Owner node can vary from 0 to 31.<br> Default value: 255<br> Minimum value =  0<br> Maximum value =  31
+	* ID of the cluster node for which you are setting the hostname. Can be configured only through the cluster IP address.<br> Default value: 255<br> Minimum value =  0<br> Maximum value =  31
 	* </pre>
 	*/
 	public Long get_ownernode() throws Exception {

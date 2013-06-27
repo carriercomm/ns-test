@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ntp;
@@ -33,7 +39,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies if NTP AUTH is enabled or not. Default is YES.<br> Default value: YES<br> Possible values = YES, NO
+	* Apply NTP authentication, which enables the NTP client (NetScaler) to verify that the server is in fact known and trusted.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_authentication(String authentication) throws Exception{
@@ -42,7 +48,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies if NTP AUTH is enabled or not. Default is YES.<br> Default value: YES<br> Possible values = YES, NO
+	* Apply NTP authentication, which enables the NTP client (NetScaler) to verify that the server is in fact known and trusted.<br> Default value: YES<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_authentication() throws Exception {
@@ -51,7 +57,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the trusted keys entered.<br> Minimum value =  1<br> Maximum value =  65534
+	* Key identifiers that are trusted for server authentication with symmetric key cryptography in the keys file.<br> Minimum value =  1<br> Maximum value =  65534
 	* </pre>
 	*/
 	public void set_trustedkey(Long[] trustedkey) throws Exception{
@@ -60,7 +66,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the trusted keys entered.<br> Minimum value =  1<br> Maximum value =  65534
+	* Key identifiers that are trusted for server authentication with symmetric key cryptography in the keys file.<br> Minimum value =  1<br> Maximum value =  65534
 	* </pre>
 	*/
 	public Long[] get_trustedkey() throws Exception {
@@ -69,7 +75,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the interval between regenerations of the session key list used with the Autokey protocol, as a power of 2 in seconds.<br> Default value: 12<br> Minimum value =  0<br> Maximum value =  32
+	* Autokey protocol requires the keys to be refreshed periodically. This parameter specifies the interval between regenerations of new session keys. In seconds, expressed as a power of 2.<br> Default value: 12<br> Minimum value =  0<br> Maximum value =  32
 	* </pre>
 	*/
 	public void set_autokeylogsec(long autokeylogsec) throws Exception {
@@ -78,7 +84,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the interval between regenerations of the session key list used with the Autokey protocol, as a power of 2 in seconds.<br> Default value: 12<br> Minimum value =  0<br> Maximum value =  32
+	* Autokey protocol requires the keys to be refreshed periodically. This parameter specifies the interval between regenerations of new session keys. In seconds, expressed as a power of 2.<br> Default value: 12<br> Minimum value =  0<br> Maximum value =  32
 	* </pre>
 	*/
 	public void set_autokeylogsec(Long autokeylogsec) throws Exception{
@@ -87,7 +93,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the interval between regenerations of the session key list used with the Autokey protocol, as a power of 2 in seconds.<br> Default value: 12<br> Minimum value =  0<br> Maximum value =  32
+	* Autokey protocol requires the keys to be refreshed periodically. This parameter specifies the interval between regenerations of new session keys. In seconds, expressed as a power of 2.<br> Default value: 12<br> Minimum value =  0<br> Maximum value =  32
 	* </pre>
 	*/
 	public Long get_autokeylogsec() throws Exception {
@@ -96,7 +102,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the interval between re-randomization of certain cryptographic values used by the Autokey scheme, as a power of 2 in seconds.<br> Default value: 16<br> Minimum value =  0<br> Maximum value =  32
+	* Interval between re-randomizations of the autokey seeds to prevent brute-force attacks on the autokey algorithms.<br> Default value: 16<br> Minimum value =  0<br> Maximum value =  32
 	* </pre>
 	*/
 	public void set_revokelogsec(long revokelogsec) throws Exception {
@@ -105,7 +111,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the interval between re-randomization of certain cryptographic values used by the Autokey scheme, as a power of 2 in seconds.<br> Default value: 16<br> Minimum value =  0<br> Maximum value =  32
+	* Interval between re-randomizations of the autokey seeds to prevent brute-force attacks on the autokey algorithms.<br> Default value: 16<br> Minimum value =  0<br> Maximum value =  32
 	* </pre>
 	*/
 	public void set_revokelogsec(Long revokelogsec) throws Exception{
@@ -114,7 +120,7 @@ public class ntpparam extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the interval between re-randomization of certain cryptographic values used by the Autokey scheme, as a power of 2 in seconds.<br> Default value: 16<br> Minimum value =  0<br> Maximum value =  32
+	* Interval between re-randomizations of the autokey seeds to prevent brute-force attacks on the autokey algorithms.<br> Default value: 16<br> Minimum value =  0<br> Maximum value =  32
 	* </pre>
 	*/
 	public Long get_revokelogsec() throws Exception {
@@ -175,10 +181,6 @@ public class ntpparam extends base_resource
 	*/
 	public static base_response unset(nitro_service client, ntpparam resource, String[] args) throws Exception{
 		ntpparam unsetresource = new ntpparam();
-		unsetresource.authentication = resource.authentication;
-		unsetresource.trustedkey = resource.trustedkey;
-		unsetresource.autokeylogsec = resource.autokeylogsec;
-		unsetresource.revokelogsec = resource.revokelogsec;
 		return unsetresource.unset_resource(client,args);
 	}
 

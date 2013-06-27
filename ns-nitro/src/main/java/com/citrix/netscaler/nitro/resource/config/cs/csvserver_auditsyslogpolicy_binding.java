@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cs;
@@ -67,7 +73,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Bindpoint, specifying where to bind the policy. This field is applicable only to rewrite policies.<br> Possible values = REQUEST, RESPONSE
+	* For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time.<br> Possible values = REQUEST, RESPONSE
 	* </pre>
 	*/
 	public void set_bindpoint(String bindpoint) throws Exception{
@@ -76,7 +82,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Bindpoint, specifying where to bind the policy. This field is applicable only to rewrite policies.<br> Possible values = REQUEST, RESPONSE
+	* For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time.<br> Possible values = REQUEST, RESPONSE
 	* </pre>
 	*/
 	public String get_bindpoint() throws Exception {
@@ -103,7 +109,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the label to be invoked.
 	* </pre>
 	*/
 	public void set_labelname(String labelname) throws Exception{
@@ -112,7 +118,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the label to be invoked.
 	* </pre>
 	*/
 	public String get_labelname() throws Exception {
@@ -121,7 +127,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add cs vserver or add cr vserver command) for which the content switching policy will be set.<br> Minimum length =  1
+	* Name of the content switching virtual server to which the content switching policy applies.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -130,7 +136,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add cs vserver or add cr vserver command) for which the content switching policy will be set.<br> Minimum length =  1
+	* Name of the content switching virtual server to which the content switching policy applies.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -139,7 +145,19 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Expression specifying the priority of the next policy to be evaluated if the current policy rule evaluates to TRUE. This applies only to advanced content switching policy expressions and to application firewall, transform, cache, rewrite and responder policies.
+	* Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT  Evaluate the policy with the next higher priority number.
+* END  End policy evaluation.
+* USE_INVOCATION_RESULT  Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policys priority.
+* The expression evaluates to a priority number that is between the current policys priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
 	* </pre>
 	*/
 	public void set_gotopriorityexpression(String gotopriorityexpression) throws Exception{
@@ -148,7 +166,19 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Expression specifying the priority of the next policy to be evaluated if the current policy rule evaluates to TRUE. This applies only to advanced content switching policy expressions and to application firewall, transform, cache, rewrite and responder policies.
+	* Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT  Evaluate the policy with the next higher priority number.
+* END  End policy evaluation.
+* USE_INVOCATION_RESULT  Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a priority number that is numerically higher than the highest numbered priority, policy evaluation ends.
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policys priority.
+* The expression evaluates to a priority number that is between the current policys priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.
 	* </pre>
 	*/
 	public String get_gotopriorityexpression() throws Exception {
@@ -157,7 +187,9 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add lb vserver command) to which content will be switched.<br> Minimum length =  1
+	* Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE.
+Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1
+Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_targetlbvserver(String targetlbvserver) throws Exception{
@@ -166,7 +198,9 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add lb vserver command) to which content will be switched.<br> Minimum length =  1
+	* Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE.
+Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1
+Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_targetlbvserver() throws Exception {
@@ -175,7 +209,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag. This argument applies only to application firewall, transform, cache, rewrite and responder policies.
+	* Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).
 	* </pre>
 	*/
 	public void set_invoke(boolean invoke) throws Exception {
@@ -184,7 +218,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag. This argument applies only to application firewall, transform, cache, rewrite and responder policies.
+	* Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).
 	* </pre>
 	*/
 	public void set_invoke(Boolean invoke) throws Exception{
@@ -193,7 +227,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag. This argument applies only to application firewall, transform, cache, rewrite and responder policies.
+	* Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).
 	* </pre>
 	*/
 	public Boolean get_invoke() throws Exception {
@@ -202,7 +236,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation. Applicable only to application firewall, transform, cache, rewrite and responder policy bindings.<br> Possible values = reqvserver, resvserver, policylabel
+	* Type of label to be invoked.<br> Possible values = reqvserver, resvserver, policylabel
 	* </pre>
 	*/
 	public void set_labeltype(String labeltype) throws Exception{
@@ -211,7 +245,7 @@ public class csvserver_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation. Applicable only to application firewall, transform, cache, rewrite and responder policy bindings.<br> Possible values = reqvserver, resvserver, policylabel
+	* Type of label to be invoked.<br> Possible values = reqvserver, resvserver, policylabel
 	* </pre>
 	*/
 	public String get_labeltype() throws Exception {

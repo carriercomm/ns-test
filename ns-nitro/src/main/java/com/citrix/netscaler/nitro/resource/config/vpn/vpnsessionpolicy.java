@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.vpn;
@@ -37,7 +43,7 @@ public class vpnsessionpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The name for the new vpn session policy.<br> Minimum length =  1
+	* Name for the new session policy that is applied after the user logs on to Access Gateway.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -46,7 +52,7 @@ public class vpnsessionpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The name for the new vpn session policy.<br> Minimum length =  1
+	* Name for the new session policy that is applied after the user logs on to Access Gateway.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -55,7 +61,13 @@ public class vpnsessionpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The rule to be evaluated in the policy. Rules are combinations of Expressions. Expressions are simple conditions, such as a test for equality, applied to operands, such as a URL string or an IP address. Expression syntax is described in the Installation and Configuration Guide.
+	* Expression, or name of a named expression, specifying the traffic that matches the policy. Can be written in either default or classic syntax. 
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 	* </pre>
 	*/
 	public void set_rule(String rule) throws Exception{
@@ -64,7 +76,13 @@ public class vpnsessionpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The rule to be evaluated in the policy. Rules are combinations of Expressions. Expressions are simple conditions, such as a test for equality, applied to operands, such as a URL string or an IP address. Expression syntax is described in the Installation and Configuration Guide.
+	* Expression, or name of a named expression, specifying the traffic that matches the policy. Can be written in either default or classic syntax. 
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 	* </pre>
 	*/
 	public String get_rule() throws Exception {
@@ -73,7 +91,7 @@ public class vpnsessionpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The action to be performed when the rule is matched.<br> Minimum length =  1
+	* Action to be applied by the new session policy if the rule criteria are met.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_action(String action) throws Exception{
@@ -82,7 +100,7 @@ public class vpnsessionpolicy extends base_resource
 
 	/**
 	* <pre>
-	* The action to be performed when the rule is matched.<br> Minimum length =  1
+	* Action to be applied by the new session policy if the rule criteria are met.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_action() throws Exception {
@@ -244,21 +262,9 @@ public class vpnsessionpolicy extends base_resource
 	* Use this API to unset the properties of vpnsessionpolicy resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		vpnsessionpolicy unsetresource = new vpnsessionpolicy();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of vpnsessionpolicy resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, vpnsessionpolicy resource, String[] args) throws Exception{
 		vpnsessionpolicy unsetresource = new vpnsessionpolicy();
 		unsetresource.name = resource.name;
-		unsetresource.rule = resource.rule;
-		unsetresource.action = resource.action;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -290,8 +296,6 @@ public class vpnsessionpolicy extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new vpnsessionpolicy();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].rule = resources[i].rule;
-				unsetresources[i].action = resources[i].action;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

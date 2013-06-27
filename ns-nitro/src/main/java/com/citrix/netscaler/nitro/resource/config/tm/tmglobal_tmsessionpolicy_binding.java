@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.tm;
@@ -29,6 +35,7 @@ public class tmglobal_tmsessionpolicy_binding extends base_resource
 	private String policyname;
 	private Long priority;
 	private Long bindpolicytype;
+	private String[] builtin;
 	private Long __count;
 
 	/**
@@ -56,6 +63,24 @@ public class tmglobal_tmsessionpolicy_binding extends base_resource
 	*/
 	public Long get_priority() throws Exception {
 		return this.priority;
+	}
+
+	/**
+	* <pre>
+	* Indicates that a variable is a built-in (SYSTEM INTERNAL) type.<br> Possible values = MODIFIABLE, DELETABLE, IMMUTABLE
+	* </pre>
+	*/
+	public void set_builtin(String[] builtin) throws Exception{
+		this.builtin = builtin;
+	}
+
+	/**
+	* <pre>
+	* Indicates that a variable is a built-in (SYSTEM INTERNAL) type.<br> Possible values = MODIFIABLE, DELETABLE, IMMUTABLE
+	* </pre>
+	*/
+	public String[] get_builtin() throws Exception {
+		return this.builtin;
 	}
 
 	/**
@@ -238,5 +263,10 @@ public class tmglobal_tmsessionpolicy_binding extends base_resource
 		return 0;
 	}
 
+	public static class builtinEnum {
+		public static final String MODIFIABLE = "MODIFIABLE";
+		public static final String DELETABLE = "DELETABLE";
+		public static final String IMMUTABLE = "IMMUTABLE";
+	}
 
 }

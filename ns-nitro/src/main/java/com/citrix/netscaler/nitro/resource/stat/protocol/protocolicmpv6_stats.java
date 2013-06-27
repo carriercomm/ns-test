@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.protocol;
@@ -26,6 +32,7 @@ class protocolicmpv6_response extends base_response
 
 public class protocolicmpv6_stats extends base_resource
 {
+	private String clearstats;
 	private Long icmpv6totrxpkts;
 	private Long icmpv6rxpktsrate;
 	private Long icmpv6totrxbytes;
@@ -67,6 +74,24 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
+	}
+
+	/**
+	* <pre>
 	* ICMPv6 neighbor solicitation packets transmitted. These packets are sent to get the link layer addresses of neighboring nodes or to confirm that they are reachable.
 	* </pre>
 	*/
@@ -76,7 +101,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 packets transmitted.
+	* Rate (/s) counter for icmpv6tottxpkts
 	* </pre>
 	*/
 	public Long get_icmpv6txpktsrate() throws Exception {
@@ -130,7 +155,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 neighbor advertisement packets transmitted. These packets are sent in response to a neighbor solicitation packet, or if the link layer address of this node has changed.
+	* Rate (/s) counter for icmpv6tottxna
 	* </pre>
 	*/
 	public Long get_icmpv6txnarate() throws Exception {
@@ -139,7 +164,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 router solicitation packets transmitted. These packets are sent to request neighboring routers to generate router advertisements immediately rather than wait for the next defined time.
+	* Rate (/s) counter for icmpv6tottxrs
 	* </pre>
 	*/
 	public Long get_icmpv6txrsrate() throws Exception {
@@ -175,7 +200,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 packets received.
+	* Rate (/s) counter for icmpv6totrxpkts
 	* </pre>
 	*/
 	public Long get_icmpv6rxpktsrate() throws Exception {
@@ -202,7 +227,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 Ping Echo Reply packets received.
+	* Rate (/s) counter for icmpv6totrxechoreply
 	* </pre>
 	*/
 	public Long get_icmpv6rxechoreplyrate() throws Exception {
@@ -211,7 +236,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 Ping Echo Request packets transmitted.
+	* Rate (/s) counter for icmpv6tottxechoreq
 	* </pre>
 	*/
 	public Long get_icmpv6txechoreqrate() throws Exception {
@@ -220,7 +245,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 router solicitation packets received. These could be sent by a neighboring router to initiate address resolution.
+	* Rate (/s) counter for icmpv6totrxrs
 	* </pre>
 	*/
 	public Long get_icmpv6rxrsrate() throws Exception {
@@ -238,7 +263,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMPv6 neighbor solicitation packets received. These packets are received if the link layer address of a neighbor has changed, or in response to a neighbor solicitation message sent out by this node.
+	* Rate (/s) counter for icmpv6totrxns
 	* </pre>
 	*/
 	public Long get_icmpv6rxnsrate() throws Exception {
@@ -247,7 +272,7 @@ public class protocolicmpv6_stats extends base_resource
 
 	/**
 	* <pre>
-	* Bytes of ICMPv6 data received.
+	* Rate (/s) counter for icmpv6totrxbytes
 	* </pre>
 	*/
 	public Long get_icmpv6rxbytesrate() throws Exception {
@@ -285,7 +310,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* ICMP Ping Echo Reply packets transmitted.
+	* Rate (/s) counter for icmpv6tottxechoreply
 	* </pre>
 	*/
 	public Long get_icmpv6txechoreplyrate() throws Exception {
@@ -303,7 +328,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* ICMPv6 router advertisement packets transmitted. These packets are sent at regular intervals or in response to a router solicitation packet from a neighbor.
+	* Rate (/s) counter for icmpv6tottxra
 	* </pre>
 	*/
 	public Long get_icmpv6txrarate() throws Exception {
@@ -339,7 +364,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* ICMPv6 router advertisement packets received. These are received at defined intervals or in response to a router solicitation message.
+	* Rate (/s) counter for icmpv6totrxra
 	* </pre>
 	*/
 	public Long get_icmpv6rxrarate() throws Exception {
@@ -348,7 +373,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* ICMPv6 Ping Echo Request packets received.
+	* Rate (/s) counter for icmpv6totrxechoreq
 	* </pre>
 	*/
 	public Long get_icmpv6rxechoreqrate() throws Exception {
@@ -375,7 +400,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* ICMPv6 neighbor advertisement packets received. These packets are received in response to a neighbor solicitation message sent out by this node, or if the link layer address of a neighbor has changed.
+	* Rate (/s) counter for icmpv6totrxna
 	* </pre>
 	*/
 	public Long get_icmpv6rxnarate() throws Exception {
@@ -384,7 +409,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* ICMPv6 neighbor solicitation packets transmitted. These packets are sent to get the link layer addresses of neighboring nodes or to confirm that they are reachable.
+	* Rate (/s) counter for icmpv6tottxns
 	* </pre>
 	*/
 	public Long get_icmpv6txnsrate() throws Exception {
@@ -402,7 +427,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* Bytes of ICMPv6 data transmitted.
+	* Rate (/s) counter for icmpv6tottxbytes
 	* </pre>
 	*/
 	public Long get_icmpv6txbytesrate() throws Exception {
@@ -463,4 +488,8 @@ This is a configurable value using the set rateControl command.
 		return response[0];
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

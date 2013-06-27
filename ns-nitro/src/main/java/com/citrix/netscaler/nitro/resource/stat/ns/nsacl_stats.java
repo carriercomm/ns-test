@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.ns;
@@ -27,6 +33,7 @@ class nsacl_response extends base_response
 public class nsacl_stats extends base_resource
 {
 	private String aclname;
+	private String clearstats;
 	private Long acltotpktsbridged;
 	private Long aclpktsbridgedrate;
 	private Long acltotpktsdenied;
@@ -39,12 +46,13 @@ public class nsacl_stats extends base_resource
 	private Long aclhitsrate;
 	private Long acltotmisses;
 	private Long aclmissesrate;
+	private Long acltotcount;
 	private Long aclperhits;
 	private Long aclperhitsrate;
 
 	/**
 	* <pre>
-	* The ACL.
+	* Name of the extended ACL rule whose statistics you want the NetScaler appliance to display.
 	* </pre>
 	*/
 	public void set_aclname(String aclname) throws Exception{
@@ -53,11 +61,29 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* The ACL.<br> Minimum length =  1
+	* Name of the extended ACL rule whose statistics you want the NetScaler appliance to display.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_aclname() throws Exception {
 		return this.aclname;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
 	}
 
 	/**
@@ -98,7 +124,7 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of times the acl was hit
+	* Rate (/s) counter for aclperhits
 	* </pre>
 	*/
 	public Long get_aclperhitsrate() throws Exception {
@@ -107,7 +133,7 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Packets dropped because they match ACLs with processing mode set to DENY.
+	* Rate (/s) counter for acltotpktsdenied
 	* </pre>
 	*/
 	public Long get_aclpktsdeniedrate() throws Exception {
@@ -116,7 +142,7 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Packets matching an ACL.
+	* Rate (/s) counter for acltothits
 	* </pre>
 	*/
 	public Long get_aclhitsrate() throws Exception {
@@ -125,7 +151,7 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Packets matching ACLs with processing mode set to ALLOW. NetScaler processes these packets.
+	* Rate (/s) counter for acltotpktsallowed
 	* </pre>
 	*/
 	public Long get_aclpktsallowedrate() throws Exception {
@@ -134,11 +160,20 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Packets matching a NAT ACL, resulting in a NAT session.
+	* Rate (/s) counter for acltotpktsnat
 	* </pre>
 	*/
 	public Long get_aclpktsnatrate() throws Exception {
 		return this.aclpktsnatrate;
+	}
+
+	/**
+	* <pre>
+	* Total number of ACL rules configured.
+	* </pre>
+	*/
+	public Long get_acltotcount() throws Exception {
+		return this.acltotcount;
 	}
 
 	/**
@@ -161,7 +196,7 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Packets matching a bridge ACL, which is in transparent mode and bypasses service processing.
+	* Rate (/s) counter for acltotpktsbridged
 	* </pre>
 	*/
 	public Long get_aclpktsbridgedrate() throws Exception {
@@ -179,7 +214,7 @@ public class nsacl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Packets not matching any ACL.
+	* Rate (/s) counter for acltotmisses
 	* </pre>
 	*/
 	public Long get_aclmissesrate() throws Exception {
@@ -248,4 +283,8 @@ public class nsacl_stats extends base_resource
 		return response;
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

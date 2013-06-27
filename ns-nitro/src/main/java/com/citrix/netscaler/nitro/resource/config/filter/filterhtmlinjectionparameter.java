@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.filter;
@@ -33,7 +39,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* if rate is X, HTML injection will be done for 1 out of X policy matches.<br> Default value: 1<br> Minimum value =  1
+	* For a rate of x, HTML injection is done for 1 out of x policy matches.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_rate(long rate) throws Exception {
@@ -42,7 +48,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* if rate is X, HTML injection will be done for 1 out of X policy matches.<br> Default value: 1<br> Minimum value =  1
+	* For a rate of x, HTML injection is done for 1 out of x policy matches.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_rate(Long rate) throws Exception{
@@ -51,7 +57,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* if rate is X, HTML injection will be done for 1 out of X policy matches.<br> Default value: 1<br> Minimum value =  1
+	* For a rate of x, HTML injection is done for 1 out of x policy matches.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_rate() throws Exception {
@@ -60,7 +66,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* if frequency is X, HTML injection will be done atleast once per X milisecond.<br> Default value: 1<br> Minimum value =  1
+	* For a frequency of x, HTML injection is done at least once per x milliseconds.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_frequency(long frequency) throws Exception {
@@ -69,7 +75,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* if frequency is X, HTML injection will be done atleast once per X milisecond.<br> Default value: 1<br> Minimum value =  1
+	* For a frequency of x, HTML injection is done at least once per x milliseconds.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_frequency(Long frequency) throws Exception{
@@ -78,7 +84,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* if frequency is X, HTML injection will be done atleast once per X milisecond.<br> Default value: 1<br> Minimum value =  1
+	* For a frequency of x, HTML injection is done at least once per x milliseconds.<br> Default value: 1<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_frequency() throws Exception {
@@ -87,7 +93,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* enable/disable searching for <html> tag for HTML injection.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Searching for <html> tag. If this parameter is enabled, HTML injection does not insert the prebody or postbody content unless the <html> tag is found.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_strict(String strict) throws Exception{
@@ -96,7 +102,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* enable/disable searching for <html> tag for HTML injection.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Searching for <html> tag. If this parameter is enabled, HTML injection does not insert the prebody or postbody content unless the <html> tag is found.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_strict() throws Exception {
@@ -105,7 +111,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* HTTP body length in which to search for <html> tag.<br> Default value: 1024<br> Minimum value =  1
+	* Number of characters, in the HTTP body, in which to search for the <html> tag if strict mode is set.<br> Default value: 1024<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_htmlsearchlen(long htmlsearchlen) throws Exception {
@@ -114,7 +120,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* HTTP body length in which to search for <html> tag.<br> Default value: 1024<br> Minimum value =  1
+	* Number of characters, in the HTTP body, in which to search for the <html> tag if strict mode is set.<br> Default value: 1024<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_htmlsearchlen(Long htmlsearchlen) throws Exception{
@@ -123,7 +129,7 @@ public class filterhtmlinjectionparameter extends base_resource
 
 	/**
 	* <pre>
-	* HTTP body length in which to search for <html> tag.<br> Default value: 1024<br> Minimum value =  1
+	* Number of characters, in the HTTP body, in which to search for the <html> tag if strict mode is set.<br> Default value: 1024<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_htmlsearchlen() throws Exception {
@@ -184,10 +190,6 @@ public class filterhtmlinjectionparameter extends base_resource
 	*/
 	public static base_response unset(nitro_service client, filterhtmlinjectionparameter resource, String[] args) throws Exception{
 		filterhtmlinjectionparameter unsetresource = new filterhtmlinjectionparameter();
-		unsetresource.rate = resource.rate;
-		unsetresource.frequency = resource.frequency;
-		unsetresource.strict = resource.strict;
-		unsetresource.htmlsearchlen = resource.htmlsearchlen;
 		return unsetresource.unset_resource(client,args);
 	}
 

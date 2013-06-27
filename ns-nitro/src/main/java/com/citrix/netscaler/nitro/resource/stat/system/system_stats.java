@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.system;
@@ -23,7 +29,7 @@ class system_response extends base_response
 
 public class system_stats extends base_resource
 {
-	private Long memtotavail;
+	private String clearstats;
 	private Long cpuusage;
 	private Long rescpuusage;
 	private Long slavecpuusage;
@@ -84,18 +90,23 @@ public class system_stats extends base_resource
 	private Long auxtemp3;
 	private String timesincestart;
 	private Long memsizemb;
-	private Long cpuuse;
-	private Long mgmtcpuuse;
-	private Long mastercpuuse;
-	private Long slavecpuuse;
 
 	/**
 	* <pre>
-	* CPU1 utilization, percentage * 10.
+	* Clear the statsistics / counters
 	* </pre>
 	*/
-	public Long get_slavecpuuse() throws Exception {
-		return this.slavecpuuse;
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
 	}
 
 	/**
@@ -201,7 +212,7 @@ You can configure CPU 0 Temperature by using the Set snmp alarm TEMPERATURE-HIGH
 
 	/**
 	* <pre>
-	* Average CPU utilization percentage.
+	* Shows average CPU utilization percentage if more than 1 CPU is present.
 	* </pre>
 	*/
 	public Long get_rescpuusage() throws Exception {
@@ -394,29 +405,11 @@ You can configure CPU Fan 0 Speed by using the Set snmp alarm FAN-SPEED-LOW comm
 
 	/**
 	* <pre>
-	* CPU0 utilization: percentage * 10.
-	* </pre>
-	*/
-	public Long get_mastercpuuse() throws Exception {
-		return this.mastercpuuse;
-	}
-
-	/**
-	* <pre>
 	* Voltage of a device connected to health monitoring chip through pin 0.
 	* </pre>
 	*/
 	public Double get_auxvolt0() throws Exception {
 		return this.auxvolt0;
-	}
-
-	/**
-	* <pre>
-	* CPU utilization: percentage * 10.
-	* </pre>
-	*/
-	public Long get_cpuuse() throws Exception {
-		return this.cpuuse;
 	}
 
 	/**
@@ -611,15 +604,6 @@ You can configure CPU Fan 1 Speed by using the Set snmp alarm FAN-SPEED-LOW comm
 
 	/**
 	* <pre>
-	* Total system memory available for PE to grab from the system.
-	* </pre>
-	*/
-	public Long get_memtotavail() throws Exception {
-		return this.memtotavail;
-	}
-
-	/**
-	* <pre>
 	* System fan speed. Acceptable range is 3000 through 6000 RPM. This is a critical counter.
 You can configure System Fan Speed by using the Set snmp alarm FAN-SPEED-LOW command to set the lower limit.
 
@@ -645,15 +629,6 @@ You can configure System Fan Speed by using the Set snmp alarm FAN-SPEED-LOW com
 	*/
 	public Long get_mastercpuusage() throws Exception {
 		return this.mastercpuusage;
-	}
-
-	/**
-	* <pre>
-	* Management CPU utilization: percentage * 10.
-	* </pre>
-	*/
-	public Long get_mgmtcpuuse() throws Exception {
-		return this.mgmtcpuuse;
 	}
 
 	/**
@@ -746,4 +721,8 @@ You can configure System Fan Speed by using the Set snmp alarm FAN-SPEED-LOW com
 		return response[0];
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

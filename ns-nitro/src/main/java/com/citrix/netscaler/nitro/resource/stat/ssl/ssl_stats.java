@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.ssl;
@@ -23,6 +29,7 @@ class ssl_response extends base_response
 
 public class ssl_stats extends base_resource
 {
+	private String clearstats;
 	private Long sslnumcardsup;
 	private Long sslcardstatus;
 	private Long sslcards;
@@ -252,7 +259,25 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of Diffie-Helman 512-bit key exchanges on the NetScaler appliance.
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
+	}
+
+	/**
+	* <pre>
+	* Rate (/s) counter for ssltotdh512keyexchanges
 	* </pre>
 	*/
 	public Long get_ssldh512keyexchangesrate() throws Exception {
@@ -288,7 +313,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted in software on back-end
+	* Rate (/s) counter for ssltotswdecbe
 	* </pre>
 	*/
 	public Long get_sslswdecberate() throws Exception {
@@ -306,7 +331,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted on the NetScaler appliance.
+	* Rate (/s) counter for ssltotenc
 	* </pre>
 	*/
 	public Long get_sslencrate() throws Exception {
@@ -369,7 +394,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end TLSv1 client authentications on the NetScaler appliance.
+	* Rate (/s) counter for sslbetottlsv1clientauthentications
 	* </pre>
 	*/
 	public Long get_sslbetlsv1clientauthenticationsrate() throws Exception {
@@ -387,7 +412,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL session renegotiations on the NetScaler appliance.
+	* Rate (/s) counter for ssltotrenegsessions
 	* </pre>
 	*/
 	public Long get_sslrenegsessionsrate() throws Exception {
@@ -405,7 +430,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of DES encryptions offloaded to the cryptography card.
+	* Rate (/s) counter for ssltotoffloadbulkdes
 	* </pre>
 	*/
 	public Long get_ssloffloadbulkdesrate() throws Exception {
@@ -432,7 +457,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RSA 2048-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotrsa2048keyexchanges
 	* </pre>
 	*/
 	public Long get_sslbersa2048keyexchangesrate() throws Exception {
@@ -468,7 +493,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSL sessions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotsessions
 	* </pre>
 	*/
 	public Long get_sslbesessionsrate() throws Exception {
@@ -504,7 +529,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of DES 56-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot56bitdesciphers
 	* </pre>
 	*/
 	public Long get_ssl56bitdesciphersrate() throws Exception {
@@ -513,7 +538,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Back-end AES 256-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotbkendcipheraes256
 	* </pre>
 	*/
 	public Long get_sslbkendcipheraes256rate() throws Exception {
@@ -531,7 +556,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end DH 2048-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotdh2048keyexchanges
 	* </pre>
 	*/
 	public Long get_sslbedh2048keyexchangesrate() throws Exception {
@@ -540,7 +565,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end 3DES 168-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot168bit3desciphers
 	* </pre>
 	*/
 	public Long get_sslbe168bit3desciphersrate() throws Exception {
@@ -558,7 +583,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of AES 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotcipheraes128
 	* </pre>
 	*/
 	public Long get_sslcipheraes128rate() throws Exception {
@@ -576,7 +601,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSLv2 transactions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsslv2transactions
 	* </pre>
 	*/
 	public Long get_sslsslv2transactionsrate() throws Exception {
@@ -585,7 +610,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RSA 1024-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for ssltotrsa1024keyexchanges
 	* </pre>
 	*/
 	public Long get_sslrsa1024keyexchangesrate() throws Exception {
@@ -594,7 +619,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end DH 512-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotdh512keyexchanges
 	* </pre>
 	*/
 	public Long get_sslbedh512keyexchangesrate() throws Exception {
@@ -612,7 +637,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC4 encryptions offloaded to the cryptography card.
+	* Rate (/s) counter for ssltotoffloadbulkrc4
 	* </pre>
 	*/
 	public Long get_ssloffloadbulkrc4rate() throws Exception {
@@ -630,7 +655,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RC4 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot128bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_sslbe128bitrc4ciphersrate() throws Exception {
@@ -657,7 +682,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC2 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot128bitrc2ciphers
 	* </pre>
 	*/
 	public Long get_ssl128bitrc2ciphersrate() throws Exception {
@@ -666,7 +691,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of DES 168-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot168bit3desciphers
 	* </pre>
 	*/
 	public Long get_ssl168bit3desciphersrate() throws Exception {
@@ -675,7 +700,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of AES encryptions offloaded to the cryptography card.
+	* Rate (/s) counter for ssltotoffloadbulkaes
 	* </pre>
 	*/
 	public Long get_ssloffloadbulkaesrate() throws Exception {
@@ -684,7 +709,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RSA 512-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for ssltotrsa512keyexchanges
 	* </pre>
 	*/
 	public Long get_sslrsa512keyexchangesrate() throws Exception {
@@ -693,7 +718,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RC2 56-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot56bitrc2ciphers
 	* </pre>
 	*/
 	public Long get_sslbe56bitrc2ciphersrate() throws Exception {
@@ -747,7 +772,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted in software.
+	* Rate (/s) counter for ssltotdecsw
 	* </pre>
 	*/
 	public Long get_ssldecswrate() throws Exception {
@@ -783,7 +808,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSLv3 handshakes on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotsslv3handshakes
 	* </pre>
 	*/
 	public Long get_sslbesslv3handshakesrate() throws Exception {
@@ -792,7 +817,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of Diffie-Helman 1024-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for ssltotdh1024keyexchanges
 	* </pre>
 	*/
 	public Long get_ssldh1024keyexchangesrate() throws Exception {
@@ -801,7 +826,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted in software.
+	* Rate (/s) counter for ssltotencsw
 	* </pre>
 	*/
 	public Long get_sslencswrate() throws Exception {
@@ -828,7 +853,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted in hardware on the front end.
+	* Rate (/s) counter for ssltothwencfe
 	* </pre>
 	*/
 	public Long get_sslhwencferate() throws Exception {
@@ -837,7 +862,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSL session multiplex attempts on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotsessionmultiplexattempts
 	* </pre>
 	*/
 	public Long get_sslbesessionmultiplexattemptsrate() throws Exception {
@@ -846,7 +871,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of handshakes on SSLv2 on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsslv2handshakes
 	* </pre>
 	*/
 	public Long get_sslsslv2handshakesrate() throws Exception {
@@ -855,7 +880,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSL session multiplex failures on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotsessionmultiplexattemptfails
 	* </pre>
 	*/
 	public Long get_sslbesessionmultiplexattemptfailsrate() throws Exception {
@@ -864,7 +889,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end IDEA 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot128bitideaciphers
 	* </pre>
 	*/
 	public Long get_sslbe128bitideaciphersrate() throws Exception {
@@ -882,7 +907,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of times DSS authorization is used on the NetScaler appliance.
+	* Rate (/s) counter for ssltotdssauthorizations
 	* </pre>
 	*/
 	public Long get_ssldssauthorizationsrate() throws Exception {
@@ -891,7 +916,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of client authentications done on TLSv1.
+	* Rate (/s) counter for ssltottlsv1clientauthentications
 	* </pre>
 	*/
 	public Long get_ssltlsv1clientauthenticationsrate() throws Exception {
@@ -900,7 +925,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSL sessions reused on the NetScaler appliance.
+	* Rate (/s) counter for sslbemaxmultiplexedsessions
 	* </pre>
 	*/
 	public Long get_sslbemaxmultiplexedsessionsrate() throws Exception {
@@ -918,7 +943,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RC2 40-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot40bitrc2ciphers
 	* </pre>
 	*/
 	public Long get_sslbe40bitrc2ciphersrate() throws Exception {
@@ -927,7 +952,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted in hardware.
+	* Rate (/s) counter for ssltotenchw
 	* </pre>
 	*/
 	public Long get_sslenchwrate() throws Exception {
@@ -936,7 +961,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSL session renegotiations on the NetScaler appliance.
+	* Rate (/s) counter for ssltotbkendsessionrenegotiate
 	* </pre>
 	*/
 	public Long get_sslbkendsessionrenegotiaterate() throws Exception {
@@ -954,7 +979,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end TLSv1 handshakes on the NetScaler appliance.
+	* Rate (/s) counter for sslbetottlsv1handshakes
 	* </pre>
 	*/
 	public Long get_sslbetlsv1handshakesrate() throws Exception {
@@ -963,7 +988,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL session renegotiations done on TLSv1.
+	* Rate (/s) counter for ssltottlsv1renegsessions
 	* </pre>
 	*/
 	public Long get_ssltlsv1renegsessionsrate() throws Exception {
@@ -981,7 +1006,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end null cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotnullciphers
 	* </pre>
 	*/
 	public Long get_sslbenullciphersrate() throws Exception {
@@ -999,7 +1024,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL sessions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsessions
 	* </pre>
 	*/
 	public Long get_sslsessionsrate() throws Exception {
@@ -1008,7 +1033,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC4 56-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot56bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_ssl56bitrc4ciphersrate() throws Exception {
@@ -1026,7 +1051,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted on the back end.
+	* Rate (/s) counter for ssltotdecbe
 	* </pre>
 	*/
 	public Long get_ssldecberate() throws Exception {
@@ -1035,7 +1060,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end DSS authentications on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotdssauthorizations
 	* </pre>
 	*/
 	public Long get_sslbedssauthorizationsrate() throws Exception {
@@ -1053,7 +1078,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RC2 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot128bitrc2ciphers
 	* </pre>
 	*/
 	public Long get_sslbe128bitrc2ciphersrate() throws Exception {
@@ -1071,7 +1096,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RSA 2048-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for ssltotrsa2048keyexchanges
 	* </pre>
 	*/
 	public Long get_sslrsa2048keyexchangesrate() throws Exception {
@@ -1089,7 +1114,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of DES 40-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot40bitdesciphers
 	* </pre>
 	*/
 	public Long get_ssl40bitdesciphersrate() throws Exception {
@@ -1107,7 +1132,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC4 40-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot40bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_ssl40bitrc4ciphersrate() throws Exception {
@@ -1116,7 +1141,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RC4 56-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot56bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_sslbe56bitrc4ciphersrate() throws Exception {
@@ -1125,7 +1150,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end TLSv1 session renegotiations on the NetScaler appliance.
+	* Rate (/s) counter for ssltotbkendtlsvlrenego
 	* </pre>
 	*/
 	public Long get_sslbkendtlsvlrenegorate() throws Exception {
@@ -1134,7 +1159,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted on the front end.
+	* Rate (/s) counter for ssltotdecfe
 	* </pre>
 	*/
 	public Long get_ssldecferate() throws Exception {
@@ -1143,7 +1168,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end null authentications on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotnullauthorizations
 	* </pre>
 	*/
 	public Long get_sslbenullauthorizationsrate() throws Exception {
@@ -1206,7 +1231,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of TLSv1 sessions on the NetScaler appliance.
+	* Rate (/s) counter for ssltottlsv1sessions
 	* </pre>
 	*/
 	public Long get_ssltlsv1sessionsrate() throws Exception {
@@ -1242,7 +1267,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted in software on the front end.
+	* Rate (/s) counter for ssltotswencfe
 	* </pre>
 	*/
 	public Long get_sslswencferate() throws Exception {
@@ -1260,7 +1285,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of AES 256-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotcipheraes256
 	* </pre>
 	*/
 	public Long get_sslcipheraes256rate() throws Exception {
@@ -1305,7 +1330,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted on the back end.
+	* Rate (/s) counter for ssltotencbe
 	* </pre>
 	*/
 	public Long get_sslencberate() throws Exception {
@@ -1377,7 +1402,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RSA authentications on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotrsaauthorizations
 	* </pre>
 	*/
 	public Long get_sslbersaauthorizationsrate() throws Exception {
@@ -1413,7 +1438,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end DH 1024-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotdh1024keyexchanges
 	* </pre>
 	*/
 	public Long get_sslbedh1024keyexchangesrate() throws Exception {
@@ -1422,7 +1447,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC4 64-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot64bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_ssl64bitrc4ciphersrate() throws Exception {
@@ -1431,7 +1456,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of new SSL sessions created on the NetScaler appliance.
+	* Rate (/s) counter for ssltotnewsessions
 	* </pre>
 	*/
 	public Long get_sslnewsessionsrate() throws Exception {
@@ -1467,7 +1492,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL transactions on the NetScaler appliance.
+	* Rate (/s) counter for ssltottransactions
 	* </pre>
 	*/
 	public Long get_ssltransactionsrate() throws Exception {
@@ -1476,7 +1501,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of client authentications done on SSLv3.
+	* Rate (/s) counter for ssltotsslv3clientauthentications
 	* </pre>
 	*/
 	public Long get_sslsslv3clientauthenticationsrate() throws Exception {
@@ -1485,7 +1510,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted in hardware on the front end.
+	* Rate (/s) counter for ssltothwdecfe
 	* </pre>
 	*/
 	public Long get_sslhwdecferate() throws Exception {
@@ -1494,7 +1519,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL session reuse misses on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsessionmiss
 	* </pre>
 	*/
 	public Long get_sslsessionmissrate() throws Exception {
@@ -1512,7 +1537,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end MD5 hashes on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotmd5mac
 	* </pre>
 	*/
 	public Long get_sslbemd5macrate() throws Exception {
@@ -1548,7 +1573,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end TLSv1 sessions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetottlsv1sessions
 	* </pre>
 	*/
 	public Long get_sslbetlsv1sessionsrate() throws Exception {
@@ -1557,7 +1582,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of Diffie-Helman authentications on the NetScaler appliance.
+	* Rate (/s) counter for ssltotdhauthorizations
 	* </pre>
 	*/
 	public Long get_ssldhauthorizationsrate() throws Exception {
@@ -1566,7 +1591,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of handshakes on SSLv3 on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsslv3handshakes
 	* </pre>
 	*/
 	public Long get_sslsslv3handshakesrate() throws Exception {
@@ -1575,7 +1600,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SHA hashes on the NetScaler appliance.
+	* Rate (/s) counter for ssltotshamac
 	* </pre>
 	*/
 	public Long get_sslshamacrate() throws Exception {
@@ -1602,7 +1627,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted in hardware on the back end.
+	* Rate (/s) counter for ssltothwdecbe
 	* </pre>
 	*/
 	public Long get_sslhwdecberate() throws Exception {
@@ -1611,7 +1636,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of Null authentications on the NetScaler appliance.
+	* Rate (/s) counter for ssltotnullauthorizations
 	* </pre>
 	*/
 	public Long get_sslnullauthorizationsrate() throws Exception {
@@ -1629,7 +1654,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RSA 4096-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for ssltotrsa4096keyexchanges
 	* </pre>
 	*/
 	public Long get_sslrsa4096keyexchangesrate() throws Exception {
@@ -1647,7 +1672,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSLv3 sessions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsslv3sessions
 	* </pre>
 	*/
 	public Long get_sslsslv3sessionsrate() throws Exception {
@@ -1701,7 +1726,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL session reuse hits on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsessionhits
 	* </pre>
 	*/
 	public Long get_sslsessionhitsrate() throws Exception {
@@ -1719,7 +1744,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of session renegotiations done on SSLv3.
+	* Rate (/s) counter for ssltotsslv3renegsessions
 	* </pre>
 	*/
 	public Long get_sslsslv3renegsessionsrate() throws Exception {
@@ -1728,7 +1753,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted in hardware.
+	* Rate (/s) counter for ssltotdechw
 	* </pre>
 	*/
 	public Long get_ssldechwrate() throws Exception {
@@ -1737,7 +1762,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end DH authentications on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotdhauthorizations
 	* </pre>
 	*/
 	public Long get_sslbedhauthorizationsrate() throws Exception {
@@ -1746,7 +1771,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of MD5 hashes on the NetScaler appliance.
+	* Rate (/s) counter for ssltotmd5mac
 	* </pre>
 	*/
 	public Long get_sslmd5macrate() throws Exception {
@@ -1755,7 +1780,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted in software on the front end.
+	* Rate (/s) counter for ssltotswdecfe
 	* </pre>
 	*/
 	public Long get_sslswdecferate() throws Exception {
@@ -1773,7 +1798,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes decrypted on the NetScaler appliance.
+	* Rate (/s) counter for ssltotdec
 	* </pre>
 	*/
 	public Long get_ssldecrate() throws Exception {
@@ -1782,7 +1807,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of Diffie-Helman 2048-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for ssltotdh2048keyexchanges
 	* </pre>
 	*/
 	public Long get_ssldh2048keyexchangesrate() throws Exception {
@@ -1791,7 +1816,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted in hardware on the back end.
+	* Rate (/s) counter for ssltothwencbe
 	* </pre>
 	*/
 	public Long get_sslhwencberate() throws Exception {
@@ -1809,7 +1834,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSLv3 sessions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotsslv3sessions
 	* </pre>
 	*/
 	public Long get_sslbesslv3sessionsrate() throws Exception {
@@ -1827,7 +1852,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of Null cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotnullciphers
 	* </pre>
 	*/
 	public Long get_sslnullciphersrate() throws Exception {
@@ -1836,7 +1861,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC2 40-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot40bitrc2ciphers
 	* </pre>
 	*/
 	public Long get_ssl40bitrc2ciphersrate() throws Exception {
@@ -1845,7 +1870,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end DES 40-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot40bitdesciphers
 	* </pre>
 	*/
 	public Long get_sslbe40bitdesciphersrate() throws Exception {
@@ -1863,7 +1888,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSL handshakes on TLSv1 on the NetScaler appliance.
+	* Rate (/s) counter for ssltottlsv1handshakes
 	* </pre>
 	*/
 	public Long get_ssltlsv1handshakesrate() throws Exception {
@@ -1917,7 +1942,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RSA key exchanges offloaded to the cryptography card.
+	* Rate (/s) counter for ssltotoffloadrsakeyexchanges
 	* </pre>
 	*/
 	public Long get_ssloffloadrsakeyexchangesrate() throws Exception {
@@ -1953,7 +1978,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RC4 64-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot64bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_sslbe64bitrc4ciphersrate() throws Exception {
@@ -1971,7 +1996,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSL session multiplex successes on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotsessionmultiplexattemptsuccess
 	* </pre>
 	*/
 	public Long get_sslbesessionmultiplexattemptsuccessrate() throws Exception {
@@ -1980,7 +2005,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RC4 40-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot40bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_sslbe40bitrc4ciphersrate() throws Exception {
@@ -1998,7 +2023,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RSA 1024-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotrsa1024keyexchanges
 	* </pre>
 	*/
 	public Long get_sslbersa1024keyexchangesrate() throws Exception {
@@ -2061,7 +2086,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end RSA 512-bit key exchanges on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotrsa512keyexchanges
 	* </pre>
 	*/
 	public Long get_sslbersa512keyexchangesrate() throws Exception {
@@ -2070,7 +2095,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of TLSv1 transactions on the NetScaler appliance.
+	* Rate (/s) counter for ssltottlsv1transactions
 	* </pre>
 	*/
 	public Long get_ssltlsv1transactionsrate() throws Exception {
@@ -2079,7 +2104,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end DES 56-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for sslbetot56bitdesciphers
 	* </pre>
 	*/
 	public Long get_sslbe56bitdesciphersrate() throws Exception {
@@ -2088,7 +2113,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSLv3 session renegotiations on the NetScaler appliance.
+	* Rate (/s) counter for ssltotbkendsslv3renego
 	* </pre>
 	*/
 	public Long get_sslbkendsslv3renegorate() throws Exception {
@@ -2097,7 +2122,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of SSLv3 transactions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsslv3transactions
 	* </pre>
 	*/
 	public Long get_sslsslv3transactionsrate() throws Exception {
@@ -2106,7 +2131,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of client authentications done on SSLv2.
+	* Rate (/s) counter for ssltotsslv2clientauthentications
 	* </pre>
 	*/
 	public Long get_sslsslv2clientauthenticationsrate() throws Exception {
@@ -2124,7 +2149,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC2 56-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot56bitrc2ciphers
 	* </pre>
 	*/
 	public Long get_ssl56bitrc2ciphersrate() throws Exception {
@@ -2133,7 +2158,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of DH key exchanges offloaded to the cryptography card.d
+	* Rate (/s) counter for ssltotoffloaddhkeyexchanges
 	* </pre>
 	*/
 	public Long get_ssloffloaddhkeyexchangesrate() throws Exception {
@@ -2142,7 +2167,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RSA authentications on the NetScaler appliance.
+	* Rate (/s) counter for ssltotrsaauthorizations
 	* </pre>
 	*/
 	public Long get_sslrsaauthorizationsrate() throws Exception {
@@ -2169,7 +2194,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of SSLv2 sessions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotsslv2sessions
 	* </pre>
 	*/
 	public Long get_sslsslv2sessionsrate() throws Exception {
@@ -2178,7 +2203,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted in software on the back end.
+	* Rate (/s) counter for ssltotswencbe
 	* </pre>
 	*/
 	public Long get_sslswencberate() throws Exception {
@@ -2187,7 +2212,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RC4 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot128bitrc4ciphers
 	* </pre>
 	*/
 	public Long get_ssl128bitrc4ciphersrate() throws Exception {
@@ -2205,7 +2230,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes encrypted on the front end.
+	* Rate (/s) counter for ssltotencfe
 	* </pre>
 	*/
 	public Long get_sslencferate() throws Exception {
@@ -2214,7 +2239,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of RSA sign operations offloaded to the cryptography card.
+	* Rate (/s) counter for ssltotoffloadsignrsa
 	* </pre>
 	*/
 	public Long get_ssloffloadsignrsarate() throws Exception {
@@ -2232,7 +2257,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SSLv3 client authentications on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotsslv3clientauthentications
 	* </pre>
 	*/
 	public Long get_sslbesslv3clientauthenticationsrate() throws Exception {
@@ -2250,7 +2275,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of IDEA 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltot128bitideaciphers
 	* </pre>
 	*/
 	public Long get_ssl128bitideaciphersrate() throws Exception {
@@ -2259,7 +2284,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of back-end SHA hashes on the NetScaler appliance.
+	* Rate (/s) counter for sslbetotshamac
 	* </pre>
 	*/
 	public Long get_sslbeshamacrate() throws Exception {
@@ -2268,7 +2293,7 @@ public class ssl_stats extends base_resource
 
 	/**
 	* <pre>
-	* Back-end AES 128-bit cipher encryptions on the NetScaler appliance.
+	* Rate (/s) counter for ssltotbkendcipheraes128
 	* </pre>
 	*/
 	public Long get_sslbkendcipheraes128rate() throws Exception {
@@ -2338,4 +2363,8 @@ public class ssl_stats extends base_resource
 		return response[0];
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

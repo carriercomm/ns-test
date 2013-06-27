@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -65,17 +71,20 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
-	o	If gotoPriorityExpression is not present or if it is equal to END then the policy bank evaluation ends here
-	o	Else if the gotoPriorityExpression is equal to NEXT then the next policy in the priority order is evaluated.
-	o	Else gotoPriorityExpression is evaluated. The result of gotoPriorityExpression (which has to be a number) is processed as follows:
-		-	An UNDEF event is triggered if
-			.	gotoPriorityExpression cannot be evaluated
-			.	gotoPriorityExpression evaluates to number which is smaller than the maximum priority in the policy bank but is not same as any policy's priority
-			.	gotoPriorityExpression evaluates to a priority that is smaller than the current policy's priority
-		-	If the gotoPriorityExpression evaluates to the priority of the current policy then the next policy in the priority order is evaluated.
-		-	If the gotoPriorityExpression evaluates to the priority of a policy further ahead in the list then that policy will be evaluated next.
-		This field is applicable only to rewrite and responder policies.<br> Default value: "END"
+	* Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax or classic expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a number that is larger than the largest numbered priority, policy evaluation ends.
+
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.<br> Default value: "END"
 	* </pre>
 	*/
 	public void set_gotopriorityexpression(String gotopriorityexpression) throws Exception{
@@ -84,17 +93,20 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
-	o	If gotoPriorityExpression is not present or if it is equal to END then the policy bank evaluation ends here
-	o	Else if the gotoPriorityExpression is equal to NEXT then the next policy in the priority order is evaluated.
-	o	Else gotoPriorityExpression is evaluated. The result of gotoPriorityExpression (which has to be a number) is processed as follows:
-		-	An UNDEF event is triggered if
-			.	gotoPriorityExpression cannot be evaluated
-			.	gotoPriorityExpression evaluates to number which is smaller than the maximum priority in the policy bank but is not same as any policy's priority
-			.	gotoPriorityExpression evaluates to a priority that is smaller than the current policy's priority
-		-	If the gotoPriorityExpression evaluates to the priority of the current policy then the next policy in the priority order is evaluated.
-		-	If the gotoPriorityExpression evaluates to the priority of a policy further ahead in the list then that policy will be evaluated next.
-		This field is applicable only to rewrite and responder policies.<br> Default value: "END"
+	* Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE.  Specify one of the following values:
+* NEXT - Evaluate the policy with the next higher priority number.
+* END - End policy evaluation.
+* USE_INVOCATION_RESULT - Applicable if this policy invokes another policy label. If the final goto in the invoked policy label has a value of END, the evaluation stops. If the final goto is anything other than END, the current policy label performs a NEXT.
+* A default syntax or classic expression that evaluates to a number.
+If you specify an expression, the number to which it evaluates determines the next policy to evaluate, as follows:
+* If the expression evaluates to a higher numbered priority, the policy with that priority is evaluated next.
+* If the expression evaluates to the priority of the current policy, the policy with the next higher numbered priority is evaluated next.
+* If the expression evaluates to a number that is larger than the largest numbered priority, policy evaluation ends.
+
+An UNDEF event is triggered if:
+* The expression is invalid.
+* The expression evaluates to a priority number that is numerically lower than the current policy's priority.
+* The expression evaluates to a priority number that is between the current policy's priority number (say, 30) and the highest priority number (say, 100), but does not match any configured priority number (for example, the expression evaluates to the number 85). This example assumes that the priority number increments by 10 for every successive policy, and therefore a priority number of 85 does not exist in the policy label.<br> Default value: "END"
 	* </pre>
 	*/
 	public String get_gotopriorityexpression() throws Exception {
@@ -121,7 +133,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the SSL service to which the SSL policy needs to be bound.<br> Minimum length =  1
+	* Name of the SSL service for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicename(String servicename) throws Exception{
@@ -130,7 +142,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the SSL service to which the SSL policy needs to be bound.<br> Minimum length =  1
+	* Name of the SSL service for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicename() throws Exception {
@@ -139,7 +151,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation. Applicable only to rewrite and cache policies.<br> Possible values = vserver, service, policylabel
+	* Type of policy label invocation.<br> Possible values = vserver, service, policylabel
 	* </pre>
 	*/
 	public void set_labeltype(String labeltype) throws Exception{
@@ -148,7 +160,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation. Applicable only to rewrite and cache policies.<br> Possible values = vserver, service, policylabel
+	* Type of policy label invocation.<br> Possible values = vserver, service, policylabel
 	* </pre>
 	*/
 	public String get_labeltype() throws Exception {
@@ -157,7 +169,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the policy label, virtual server, or service to invoke if the current policy rule evaluates to TRUE.
 	* </pre>
 	*/
 	public void set_labelname(String labelname) throws Exception{
@@ -166,7 +178,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the policy label, virtual server, or service to invoke if the current policy rule evaluates to TRUE.
 	* </pre>
 	*/
 	public String get_labelname() throws Exception {
@@ -175,7 +187,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag.
+	* Invoke policies bound to a virtual server, service, or policy label. After the invoked policies are evaluated, the flow returns to the policy with the next-larger priority number.
 	* </pre>
 	*/
 	public void set_invoke(boolean invoke) throws Exception {
@@ -184,7 +196,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag.
+	* Invoke policies bound to a virtual server, service, or policy label. After the invoked policies are evaluated, the flow returns to the policy with the next-larger priority number.
 	* </pre>
 	*/
 	public void set_invoke(Boolean invoke) throws Exception{
@@ -193,7 +205,7 @@ public class sslservice_sslpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag.
+	* Invoke policies bound to a virtual server, service, or policy label. After the invoked policies are evaluated, the flow returns to the policy with the next-larger priority number.
 	* </pre>
 	*/
 	public Boolean get_invoke() throws Exception {

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ns;
@@ -50,6 +56,8 @@ public class nstcpprofile extends base_resource
 	private Long kaconnidletime;
 	private Long kamaxprobes;
 	private Long kaprobeinterval;
+	private Long sendbuffsize;
+	private String mptcp;
 
 	//------- Read only Parameter ---------;
 
@@ -58,7 +66,9 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Name of the TCP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name for a TCP profile. Must begin with a letter, number, or the underscore \(_\) character. Other characters allowed, after the first character, are the hyphen \(-\), period \(.\), hash \(\#\), space \( \), at \(@\), and equal \(=\) characters. The name of a TCP profile cannot be changed after it is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks \(for example, "my tcp profile" or 'my tcp profile'\).<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -67,7 +77,9 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Name of the TCP profile.<br> Minimum length =  1<br> Maximum length =  127
+	* Name for a TCP profile. Must begin with a letter, number, or the underscore \(_\) character. Other characters allowed, after the first character, are the hyphen \(-\), period \(.\), hash \(\#\), space \( \), at \(@\), and equal \(=\) characters. The name of a TCP profile cannot be changed after it is created.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks \(for example, "my tcp profile" or 'my tcp profile'\).<br> Minimum length =  1<br> Maximum length =  127
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -76,7 +88,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* The state of WS.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable window scaling.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ws(String ws) throws Exception{
@@ -85,7 +97,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* The state of WS.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable window scaling.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ws() throws Exception {
@@ -94,7 +106,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* The state of SACK.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable Selective ACKnowledgement (SACK).<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_sack(String sack) throws Exception{
@@ -103,7 +115,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* The state of SACK.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable Selective ACKnowledgement (SACK).<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_sack() throws Exception {
@@ -112,7 +124,8 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Window Scaling Factor used.<br> Default value: 4<br> Minimum value =  0<br> Maximum value =  14
+	* Factor used to calculate the new window size.
+This argument is needed only when window scaling is enabled.<br> Default value: 4<br> Minimum value =  0<br> Maximum value =  14
 	* </pre>
 	*/
 	public void set_wsval(long wsval) throws Exception {
@@ -121,7 +134,8 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Window Scaling Factor used.<br> Default value: 4<br> Minimum value =  0<br> Maximum value =  14
+	* Factor used to calculate the new window size.
+This argument is needed only when window scaling is enabled.<br> Default value: 4<br> Minimum value =  0<br> Maximum value =  14
 	* </pre>
 	*/
 	public void set_wsval(Long wsval) throws Exception{
@@ -130,7 +144,8 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Window Scaling Factor used.<br> Default value: 4<br> Minimum value =  0<br> Maximum value =  14
+	* Factor used to calculate the new window size.
+This argument is needed only when window scaling is enabled.<br> Default value: 4<br> Minimum value =  0<br> Maximum value =  14
 	* </pre>
 	*/
 	public Long get_wsval() throws Exception {
@@ -139,7 +154,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Whether to enable Nagle's algorithm on connections.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable the Nagle algorithm on TCP connections.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_nagle(String nagle) throws Exception{
@@ -148,7 +163,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Whether to enable Nagle's algorithm on connections.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable the Nagle algorithm on TCP connections.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_nagle() throws Exception {
@@ -157,7 +172,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Enable/disable immediate ACK on PUSH packet.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Send immediate positive acknowledgement (ACK) on receipt of TCP packets when doing Web 2.0 PUSH.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ackonpush(String ackonpush) throws Exception{
@@ -166,7 +181,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Enable/disable immediate ACK on PUSH packet.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Send immediate positive acknowledgement (ACK) on receipt of TCP packets when doing Web 2.0 PUSH.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ackonpush() throws Exception {
@@ -175,7 +190,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set Maximum Segment Size(MSS) to use for TCP Connection (0 forces use of global setting).<br> Minimum value =  0<br> Maximum value =  1460
+	* Maximum number of octets to allow in a TCP data segment.<br> Minimum value =  0<br> Maximum value =  1460
 	* </pre>
 	*/
 	public void set_mss(long mss) throws Exception {
@@ -184,7 +199,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set Maximum Segment Size(MSS) to use for TCP Connection (0 forces use of global setting).<br> Minimum value =  0<br> Maximum value =  1460
+	* Maximum number of octets to allow in a TCP data segment.<br> Minimum value =  0<br> Maximum value =  1460
 	* </pre>
 	*/
 	public void set_mss(Long mss) throws Exception{
@@ -193,7 +208,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set Maximum Segment Size(MSS) to use for TCP Connection (0 forces use of global setting).<br> Minimum value =  0<br> Maximum value =  1460
+	* Maximum number of octets to allow in a TCP data segment.<br> Minimum value =  0<br> Maximum value =  1460
 	* </pre>
 	*/
 	public Long get_mss() throws Exception {
@@ -202,7 +217,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Max-Burst Factor used.<br> Default value: 6<br> Minimum value =  1<br> Maximum value =  255
+	* Maximum number of TCP segments allowed in a burst.<br> Default value: 6<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public void set_maxburst(long maxburst) throws Exception {
@@ -211,7 +226,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Max-Burst Factor used.<br> Default value: 6<br> Minimum value =  1<br> Maximum value =  255
+	* Maximum number of TCP segments allowed in a burst.<br> Default value: 6<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public void set_maxburst(Long maxburst) throws Exception{
@@ -220,7 +235,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Max-Burst Factor used.<br> Default value: 6<br> Minimum value =  1<br> Maximum value =  255
+	* Maximum number of TCP segments allowed in a burst.<br> Default value: 6<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public Long get_maxburst() throws Exception {
@@ -229,7 +244,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Intial value of TCP cwnd used.<br> Default value: 4<br> Minimum value =  1<br> Maximum value =  44
+	* Initial maximum upper limit on the number of TCP packets that can be outstanding on the TCP link to the server.<br> Default value: 4<br> Minimum value =  1<br> Maximum value =  44
 	* </pre>
 	*/
 	public void set_initialcwnd(long initialcwnd) throws Exception {
@@ -238,7 +253,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Intial value of TCP cwnd used.<br> Default value: 4<br> Minimum value =  1<br> Maximum value =  44
+	* Initial maximum upper limit on the number of TCP packets that can be outstanding on the TCP link to the server.<br> Default value: 4<br> Minimum value =  1<br> Maximum value =  44
 	* </pre>
 	*/
 	public void set_initialcwnd(Long initialcwnd) throws Exception{
@@ -247,7 +262,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Intial value of TCP cwnd used.<br> Default value: 4<br> Minimum value =  1<br> Maximum value =  44
+	* Initial maximum upper limit on the number of TCP packets that can be outstanding on the TCP link to the server.<br> Default value: 4<br> Minimum value =  1<br> Maximum value =  44
 	* </pre>
 	*/
 	public Long get_initialcwnd() throws Exception {
@@ -256,7 +271,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Delayed acknowledgement timeout (in millisec).<br> Default value: 100<br> Minimum value =  10<br> Maximum value =  300
+	* Timeout for TCP delayed ACK, in milliseconds.<br> Default value: 100<br> Minimum value =  10<br> Maximum value =  300
 	* </pre>
 	*/
 	public void set_delayedack(long delayedack) throws Exception {
@@ -265,7 +280,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Delayed acknowledgement timeout (in millisec).<br> Default value: 100<br> Minimum value =  10<br> Maximum value =  300
+	* Timeout for TCP delayed ACK, in milliseconds.<br> Default value: 100<br> Minimum value =  10<br> Maximum value =  300
 	* </pre>
 	*/
 	public void set_delayedack(Long delayedack) throws Exception{
@@ -274,7 +289,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Delayed acknowledgement timeout (in millisec).<br> Default value: 100<br> Minimum value =  10<br> Maximum value =  300
+	* Timeout for TCP delayed ACK, in milliseconds.<br> Default value: 100<br> Minimum value =  10<br> Maximum value =  300
 	* </pre>
 	*/
 	public Long get_delayedack() throws Exception {
@@ -283,7 +298,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Maximum size of out-of-order packet queue (0 means infinite).<br> Default value: 64<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum size of out-of-order packets queue. A value of 0 means infinite.<br> Default value: 64<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_oooqsize(long oooqsize) throws Exception {
@@ -292,7 +307,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Maximum size of out-of-order packet queue (0 means infinite).<br> Default value: 64<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum size of out-of-order packets queue. A value of 0 means infinite.<br> Default value: 64<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_oooqsize(Long oooqsize) throws Exception{
@@ -301,7 +316,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Maximum size of out-of-order packet queue (0 means infinite).<br> Default value: 64<br> Minimum value =  0<br> Maximum value =  65535
+	* Maximum size of out-of-order packets queue. A value of 0 means infinite.<br> Default value: 64<br> Minimum value =  0<br> Maximum value =  65535
 	* </pre>
 	*/
 	public Long get_oooqsize() throws Exception {
@@ -310,7 +325,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Enable packet count based congestion control by setting to non zero value.<br> Minimum value =  0<br> Maximum value =  512
+	* Maximum number of TCP packets allowed per maximum segment size (MSS).<br> Minimum value =  0<br> Maximum value =  512
 	* </pre>
 	*/
 	public void set_maxpktpermss(long maxpktpermss) throws Exception {
@@ -319,7 +334,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Enable packet count based congestion control by setting to non zero value.<br> Minimum value =  0<br> Maximum value =  512
+	* Maximum number of TCP packets allowed per maximum segment size (MSS).<br> Minimum value =  0<br> Maximum value =  512
 	* </pre>
 	*/
 	public void set_maxpktpermss(Long maxpktpermss) throws Exception{
@@ -328,7 +343,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Enable packet count based congestion control by setting to non zero value.<br> Minimum value =  0<br> Maximum value =  512
+	* Maximum number of TCP packets allowed per maximum segment size (MSS).<br> Minimum value =  0<br> Maximum value =  512
 	* </pre>
 	*/
 	public Long get_maxpktpermss() throws Exception {
@@ -337,7 +352,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set value for maximum number packets per retransmission.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  512
+	* Maximum limit on the number of packets that should be retransmitted on receiving a partial ACK.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  512
 	* </pre>
 	*/
 	public void set_pktperretx(long pktperretx) throws Exception {
@@ -346,7 +361,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set value for maximum number packets per retransmission.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  512
+	* Maximum limit on the number of packets that should be retransmitted on receiving a partial ACK.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  512
 	* </pre>
 	*/
 	public void set_pktperretx(Long pktperretx) throws Exception{
@@ -355,7 +370,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set value for maximum number packets per retransmission.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  512
+	* Maximum limit on the number of packets that should be retransmitted on receiving a partial ACK.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  512
 	* </pre>
 	*/
 	public Long get_pktperretx() throws Exception {
@@ -364,7 +379,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set minimum limit on TCP RTO (in millisec).<br> Default value: 1000<br> Minimum value =  10<br> Maximum value =  64000
+	* Minimum retransmission timeout, in milliseconds.<br> Default value: 1000<br> Minimum value =  10<br> Maximum value =  64000
 	* </pre>
 	*/
 	public void set_minrto(long minrto) throws Exception {
@@ -373,7 +388,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set minimum limit on TCP RTO (in millisec).<br> Default value: 1000<br> Minimum value =  10<br> Maximum value =  64000
+	* Minimum retransmission timeout, in milliseconds.<br> Default value: 1000<br> Minimum value =  10<br> Maximum value =  64000
 	* </pre>
 	*/
 	public void set_minrto(Long minrto) throws Exception{
@@ -382,7 +397,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set minimum limit on TCP RTO (in millisec).<br> Default value: 1000<br> Minimum value =  10<br> Maximum value =  64000
+	* Minimum retransmission timeout, in milliseconds.<br> Default value: 1000<br> Minimum value =  10<br> Maximum value =  64000
 	* </pre>
 	*/
 	public Long get_minrto() throws Exception {
@@ -391,7 +406,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP slowstart increment factor.<br> Default value: 2<br> Minimum value =  1<br> Maximum value =  100
+	* Multiplier that determines the rate at which slow start increases the size of the TCP transmission window after each acknowledgement of successful transmission.<br> Default value: 2<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_slowstartincr(long slowstartincr) throws Exception {
@@ -400,7 +415,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP slowstart increment factor.<br> Default value: 2<br> Minimum value =  1<br> Maximum value =  100
+	* Multiplier that determines the rate at which slow start increases the size of the TCP transmission window after each acknowledgement of successful transmission.<br> Default value: 2<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_slowstartincr(Long slowstartincr) throws Exception{
@@ -409,7 +424,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP slowstart increment factor.<br> Default value: 2<br> Minimum value =  1<br> Maximum value =  100
+	* Multiplier that determines the rate at which slow start increases the size of the TCP transmission window after each acknowledgement of successful transmission.<br> Default value: 2<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_slowstartincr() throws Exception {
@@ -418,7 +433,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP buffer size.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
+	* TCP buffering size, in bytes.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
 	* </pre>
 	*/
 	public void set_buffersize(long buffersize) throws Exception {
@@ -427,7 +442,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP buffer size.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
+	* TCP buffering size, in bytes.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
 	* </pre>
 	*/
 	public void set_buffersize(Long buffersize) throws Exception{
@@ -436,7 +451,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP buffer size.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
+	* TCP buffering size, in bytes.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
 	* </pre>
 	*/
 	public Long get_buffersize() throws Exception {
@@ -445,7 +460,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Whether to enable syncookie on connections.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable the SYNCOOKIE mechanism for TCP handshake with clients. Disabling SYNCOOKIE prevents SYN attack protection on the NetScaler appliance.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_syncookie(String syncookie) throws Exception{
@@ -454,7 +469,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Whether to enable syncookie on connections.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable the SYNCOOKIE mechanism for TCP handshake with clients. Disabling SYNCOOKIE prevents SYN attack protection on the NetScaler appliance.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_syncookie() throws Exception {
@@ -463,7 +478,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Update last activity for KA probes.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Update last activity for the connection after receiving keep-alive (KA) probes.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_kaprobeupdatelastactivity(String kaprobeupdatelastactivity) throws Exception{
@@ -472,7 +487,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Update last activity for KA probes.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Update last activity for the connection after receiving keep-alive (KA) probes.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_kaprobeupdatelastactivity() throws Exception {
@@ -481,7 +496,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP algorithm.<br> Default value: NS_TCP_DEFAULT<br> Possible values = Default, Westwood
+	* Set TCP congestion control algorithm.<br> Default value: Default<br> Possible values = Default, Westwood
 	* </pre>
 	*/
 	public void set_flavor(String flavor) throws Exception{
@@ -490,7 +505,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Set TCP algorithm.<br> Default value: NS_TCP_DEFAULT<br> Possible values = Default, Westwood
+	* Set TCP congestion control algorithm.<br> Default value: Default<br> Possible values = Default, Westwood
 	* </pre>
 	*/
 	public String get_flavor() throws Exception {
@@ -499,7 +514,8 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Enable/Disable Dynamic Receive Buffering.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable dynamic receive buffering. When enabled, allows the receive buffer to be adjusted dynamically based on memory and network conditions.
+Note: The buffer size argument must be set for dynamic adjustments to take place.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_dynamicreceivebuffering(String dynamicreceivebuffering) throws Exception{
@@ -508,7 +524,8 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Enable/Disable Dynamic Receive Buffering.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Enable or disable dynamic receive buffering. When enabled, allows the receive buffer to be adjusted dynamically based on memory and network conditions.
+Note: The buffer size argument must be set for dynamic adjustments to take place.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_dynamicreceivebuffering() throws Exception {
@@ -517,7 +534,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Send periodic TCP keep-alive probes to check if peer is still up.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Send periodic TCP keep-alive (KA) probes to check if peer is still up.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ka(String ka) throws Exception{
@@ -526,7 +543,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Send periodic TCP keep-alive probes to check if peer is still up.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Send periodic TCP keep-alive (KA) probes to check if peer is still up.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ka() throws Exception {
@@ -535,7 +552,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* How long the connection should be idle, in seconds, before sending a keep-alive probe.<br> Minimum value =  1<br> Maximum value =  4095
+	* Duration, in seconds, for the connection to be idle, before sending a keep-alive (KA) probe.<br> Minimum value =  1<br> Maximum value =  4095
 	* </pre>
 	*/
 	public void set_kaconnidletime(long kaconnidletime) throws Exception {
@@ -544,7 +561,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* How long the connection should be idle, in seconds, before sending a keep-alive probe.<br> Minimum value =  1<br> Maximum value =  4095
+	* Duration, in seconds, for the connection to be idle, before sending a keep-alive (KA) probe.<br> Minimum value =  1<br> Maximum value =  4095
 	* </pre>
 	*/
 	public void set_kaconnidletime(Long kaconnidletime) throws Exception{
@@ -553,7 +570,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* How long the connection should be idle, in seconds, before sending a keep-alive probe.<br> Minimum value =  1<br> Maximum value =  4095
+	* Duration, in seconds, for the connection to be idle, before sending a keep-alive (KA) probe.<br> Minimum value =  1<br> Maximum value =  4095
 	* </pre>
 	*/
 	public Long get_kaconnidletime() throws Exception {
@@ -562,7 +579,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* How many keep-alive probes to send, when not acknowledged, before assuming peer to be down.<br> Minimum value =  1<br> Maximum value =  255
+	* Number of keep-alive (KA) probes to be sent when not acknowledged, before assuming the peer to be down.<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public void set_kamaxprobes(long kamaxprobes) throws Exception {
@@ -571,7 +588,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* How many keep-alive probes to send, when not acknowledged, before assuming peer to be down.<br> Minimum value =  1<br> Maximum value =  255
+	* Number of keep-alive (KA) probes to be sent when not acknowledged, before assuming the peer to be down.<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public void set_kamaxprobes(Long kamaxprobes) throws Exception{
@@ -580,7 +597,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* How many keep-alive probes to send, when not acknowledged, before assuming peer to be down.<br> Minimum value =  1<br> Maximum value =  255
+	* Number of keep-alive (KA) probes to be sent when not acknowledged, before assuming the peer to be down.<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public Long get_kamaxprobes() throws Exception {
@@ -589,7 +606,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Time interval (seconds) before the next probe, if peer does not respond.<br> Minimum value =  1<br> Maximum value =  4095
+	* Time interval, in seconds, before the next keep-alive (KA) probe, if the peer does not respond.<br> Minimum value =  1<br> Maximum value =  4095
 	* </pre>
 	*/
 	public void set_kaprobeinterval(long kaprobeinterval) throws Exception {
@@ -598,7 +615,7 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Time interval (seconds) before the next probe, if peer does not respond.<br> Minimum value =  1<br> Maximum value =  4095
+	* Time interval, in seconds, before the next keep-alive (KA) probe, if the peer does not respond.<br> Minimum value =  1<br> Maximum value =  4095
 	* </pre>
 	*/
 	public void set_kaprobeinterval(Long kaprobeinterval) throws Exception{
@@ -607,11 +624,56 @@ public class nstcpprofile extends base_resource
 
 	/**
 	* <pre>
-	* Time interval (seconds) before the next probe, if peer does not respond.<br> Minimum value =  1<br> Maximum value =  4095
+	* Time interval, in seconds, before the next keep-alive (KA) probe, if the peer does not respond.<br> Minimum value =  1<br> Maximum value =  4095
 	* </pre>
 	*/
 	public Long get_kaprobeinterval() throws Exception {
 		return this.kaprobeinterval;
+	}
+
+	/**
+	* <pre>
+	* TCP Send Buffer Size.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
+	* </pre>
+	*/
+	public void set_sendbuffsize(long sendbuffsize) throws Exception {
+		this.sendbuffsize = new Long(sendbuffsize);
+	}
+
+	/**
+	* <pre>
+	* TCP Send Buffer Size.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
+	* </pre>
+	*/
+	public void set_sendbuffsize(Long sendbuffsize) throws Exception{
+		this.sendbuffsize = sendbuffsize;
+	}
+
+	/**
+	* <pre>
+	* TCP Send Buffer Size.<br> Default value: 8190<br> Minimum value =  8190<br> Maximum value =  4194304
+	* </pre>
+	*/
+	public Long get_sendbuffsize() throws Exception {
+		return this.sendbuffsize;
+	}
+
+	/**
+	* <pre>
+	* Enable/Disable Multi-Path TCP.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_mptcp(String mptcp) throws Exception{
+		this.mptcp = mptcp;
+	}
+
+	/**
+	* <pre>
+	* Enable/Disable Multi-Path TCP.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_mptcp() throws Exception {
+		return this.mptcp;
 	}
 
 	/**
@@ -686,6 +748,8 @@ public class nstcpprofile extends base_resource
 		addresource.kaconnidletime = resource.kaconnidletime;
 		addresource.kamaxprobes = resource.kamaxprobes;
 		addresource.kaprobeinterval = resource.kaprobeinterval;
+		addresource.sendbuffsize = resource.sendbuffsize;
+		addresource.mptcp = resource.mptcp;
 		return addresource.add_resource(client);
 	}
 
@@ -722,6 +786,8 @@ public class nstcpprofile extends base_resource
 				addresources[i].kaconnidletime = resources[i].kaconnidletime;
 				addresources[i].kamaxprobes = resources[i].kamaxprobes;
 				addresources[i].kaprobeinterval = resources[i].kaprobeinterval;
+				addresources[i].sendbuffsize = resources[i].sendbuffsize;
+				addresources[i].mptcp = resources[i].mptcp;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -807,6 +873,8 @@ public class nstcpprofile extends base_resource
 		updateresource.kaconnidletime = resource.kaconnidletime;
 		updateresource.kamaxprobes = resource.kamaxprobes;
 		updateresource.kaprobeinterval = resource.kaprobeinterval;
+		updateresource.sendbuffsize = resource.sendbuffsize;
+		updateresource.mptcp = resource.mptcp;
 		return updateresource.update_resource(client);
 	}
 
@@ -843,6 +911,8 @@ public class nstcpprofile extends base_resource
 				updateresources[i].kaconnidletime = resources[i].kaconnidletime;
 				updateresources[i].kamaxprobes = resources[i].kamaxprobes;
 				updateresources[i].kaprobeinterval = resources[i].kaprobeinterval;
+				updateresources[i].sendbuffsize = resources[i].sendbuffsize;
+				updateresources[i].mptcp = resources[i].mptcp;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -853,42 +923,9 @@ public class nstcpprofile extends base_resource
 	* Use this API to unset the properties of nstcpprofile resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		nstcpprofile unsetresource = new nstcpprofile();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of nstcpprofile resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, nstcpprofile resource, String[] args) throws Exception{
 		nstcpprofile unsetresource = new nstcpprofile();
 		unsetresource.name = resource.name;
-		unsetresource.ws = resource.ws;
-		unsetresource.sack = resource.sack;
-		unsetresource.wsval = resource.wsval;
-		unsetresource.nagle = resource.nagle;
-		unsetresource.ackonpush = resource.ackonpush;
-		unsetresource.mss = resource.mss;
-		unsetresource.maxburst = resource.maxburst;
-		unsetresource.initialcwnd = resource.initialcwnd;
-		unsetresource.delayedack = resource.delayedack;
-		unsetresource.oooqsize = resource.oooqsize;
-		unsetresource.maxpktpermss = resource.maxpktpermss;
-		unsetresource.pktperretx = resource.pktperretx;
-		unsetresource.minrto = resource.minrto;
-		unsetresource.slowstartincr = resource.slowstartincr;
-		unsetresource.buffersize = resource.buffersize;
-		unsetresource.syncookie = resource.syncookie;
-		unsetresource.kaprobeupdatelastactivity = resource.kaprobeupdatelastactivity;
-		unsetresource.flavor = resource.flavor;
-		unsetresource.dynamicreceivebuffering = resource.dynamicreceivebuffering;
-		unsetresource.ka = resource.ka;
-		unsetresource.kamaxprobes = resource.kamaxprobes;
-		unsetresource.kaconnidletime = resource.kaconnidletime;
-		unsetresource.kaprobeinterval = resource.kaprobeinterval;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -920,29 +957,6 @@ public class nstcpprofile extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new nstcpprofile();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].ws = resources[i].ws;
-				unsetresources[i].sack = resources[i].sack;
-				unsetresources[i].wsval = resources[i].wsval;
-				unsetresources[i].nagle = resources[i].nagle;
-				unsetresources[i].ackonpush = resources[i].ackonpush;
-				unsetresources[i].mss = resources[i].mss;
-				unsetresources[i].maxburst = resources[i].maxburst;
-				unsetresources[i].initialcwnd = resources[i].initialcwnd;
-				unsetresources[i].delayedack = resources[i].delayedack;
-				unsetresources[i].oooqsize = resources[i].oooqsize;
-				unsetresources[i].maxpktpermss = resources[i].maxpktpermss;
-				unsetresources[i].pktperretx = resources[i].pktperretx;
-				unsetresources[i].minrto = resources[i].minrto;
-				unsetresources[i].slowstartincr = resources[i].slowstartincr;
-				unsetresources[i].buffersize = resources[i].buffersize;
-				unsetresources[i].syncookie = resources[i].syncookie;
-				unsetresources[i].kaprobeupdatelastactivity = resources[i].kaprobeupdatelastactivity;
-				unsetresources[i].flavor = resources[i].flavor;
-				unsetresources[i].dynamicreceivebuffering = resources[i].dynamicreceivebuffering;
-				unsetresources[i].ka = resources[i].ka;
-				unsetresources[i].kamaxprobes = resources[i].kamaxprobes;
-				unsetresources[i].kaconnidletime = resources[i].kaconnidletime;
-				unsetresources[i].kaprobeinterval = resources[i].kaprobeinterval;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -1078,6 +1092,10 @@ public class nstcpprofile extends base_resource
 		public static final String DISABLED = "DISABLED";
 	}
 	public static class ackonpushEnum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
+	}
+	public static class mptcpEnum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
 	}

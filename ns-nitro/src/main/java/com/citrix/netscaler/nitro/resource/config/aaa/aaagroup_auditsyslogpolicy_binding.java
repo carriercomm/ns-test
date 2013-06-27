@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.aaa;
@@ -36,7 +42,9 @@ public class aaagroup_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority of the policy.
+	* Priority to assign to the policy, as an integer. A lower number indicates a higher priority.  
+Required when binding a group to a policy. Not relevant to any other
+type of group binding.
 	* </pre>
 	*/
 	public void set_priority(long priority) throws Exception {
@@ -45,7 +53,9 @@ public class aaagroup_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority of the policy.
+	* Priority to assign to the policy, as an integer. A lower number indicates a higher priority.  
+Required when binding a group to a policy. Not relevant to any other
+type of group binding.
 	* </pre>
 	*/
 	public void set_priority(Long priority) throws Exception{
@@ -54,7 +64,9 @@ public class aaagroup_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority of the policy.
+	* Priority to assign to the policy, as an integer. A lower number indicates a higher priority.  
+Required when binding a group to a policy. Not relevant to any other
+type of group binding.
 	* </pre>
 	*/
 	public Long get_priority() throws Exception {
@@ -99,7 +111,7 @@ public class aaagroup_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The group name.<br> Minimum length =  1
+	* Name of the group that you are binding.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_groupname(String groupname) throws Exception{
@@ -108,7 +120,7 @@ public class aaagroup_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The group name.<br> Minimum length =  1
+	* Name of the group that you are binding.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_groupname() throws Exception {
@@ -117,7 +129,7 @@ public class aaagroup_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The intranet vpn application.
+	* Bind the group to the specified intranet VPN application.
 	* </pre>
 	*/
 	public void set_intranetapplication(String intranetapplication) throws Exception{
@@ -126,7 +138,7 @@ public class aaagroup_auditsyslogpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The intranet vpn application.
+	* Bind the group to the specified intranet VPN application.
 	* </pre>
 	*/
 	public String get_intranetapplication() throws Exception {

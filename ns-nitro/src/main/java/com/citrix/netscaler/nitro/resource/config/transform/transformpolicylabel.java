@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.transform;
@@ -43,7 +49,10 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the transform policy label.
+	* Name for the policy label. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the URL Transformation policy label is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my transform policylabel or my transform policylabel).
 	* </pre>
 	*/
 	public void set_labelname(String labelname) throws Exception{
@@ -52,7 +61,10 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the transform policy label.
+	* Name for the policy label. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the URL Transformation policy label is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my transform policylabel or my transform policylabel).
 	* </pre>
 	*/
 	public String get_labelname() throws Exception {
@@ -61,7 +73,7 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The type of transformations allowed by the policies bound to the label.<br> Possible values = http_req
+	* Types of transformations allowed by the policies bound to the label. For URL transformation, always http_req (HTTP Request).<br> Possible values = http_req
 	* </pre>
 	*/
 	public void set_policylabeltype(String policylabeltype) throws Exception{
@@ -70,7 +82,7 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The type of transformations allowed by the policies bound to the label.<br> Possible values = http_req
+	* Types of transformations allowed by the policies bound to the label. For URL transformation, always http_req (HTTP Request).<br> Possible values = http_req
 	* </pre>
 	*/
 	public String get_policylabeltype() throws Exception {
@@ -79,7 +91,11 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the transform policylabel.<br> Minimum length =  1
+	* New name for the policy label.
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my transform policylabel or my transform policylabel).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -88,7 +104,11 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the transform policylabel.<br> Minimum length =  1
+	* New name for the policy label.
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my transform policylabel or my transform policylabel).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
@@ -133,7 +153,9 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation.<br> Possible values = reqvserver, policylabel
+	* Type of invocation. Available settings function as follows:
+* reqvserver - Forward the request to the specified request virtual server.
+* policylabel - Invoke the specified policy label.<br> Possible values = reqvserver, policylabel
 	* </pre>
 	*/
 	public String get_labeltype() throws Exception {
@@ -142,7 +164,7 @@ public class transformpolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the policy label.
 	* </pre>
 	*/
 	public String get_invoke_labelname() throws Exception {

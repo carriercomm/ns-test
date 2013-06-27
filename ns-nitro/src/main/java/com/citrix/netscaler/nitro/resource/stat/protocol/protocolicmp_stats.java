@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.protocol;
@@ -26,6 +32,7 @@ class protocolicmp_response extends base_response
 
 public class protocolicmp_stats extends base_resource
 {
+	private String clearstats;
 	private Long icmptotrxpkts;
 	private Long icmprxpktsrate;
 	private Long icmptotrxbytes;
@@ -62,7 +69,25 @@ public class protocolicmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* Bytes of ICMP data received.
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
+	}
+
+	/**
+	* <pre>
+	* Rate (/s) counter for icmptotrxbytes
 	* </pre>
 	*/
 	public Long get_icmprxbytesrate() throws Exception {
@@ -107,7 +132,7 @@ public class protocolicmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMP Ping echo replies received.
+	* Rate (/s) counter for icmptotrxechoreply
 	* </pre>
 	*/
 	public Long get_icmprxechoreplyrate() throws Exception {
@@ -116,7 +141,7 @@ public class protocolicmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMP packets transmitted.
+	* Rate (/s) counter for icmptottxpkts
 	* </pre>
 	*/
 	public Long get_icmptxpktsrate() throws Exception {
@@ -233,7 +258,7 @@ public class protocolicmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMP Ping Echo Request and Echo Reply packets received.
+	* Rate (/s) counter for icmptotrxecho
 	* </pre>
 	*/
 	public Long get_icmprxechorate() throws Exception {
@@ -251,7 +276,7 @@ public class protocolicmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMP Ping echo replies transmitted.
+	* Rate (/s) counter for icmptottxechoreply
 	* </pre>
 	*/
 	public Long get_icmptxechoreplyrate() throws Exception {
@@ -269,7 +294,7 @@ public class protocolicmp_stats extends base_resource
 
 	/**
 	* <pre>
-	* ICMP packets received.
+	* Rate (/s) counter for icmptotrxpkts
 	* </pre>
 	*/
 	public Long get_icmprxpktsrate() throws Exception {
@@ -352,7 +377,7 @@ This is a configurable value using the set rateControl command.
 
 	/**
 	* <pre>
-	* Bytes of ICMP data transmitted.
+	* Rate (/s) counter for icmptottxbytes
 	* </pre>
 	*/
 	public Long get_icmptxbytesrate() throws Exception {
@@ -413,4 +438,8 @@ This is a configurable value using the set rateControl command.
 		return response[0];
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

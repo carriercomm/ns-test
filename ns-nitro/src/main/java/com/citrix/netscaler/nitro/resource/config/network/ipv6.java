@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -27,17 +33,22 @@ class ipv6_response extends base_response
 public class ipv6 extends base_resource
 {
 	private String ralearning;
+	private String routerredirection;
+	private Long ndbasereachtime;
+	private Long ndretransmissiontime;
 	private String natprefix;
+	private String dodad;
 
 	//------- Read only Parameter ---------;
 
 	private Integer basereachtime;
 	private Integer reachtime;
+	private Long ndreachtime;
 	private Integer retransmissiontime;
 
 	/**
 	* <pre>
-	* Enable the NetScaler appliance to learn about various routes from RA and RS messages sent by the routers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable the NetScaler appliance to learn about various routes from Router Advertisement (RA) and Router Solicitation (RS) messages sent by the routers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ralearning(String ralearning) throws Exception{
@@ -46,7 +57,7 @@ public class ipv6 extends base_resource
 
 	/**
 	* <pre>
-	* Enable the NetScaler appliance to learn about various routes from RA and RS messages sent by the routers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable the NetScaler appliance to learn about various routes from Router Advertisement (RA) and Router Solicitation (RS) messages sent by the routers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ralearning() throws Exception {
@@ -55,7 +66,79 @@ public class ipv6 extends base_resource
 
 	/**
 	* <pre>
-	* The prefix used for translating packets received from private IPv6 servers into IPv4 packets. This prefix has a length of 96 bits (128-32 = 96). The IPv6 servers embed the destination IP address of the IPv4 servers or hosts in the last 32 bits of the destination IP address field of the IPv6 packets. The first 96 bits of the destination IP address field are set as the IPv6 NAT prefix. IPv6 packets addressed to this prefix have to be routed to the NetScaler appliance to ensure that the IPv6-IPv4 translation is done by the appliance.
+	* Enable the NetScaler appliance to do Router Redirection.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_routerredirection(String routerredirection) throws Exception{
+		this.routerredirection = routerredirection;
+	}
+
+	/**
+	* <pre>
+	* Enable the NetScaler appliance to do Router Redirection.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_routerredirection() throws Exception {
+		return this.routerredirection;
+	}
+
+	/**
+	* <pre>
+	* ND6 base reachable time (ms).<br> Default value: 30000
+	* </pre>
+	*/
+	public void set_ndbasereachtime(long ndbasereachtime) throws Exception {
+		this.ndbasereachtime = new Long(ndbasereachtime);
+	}
+
+	/**
+	* <pre>
+	* ND6 base reachable time (ms).<br> Default value: 30000
+	* </pre>
+	*/
+	public void set_ndbasereachtime(Long ndbasereachtime) throws Exception{
+		this.ndbasereachtime = ndbasereachtime;
+	}
+
+	/**
+	* <pre>
+	* ND6 base reachable time (ms).<br> Default value: 30000
+	* </pre>
+	*/
+	public Long get_ndbasereachtime() throws Exception {
+		return this.ndbasereachtime;
+	}
+
+	/**
+	* <pre>
+	* ND6 retransmission time (ms).<br> Default value: 1000
+	* </pre>
+	*/
+	public void set_ndretransmissiontime(long ndretransmissiontime) throws Exception {
+		this.ndretransmissiontime = new Long(ndretransmissiontime);
+	}
+
+	/**
+	* <pre>
+	* ND6 retransmission time (ms).<br> Default value: 1000
+	* </pre>
+	*/
+	public void set_ndretransmissiontime(Long ndretransmissiontime) throws Exception{
+		this.ndretransmissiontime = ndretransmissiontime;
+	}
+
+	/**
+	* <pre>
+	* ND6 retransmission time (ms).<br> Default value: 1000
+	* </pre>
+	*/
+	public Long get_ndretransmissiontime() throws Exception {
+		return this.ndretransmissiontime;
+	}
+
+	/**
+	* <pre>
+	* Prefix used for translating packets from private IPv6 servers to IPv4 packets. This prefix has a length of 96 bits (128-32 = 96). The IPv6 servers embed the destination IP address of the IPv4 servers or hosts in the last 32 bits of the destination IP address field of the IPv6 packets. The first 96 bits of the destination IP address field are set as the IPv6 NAT prefix. IPv6 packets addressed to this prefix have to be routed to the NetScaler appliance to ensure that the IPv6-IPv4 translation is done by the appliance.
 	* </pre>
 	*/
 	public void set_natprefix(String natprefix) throws Exception{
@@ -64,11 +147,29 @@ public class ipv6 extends base_resource
 
 	/**
 	* <pre>
-	* The prefix used for translating packets received from private IPv6 servers into IPv4 packets. This prefix has a length of 96 bits (128-32 = 96). The IPv6 servers embed the destination IP address of the IPv4 servers or hosts in the last 32 bits of the destination IP address field of the IPv6 packets. The first 96 bits of the destination IP address field are set as the IPv6 NAT prefix. IPv6 packets addressed to this prefix have to be routed to the NetScaler appliance to ensure that the IPv6-IPv4 translation is done by the appliance.
+	* Prefix used for translating packets from private IPv6 servers to IPv4 packets. This prefix has a length of 96 bits (128-32 = 96). The IPv6 servers embed the destination IP address of the IPv4 servers or hosts in the last 32 bits of the destination IP address field of the IPv6 packets. The first 96 bits of the destination IP address field are set as the IPv6 NAT prefix. IPv6 packets addressed to this prefix have to be routed to the NetScaler appliance to ensure that the IPv6-IPv4 translation is done by the appliance.
 	* </pre>
 	*/
 	public String get_natprefix() throws Exception {
 		return this.natprefix;
+	}
+
+	/**
+	* <pre>
+	* Enable the NetScaler appliance to do Duplicate Address Detection(DAD) for all the IPv6 addresses configured on NS, regardless of whether they are obtained through stateless autoconfiguration .DHCPv6, or manual configuration. RFC4862-sec 5.4.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_dodad(String dodad) throws Exception{
+		this.dodad = dodad;
+	}
+
+	/**
+	* <pre>
+	* Enable the NetScaler appliance to do Duplicate Address Detection(DAD) for all the IPv6 addresses configured on NS, regardless of whether they are obtained through stateless autoconfiguration .DHCPv6, or manual configuration. RFC4862-sec 5.4.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_dodad() throws Exception {
+		return this.dodad;
 	}
 
 	/**
@@ -87,6 +188,15 @@ public class ipv6 extends base_resource
 	*/
 	public Integer get_reachtime() throws Exception {
 		return this.reachtime;
+	}
+
+	/**
+	* <pre>
+	* ND6 computed reachable time (ms).
+	* </pre>
+	*/
+	public Long get_ndreachtime() throws Exception {
+		return this.ndreachtime;
 	}
 
 	/**
@@ -140,7 +250,11 @@ public class ipv6 extends base_resource
 	public static base_response update(nitro_service client, ipv6 resource) throws Exception {
 		ipv6 updateresource = new ipv6();
 		updateresource.ralearning = resource.ralearning;
+		updateresource.routerredirection = resource.routerredirection;
+		updateresource.ndbasereachtime = resource.ndbasereachtime;
+		updateresource.ndretransmissiontime = resource.ndretransmissiontime;
 		updateresource.natprefix = resource.natprefix;
+		updateresource.dodad = resource.dodad;
 		return updateresource.update_resource(client);
 	}
 
@@ -150,8 +264,6 @@ public class ipv6 extends base_resource
 	*/
 	public static base_response unset(nitro_service client, ipv6 resource, String[] args) throws Exception{
 		ipv6 unsetresource = new ipv6();
-		unsetresource.ralearning = resource.ralearning;
-		unsetresource.natprefix = resource.natprefix;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -173,7 +285,15 @@ public class ipv6 extends base_resource
 		return response[0];
 	}
 
+	public static class routerredirectionEnum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
+	}
 	public static class ralearningEnum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
+	}
+	public static class dodadEnum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
 	}

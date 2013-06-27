@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -31,9 +37,12 @@ public class inat extends base_resource
 	private String privateip;
 	private String tcpproxy;
 	private String ftp;
+	private String tftp;
 	private String usip;
 	private String usnip;
 	private String proxyip;
+	private String mode;
+	private Long td;
 
 	//------- Read only Parameter ---------;
 
@@ -42,7 +51,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* A Name for the Inbound NAT (INAT) entry. The name must not exceed 127 characters, and the leading character must be a number or letter. The following characters are also allowed: @ _ - . (period) : (colon) # and space ( ).<br> Minimum length =  1
+	* Name for the Inbound NAT (INAT) entry. Leading character must be a number or letter. Other characters allowed, after the first character, are @ _ - . (period) : (colon) # and space ( ).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -51,7 +60,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* A Name for the Inbound NAT (INAT) entry. The name must not exceed 127 characters, and the leading character must be a number or letter. The following characters are also allowed: @ _ - . (period) : (colon) # and space ( ).<br> Minimum length =  1
+	* Name for the Inbound NAT (INAT) entry. Leading character must be a number or letter. Other characters allowed, after the first character, are @ _ - . (period) : (colon) # and space ( ).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -60,7 +69,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Public IP address of packets received on the NetScaler appliance. Can be either an IPv4 or an IPv6 address. Possible values: NetScaler-owned VIPs.<br> Minimum length =  1
+	* Public IP address of packets received on the NetScaler appliance. Can be aNetScaler-owned VIP or VIP6 address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_publicip(String publicip) throws Exception{
@@ -69,7 +78,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Public IP address of packets received on the NetScaler appliance. Can be either an IPv4 or an IPv6 address. Possible values: NetScaler-owned VIPs.<br> Minimum length =  1
+	* Public IP address of packets received on the NetScaler appliance. Can be aNetScaler-owned VIP or VIP6 address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_publicip() throws Exception {
@@ -78,7 +87,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* IP address of the server to which the packet is sent by the NetScaler. Can be either an IPv4 or an IPv6 address.<br> Minimum length =  1
+	* IP address of the server to which the packet is sent by the NetScaler. Can be an IPv4 or IPv6 address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_privateip(String privateip) throws Exception{
@@ -87,7 +96,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* IP address of the server to which the packet is sent by the NetScaler. Can be either an IPv4 or an IPv6 address.<br> Minimum length =  1
+	* IP address of the server to which the packet is sent by the NetScaler. Can be an IPv4 or IPv6 address.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_privateip() throws Exception {
@@ -96,7 +105,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Enable TCP proxying, which enables the NetScaler appliance to optimize the TCP traffic by using Layer 4 features.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable TCP proxy, which enables the NetScaler appliance to optimize the RNAT TCP traffic by using Layer 4 features.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_tcpproxy(String tcpproxy) throws Exception{
@@ -105,7 +114,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Enable TCP proxying, which enables the NetScaler appliance to optimize the TCP traffic by using Layer 4 features.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Enable TCP proxy, which enables the NetScaler appliance to optimize the RNAT TCP traffic by using Layer 4 features.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_tcpproxy() throws Exception {
@@ -132,7 +141,25 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Enable the NetScaler appliance to retain the source IP address of the packets before sending the packets to the server.<br> Default value: ON<br> Possible values = ON, OFF
+	* To enable/disable TFTP (Default DISABLED).<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_tftp(String tftp) throws Exception{
+		this.tftp = tftp;
+	}
+
+	/**
+	* <pre>
+	* To enable/disable TFTP (Default DISABLED).<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_tftp() throws Exception {
+		return this.tftp;
+	}
+
+	/**
+	* <pre>
+	* Enable the NetScaler appliance to retain the source IP address of packets before sending the packets to the server.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_usip(String usip) throws Exception{
@@ -141,7 +168,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Enable the NetScaler appliance to retain the source IP address of the packets before sending the packets to the server.<br> Default value: ON<br> Possible values = ON, OFF
+	* Enable the NetScaler appliance to retain the source IP address of packets before sending the packets to the server.<br> Default value: OFF<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_usip() throws Exception {
@@ -150,7 +177,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Enable the NetScaler appliance to use an SNIP address as the source IP address of the packets before sending the packets to the server.<br> Default value: ON<br> Possible values = ON, OFF
+	* Enable the NetScaler appliance to use a SNIP address as the source IP address of packets before sending the packets to the server.<br> Default value: ON<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_usnip(String usnip) throws Exception{
@@ -159,7 +186,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* Enable the NetScaler appliance to use an SNIP address as the source IP address of the packets before sending the packets to the server.<br> Default value: ON<br> Possible values = ON, OFF
+	* Enable the NetScaler appliance to use a SNIP address as the source IP address of packets before sending the packets to the server.<br> Default value: ON<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_usnip() throws Exception {
@@ -168,7 +195,7 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* proxyIP	A unique IP address used as the source IP address in packets sent to the server. Must be a MIP or SNIP address.
+	* Unique IP address used as the source IP address in packets sent to the server. Must be a MIP or SNIP address.
 	* </pre>
 	*/
 	public void set_proxyip(String proxyip) throws Exception{
@@ -177,11 +204,56 @@ public class inat extends base_resource
 
 	/**
 	* <pre>
-	* proxyIP	A unique IP address used as the source IP address in packets sent to the server. Must be a MIP or SNIP address.
+	* Unique IP address used as the source IP address in packets sent to the server. Must be a MIP or SNIP address.
 	* </pre>
 	*/
 	public String get_proxyip() throws Exception {
 		return this.proxyip;
+	}
+
+	/**
+	* <pre>
+	* Stateless translation.<br> Possible values = STATELESS
+	* </pre>
+	*/
+	public void set_mode(String mode) throws Exception{
+		this.mode = mode;
+	}
+
+	/**
+	* <pre>
+	* Stateless translation.<br> Possible values = STATELESS
+	* </pre>
+	*/
+	public String get_mode() throws Exception {
+		return this.mode;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
 	}
 
 	/**
@@ -237,9 +309,12 @@ public class inat extends base_resource
 		addresource.privateip = resource.privateip;
 		addresource.tcpproxy = resource.tcpproxy;
 		addresource.ftp = resource.ftp;
+		addresource.tftp = resource.tftp;
 		addresource.usip = resource.usip;
 		addresource.usnip = resource.usnip;
 		addresource.proxyip = resource.proxyip;
+		addresource.mode = resource.mode;
+		addresource.td = resource.td;
 		return addresource.add_resource(client);
 	}
 
@@ -257,9 +332,12 @@ public class inat extends base_resource
 				addresources[i].privateip = resources[i].privateip;
 				addresources[i].tcpproxy = resources[i].tcpproxy;
 				addresources[i].ftp = resources[i].ftp;
+				addresources[i].tftp = resources[i].tftp;
 				addresources[i].usip = resources[i].usip;
 				addresources[i].usnip = resources[i].usnip;
 				addresources[i].proxyip = resources[i].proxyip;
+				addresources[i].mode = resources[i].mode;
+				addresources[i].td = resources[i].td;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -325,9 +403,11 @@ public class inat extends base_resource
 		updateresource.privateip = resource.privateip;
 		updateresource.tcpproxy = resource.tcpproxy;
 		updateresource.ftp = resource.ftp;
+		updateresource.tftp = resource.tftp;
 		updateresource.usip = resource.usip;
 		updateresource.usnip = resource.usnip;
 		updateresource.proxyip = resource.proxyip;
+		updateresource.mode = resource.mode;
 		return updateresource.update_resource(client);
 	}
 
@@ -344,9 +424,11 @@ public class inat extends base_resource
 				updateresources[i].privateip = resources[i].privateip;
 				updateresources[i].tcpproxy = resources[i].tcpproxy;
 				updateresources[i].ftp = resources[i].ftp;
+				updateresources[i].tftp = resources[i].tftp;
 				updateresources[i].usip = resources[i].usip;
 				updateresources[i].usnip = resources[i].usnip;
 				updateresources[i].proxyip = resources[i].proxyip;
+				updateresources[i].mode = resources[i].mode;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -357,24 +439,9 @@ public class inat extends base_resource
 	* Use this API to unset the properties of inat resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		inat unsetresource = new inat();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of inat resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, inat resource, String[] args) throws Exception{
 		inat unsetresource = new inat();
 		unsetresource.name = resource.name;
-		unsetresource.tcpproxy = resource.tcpproxy;
-		unsetresource.ftp = resource.ftp;
-		unsetresource.usip = resource.usip;
-		unsetresource.usnip = resource.usnip;
-		unsetresource.proxyip = resource.proxyip;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -406,11 +473,6 @@ public class inat extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new inat();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].tcpproxy = resources[i].tcpproxy;
-				unsetresources[i].ftp = resources[i].ftp;
-				unsetresources[i].usip = resources[i].usip;
-				unsetresources[i].usnip = resources[i].usnip;
-				unsetresources[i].proxyip = resources[i].proxyip;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -529,6 +591,9 @@ public class inat extends base_resource
 		return 0;
 	}
 
+	public static class modeEnum {
+		public static final String STATELESS = "STATELESS";
+	}
 	public static class ftpEnum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
@@ -536,6 +601,10 @@ public class inat extends base_resource
 	public static class usnipEnum {
 		public static final String ON = "ON";
 		public static final String OFF = "OFF";
+	}
+	public static class tftpEnum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class tcpproxyEnum {
 		public static final String ENABLED = "ENABLED";

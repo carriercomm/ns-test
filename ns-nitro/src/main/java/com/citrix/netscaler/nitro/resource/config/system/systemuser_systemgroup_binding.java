@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.system;
@@ -34,7 +40,7 @@ public class systemuser_systemgroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority the command policy is to be bound with.<br> Minimum value =  0<br> Maximum value =  999999999
+	* Integer specifying the priority of the command policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priority numbers.<br> Minimum value =  0<br> Maximum value =  999999999
 	* </pre>
 	*/
 	public void set_priority(long priority) throws Exception {
@@ -43,7 +49,7 @@ public class systemuser_systemgroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority the command policy is to be bound with.<br> Minimum value =  0<br> Maximum value =  999999999
+	* Integer specifying the priority of the command policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priority numbers.<br> Minimum value =  0<br> Maximum value =  999999999
 	* </pre>
 	*/
 	public void set_priority(Long priority) throws Exception{
@@ -52,7 +58,7 @@ public class systemuser_systemgroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The priority the command policy is to be bound with.<br> Minimum value =  0<br> Maximum value =  999999999
+	* Integer specifying the priority of the command policy. A lower number specifies a higher priority. Policies are evaluated in the order of their priority numbers.<br> Minimum value =  0<br> Maximum value =  999999999
 	* </pre>
 	*/
 	public Long get_priority() throws Exception {
@@ -61,7 +67,7 @@ public class systemuser_systemgroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the command policy being bound to the system user.<br> Minimum length =  1
+	* Name of the command policy to bind to the system user.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_policyname(String policyname) throws Exception{
@@ -70,7 +76,7 @@ public class systemuser_systemgroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the command policy being bound to the system user.<br> Minimum length =  1
+	* Name of the command policy to bind to the system user.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_policyname() throws Exception {
@@ -79,7 +85,7 @@ public class systemuser_systemgroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the system user.<br> Minimum length =  1
+	* Name of the system-user entry to which to bind the command policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_username(String username) throws Exception{
@@ -88,7 +94,7 @@ public class systemuser_systemgroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the system user.<br> Minimum length =  1
+	* Name of the system-user entry to which to bind the command policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_username() throws Exception {

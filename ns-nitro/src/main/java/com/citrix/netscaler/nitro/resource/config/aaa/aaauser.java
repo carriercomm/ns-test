@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.aaa;
@@ -33,7 +39,11 @@ public class aaauser extends base_resource
 
 	/**
 	* <pre>
-	* The name of the user.<br> Minimum length =  1
+	* Name for the user. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the user is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or
+single quotation marks (for example, "my aaa user" or "my aaa user").<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_username(String username) throws Exception{
@@ -42,7 +52,11 @@ public class aaauser extends base_resource
 
 	/**
 	* <pre>
-	* The name of the user.<br> Minimum length =  1
+	* Name for the user. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the user is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or
+single quotation marks (for example, "my aaa user" or "my aaa user").<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_username() throws Exception {
@@ -51,8 +65,8 @@ public class aaauser extends base_resource
 
 	/**
 	* <pre>
-	* Enter this keyword to create or change the user's password. The entered password is not displayed.
-If no password is given for a new user then the user will be authenticated externally.<br> Minimum length =  1
+	* Password with which the user logs on. Required for any user account that does not exist on an external authentication server. 
+If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_password(String password) throws Exception{
@@ -61,8 +75,8 @@ If no password is given for a new user then the user will be authenticated exter
 
 	/**
 	* <pre>
-	* Enter this keyword to create or change the user's password. The entered password is not displayed.
-If no password is given for a new user then the user will be authenticated externally.<br> Minimum length =  1
+	* Password with which the user logs on. Required for any user account that does not exist on an external authentication server. 
+If you are not using an external authentication server, all user accounts must have a password. If you are using an external authentication server, you must provide a password for local user accounts that do not exist on the authentication server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_password() throws Exception {
@@ -71,7 +85,7 @@ If no password is given for a new user then the user will be authenticated exter
 
 	/**
 	* <pre>
-	* The loggedin flag. When this flag is turned on, the system displays the names of all logged-in users. If a user name is included, the system displays whether the user is logged in or not. .
+	* Show whether the user is logged in or not.
 	* </pre>
 	*/
 	public void set_loggedin(boolean loggedin) throws Exception {
@@ -80,7 +94,7 @@ If no password is given for a new user then the user will be authenticated exter
 
 	/**
 	* <pre>
-	* The loggedin flag. When this flag is turned on, the system displays the names of all logged-in users. If a user name is included, the system displays whether the user is logged in or not. .
+	* Show whether the user is logged in or not.
 	* </pre>
 	*/
 	public void set_loggedin(Boolean loggedin) throws Exception{
@@ -89,7 +103,7 @@ If no password is given for a new user then the user will be authenticated exter
 
 	/**
 	* <pre>
-	* The loggedin flag. When this flag is turned on, the system displays the names of all logged-in users. If a user name is included, the system displays whether the user is logged in or not. .
+	* Show whether the user is logged in or not.
 	* </pre>
 	*/
 	public Boolean get_loggedin() throws Exception {

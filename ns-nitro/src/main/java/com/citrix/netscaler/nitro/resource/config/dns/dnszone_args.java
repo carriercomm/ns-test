@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.dns;
@@ -20,10 +26,10 @@ public class dnszone_args
 
 	/**
 	* <pre>
-	* Zone type. The type can take 3 values:
-ADNS -  If this is specified, all of the authoritative zones will be displayed.
-PROXY - If this is specified, all of the proxy zones will be displayed.
-ALL  -  If this is specified, all of the zones will be displayed.<br> Possible values = ALL, ADNS, PROXY
+	* Type of zone to display. Mutually exclusive with the DNS Zone (zoneName) parameter. Available settings function as follows:
+* ADNS - Display all the zones for which the NetScaler appliance is authoritative.
+* PROXY - Display all the zones for which the NetScaler appliance is functioning as a proxy server.
+* ALL - Display all the zones configured on the appliance.<br> Possible values = ALL, ADNS, PROXY
 	* </pre>
 	*/
 	public void set_type(String type) throws Exception{
@@ -32,10 +38,10 @@ ALL  -  If this is specified, all of the zones will be displayed.<br> Possible v
 
 	/**
 	* <pre>
-	* Zone type. The type can take 3 values:
-ADNS -  If this is specified, all of the authoritative zones will be displayed.
-PROXY - If this is specified, all of the proxy zones will be displayed.
-ALL  -  If this is specified, all of the zones will be displayed.<br> Possible values = ALL, ADNS, PROXY
+	* Type of zone to display. Mutually exclusive with the DNS Zone (zoneName) parameter. Available settings function as follows:
+* ADNS - Display all the zones for which the NetScaler appliance is authoritative.
+* PROXY - Display all the zones for which the NetScaler appliance is functioning as a proxy server.
+* ALL - Display all the zones configured on the appliance.<br> Possible values = ALL, ADNS, PROXY
 	* </pre>
 	*/
 	public String get_type() throws Exception {

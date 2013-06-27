@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.dns;
@@ -43,7 +49,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the name server.<br> Minimum length =  1
+	* IP address of an external name server or, if the Local parameter is set, IP address of a local DNS server (LDNS).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ip(String ip) throws Exception{
@@ -52,7 +58,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the name server.<br> Minimum length =  1
+	* IP address of an external name server or, if the Local parameter is set, IP address of a local DNS server (LDNS).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ip() throws Exception {
@@ -61,7 +67,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The name of the dns vserver.<br> Minimum length =  1
+	* Name of a DNS virtual server. Overrides any IP address-based name servers configured on the NetScaler appliance.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_dnsvservername(String dnsvservername) throws Exception{
@@ -70,7 +76,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The name of the dns vserver.<br> Minimum length =  1
+	* Name of a DNS virtual server. Overrides any IP address-based name servers configured on the NetScaler appliance.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_dnsvservername() throws Exception {
@@ -79,7 +85,9 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* IP is a local recursive nameserver.
+	* Mark the IP address as one that belongs to a local recursive DNS server on the NetScaler appliance. The appliance recursively resolves queries received on an IP address that is marked as being local. For recursive resolution to work, the global DNS parameter, Recursion, must also be set. 
+
+If no name server is marked as being local, the appliance functions as a stub resolver and load balances the name servers.
 	* </pre>
 	*/
 	public void set_local(boolean local) throws Exception {
@@ -88,7 +96,9 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* IP is a local recursive nameserver.
+	* Mark the IP address as one that belongs to a local recursive DNS server on the NetScaler appliance. The appliance recursively resolves queries received on an IP address that is marked as being local. For recursive resolution to work, the global DNS parameter, Recursion, must also be set. 
+
+If no name server is marked as being local, the appliance functions as a stub resolver and load balances the name servers.
 	* </pre>
 	*/
 	public void set_local(Boolean local) throws Exception{
@@ -97,7 +107,9 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* IP is a local recursive nameserver.
+	* Mark the IP address as one that belongs to a local recursive DNS server on the NetScaler appliance. The appliance recursively resolves queries received on an IP address that is marked as being local. For recursive resolution to work, the global DNS parameter, Recursion, must also be set. 
+
+If no name server is marked as being local, the appliance functions as a stub resolver and load balances the name servers.
 	* </pre>
 	*/
 	public Boolean get_local() throws Exception {
@@ -106,7 +118,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The administrative state of the nameserver.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Administrative state of the name server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -115,7 +127,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The administrative state of the nameserver.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Administrative state of the name server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -124,7 +136,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The protocol type of the name server. While adding a vserver-based name server UDP_TCP is not a valid type.<br> Default value: NSA_UDP<br> Possible values = UDP, TCP, UDP_TCP
+	* Protocol used by the name server. UDP_TCP is not valid if the name server is a DNS virtual server configured on the appliance.<br> Default value: UDP<br> Possible values = UDP, TCP, UDP_TCP
 	* </pre>
 	*/
 	public void set_type(String type) throws Exception{
@@ -133,7 +145,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* The protocol type of the name server. While adding a vserver-based name server UDP_TCP is not a valid type.<br> Default value: NSA_UDP<br> Possible values = UDP, TCP, UDP_TCP
+	* Protocol used by the name server. UDP_TCP is not valid if the name server is a DNS virtual server configured on the appliance.<br> Default value: UDP<br> Possible values = UDP, TCP, UDP_TCP
 	* </pre>
 	*/
 	public String get_type() throws Exception {
@@ -160,7 +172,7 @@ public class dnsnameserver extends base_resource
 
 	/**
 	* <pre>
-	* State of the server.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* State of the server.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_nameserverstate() throws Exception {
@@ -537,5 +549,7 @@ public class dnsnameserver extends base_resource
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 }

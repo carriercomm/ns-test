@@ -1,15 +1,22 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.aaa;
 
+import com.citrix.netscaler.nitro.resource.config.aaa.aaaglobal_authenticationnegotiateaction_binding;
 import com.citrix.netscaler.nitro.resource.config.aaa.aaaglobal_aaapreauthenticationpolicy_binding;
 import com.citrix.netscaler.nitro.resource.base.*;
 import com.citrix.netscaler.nitro.service.nitro_service;
@@ -27,7 +34,17 @@ class aaaglobal_binding_response extends base_response
 
 public class aaaglobal_binding extends base_resource
 {
+	private aaaglobal_authenticationnegotiateaction_binding	aaaglobal_authenticationnegotiateaction_binding[] = null;
 	private aaaglobal_aaapreauthenticationpolicy_binding	aaaglobal_aaapreauthenticationpolicy_binding[] = null;
+
+	/**
+	* <pre>
+	* authenticationnegotiateaction that can be bound to aaaglobal.
+	* </pre>
+	*/
+	public aaaglobal_authenticationnegotiateaction_binding[] get_aaaglobal_authenticationnegotiateaction_bindings() throws Exception {
+		return this.aaaglobal_authenticationnegotiateaction_binding;
+	}
 
 	/**
 	* <pre>

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.aaa;
@@ -27,8 +33,11 @@ class aaaparameter_response extends base_response
 public class aaaparameter extends base_resource
 {
 	private String enablestaticpagecaching;
+	private String enableenhancedauthfeedback;
 	private String defaultauthtype;
 	private Long maxaaausers;
+	private Long maxloginattempts;
+	private Long failedlogintimeout;
 	private String aaadnatip;
 
 	/**
@@ -51,7 +60,25 @@ public class aaaparameter extends base_resource
 
 	/**
 	* <pre>
-	* The default authentication server type. If nothing is specified, the default value is set to Local.<br> Default value: LOCAL<br> Possible values = LOCAL, LDAP, RADIUS, TACACS, CERT
+	* Enhanced auth feedback provides more information to the end user about the reason for an authentication failure.  The default value is set to ON.<br> Default value: NO<br> Possible values = YES, NO
+	* </pre>
+	*/
+	public void set_enableenhancedauthfeedback(String enableenhancedauthfeedback) throws Exception{
+		this.enableenhancedauthfeedback = enableenhancedauthfeedback;
+	}
+
+	/**
+	* <pre>
+	* Enhanced auth feedback provides more information to the end user about the reason for an authentication failure.  The default value is set to ON.<br> Default value: NO<br> Possible values = YES, NO
+	* </pre>
+	*/
+	public String get_enableenhancedauthfeedback() throws Exception {
+		return this.enableenhancedauthfeedback;
+	}
+
+	/**
+	* <pre>
+	* The default authentication server type.<br> Default value: LOCAL<br> Possible values = LOCAL, LDAP, RADIUS, TACACS, CERT
 	* </pre>
 	*/
 	public void set_defaultauthtype(String defaultauthtype) throws Exception{
@@ -60,7 +87,7 @@ public class aaaparameter extends base_resource
 
 	/**
 	* <pre>
-	* The default authentication server type. If nothing is specified, the default value is set to Local.<br> Default value: LOCAL<br> Possible values = LOCAL, LDAP, RADIUS, TACACS, CERT
+	* The default authentication server type.<br> Default value: LOCAL<br> Possible values = LOCAL, LDAP, RADIUS, TACACS, CERT
 	* </pre>
 	*/
 	public String get_defaultauthtype() throws Exception {
@@ -69,7 +96,7 @@ public class aaaparameter extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of concurrent users allowed to login in to the system at any given time.<br> Minimum value =  1<br> Maximum value =  65535
+	* Maximum number of concurrent users allowed to log on to VPN simultaneously.<br> Minimum value =  1<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_maxaaausers(long maxaaausers) throws Exception {
@@ -78,7 +105,7 @@ public class aaaparameter extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of concurrent users allowed to login in to the system at any given time.<br> Minimum value =  1<br> Maximum value =  65535
+	* Maximum number of concurrent users allowed to log on to VPN simultaneously.<br> Minimum value =  1<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_maxaaausers(Long maxaaausers) throws Exception{
@@ -87,7 +114,7 @@ public class aaaparameter extends base_resource
 
 	/**
 	* <pre>
-	* The maximum number of concurrent users allowed to login in to the system at any given time.<br> Minimum value =  1<br> Maximum value =  65535
+	* Maximum number of concurrent users allowed to log on to VPN simultaneously.<br> Minimum value =  1<br> Maximum value =  65535
 	* </pre>
 	*/
 	public Long get_maxaaausers() throws Exception {
@@ -96,7 +123,61 @@ public class aaaparameter extends base_resource
 
 	/**
 	* <pre>
-	* The source ip to be used for the traffic going to authentication servers.
+	* Maximum Number of login Attempts.<br> Minimum value =  1
+	* </pre>
+	*/
+	public void set_maxloginattempts(long maxloginattempts) throws Exception {
+		this.maxloginattempts = new Long(maxloginattempts);
+	}
+
+	/**
+	* <pre>
+	* Maximum Number of login Attempts.<br> Minimum value =  1
+	* </pre>
+	*/
+	public void set_maxloginattempts(Long maxloginattempts) throws Exception{
+		this.maxloginattempts = maxloginattempts;
+	}
+
+	/**
+	* <pre>
+	* Maximum Number of login Attempts.<br> Minimum value =  1
+	* </pre>
+	*/
+	public Long get_maxloginattempts() throws Exception {
+		return this.maxloginattempts;
+	}
+
+	/**
+	* <pre>
+	* Failed Login timeout.<br> Minimum value =  1
+	* </pre>
+	*/
+	public void set_failedlogintimeout(long failedlogintimeout) throws Exception {
+		this.failedlogintimeout = new Long(failedlogintimeout);
+	}
+
+	/**
+	* <pre>
+	* Failed Login timeout.<br> Minimum value =  1
+	* </pre>
+	*/
+	public void set_failedlogintimeout(Long failedlogintimeout) throws Exception{
+		this.failedlogintimeout = failedlogintimeout;
+	}
+
+	/**
+	* <pre>
+	* Failed Login timeout.<br> Minimum value =  1
+	* </pre>
+	*/
+	public Long get_failedlogintimeout() throws Exception {
+		return this.failedlogintimeout;
+	}
+
+	/**
+	* <pre>
+	* Source IP address to use for traffic that is sent to the authentication server.
 	* </pre>
 	*/
 	public void set_aaadnatip(String aaadnatip) throws Exception{
@@ -105,7 +186,7 @@ public class aaaparameter extends base_resource
 
 	/**
 	* <pre>
-	* The source ip to be used for the traffic going to authentication servers.
+	* Source IP address to use for traffic that is sent to the authentication server.
 	* </pre>
 	*/
 	public String get_aaadnatip() throws Exception {
@@ -154,8 +235,11 @@ public class aaaparameter extends base_resource
 	public static base_response update(nitro_service client, aaaparameter resource) throws Exception {
 		aaaparameter updateresource = new aaaparameter();
 		updateresource.enablestaticpagecaching = resource.enablestaticpagecaching;
+		updateresource.enableenhancedauthfeedback = resource.enableenhancedauthfeedback;
 		updateresource.defaultauthtype = resource.defaultauthtype;
 		updateresource.maxaaausers = resource.maxaaausers;
+		updateresource.maxloginattempts = resource.maxloginattempts;
+		updateresource.failedlogintimeout = resource.failedlogintimeout;
 		updateresource.aaadnatip = resource.aaadnatip;
 		return updateresource.update_resource(client);
 	}
@@ -166,10 +250,6 @@ public class aaaparameter extends base_resource
 	*/
 	public static base_response unset(nitro_service client, aaaparameter resource, String[] args) throws Exception{
 		aaaparameter unsetresource = new aaaparameter();
-		unsetresource.enablestaticpagecaching = resource.enablestaticpagecaching;
-		unsetresource.defaultauthtype = resource.defaultauthtype;
-		unsetresource.maxaaausers = resource.maxaaausers;
-		unsetresource.aaadnatip = resource.aaadnatip;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -197,6 +277,10 @@ public class aaaparameter extends base_resource
 		public static final String RADIUS = "RADIUS";
 		public static final String TACACS = "TACACS";
 		public static final String CERT = "CERT";
+	}
+	public static class enableenhancedauthfeedbackEnum {
+		public static final String YES = "YES";
+		public static final String NO = "NO";
 	}
 	public static class enablestaticpagecachingEnum {
 		public static final String YES = "YES";

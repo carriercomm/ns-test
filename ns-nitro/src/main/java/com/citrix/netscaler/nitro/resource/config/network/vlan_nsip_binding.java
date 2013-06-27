@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -28,6 +34,7 @@ public class vlan_nsip_binding extends base_resource
 {
 	private String ipaddress;
 	private String netmask;
+	private Long td;
 	private Long id;
 	private Long __count;
 
@@ -60,7 +67,34 @@ public class vlan_nsip_binding extends base_resource
 
 	/**
 	* <pre>
-	* The subnet mask for the network address defined for this VLAN.
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
+	}
+
+	/**
+	* <pre>
+	* Subnet mask for the network address defined for this VLAN.
 	* </pre>
 	*/
 	public void set_netmask(String netmask) throws Exception{
@@ -69,7 +103,7 @@ public class vlan_nsip_binding extends base_resource
 
 	/**
 	* <pre>
-	* The subnet mask for the network address defined for this VLAN.
+	* Subnet mask for the network address defined for this VLAN.
 	* </pre>
 	*/
 	public String get_netmask() throws Exception {
@@ -136,6 +170,7 @@ public class vlan_nsip_binding extends base_resource
 		updateresource.id = resource.id;
 		updateresource.ipaddress = resource.ipaddress;
 		updateresource.netmask = resource.netmask;
+		updateresource.td = resource.td;
 		return updateresource.update_resource(client);
 	}
 
@@ -148,6 +183,7 @@ public class vlan_nsip_binding extends base_resource
 				updateresources[i].id = resources[i].id;
 				updateresources[i].ipaddress = resources[i].ipaddress;
 				updateresources[i].netmask = resources[i].netmask;
+				updateresources[i].td = resources[i].td;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -159,6 +195,7 @@ public class vlan_nsip_binding extends base_resource
 		deleteresource.id = resource.id;
 		deleteresource.ipaddress = resource.ipaddress;
 		deleteresource.netmask = resource.netmask;
+		deleteresource.td = resource.td;
 		return deleteresource.delete_resource(client);
 	}
 
@@ -171,6 +208,7 @@ public class vlan_nsip_binding extends base_resource
 				deleteresources[i].id = resources[i].id;
 				deleteresources[i].ipaddress = resources[i].ipaddress;
 				deleteresources[i].netmask = resources[i].netmask;
+				deleteresources[i].td = resources[i].td;
 			}
 			result = delete_bulk_request(client, deleteresources);
 		}

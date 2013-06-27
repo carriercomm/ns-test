@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -47,9 +53,12 @@ public class sslvserver extends base_resource
 	private String ssl2;
 	private String ssl3;
 	private String tls1;
+	private String tls11;
+	private String tls12;
 	private String snienable;
 	private String pushenctrigger;
 	private String sendclosenotify;
+	private String dtlsprofilename;
 	private Boolean cipherdetails;
 
 	//------- Read only Parameter ---------;
@@ -61,14 +70,15 @@ public class sslvserver extends base_resource
 	private String labelname;
 	private String servicename;
 	private String ocspcheck;
-	private String gotopriorityexpression;
 	private Boolean ca;
 	private Boolean snicert;
+	private Boolean skipcaname;
+	private Boolean dtlsflag;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name of the SSL virtual server.<br> Minimum length =  1
+	* Name of the SSL virtual server for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_vservername(String vservername) throws Exception{
@@ -77,7 +87,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The name of the SSL virtual server.<br> Minimum length =  1
+	* Name of the SSL virtual server for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_vservername() throws Exception {
@@ -86,7 +96,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The port on the back-end web-servers where the clear-text data is sent by system. Use this setting for the wildcard IP based SSL Acceleration configuration (*:443).
+	* Port on which clear-text data is sent by the appliance to the server. Do not specify this parameter for SSL offloading with end-to-end encryption.
 	* </pre>
 	*/
 	public void set_cleartextport(int cleartextport) throws Exception {
@@ -95,7 +105,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The port on the back-end web-servers where the clear-text data is sent by system. Use this setting for the wildcard IP based SSL Acceleration configuration (*:443).
+	* Port on which clear-text data is sent by the appliance to the server. Do not specify this parameter for SSL offloading with end-to-end encryption.
 	* </pre>
 	*/
 	public void set_cleartextport(Integer cleartextport) throws Exception{
@@ -104,7 +114,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The port on the back-end web-servers where the clear-text data is sent by system. Use this setting for the wildcard IP based SSL Acceleration configuration (*:443).
+	* Port on which clear-text data is sent by the appliance to the server. Do not specify this parameter for SSL offloading with end-to-end encryption.
 	* </pre>
 	*/
 	public Integer get_cleartextport() throws Exception {
@@ -113,7 +123,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of DH key exchange support for the specified SSL virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of Diffie-Hellman (DH) key exchange.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_dh(String dh) throws Exception{
@@ -122,7 +132,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of DH key exchange support for the specified SSL virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of Diffie-Hellman (DH) key exchange.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_dh() throws Exception {
@@ -131,8 +141,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The file name and path for the DH parameter. The file format is PEM.
-					Note: The '-dh' argument must be enabled if this argument is specified.<br> Minimum length =  1
+	* Name of and, optionally, path to the DH parameter file, in PEM format, to be installed. /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_dhfile(String dhfile) throws Exception{
@@ -141,8 +150,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The file name and path for the DH parameter. The file format is PEM.
-					Note: The '-dh' argument must be enabled if this argument is specified.<br> Minimum length =  1
+	* Name of and, optionally, path to the DH parameter file, in PEM format, to be installed. /nsconfig/ssl/ is the default path.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_dhfile() throws Exception {
@@ -151,10 +159,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The refresh count for the re-generation of DH public-key and private-key from the DH parameter. Zero means infinite usage (no refresh).
-
-	Note: The '-dh' argument must be enabled if this argument is specified.
-<br> Minimum value =  0<br> Maximum value =  65534
+	* Number of interactions, between the client and the NetScaler appliance, after which the DH private-public pair is regenerated. A value of zero (0) specifies infinite use (no refresh).<br> Minimum value =  0<br> Maximum value =  65534
 	* </pre>
 	*/
 	public void set_dhcount(long dhcount) throws Exception {
@@ -163,10 +168,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The refresh count for the re-generation of DH public-key and private-key from the DH parameter. Zero means infinite usage (no refresh).
-
-	Note: The '-dh' argument must be enabled if this argument is specified.
-<br> Minimum value =  0<br> Maximum value =  65534
+	* Number of interactions, between the client and the NetScaler appliance, after which the DH private-public pair is regenerated. A value of zero (0) specifies infinite use (no refresh).<br> Minimum value =  0<br> Maximum value =  65534
 	* </pre>
 	*/
 	public void set_dhcount(Long dhcount) throws Exception{
@@ -175,10 +177,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The refresh count for the re-generation of DH public-key and private-key from the DH parameter. Zero means infinite usage (no refresh).
-
-	Note: The '-dh' argument must be enabled if this argument is specified.
-<br> Minimum value =  0<br> Maximum value =  65534
+	* Number of interactions, between the client and the NetScaler appliance, after which the DH private-public pair is regenerated. A value of zero (0) specifies infinite use (no refresh).<br> Minimum value =  0<br> Maximum value =  65534
 	* </pre>
 	*/
 	public Long get_dhcount() throws Exception {
@@ -187,7 +186,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of Ephemeral RSA key exchange support for the SSL virtual server. Ephemeral RSA is used for export ciphers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of Ephemeral RSA (eRSA) key exchange. Ephemeral RSA allows clients that support only export ciphers to communicate with the secure server even if the server certificate does not support export clients. The ephemeral RSA key is automatically generated when you bind an export cipher to an SSL or TCP-based SSL virtual server or service. When you remove the export cipher, the eRSA key is not deleted. It is reused at a later date when another export cipher is bound to an SSL or TCP-based SSL virtual server or service. The eRSA key is deleted when the appliance restarts.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ersa(String ersa) throws Exception{
@@ -196,7 +195,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of Ephemeral RSA key exchange support for the SSL virtual server. Ephemeral RSA is used for export ciphers.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of Ephemeral RSA (eRSA) key exchange. Ephemeral RSA allows clients that support only export ciphers to communicate with the secure server even if the server certificate does not support export clients. The ephemeral RSA key is automatically generated when you bind an export cipher to an SSL or TCP-based SSL virtual server or service. When you remove the export cipher, the eRSA key is not deleted. It is reused at a later date when another export cipher is bound to an SSL or TCP-based SSL virtual server or service. The eRSA key is deleted when the appliance restarts.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ersa() throws Exception {
@@ -205,8 +204,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The refresh count for the re-generation of RSA public-key and private-key pair. Zero means infinite usage (no refresh)
-								Note: The '-eRSA' argument must be enabled if this argument is specified.<br> Minimum value =  0<br> Maximum value =  65534
+	* Refresh count for regeneration of the RSA public-key and private-key pair. Zero (0) specifies infinite usage (no refresh).<br> Minimum value =  0<br> Maximum value =  65534
 	* </pre>
 	*/
 	public void set_ersacount(long ersacount) throws Exception {
@@ -215,8 +213,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The refresh count for the re-generation of RSA public-key and private-key pair. Zero means infinite usage (no refresh)
-								Note: The '-eRSA' argument must be enabled if this argument is specified.<br> Minimum value =  0<br> Maximum value =  65534
+	* Refresh count for regeneration of the RSA public-key and private-key pair. Zero (0) specifies infinite usage (no refresh).<br> Minimum value =  0<br> Maximum value =  65534
 	* </pre>
 	*/
 	public void set_ersacount(Long ersacount) throws Exception{
@@ -225,8 +222,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The refresh count for the re-generation of RSA public-key and private-key pair. Zero means infinite usage (no refresh)
-								Note: The '-eRSA' argument must be enabled if this argument is specified.<br> Minimum value =  0<br> Maximum value =  65534
+	* Refresh count for regeneration of the RSA public-key and private-key pair. Zero (0) specifies infinite usage (no refresh).<br> Minimum value =  0<br> Maximum value =  65534
 	* </pre>
 	*/
 	public Long get_ersacount() throws Exception {
@@ -235,7 +231,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of session re-use support for the SSL virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_sessreuse(String sessreuse) throws Exception{
@@ -244,7 +240,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of session re-use support for the SSL virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_sessreuse() throws Exception {
@@ -253,7 +249,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The Session timeout value in seconds. The value has to be a positive integer. The '-sessReuse' argument must be enabled if this argument is specified.<br> Default value: 120<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.<br> Default value: 120<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_sesstimeout(long sesstimeout) throws Exception {
@@ -262,7 +258,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The Session timeout value in seconds. The value has to be a positive integer. The '-sessReuse' argument must be enabled if this argument is specified.<br> Default value: 120<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.<br> Default value: 120<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_sesstimeout(Long sesstimeout) throws Exception{
@@ -271,7 +267,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The Session timeout value in seconds. The value has to be a positive integer. The '-sessReuse' argument must be enabled if this argument is specified.<br> Default value: 120<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.<br> Default value: 120<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public Long get_sesstimeout() throws Exception {
@@ -280,7 +276,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of Cipher Redirect feature.Cipher Redirect feature can be used to provide more readable information to SSL clients about mismatch in ciphers between the client and the SSL vserver.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of Cipher Redirect. If cipher redirect is enabled, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a cipher mismatch between the virtual server or service and the client.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_cipherredirect(String cipherredirect) throws Exception{
@@ -289,7 +285,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of Cipher Redirect feature.Cipher Redirect feature can be used to provide more readable information to SSL clients about mismatch in ciphers between the client and the SSL vserver.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of Cipher Redirect. If cipher redirect is enabled, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a cipher mismatch between the virtual server or service and the client.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_cipherredirect() throws Exception {
@@ -316,7 +312,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of SSLv2 Redirect feature.SSLv2 Redirect feature can be used to provide more readable information to SSL client about non-support of SSLv2 protocol on the SSL vserver.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv2 Redirect. If SSLv2 redirect is enabled, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a protocol version mismatch between the virtual server or service and the client.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_sslv2redirect(String sslv2redirect) throws Exception{
@@ -325,7 +321,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of SSLv2 Redirect feature.SSLv2 Redirect feature can be used to provide more readable information to SSL client about non-support of SSLv2 protocol on the SSL vserver.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv2 Redirect. If SSLv2 redirect is enabled, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a protocol version mismatch between the virtual server or service and the client.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_sslv2redirect() throws Exception {
@@ -334,7 +330,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The redirect URL to be used with SSLv2 Redirect feature.
+	* URL of the page to which to redirect the client in case of a protocol version mismatch. Typically, this page has a clear explanation of the error or an alternative location that the transaction can continue from.
 	* </pre>
 	*/
 	public void set_sslv2url(String sslv2url) throws Exception{
@@ -343,7 +339,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The redirect URL to be used with SSLv2 Redirect feature.
+	* URL of the page to which to redirect the client in case of a protocol version mismatch. Typically, this page has a clear explanation of the error or an alternative location that the transaction can continue from.
 	* </pre>
 	*/
 	public String get_sslv2url() throws Exception {
@@ -352,7 +348,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of Client-Authentication support for the SSL virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of client authentication. If client authentication is enabled, the virtual server terminates the SSL handshake if the SSL client does not provide a valid certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_clientauth(String clientauth) throws Exception{
@@ -361,7 +357,7 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of Client-Authentication support for the SSL virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of client authentication. If client authentication is enabled, the virtual server terminates the SSL handshake if the SSL client does not provide a valid certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_clientauth() throws Exception {
@@ -370,8 +366,8 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The rule for client authentication. If the clientCert if set to Mandatory, the system will terminate the SSL handshake if the SSL client does not provide a valid certificate. If the setting is Optional, then System will allow SSL clients with no certificate or invalid certificates to access the secure resource.
-						Note: Make sure proper access control policies are defined before changing the above setting to Optional.<br> Possible values = Mandatory, Optional
+	* Type of client authentication. If this parameter is set to MANDATORY, the appliance terminates the SSL handshake if the SSL client does not provide a valid certificate. With the OPTIONAL setting, the appliance requests a certificate from the SSL clients but proceeds with the SSL transaction even if the client presents an invalid certificate.
+Caution: Define proper access control policies before changing this setting to Optional.<br> Possible values = Mandatory, Optional
 	* </pre>
 	*/
 	public void set_clientcert(String clientcert) throws Exception{
@@ -380,8 +376,8 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The rule for client authentication. If the clientCert if set to Mandatory, the system will terminate the SSL handshake if the SSL client does not provide a valid certificate. If the setting is Optional, then System will allow SSL clients with no certificate or invalid certificates to access the secure resource.
-						Note: Make sure proper access control policies are defined before changing the above setting to Optional.<br> Possible values = Mandatory, Optional
+	* Type of client authentication. If this parameter is set to MANDATORY, the appliance terminates the SSL handshake if the SSL client does not provide a valid certificate. With the OPTIONAL setting, the appliance requests a certificate from the SSL clients but proceeds with the SSL transaction even if the client presents an invalid certificate.
+Caution: Define proper access control policies before changing this setting to Optional.<br> Possible values = Mandatory, Optional
 	* </pre>
 	*/
 	public String get_clientcert() throws Exception {
@@ -390,11 +386,10 @@ public class sslvserver extends base_resource
 
 	/**
 	* <pre>
-	* The state of HTTPS redirects for the SSL virtual server. This is required for proper working of the redirect messages from the web server. The redirect message from the server gives the new location for the moved object. This is contained in the HTTP header field: Location (for example, Location: http://www.moved.org/here.html).
+	* State of HTTPS redirects for the SSL virtual server. 
 
-For an SSL session, if the client browser receives this message, the browser will try to connect to the new location. This will break the secure SSL session, as the object has moved from a secure site (https://) to an unsecured one (http://). Browsers usually flash a warning message on the screen and prompt the user to either continue or disconnect.
-
-When the above feature is enabled, all such http:// redirect messages are automatically converted to https://. This does not break the client SSL session.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+For an SSL session, if the client browser receives a redirect message, the browser tries to connect to the new location. However, the secure SSL session breaks if the object has moved from a secure site (https://) to an unsecure site (http://). Typically, a warning message appears on the screen, prompting the user to continue or disconnect.
+If SSL Redirect is ENABLED, the redirect message is automatically converted from http:// to https:// and the SSL session does not break.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_sslredirect(String sslredirect) throws Exception{
@@ -403,11 +398,10 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of HTTPS redirects for the SSL virtual server. This is required for proper working of the redirect messages from the web server. The redirect message from the server gives the new location for the moved object. This is contained in the HTTP header field: Location (for example, Location: http://www.moved.org/here.html).
+	* State of HTTPS redirects for the SSL virtual server. 
 
-For an SSL session, if the client browser receives this message, the browser will try to connect to the new location. This will break the secure SSL session, as the object has moved from a secure site (https://) to an unsecured one (http://). Browsers usually flash a warning message on the screen and prompt the user to either continue or disconnect.
-
-When the above feature is enabled, all such http:// redirect messages are automatically converted to https://. This does not break the client SSL session.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+For an SSL session, if the client browser receives a redirect message, the browser tries to connect to the new location. However, the secure SSL session breaks if the object has moved from a secure site (https://) to an unsecure site (http://). Typically, a warning message appears on the screen, prompting the user to continue or disconnect.
+If SSL Redirect is ENABLED, the redirect message is automatically converted from http:// to https:// and the SSL session does not break.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_sslredirect() throws Exception {
@@ -416,7 +410,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	*  The state of port in rewrite while performing HTTPS redirect. When this setting is ENABLED on a SSL virtual server, the NetScaler rewrites the port by using the port settings of the content switching virtual server. .<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of the port rewrite while performing HTTPS redirect. If this parameter is ENABLED and the URL from the server does not contain the standard port, the port is rewritten to the standard.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_redirectportrewrite(String redirectportrewrite) throws Exception{
@@ -425,7 +419,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	*  The state of port in rewrite while performing HTTPS redirect. When this setting is ENABLED on a SSL virtual server, the NetScaler rewrites the port by using the port settings of the content switching virtual server. .<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of the port rewrite while performing HTTPS redirect. If this parameter is ENABLED and the URL from the server does not contain the standard port, the port is rewritten to the standard.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_redirectportrewrite() throws Exception {
@@ -434,7 +428,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of usage of non FIPS approved ciphers. Valid only for an SSL vserver bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of usage of non-FIPS approved ciphers. Valid only for an SSL service bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_nonfipsciphers(String nonfipsciphers) throws Exception{
@@ -443,7 +437,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of usage of non FIPS approved ciphers. Valid only for an SSL vserver bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of usage of non-FIPS approved ciphers. Valid only for an SSL service bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_nonfipsciphers() throws Exception {
@@ -452,7 +446,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of SSLv2 protocol support for the SSL virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv2 protocol support for the SSL Virtual Server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ssl2(String ssl2) throws Exception{
@@ -461,7 +455,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of SSLv2 protocol support for the SSL virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv2 protocol support for the SSL Virtual Server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ssl2() throws Exception {
@@ -470,7 +464,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of SSLv3 protocol support for the SSL virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv3 protocol support for the SSL Virtual Server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ssl3(String ssl3) throws Exception{
@@ -479,7 +473,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of SSLv3 protocol support for the SSL virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv3 protocol support for the SSL Virtual Server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ssl3() throws Exception {
@@ -488,7 +482,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of TLSv1 protocol support for the SSL virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of TLSv1.0 protocol support for the SSL Virtual Server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_tls1(String tls1) throws Exception{
@@ -497,7 +491,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* The state of TLSv1 protocol support for the SSL virtual server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of TLSv1.0 protocol support for the SSL Virtual Server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_tls1() throws Exception {
@@ -506,7 +500,43 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* state of SNI feature on virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of TLSv1.1 protocol support for the SSL Virtual Server.Enabled for Virtual Server on MPX-CVM platform only.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_tls11(String tls11) throws Exception{
+		this.tls11 = tls11;
+	}
+
+	/**
+	* <pre>
+	* State of TLSv1.1 protocol support for the SSL Virtual Server.Enabled for Virtual Server on MPX-CVM platform only.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_tls11() throws Exception {
+		return this.tls11;
+	}
+
+	/**
+	* <pre>
+	* State of TLSv1.2 protocol support for the SSL Virtual Server.Enabled for Virtual Server on MPX-CVM platform only.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public void set_tls12(String tls12) throws Exception{
+		this.tls12 = tls12;
+	}
+
+	/**
+	* <pre>
+	* State of TLSv1.2 protocol support for the SSL Virtual Server.Enabled for Virtual Server on MPX-CVM platform only.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* </pre>
+	*/
+	public String get_tls12() throws Exception {
+		return this.tls12;
+	}
+
+	/**
+	* <pre>
+	* State of the Server Name Indication (SNI) feature on the virtual server and service-based offload. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example, *.sports.net can be used to secure domains such as login.sports.net and help.sports.net.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_snienable(String snienable) throws Exception{
@@ -515,7 +545,7 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* state of SNI feature on virtual server.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of the Server Name Indication (SNI) feature on the virtual server and service-based offload. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example, *.sports.net can be used to secure domains such as login.sports.net and help.sports.net.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_snienable() throws Exception {
@@ -524,12 +554,11 @@ When the above feature is enabled, all such http:// redirect messages are automa
 
 	/**
 	* <pre>
-	* PUSH packet triggering encryption
-Always - Any PUSH packet triggers encryption
-Ignore - Ignore PUSH packet for triggering encryption
-Merge - For consecutive sequence of PUSH packets, last PUSH packet triggers encryption
-Timer - PUSH packet triggering encryption delayed by timer period defined in 'set ssl parameter'
-.<br> Possible values = Always, Merge, Ignore, Timer
+	* Trigger encryption on the basis of the PUSH flag value. Available settings function as follows:
+* ALWAYS - Any PUSH packet triggers encryption.
+* IGNORE - Ignore PUSH packet for triggering encryption.
+* MERGE - For a consecutive sequence of PUSH packets, the last PUSH packet triggers encryption.
+* TIMER - PUSH packet triggering encryption is delayed by the time defined in the set ssl parameter command or in the Change Advanced SSL Settings dialog box.<br> Possible values = Always, Merge, Ignore, Timer
 	* </pre>
 	*/
 	public void set_pushenctrigger(String pushenctrigger) throws Exception{
@@ -538,12 +567,11 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 
 	/**
 	* <pre>
-	* PUSH packet triggering encryption
-Always - Any PUSH packet triggers encryption
-Ignore - Ignore PUSH packet for triggering encryption
-Merge - For consecutive sequence of PUSH packets, last PUSH packet triggers encryption
-Timer - PUSH packet triggering encryption delayed by timer period defined in 'set ssl parameter'
-.<br> Possible values = Always, Merge, Ignore, Timer
+	* Trigger encryption on the basis of the PUSH flag value. Available settings function as follows:
+* ALWAYS - Any PUSH packet triggers encryption.
+* IGNORE - Ignore PUSH packet for triggering encryption.
+* MERGE - For a consecutive sequence of PUSH packets, the last PUSH packet triggers encryption.
+* TIMER - PUSH packet triggering encryption is delayed by the time defined in the set ssl parameter command or in the Change Advanced SSL Settings dialog box.<br> Possible values = Always, Merge, Ignore, Timer
 	* </pre>
 	*/
 	public String get_pushenctrigger() throws Exception {
@@ -570,7 +598,25 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 
 	/**
 	* <pre>
-	* Details of the individual ciphers bound to the SSL vserver. Select this flag value to display the details of the individual ciphers bound to the SSL vserver.
+	* Name of the DTLS profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
+	* </pre>
+	*/
+	public void set_dtlsprofilename(String dtlsprofilename) throws Exception{
+		this.dtlsprofilename = dtlsprofilename;
+	}
+
+	/**
+	* <pre>
+	* Name of the DTLS profile whose settings are to be applied to the virtual server.<br> Minimum length =  1<br> Maximum length =  127
+	* </pre>
+	*/
+	public String get_dtlsprofilename() throws Exception {
+		return this.dtlsprofilename;
+	}
+
+	/**
+	* <pre>
+	* Display details of the individual ciphers bound to the SSL virtual server.
 	* </pre>
 	*/
 	public void set_cipherdetails(boolean cipherdetails) throws Exception {
@@ -579,7 +625,7 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 
 	/**
 	* <pre>
-	* Details of the individual ciphers bound to the SSL vserver. Select this flag value to display the details of the individual ciphers bound to the SSL vserver.
+	* Display details of the individual ciphers bound to the SSL virtual server.
 	* </pre>
 	*/
 	public void set_cipherdetails(Boolean cipherdetails) throws Exception{
@@ -588,7 +634,7 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 
 	/**
 	* <pre>
-	* Details of the individual ciphers bound to the SSL vserver. Select this flag value to display the details of the individual ciphers bound to the SSL vserver.
+	* Display details of the individual ciphers bound to the SSL virtual server.
 	* </pre>
 	*/
 	public Boolean get_cipherdetails() throws Exception {
@@ -660,15 +706,6 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 
 	/**
 	* <pre>
-	* Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.
-	* </pre>
-	*/
-	public String get_gotopriorityexpression() throws Exception {
-		return this.gotopriorityexpression;
-	}
-
-	/**
-	* <pre>
 	* CA certificate.
 	* </pre>
 	*/
@@ -683,6 +720,24 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 	*/
 	public Boolean get_snicert() throws Exception {
 		return this.snicert;
+	}
+
+	/**
+	* <pre>
+	* The flag is used to indicate whether this particular CA certificate's CA_Name needs to be sent to the SSL client while requesting for client certificate in a SSL handshake.
+	* </pre>
+	*/
+	public Boolean get_skipcaname() throws Exception {
+		return this.skipcaname;
+	}
+
+	/**
+	* <pre>
+	* The flag is used to indicate whether DTLS is set or not.
+	* </pre>
+	*/
+	public Boolean get_dtlsflag() throws Exception {
+		return this.dtlsflag;
 	}
 
 	/**
@@ -745,9 +800,12 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 		updateresource.ssl2 = resource.ssl2;
 		updateresource.ssl3 = resource.ssl3;
 		updateresource.tls1 = resource.tls1;
+		updateresource.tls11 = resource.tls11;
+		updateresource.tls12 = resource.tls12;
 		updateresource.snienable = resource.snienable;
 		updateresource.pushenctrigger = resource.pushenctrigger;
 		updateresource.sendclosenotify = resource.sendclosenotify;
+		updateresource.dtlsprofilename = resource.dtlsprofilename;
 		return updateresource.update_resource(client);
 	}
 
@@ -781,9 +839,12 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 				updateresources[i].ssl2 = resources[i].ssl2;
 				updateresources[i].ssl3 = resources[i].ssl3;
 				updateresources[i].tls1 = resources[i].tls1;
+				updateresources[i].tls11 = resources[i].tls11;
+				updateresources[i].tls12 = resources[i].tls12;
 				updateresources[i].snienable = resources[i].snienable;
 				updateresources[i].pushenctrigger = resources[i].pushenctrigger;
 				updateresources[i].sendclosenotify = resources[i].sendclosenotify;
+				updateresources[i].dtlsprofilename = resources[i].dtlsprofilename;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -794,41 +855,9 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 	* Use this API to unset the properties of sslvserver resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String vservername, String args[]) throws Exception {
-		sslvserver unsetresource = new sslvserver();
-		unsetresource.vservername = vservername;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of sslvserver resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, sslvserver resource, String[] args) throws Exception{
 		sslvserver unsetresource = new sslvserver();
 		unsetresource.vservername = resource.vservername;
-		unsetresource.cleartextport = resource.cleartextport;
-		unsetresource.dh = resource.dh;
-		unsetresource.dhfile = resource.dhfile;
-		unsetresource.dhcount = resource.dhcount;
-		unsetresource.ersa = resource.ersa;
-		unsetresource.ersacount = resource.ersacount;
-		unsetresource.sessreuse = resource.sessreuse;
-		unsetresource.sesstimeout = resource.sesstimeout;
-		unsetresource.cipherredirect = resource.cipherredirect;
-		unsetresource.cipherurl = resource.cipherurl;
-		unsetresource.sslv2redirect = resource.sslv2redirect;
-		unsetresource.sslv2url = resource.sslv2url;
-		unsetresource.clientauth = resource.clientauth;
-		unsetresource.clientcert = resource.clientcert;
-		unsetresource.sslredirect = resource.sslredirect;
-		unsetresource.redirectportrewrite = resource.redirectportrewrite;
-		unsetresource.nonfipsciphers = resource.nonfipsciphers;
-		unsetresource.ssl2 = resource.ssl2;
-		unsetresource.ssl3 = resource.ssl3;
-		unsetresource.tls1 = resource.tls1;
-		unsetresource.snienable = resource.snienable;
-		unsetresource.sendclosenotify = resource.sendclosenotify;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -860,28 +889,6 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new sslvserver();
 				unsetresources[i].vservername = resources[i].vservername;
-				unsetresources[i].cleartextport = resources[i].cleartextport;
-				unsetresources[i].dh = resources[i].dh;
-				unsetresources[i].dhfile = resources[i].dhfile;
-				unsetresources[i].dhcount = resources[i].dhcount;
-				unsetresources[i].ersa = resources[i].ersa;
-				unsetresources[i].ersacount = resources[i].ersacount;
-				unsetresources[i].sessreuse = resources[i].sessreuse;
-				unsetresources[i].sesstimeout = resources[i].sesstimeout;
-				unsetresources[i].cipherredirect = resources[i].cipherredirect;
-				unsetresources[i].cipherurl = resources[i].cipherurl;
-				unsetresources[i].sslv2redirect = resources[i].sslv2redirect;
-				unsetresources[i].sslv2url = resources[i].sslv2url;
-				unsetresources[i].clientauth = resources[i].clientauth;
-				unsetresources[i].clientcert = resources[i].clientcert;
-				unsetresources[i].sslredirect = resources[i].sslredirect;
-				unsetresources[i].redirectportrewrite = resources[i].redirectportrewrite;
-				unsetresources[i].nonfipsciphers = resources[i].nonfipsciphers;
-				unsetresources[i].ssl2 = resources[i].ssl2;
-				unsetresources[i].ssl3 = resources[i].ssl3;
-				unsetresources[i].tls1 = resources[i].tls1;
-				unsetresources[i].snienable = resources[i].snienable;
-				unsetresources[i].sendclosenotify = resources[i].sendclosenotify;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -1012,6 +1019,10 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 		return 0;
 	}
 
+	public static class tls11Enum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
+	}
 	public static class sslredirectEnum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
@@ -1021,6 +1032,10 @@ Timer - PUSH packet triggering encryption delayed by timer period defined in 'se
 		public static final String DISABLED = "DISABLED";
 	}
 	public static class dhEnum {
+		public static final String ENABLED = "ENABLED";
+		public static final String DISABLED = "DISABLED";
+	}
+	public static class tls12Enum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
 	}

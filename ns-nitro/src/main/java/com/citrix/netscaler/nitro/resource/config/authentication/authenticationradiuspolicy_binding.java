@@ -1,19 +1,25 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.authentication;
 
+import com.citrix.netscaler.nitro.resource.config.authentication.authenticationradiuspolicy_vpnglobal_binding;
 import com.citrix.netscaler.nitro.resource.config.authentication.authenticationradiuspolicy_vpnvserver_binding;
 import com.citrix.netscaler.nitro.resource.config.authentication.authenticationradiuspolicy_systemglobal_binding;
 import com.citrix.netscaler.nitro.resource.config.authentication.authenticationradiuspolicy_authenticationvserver_binding;
-import com.citrix.netscaler.nitro.resource.config.authentication.authenticationradiuspolicy_vpnglobal_binding;
 import com.citrix.netscaler.nitro.resource.base.*;
 import com.citrix.netscaler.nitro.service.nitro_service;
 import com.citrix.netscaler.nitro.service.options;
@@ -31,14 +37,14 @@ class authenticationradiuspolicy_binding_response extends base_response
 public class authenticationradiuspolicy_binding extends base_resource
 {
 	private String name;
+	private authenticationradiuspolicy_vpnglobal_binding	authenticationradiuspolicy_vpnglobal_binding[] = null;
 	private authenticationradiuspolicy_vpnvserver_binding	authenticationradiuspolicy_vpnvserver_binding[] = null;
 	private authenticationradiuspolicy_systemglobal_binding	authenticationradiuspolicy_systemglobal_binding[] = null;
 	private authenticationradiuspolicy_authenticationvserver_binding	authenticationradiuspolicy_authenticationvserver_binding[] = null;
-	private authenticationradiuspolicy_vpnglobal_binding	authenticationradiuspolicy_vpnglobal_binding[] = null;
 
 	/**
 	* <pre>
-	* The name of the policy. If no name is provided, all the configured RADIUS policies will be displayed.<br> Minimum length =  1
+	* Name of the RADIUS authentication policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -47,7 +53,7 @@ public class authenticationradiuspolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the policy. If no name is provided, all the configured RADIUS policies will be displayed.<br> Minimum length =  1
+	* Name of the RADIUS authentication policy.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {

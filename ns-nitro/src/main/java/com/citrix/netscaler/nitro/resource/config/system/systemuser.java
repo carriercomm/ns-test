@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.system;
@@ -40,7 +46,9 @@ public class systemuser extends base_resource
 
 	/**
 	* <pre>
-	* The name for the system user.<br> Minimum length =  1
+	* Name for a user. Must begin with a letter, number, or the underscore (_) character, and must contain only alphanumeric, hyphen (-), period (.), hash (#), space ( ), at (@), equal (=), colon (:), and underscore characters. Cannot be changed after the user is added.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my user" or 'my user').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_username(String username) throws Exception{
@@ -49,7 +57,9 @@ public class systemuser extends base_resource
 
 	/**
 	* <pre>
-	* The name for the system user.<br> Minimum length =  1
+	* Name for a user. Must begin with a letter, number, or the underscore (_) character, and must contain only alphanumeric, hyphen (-), period (.), hash (#), space ( ), at (@), equal (=), colon (:), and underscore characters. Cannot be changed after the user is added.
+
+CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my user" or 'my user').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_username() throws Exception {
@@ -58,7 +68,7 @@ public class systemuser extends base_resource
 
 	/**
 	* <pre>
-	* The system user's password.<br> Minimum length =  1
+	* Password for the system user. Can include any ASCII character.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_password(String password) throws Exception{
@@ -67,7 +77,7 @@ public class systemuser extends base_resource
 
 	/**
 	* <pre>
-	* The system user's password.<br> Minimum length =  1
+	* Password for the system user. Can include any ASCII character.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_password() throws Exception {
@@ -76,7 +86,15 @@ public class systemuser extends base_resource
 
 	/**
 	* <pre>
-	* The system user's prompt.<br> Minimum length =  1
+	* String to display at the command-line prompt. Can consist of letters, numbers, hyphen (-), period (.), hash (#), space ( ), at (@), equal (=), colon (:), underscore (_), and the following variables: 
+* %u - Will be replaced by the user name.
+* %h - Will be replaced by the hostname of the NetScaler appliance.
+* %t - Will be replaced by the current time in 12-hour format.
+* %T - Will be replaced by the current time in 24-hour format.
+* %d - Will be replaced by the current date.
+* %s - Will be replaced by the state of the NetScaler appliance.
+
+Note: The 63-character limit for the length of the string does not apply to the characters that replace the variables.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_promptstring(String promptstring) throws Exception{
@@ -85,7 +103,15 @@ public class systemuser extends base_resource
 
 	/**
 	* <pre>
-	* The system user's prompt.<br> Minimum length =  1
+	* String to display at the command-line prompt. Can consist of letters, numbers, hyphen (-), period (.), hash (#), space ( ), at (@), equal (=), colon (:), underscore (_), and the following variables: 
+* %u - Will be replaced by the user name.
+* %h - Will be replaced by the hostname of the NetScaler appliance.
+* %t - Will be replaced by the current time in 12-hour format.
+* %T - Will be replaced by the current time in 24-hour format.
+* %d - Will be replaced by the current date.
+* %s - Will be replaced by the state of the NetScaler appliance.
+
+Note: The 63-character limit for the length of the string does not apply to the characters that replace the variables.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_promptstring() throws Exception {
@@ -296,21 +322,9 @@ public class systemuser extends base_resource
 	* Use this API to unset the properties of systemuser resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String username, String args[]) throws Exception {
-		systemuser unsetresource = new systemuser();
-		unsetresource.username = username;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of systemuser resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, systemuser resource, String[] args) throws Exception{
 		systemuser unsetresource = new systemuser();
 		unsetresource.username = resource.username;
-		unsetresource.promptstring = resource.promptstring;
-		unsetresource.timeout = resource.timeout;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -342,8 +356,6 @@ public class systemuser extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new systemuser();
 				unsetresources[i].username = resources[i].username;
-				unsetresources[i].promptstring = resources[i].promptstring;
-				unsetresources[i].timeout = resources[i].timeout;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

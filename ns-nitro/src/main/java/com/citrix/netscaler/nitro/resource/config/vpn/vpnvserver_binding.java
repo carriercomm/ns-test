@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.vpn;
@@ -16,17 +22,22 @@ import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_vpnsessionpolic
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_vpnclientlessaccesspolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_intranetip_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_vpnnexthopserver_binding;
+import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_appflowpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_authenticationldappolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_responderpolicy_binding;
+import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_sharefileserver_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_vpntrafficpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_authenticationlocalpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_vpnintranetapplication_binding;
+import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_appcontroller_binding;
+import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_authenticationnegotiatepolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_aaapreauthenticationpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_cachepolicy_binding;
-import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_authenticationtacacspolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_rewritepolicy_binding;
-import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_auditsyslogpolicy_binding;
+import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_authenticationtacacspolicy_binding;
+import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_authenticationsamlpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_staserver_binding;
+import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_auditsyslogpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_authenticationcertpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.vpn.vpnvserver_vpnurl_binding;
 import com.citrix.netscaler.nitro.resource.base.*;
@@ -52,23 +63,28 @@ public class vpnvserver_binding extends base_resource
 	private vpnvserver_vpnclientlessaccesspolicy_binding	vpnvserver_vpnclientlessaccesspolicy_binding[] = null;
 	private vpnvserver_intranetip_binding	vpnvserver_intranetip_binding[] = null;
 	private vpnvserver_vpnnexthopserver_binding	vpnvserver_vpnnexthopserver_binding[] = null;
+	private vpnvserver_appflowpolicy_binding	vpnvserver_appflowpolicy_binding[] = null;
 	private vpnvserver_authenticationldappolicy_binding	vpnvserver_authenticationldappolicy_binding[] = null;
 	private vpnvserver_responderpolicy_binding	vpnvserver_responderpolicy_binding[] = null;
+	private vpnvserver_sharefileserver_binding	vpnvserver_sharefileserver_binding[] = null;
 	private vpnvserver_vpntrafficpolicy_binding	vpnvserver_vpntrafficpolicy_binding[] = null;
 	private vpnvserver_authenticationlocalpolicy_binding	vpnvserver_authenticationlocalpolicy_binding[] = null;
 	private vpnvserver_vpnintranetapplication_binding	vpnvserver_vpnintranetapplication_binding[] = null;
+	private vpnvserver_appcontroller_binding	vpnvserver_appcontroller_binding[] = null;
+	private vpnvserver_authenticationnegotiatepolicy_binding	vpnvserver_authenticationnegotiatepolicy_binding[] = null;
 	private vpnvserver_aaapreauthenticationpolicy_binding	vpnvserver_aaapreauthenticationpolicy_binding[] = null;
 	private vpnvserver_cachepolicy_binding	vpnvserver_cachepolicy_binding[] = null;
-	private vpnvserver_authenticationtacacspolicy_binding	vpnvserver_authenticationtacacspolicy_binding[] = null;
 	private vpnvserver_rewritepolicy_binding	vpnvserver_rewritepolicy_binding[] = null;
-	private vpnvserver_auditsyslogpolicy_binding	vpnvserver_auditsyslogpolicy_binding[] = null;
+	private vpnvserver_authenticationtacacspolicy_binding	vpnvserver_authenticationtacacspolicy_binding[] = null;
+	private vpnvserver_authenticationsamlpolicy_binding	vpnvserver_authenticationsamlpolicy_binding[] = null;
 	private vpnvserver_staserver_binding	vpnvserver_staserver_binding[] = null;
+	private vpnvserver_auditsyslogpolicy_binding	vpnvserver_auditsyslogpolicy_binding[] = null;
 	private vpnvserver_authenticationcertpolicy_binding	vpnvserver_authenticationcertpolicy_binding[] = null;
 	private vpnvserver_vpnurl_binding	vpnvserver_vpnurl_binding[] = null;
 
 	/**
 	* <pre>
-	* The name of the VPN vserver.<br> Minimum length =  1
+	* Name of the Access Gateway virtual server for which to show detailed information.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -77,7 +93,7 @@ public class vpnvserver_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the VPN vserver.<br> Minimum length =  1
+	* Name of the Access Gateway virtual server for which to show detailed information.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -122,6 +138,15 @@ public class vpnvserver_binding extends base_resource
 
 	/**
 	* <pre>
+	* authenticationsamlpolicy that can be bound to vpnvserver.
+	* </pre>
+	*/
+	public vpnvserver_authenticationsamlpolicy_binding[] get_vpnvserver_authenticationsamlpolicy_bindings() throws Exception {
+		return this.vpnvserver_authenticationsamlpolicy_binding;
+	}
+
+	/**
+	* <pre>
 	* auditnslogpolicy that can be bound to vpnvserver.
 	* </pre>
 	*/
@@ -140,11 +165,29 @@ public class vpnvserver_binding extends base_resource
 
 	/**
 	* <pre>
+	* sharefileserver that can be bound to vpnvserver.
+	* </pre>
+	*/
+	public vpnvserver_sharefileserver_binding[] get_vpnvserver_sharefileserver_bindings() throws Exception {
+		return this.vpnvserver_sharefileserver_binding;
+	}
+
+	/**
+	* <pre>
 	* responderpolicy that can be bound to vpnvserver.
 	* </pre>
 	*/
 	public vpnvserver_responderpolicy_binding[] get_vpnvserver_responderpolicy_bindings() throws Exception {
 		return this.vpnvserver_responderpolicy_binding;
+	}
+
+	/**
+	* <pre>
+	* appflowpolicy that can be bound to vpnvserver.
+	* </pre>
+	*/
+	public vpnvserver_appflowpolicy_binding[] get_vpnvserver_appflowpolicy_bindings() throws Exception {
+		return this.vpnvserver_appflowpolicy_binding;
 	}
 
 	/**
@@ -239,11 +282,29 @@ public class vpnvserver_binding extends base_resource
 
 	/**
 	* <pre>
+	* authenticationnegotiatepolicy that can be bound to vpnvserver.
+	* </pre>
+	*/
+	public vpnvserver_authenticationnegotiatepolicy_binding[] get_vpnvserver_authenticationnegotiatepolicy_bindings() throws Exception {
+		return this.vpnvserver_authenticationnegotiatepolicy_binding;
+	}
+
+	/**
+	* <pre>
 	* authenticationlocalpolicy that can be bound to vpnvserver.
 	* </pre>
 	*/
 	public vpnvserver_authenticationlocalpolicy_binding[] get_vpnvserver_authenticationlocalpolicy_bindings() throws Exception {
 		return this.vpnvserver_authenticationlocalpolicy_binding;
+	}
+
+	/**
+	* <pre>
+	* appcontroller that can be bound to vpnvserver.
+	* </pre>
+	*/
+	public vpnvserver_appcontroller_binding[] get_vpnvserver_appcontroller_bindings() throws Exception {
+		return this.vpnvserver_appcontroller_binding;
 	}
 
 	/**

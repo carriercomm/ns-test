@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.lb;
@@ -89,7 +95,7 @@ public class lbmonbindings_servicegroup_binding extends base_resource
 
 	/**
 	* <pre>
-	* The type of service.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, RADIUS, RDP, DIAMETER, SSL_DIAMETER
+	* The type of service.<br> Possible values = HTTP, FTP, TCP, UDP, SSL, SSL_BRIDGE, SSL_TCP, DTLS, NNTP, RPCSVR, DNS, ADNS, SNMP, RTSP, DHCPRA, ANY, SIP_UDP, DNS_TCP, ADNS_TCP, MYSQL, MSSQL, RADIUS, RDP, DIAMETER, SSL_DIAMETER, TFTP
 	* </pre>
 	*/
 	public String get_servicetype() throws Exception {
@@ -227,6 +233,7 @@ public class lbmonbindings_servicegroup_binding extends base_resource
 		public static final String SSL = "SSL";
 		public static final String SSL_BRIDGE = "SSL_BRIDGE";
 		public static final String SSL_TCP = "SSL_TCP";
+		public static final String DTLS = "DTLS";
 		public static final String NNTP = "NNTP";
 		public static final String RPCSVR = "RPCSVR";
 		public static final String DNS = "DNS";
@@ -244,6 +251,7 @@ public class lbmonbindings_servicegroup_binding extends base_resource
 		public static final String RDP = "RDP";
 		public static final String DIAMETER = "DIAMETER";
 		public static final String SSL_DIAMETER = "SSL_DIAMETER";
+		public static final String TFTP = "TFTP";
 	}
 	public static class monstateEnum {
 		public static final String ENABLED = "ENABLED";

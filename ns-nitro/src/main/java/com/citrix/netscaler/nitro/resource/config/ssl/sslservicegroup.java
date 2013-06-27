@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -62,7 +68,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The SSL service group name for which the advance configurations are to be set.<br> Minimum length =  1
+	* Name of the SSL service group for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicegroupname(String servicegroupname) throws Exception{
@@ -71,7 +77,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The SSL service group name for which the advance configurations are to be set.<br> Minimum length =  1
+	* Name of the SSL service group for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicegroupname() throws Exception {
@@ -80,7 +86,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The state of session reuse support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_sessreuse(String sessreuse) throws Exception{
@@ -89,7 +95,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The state of session reuse support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_sessreuse() throws Exception {
@@ -98,7 +104,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The session timeout value in seconds. The value has to be a positive integer. Option '-sessReuse' has to be enabled.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_sesstimeout(long sesstimeout) throws Exception {
@@ -107,7 +113,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The session timeout value in seconds. The value has to be a positive integer. Option '-sessReuse' has to be enabled.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_sesstimeout(Long sesstimeout) throws Exception{
@@ -116,7 +122,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The session timeout value in seconds. The value has to be a positive integer. Option '-sessReuse' has to be enabled.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  4294967294
+	* Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public Long get_sesstimeout() throws Exception {
@@ -125,8 +131,7 @@ public class sslservicegroup extends base_resource
 
 	/**
 	* <pre>
-	* The state of usage of non FIPS approved ciphers.
-Valid only for an SSL service group bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of usage of ciphers that are not FIPS approved. Valid only for an SSL service bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_nonfipsciphers(String nonfipsciphers) throws Exception{
@@ -135,8 +140,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* The state of usage of non FIPS approved ciphers.
-Valid only for an SSL service group bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of usage of ciphers that are not FIPS approved. Valid only for an SSL service bound with a FIPS key and certificate.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_nonfipsciphers() throws Exception {
@@ -145,7 +149,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* The state of SSLv3 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv3 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_ssl3(String ssl3) throws Exception{
@@ -154,7 +158,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* The state of SSLv3 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of SSLv3 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_ssl3() throws Exception {
@@ -163,7 +167,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* The state of TLSv1 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of TLSv1.0 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_tls1(String tls1) throws Exception{
@@ -172,7 +176,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* The state of TLSv1 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* State of TLSv1.0 protocol support for the SSL service group.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_tls1() throws Exception {
@@ -181,7 +185,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* The state of Server-Authentication support for the SSL service group.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of server authentication support for the SSL service group.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_serverauth(String serverauth) throws Exception{
@@ -190,7 +194,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* The state of Server-Authentication support for the SSL service group.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* State of server authentication support for the SSL service group.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_serverauth() throws Exception {
@@ -217,7 +221,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* Display the details of the individual ciphers bound to the SSL service group.
+	* Display details of the individual ciphers bound to the SSL service group.
 	* </pre>
 	*/
 	public void set_cipherdetails(boolean cipherdetails) throws Exception {
@@ -226,7 +230,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* Display the details of the individual ciphers bound to the SSL service group.
+	* Display details of the individual ciphers bound to the SSL service group.
 	* </pre>
 	*/
 	public void set_cipherdetails(Boolean cipherdetails) throws Exception{
@@ -235,7 +239,7 @@ Valid only for an SSL service group bound with a FIPS key and certificate.<br> D
 
 	/**
 	* <pre>
-	* Display the details of the individual ciphers bound to the SSL service group.
+	* Display details of the individual ciphers bound to the SSL service group.
 	* </pre>
 	*/
 	public Boolean get_cipherdetails() throws Exception {
@@ -508,26 +512,9 @@ Note: The set ssl service command can be used for configuring a front-end SSL se
 	* Use this API to unset the properties of sslservicegroup resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String servicegroupname, String args[]) throws Exception {
-		sslservicegroup unsetresource = new sslservicegroup();
-		unsetresource.servicegroupname = servicegroupname;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of sslservicegroup resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, sslservicegroup resource, String[] args) throws Exception{
 		sslservicegroup unsetresource = new sslservicegroup();
 		unsetresource.servicegroupname = resource.servicegroupname;
-		unsetresource.sessreuse = resource.sessreuse;
-		unsetresource.sesstimeout = resource.sesstimeout;
-		unsetresource.nonfipsciphers = resource.nonfipsciphers;
-		unsetresource.ssl3 = resource.ssl3;
-		unsetresource.tls1 = resource.tls1;
-		unsetresource.serverauth = resource.serverauth;
-		unsetresource.sendclosenotify = resource.sendclosenotify;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -559,13 +546,6 @@ Note: The set ssl service command can be used for configuring a front-end SSL se
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new sslservicegroup();
 				unsetresources[i].servicegroupname = resources[i].servicegroupname;
-				unsetresources[i].sessreuse = resources[i].sessreuse;
-				unsetresources[i].sesstimeout = resources[i].sesstimeout;
-				unsetresources[i].nonfipsciphers = resources[i].nonfipsciphers;
-				unsetresources[i].ssl3 = resources[i].ssl3;
-				unsetresources[i].tls1 = resources[i].tls1;
-				unsetresources[i].serverauth = resources[i].serverauth;
-				unsetresources[i].sendclosenotify = resources[i].sendclosenotify;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

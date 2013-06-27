@@ -1,18 +1,24 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
 
 import com.citrix.netscaler.nitro.resource.config.network.netbridge_iptunnel_binding;
-import com.citrix.netscaler.nitro.resource.config.network.netbridge_vlan_binding;
 import com.citrix.netscaler.nitro.resource.config.network.netbridge_nsip_binding;
+import com.citrix.netscaler.nitro.resource.config.network.netbridge_vlan_binding;
 import com.citrix.netscaler.nitro.resource.config.network.netbridge_nsip6_binding;
 import com.citrix.netscaler.nitro.resource.base.*;
 import com.citrix.netscaler.nitro.service.nitro_service;
@@ -32,8 +38,8 @@ public class netbridge_binding extends base_resource
 {
 	private String name;
 	private netbridge_iptunnel_binding	netbridge_iptunnel_binding[] = null;
-	private netbridge_vlan_binding	netbridge_vlan_binding[] = null;
 	private netbridge_nsip_binding	netbridge_nsip_binding[] = null;
+	private netbridge_vlan_binding	netbridge_vlan_binding[] = null;
 	private netbridge_nsip6_binding	netbridge_nsip6_binding[] = null;
 
 	/**

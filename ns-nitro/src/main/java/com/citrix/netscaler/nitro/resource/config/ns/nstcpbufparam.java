@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ns;
@@ -31,7 +37,7 @@ public class nstcpbufparam extends base_resource
 
 	/**
 	* <pre>
-	* The size (in KBytes) of the TCP buffer per connection.<br> Default value: 64<br> Minimum value =  4<br> Maximum value =  20480
+	* TCP buffering size per connection, in kilobytes.<br> Default value: 64<br> Minimum value =  4<br> Maximum value =  20480
 	* </pre>
 	*/
 	public void set_size(long size) throws Exception {
@@ -40,7 +46,7 @@ public class nstcpbufparam extends base_resource
 
 	/**
 	* <pre>
-	* The size (in KBytes) of the TCP buffer per connection.<br> Default value: 64<br> Minimum value =  4<br> Maximum value =  20480
+	* TCP buffering size per connection, in kilobytes.<br> Default value: 64<br> Minimum value =  4<br> Maximum value =  20480
 	* </pre>
 	*/
 	public void set_size(Long size) throws Exception{
@@ -49,7 +55,7 @@ public class nstcpbufparam extends base_resource
 
 	/**
 	* <pre>
-	* The size (in KBytes) of the TCP buffer per connection.<br> Default value: 64<br> Minimum value =  4<br> Maximum value =  20480
+	* TCP buffering size per connection, in kilobytes.<br> Default value: 64<br> Minimum value =  4<br> Maximum value =  20480
 	* </pre>
 	*/
 	public Long get_size() throws Exception {
@@ -58,7 +64,7 @@ public class nstcpbufparam extends base_resource
 
 	/**
 	* <pre>
-	* The maximum memory that can be used for buffering, in megabytes.<br> Default value: 64
+	* Maximum memory, in megabytes, that can be used for buffering.<br> Default value: 64
 	* </pre>
 	*/
 	public void set_memlimit(long memlimit) throws Exception {
@@ -67,7 +73,7 @@ public class nstcpbufparam extends base_resource
 
 	/**
 	* <pre>
-	* The maximum memory that can be used for buffering, in megabytes.<br> Default value: 64
+	* Maximum memory, in megabytes, that can be used for buffering.<br> Default value: 64
 	* </pre>
 	*/
 	public void set_memlimit(Long memlimit) throws Exception{
@@ -76,7 +82,7 @@ public class nstcpbufparam extends base_resource
 
 	/**
 	* <pre>
-	* The maximum memory that can be used for buffering, in megabytes.<br> Default value: 64
+	* Maximum memory, in megabytes, that can be used for buffering.<br> Default value: 64
 	* </pre>
 	*/
 	public Long get_memlimit() throws Exception {
@@ -135,8 +141,6 @@ public class nstcpbufparam extends base_resource
 	*/
 	public static base_response unset(nitro_service client, nstcpbufparam resource, String[] args) throws Exception{
 		nstcpbufparam unsetresource = new nstcpbufparam();
-		unsetresource.size = resource.size;
-		unsetresource.memlimit = resource.memlimit;
 		return unsetresource.unset_resource(client,args);
 	}
 

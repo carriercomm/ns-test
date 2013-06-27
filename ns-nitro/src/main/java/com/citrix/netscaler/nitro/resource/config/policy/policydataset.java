@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.policy;
@@ -28,16 +34,16 @@ public class policydataset extends base_resource
 {
 	private String name;
 	private String type;
+	private String indextype;
 
 	//------- Read only Parameter ---------;
 
 	private String description;
-	private String indextype;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name of the set. The name must not exceed 127 characters.<br> Minimum length =  1
+	* Name of the dataset. Must not exceed 127 characters.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -46,7 +52,7 @@ public class policydataset extends base_resource
 
 	/**
 	* <pre>
-	* The name of the set. The name must not exceed 127 characters.<br> Minimum length =  1
+	* Name of the dataset. Must not exceed 127 characters.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -55,7 +61,7 @@ public class policydataset extends base_resource
 
 	/**
 	* <pre>
-	* The type of set: ipv4, ipv6, number.<br> Possible values = ipv4, number, ipv6
+	* Type of value to bind to the dataset.<br> Possible values = ipv4, number, ipv6
 	* </pre>
 	*/
 	public void set_type(String type) throws Exception{
@@ -64,7 +70,7 @@ public class policydataset extends base_resource
 
 	/**
 	* <pre>
-	* The type of set: ipv4, ipv6, number.<br> Possible values = ipv4, number, ipv6
+	* Type of value to bind to the dataset.<br> Possible values = ipv4, number, ipv6
 	* </pre>
 	*/
 	public String get_type() throws Exception {
@@ -73,11 +79,11 @@ public class policydataset extends base_resource
 
 	/**
 	* <pre>
-	* Description of the set.
+	* Index type.<br> Possible values = Auto-generated, User-defined
 	* </pre>
 	*/
-	public String get_description() throws Exception {
-		return this.description;
+	public void set_indextype(String indextype) throws Exception{
+		this.indextype = indextype;
 	}
 
 	/**
@@ -87,6 +93,15 @@ public class policydataset extends base_resource
 	*/
 	public String get_indextype() throws Exception {
 		return this.indextype;
+	}
+
+	/**
+	* <pre>
+	* Description of the set.
+	* </pre>
+	*/
+	public String get_description() throws Exception {
+		return this.description;
 	}
 
 	/**
@@ -130,6 +145,7 @@ public class policydataset extends base_resource
 		policydataset addresource = new policydataset();
 		addresource.name = resource.name;
 		addresource.type = resource.type;
+		addresource.indextype = resource.indextype;
 		return addresource.add_resource(client);
 	}
 
@@ -144,6 +160,7 @@ public class policydataset extends base_resource
 				addresources[i] = new policydataset();
 				addresources[i].name = resources[i].name;
 				addresources[i].type = resources[i].type;
+				addresources[i].indextype = resources[i].indextype;
 			}
 			result = add_bulk_request(client, addresources);
 		}

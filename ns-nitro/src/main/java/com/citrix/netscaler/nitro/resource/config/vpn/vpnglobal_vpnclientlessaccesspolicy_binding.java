@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.vpn;
@@ -29,7 +35,9 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 	private String policyname;
 	private Long priority;
 	private String type;
+	private String[] builtin;
 	private Boolean secondary;
+	private Boolean groupextraction;
 	private Long __count;
 
 	/**
@@ -61,6 +69,24 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 
 	/**
 	* <pre>
+	* Indicates that a variable is a built-in (SYSTEM INTERNAL) type.<br> Possible values = MODIFIABLE, DELETABLE, IMMUTABLE
+	* </pre>
+	*/
+	public void set_builtin(String[] builtin) throws Exception{
+		this.builtin = builtin;
+	}
+
+	/**
+	* <pre>
+	* Indicates that a variable is a built-in (SYSTEM INTERNAL) type.<br> Possible values = MODIFIABLE, DELETABLE, IMMUTABLE
+	* </pre>
+	*/
+	public String[] get_builtin() throws Exception {
+		return this.builtin;
+	}
+
+	/**
+	* <pre>
 	* The name of the policy.
 	* </pre>
 	*/
@@ -79,7 +105,7 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Bind the Authentication policy to the secondary chain. This provides for multifactor authentication in which a user must not only authenticate to a primary authentication server but also a server in the secondary chain.  User groups are aggregated across both authentication systems and while user may use different passwords in each system their username must be exactly the same.
+	* Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords.
 	* </pre>
 	*/
 	public void set_secondary(boolean secondary) throws Exception {
@@ -88,7 +114,7 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Bind the Authentication policy to the secondary chain. This provides for multifactor authentication in which a user must not only authenticate to a primary authentication server but also a server in the secondary chain.  User groups are aggregated across both authentication systems and while user may use different passwords in each system their username must be exactly the same.
+	* Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords.
 	* </pre>
 	*/
 	public void set_secondary(Boolean secondary) throws Exception{
@@ -97,11 +123,38 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Bind the Authentication policy to the secondary chain. This provides for multifactor authentication in which a user must not only authenticate to a primary authentication server but also a server in the secondary chain.  User groups are aggregated across both authentication systems and while user may use different passwords in each system their username must be exactly the same.
+	* Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords.
 	* </pre>
 	*/
 	public Boolean get_secondary() throws Exception {
 		return this.secondary;
+	}
+
+	/**
+	* <pre>
+	* Bind the Authentication policy to a tertiary chain which will be used only for group extraction.  The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.
+	* </pre>
+	*/
+	public void set_groupextraction(boolean groupextraction) throws Exception {
+		this.groupextraction = new Boolean(groupextraction);
+	}
+
+	/**
+	* <pre>
+	* Bind the Authentication policy to a tertiary chain which will be used only for group extraction.  The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.
+	* </pre>
+	*/
+	public void set_groupextraction(Boolean groupextraction) throws Exception{
+		this.groupextraction = groupextraction;
+	}
+
+	/**
+	* <pre>
+	* Bind the Authentication policy to a tertiary chain which will be used only for group extraction.  The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.
+	* </pre>
+	*/
+	public Boolean get_groupextraction() throws Exception {
+		return this.groupextraction;
 	}
 
 	/**
@@ -152,6 +205,7 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 		updateresource.policyname = resource.policyname;
 		updateresource.priority = resource.priority;
 		updateresource.secondary = resource.secondary;
+		updateresource.groupextraction = resource.groupextraction;
 		return updateresource.update_resource(client);
 	}
 
@@ -164,6 +218,7 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 				updateresources[i].policyname = resources[i].policyname;
 				updateresources[i].priority = resources[i].priority;
 				updateresources[i].secondary = resources[i].secondary;
+				updateresources[i].groupextraction = resources[i].groupextraction;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -174,6 +229,7 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 		vpnglobal_vpnclientlessaccesspolicy_binding deleteresource = new vpnglobal_vpnclientlessaccesspolicy_binding();
 		deleteresource.policyname = resource.policyname;
 		deleteresource.secondary = resource.secondary;
+		deleteresource.groupextraction = resource.groupextraction;
 		return deleteresource.delete_resource(client);
 	}
 
@@ -185,6 +241,7 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 				deleteresources[i] = new vpnglobal_vpnclientlessaccesspolicy_binding();
 				deleteresources[i].policyname = resources[i].policyname;
 				deleteresources[i].secondary = resources[i].secondary;
+				deleteresources[i].groupextraction = resources[i].groupextraction;
 			}
 			result = delete_bulk_request(client, deleteresources);
 		}
@@ -270,6 +327,11 @@ public class vpnglobal_vpnclientlessaccesspolicy_binding extends base_resource
 		return 0;
 	}
 
+	public static class builtinEnum {
+		public static final String MODIFIABLE = "MODIFIABLE";
+		public static final String DELETABLE = "DELETABLE";
+		public static final String IMMUTABLE = "IMMUTABLE";
+	}
 	public static class typeEnum {
 		public static final String REQ_OVERRIDE = "REQ_OVERRIDE";
 		public static final String REQ_DEFAULT = "REQ_DEFAULT";

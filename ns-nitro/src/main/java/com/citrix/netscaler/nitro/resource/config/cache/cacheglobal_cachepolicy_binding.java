@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cache;
@@ -35,7 +41,6 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 	private String labelname;
 	private Long numpol;
 	private Long flowtype;
-	private Long flags;
 	private String precededefrules;
 	private Long __count;
 
@@ -104,7 +109,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The bindpoint to which policy is bound.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
+	* The bind point to which policy is bound. When you specify the type, detailed information about that bind point appears.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
 	* </pre>
 	*/
 	public void set_type(String type) throws Exception{
@@ -113,7 +118,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The bindpoint to which policy is bound.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
+	* The bind point to which policy is bound. When you specify the type, detailed information about that bind point appears.<br> Possible values = REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT
 	* </pre>
 	*/
 	public String get_type() throws Exception {
@@ -140,7 +145,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation.<br> Possible values = reqvserver, resvserver, policylabel
+	* Type of policy label to invoke.<br> Possible values = reqvserver, resvserver, policylabel
 	* </pre>
 	*/
 	public void set_labeltype(String labeltype) throws Exception{
@@ -149,7 +154,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Type of policy label invocation.<br> Possible values = reqvserver, resvserver, policylabel
+	* Type of policy label to invoke.<br> Possible values = reqvserver, resvserver, policylabel
 	* </pre>
 	*/
 	public String get_labeltype() throws Exception {
@@ -158,7 +163,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the label to invoke if the current policy rule evaluates to TRUE. (To invoke a label associated with a virtual server, specify the name of the virtual server.).
 	* </pre>
 	*/
 	public void set_labelname(String labelname) throws Exception{
@@ -167,7 +172,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Name of the label to invoke if the current policy rule evaluates to TRUE.
+	* Name of the label to invoke if the current policy rule evaluates to TRUE. (To invoke a label associated with a virtual server, specify the name of the virtual server.).
 	* </pre>
 	*/
 	public String get_labelname() throws Exception {
@@ -176,7 +181,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag.
+	* Invoke policies bound to a virtual server or a user-defined policy label. After the invoked policies are evaluated, the flow returns to the policy with the next priority. Applicable only to default-syntax policies.
 	* </pre>
 	*/
 	public void set_invoke(boolean invoke) throws Exception {
@@ -185,7 +190,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag.
+	* Invoke policies bound to a virtual server or a user-defined policy label. After the invoked policies are evaluated, the flow returns to the policy with the next priority. Applicable only to default-syntax policies.
 	* </pre>
 	*/
 	public void set_invoke(Boolean invoke) throws Exception{
@@ -194,7 +199,7 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Invoke flag.
+	* Invoke policies bound to a virtual server or a user-defined policy label. After the invoked policies are evaluated, the flow returns to the policy with the next priority. Applicable only to default-syntax policies.
 	* </pre>
 	*/
 	public Boolean get_invoke() throws Exception {
@@ -208,15 +213,6 @@ public class cacheglobal_cachepolicy_binding extends base_resource
 	*/
 	public Long get_flowtype() throws Exception {
 		return this.flowtype;
-	}
-
-	/**
-	* <pre>
-	* Flags.
-	* </pre>
-	*/
-	public Long get_flags() throws Exception {
-		return this.flags;
 	}
 
 	/**

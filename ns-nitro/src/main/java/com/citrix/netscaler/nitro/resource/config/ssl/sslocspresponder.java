@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -49,7 +55,10 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* The name of the OCSP responder.<br> Minimum length =  1
+	* Name for the OCSP responder. Cannot begin with a hash (#) or space character and must contain only ASCII alphanumeric, underscore (_), hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the responder is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my responder" or 'my responder').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -58,7 +67,10 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* The name of the OCSP responder.<br> Minimum length =  1
+	* Name for the OCSP responder. Cannot begin with a hash (#) or space character and must contain only ASCII alphanumeric, underscore (_), hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the responder is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my responder" or 'my responder').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -67,7 +79,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* The URL of the OCSP responder.<br> Minimum length =  1
+	* URL of the OCSP responder.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_url(String url) throws Exception{
@@ -76,7 +88,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* The URL of the OCSP responder.<br> Minimum length =  1
+	* URL of the OCSP responder.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_url() throws Exception {
@@ -85,7 +97,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Enable or disable caching of OCSP responses.<br> Possible values = ENABLED, DISABLED
+	* Enable caching of responses. Caching of responses received from the OCSP responder enables faster responses to the clients and reduces the load on the OCSP responder.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_cache(String cache) throws Exception{
@@ -94,7 +106,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Enable or disable caching of OCSP responses.<br> Possible values = ENABLED, DISABLED
+	* Enable caching of responses. Caching of responses received from the OCSP responder enables faster responses to the clients and reduces the load on the OCSP responder.<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_cache() throws Exception {
@@ -103,7 +115,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Optional OCSP cache time out in minutes.  If omitted, the timeout provided in the OCSP response will be used.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  1440
+	* Timeout for caching the OCSP response. After the timeout, the NetScaler sends a fresh request to the OCSP responder for the certificate status. If a timeout is not specified, the timeout provided in the OCSP response applies.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_cachetimeout(long cachetimeout) throws Exception {
@@ -112,7 +124,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Optional OCSP cache time out in minutes.  If omitted, the timeout provided in the OCSP response will be used.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  1440
+	* Timeout for caching the OCSP response. After the timeout, the NetScaler sends a fresh request to the OCSP responder for the certificate status. If a timeout is not specified, the timeout provided in the OCSP response applies.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_cachetimeout(Long cachetimeout) throws Exception{
@@ -121,7 +133,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Optional OCSP cache time out in minutes.  If omitted, the timeout provided in the OCSP response will be used.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  1440
+	* Timeout for caching the OCSP response. After the timeout, the NetScaler sends a fresh request to the OCSP responder for the certificate status. If a timeout is not specified, the timeout provided in the OCSP response applies.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  1440
 	* </pre>
 	*/
 	public Long get_cachetimeout() throws Exception {
@@ -130,7 +142,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum number of client certificates to batch together into one OCSP request; a value of 1 makes each request separate and immediate.<br> Minimum value =  1<br> Maximum value =  8
+	* Number of client certificates to batch together into one OCSP request. Batching avoids overloading the OCSP responder. A value of 1 signifies that each request is queried independently. For a value greater than 1, specify a timeout (batching delay) to avoid inordinately delaying the processing of a single certificate.<br> Minimum value =  1<br> Maximum value =  8
 	* </pre>
 	*/
 	public void set_batchingdepth(long batchingdepth) throws Exception {
@@ -139,7 +151,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum number of client certificates to batch together into one OCSP request; a value of 1 makes each request separate and immediate.<br> Minimum value =  1<br> Maximum value =  8
+	* Number of client certificates to batch together into one OCSP request. Batching avoids overloading the OCSP responder. A value of 1 signifies that each request is queried independently. For a value greater than 1, specify a timeout (batching delay) to avoid inordinately delaying the processing of a single certificate.<br> Minimum value =  1<br> Maximum value =  8
 	* </pre>
 	*/
 	public void set_batchingdepth(Long batchingdepth) throws Exception{
@@ -148,7 +160,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum number of client certificates to batch together into one OCSP request; a value of 1 makes each request separate and immediate.<br> Minimum value =  1<br> Maximum value =  8
+	* Number of client certificates to batch together into one OCSP request. Batching avoids overloading the OCSP responder. A value of 1 signifies that each request is queried independently. For a value greater than 1, specify a timeout (batching delay) to avoid inordinately delaying the processing of a single certificate.<br> Minimum value =  1<br> Maximum value =  8
 	* </pre>
 	*/
 	public Long get_batchingdepth() throws Exception {
@@ -157,7 +169,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum time, in mS, to wait to accumulate OCSP requests to batch.  If batching depth is 1, this argument has no effect.<br> Minimum value =  0<br> Maximum value =  10000
+	* Maximum time, in milliseconds, to wait to accumulate OCSP requests to batch.  Does not apply if the Batching Depth is 1.<br> Minimum value =  0<br> Maximum value =  10000
 	* </pre>
 	*/
 	public void set_batchingdelay(long batchingdelay) throws Exception {
@@ -166,7 +178,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum time, in mS, to wait to accumulate OCSP requests to batch.  If batching depth is 1, this argument has no effect.<br> Minimum value =  0<br> Maximum value =  10000
+	* Maximum time, in milliseconds, to wait to accumulate OCSP requests to batch.  Does not apply if the Batching Depth is 1.<br> Minimum value =  0<br> Maximum value =  10000
 	* </pre>
 	*/
 	public void set_batchingdelay(Long batchingdelay) throws Exception{
@@ -175,7 +187,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum time, in mS, to wait to accumulate OCSP requests to batch.  If batching depth is 1, this argument has no effect.<br> Minimum value =  0<br> Maximum value =  10000
+	* Maximum time, in milliseconds, to wait to accumulate OCSP requests to batch.  Does not apply if the Batching Depth is 1.<br> Minimum value =  0<br> Maximum value =  10000
 	* </pre>
 	*/
 	public Long get_batchingdelay() throws Exception {
@@ -184,7 +196,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum time, in mS, to wait for an OCSP response before giving up.  Defaults to 2000 mS.  Total waiting time is also dependent on batching delay as the sum of these two values will give you the total waiting time.  If batching is disabled, timeout is completely governed by this parameter.<br> Minimum value =  0<br> Maximum value =  120000
+	* Time, in milliseconds, to wait for an OCSP response. When this time elapses, an error message appears or the transaction is forwarded, depending on the settings on the virtual server. Includes Batching Delay time.<br> Minimum value =  0<br> Maximum value =  120000
 	* </pre>
 	*/
 	public void set_resptimeout(long resptimeout) throws Exception {
@@ -193,7 +205,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum time, in mS, to wait for an OCSP response before giving up.  Defaults to 2000 mS.  Total waiting time is also dependent on batching delay as the sum of these two values will give you the total waiting time.  If batching is disabled, timeout is completely governed by this parameter.<br> Minimum value =  0<br> Maximum value =  120000
+	* Time, in milliseconds, to wait for an OCSP response. When this time elapses, an error message appears or the transaction is forwarded, depending on the settings on the virtual server. Includes Batching Delay time.<br> Minimum value =  0<br> Maximum value =  120000
 	* </pre>
 	*/
 	public void set_resptimeout(Long resptimeout) throws Exception{
@@ -202,7 +214,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Maximum time, in mS, to wait for an OCSP response before giving up.  Defaults to 2000 mS.  Total waiting time is also dependent on batching delay as the sum of these two values will give you the total waiting time.  If batching is disabled, timeout is completely governed by this parameter.<br> Minimum value =  0<br> Maximum value =  120000
+	* Time, in milliseconds, to wait for an OCSP response. When this time elapses, an error message appears or the transaction is forwarded, depending on the settings on the virtual server. Includes Batching Delay time.<br> Minimum value =  0<br> Maximum value =  120000
 	* </pre>
 	*/
 	public Long get_resptimeout() throws Exception {
@@ -256,7 +268,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Amount of time, in seconds, that the NetScaler clock and the clock of the OCSP responder can differ for checking the producedAt time in the response.  Default is 300 seconds (5 minutes).<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  86400
+	* Time, in seconds, for which the NetScaler waits before considering the response as invalid. The response is considered invalid if the Produced At time stamp in the OCSP response exceeds or precedes the current NetScaler clock time by the amount of time specified.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  86400
 	* </pre>
 	*/
 	public void set_producedattimeskew(long producedattimeskew) throws Exception {
@@ -265,7 +277,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Amount of time, in seconds, that the NetScaler clock and the clock of the OCSP responder can differ for checking the producedAt time in the response.  Default is 300 seconds (5 minutes).<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  86400
+	* Time, in seconds, for which the NetScaler waits before considering the response as invalid. The response is considered invalid if the Produced At time stamp in the OCSP response exceeds or precedes the current NetScaler clock time by the amount of time specified.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  86400
 	* </pre>
 	*/
 	public void set_producedattimeskew(Long producedattimeskew) throws Exception{
@@ -274,7 +286,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Amount of time, in seconds, that the NetScaler clock and the clock of the OCSP responder can differ for checking the producedAt time in the response.  Default is 300 seconds (5 minutes).<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  86400
+	* Time, in seconds, for which the NetScaler waits before considering the response as invalid. The response is considered invalid if the Produced At time stamp in the OCSP response exceeds or precedes the current NetScaler clock time by the amount of time specified.<br> Default value: 300<br> Minimum value =  0<br> Maximum value =  86400
 	* </pre>
 	*/
 	public Long get_producedattimeskew() throws Exception {
@@ -283,7 +295,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* The certificate used to optionally sign OCSP requests.  If omitted, requests will not be signed.<br> Minimum length =  1
+	* Certificate-key pair that is used to sign OCSP requests. If this parameter is not set, the requests are not signed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_signingcert(String signingcert) throws Exception{
@@ -292,7 +304,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* The certificate used to optionally sign OCSP requests.  If omitted, requests will not be signed.<br> Minimum length =  1
+	* Certificate-key pair that is used to sign OCSP requests. If this parameter is not set, the requests are not signed.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_signingcert() throws Exception {
@@ -301,7 +313,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Add a nonce to the OCSP request.<br> Possible values = YES, NO
+	* Enable the OCSP nonce extension, which is designed to prevent replay attacks.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_usenonce(String usenonce) throws Exception{
@@ -310,7 +322,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Add a nonce to the OCSP request.<br> Possible values = YES, NO
+	* Enable the OCSP nonce extension, which is designed to prevent replay attacks.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_usenonce() throws Exception {
@@ -319,7 +331,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Include the client cert in the OCSP request.<br> Possible values = YES, NO
+	* Include the complete client certificate in the OCSP request.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_insertclientcert(String insertclientcert) throws Exception{
@@ -328,7 +340,7 @@ public class sslocspresponder extends base_resource
 
 	/**
 	* <pre>
-	* Include the client cert in the OCSP request.<br> Possible values = YES, NO
+	* Include the complete client certificate in the OCSP request.<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_insertclientcert() throws Exception {
@@ -561,17 +573,7 @@ public class sslocspresponder extends base_resource
 	public static base_response unset(nitro_service client, sslocspresponder resource, String[] args) throws Exception{
 		sslocspresponder unsetresource = new sslocspresponder();
 		unsetresource.name = resource.name;
-		unsetresource.trustresponder = resource.trustresponder;
 		unsetresource.insertclientcert = resource.insertclientcert;
-		unsetresource.cache = resource.cache;
-		unsetresource.cachetimeout = resource.cachetimeout;
-		unsetresource.batchingdepth = resource.batchingdepth;
-		unsetresource.batchingdelay = resource.batchingdelay;
-		unsetresource.resptimeout = resource.resptimeout;
-		unsetresource.respondercert = resource.respondercert;
-		unsetresource.producedattimeskew = resource.producedattimeskew;
-		unsetresource.signingcert = resource.signingcert;
-		unsetresource.usenonce = resource.usenonce;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -603,17 +605,7 @@ public class sslocspresponder extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new sslocspresponder();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].trustresponder = resources[i].trustresponder;
 				unsetresources[i].insertclientcert = resources[i].insertclientcert;
-				unsetresources[i].cache = resources[i].cache;
-				unsetresources[i].cachetimeout = resources[i].cachetimeout;
-				unsetresources[i].batchingdepth = resources[i].batchingdepth;
-				unsetresources[i].batchingdelay = resources[i].batchingdelay;
-				unsetresources[i].resptimeout = resources[i].resptimeout;
-				unsetresources[i].respondercert = resources[i].respondercert;
-				unsetresources[i].producedattimeskew = resources[i].producedattimeskew;
-				unsetresources[i].signingcert = resources[i].signingcert;
-				unsetresources[i].usenonce = resources[i].usenonce;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.rewrite;
@@ -45,7 +51,10 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Name of the rewrite policy.
+	* Name for the rewrite policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the rewrite policy is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or my rewrite policy).
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -54,7 +63,10 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Name of the rewrite policy.
+	* Name for the rewrite policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the rewrite policy is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or my rewrite policy).
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -63,7 +75,15 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Expression to be used by rewrite policy. It has to be a boolean PI rule expression.
+	* Expression against which traffic is evaluated. Written in default syntax.
+Note:
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+(Classic expressions are not supported in the cluster build.)
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 	* </pre>
 	*/
 	public void set_rule(String rule) throws Exception{
@@ -72,7 +92,15 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Expression to be used by rewrite policy. It has to be a boolean PI rule expression.
+	* Expression against which traffic is evaluated. Written in default syntax.
+Note:
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+(Classic expressions are not supported in the cluster build.)
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.
 	* </pre>
 	*/
 	public String get_rule() throws Exception {
@@ -81,7 +109,7 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Rewrite action to be used by the policy.
+	* Name of the rewrite action to perform if the request or response matches this rewrite policy.
 	* </pre>
 	*/
 	public void set_action(String action) throws Exception{
@@ -90,7 +118,7 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Rewrite action to be used by the policy.
+	* Name of the rewrite action to perform if the request or response matches this rewrite policy.
 	* </pre>
 	*/
 	public String get_action() throws Exception {
@@ -99,7 +127,11 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* A rewrite action, to be used by the policy when the rule evaluation turns out to be undefined. The undef action can be NOREWRITE, RESET or DROP.
+	* Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition.
+Available settings function as follows:
+* NOREWRITE - Send the request to the protected server without rewriting.
+* RESET - Reset the request and notify the users browser, so that the user can resend the request.
+* DROP - Drop the request without sending a response to the user.
 	* </pre>
 	*/
 	public void set_undefaction(String undefaction) throws Exception{
@@ -108,7 +140,11 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* A rewrite action, to be used by the policy when the rule evaluation turns out to be undefined. The undef action can be NOREWRITE, RESET or DROP.
+	* Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition.
+Available settings function as follows:
+* NOREWRITE - Send the request to the protected server without rewriting.
+* RESET - Reset the request and notify the users browser, so that the user can resend the request.
+* DROP - Drop the request without sending a response to the user.
 	* </pre>
 	*/
 	public String get_undefaction() throws Exception {
@@ -117,7 +153,7 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this rewrite policy.
+	* Any comments to preserve information about this rewrite policy.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -126,7 +162,7 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this rewrite policy.
+	* Any comments to preserve information about this rewrite policy.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {
@@ -135,7 +171,7 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* The log action associated with the rewrite policy.
+	* Name of messagelog action to use when a request matches this policy.
 	* </pre>
 	*/
 	public void set_logaction(String logaction) throws Exception{
@@ -144,7 +180,7 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* The log action associated with the rewrite policy.
+	* Name of messagelog action to use when a request matches this policy.
 	* </pre>
 	*/
 	public String get_logaction() throws Exception {
@@ -153,7 +189,11 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the rewrite policy.<br> Minimum length =  1
+	* New name for the rewrite policy. 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or my rewrite policy).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -162,7 +202,11 @@ public class rewritepolicy extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the rewrite policy.<br> Minimum length =  1
+	* New name for the rewrite policy. 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rewrite policy" or my rewrite policy).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
@@ -372,22 +416,9 @@ public class rewritepolicy extends base_resource
 	* Use this API to unset the properties of rewritepolicy resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		rewritepolicy unsetresource = new rewritepolicy();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of rewritepolicy resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, rewritepolicy resource, String[] args) throws Exception{
 		rewritepolicy unsetresource = new rewritepolicy();
 		unsetresource.name = resource.name;
-		unsetresource.undefaction = resource.undefaction;
-		unsetresource.comment = resource.comment;
-		unsetresource.logaction = resource.logaction;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -419,9 +450,6 @@ public class rewritepolicy extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new rewritepolicy();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].undefaction = resources[i].undefaction;
-				unsetresources[i].comment = resources[i].comment;
-				unsetresources[i].logaction = resources[i].logaction;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

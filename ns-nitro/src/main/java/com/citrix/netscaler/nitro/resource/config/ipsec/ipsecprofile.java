@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ipsec;
@@ -27,6 +33,7 @@ class ipsecprofile_response extends base_response
 public class ipsecprofile extends base_resource
 {
 	private String name;
+	private String ikeversion;
 	private String[] encalgo;
 	private String[] hashalgo;
 	private Long lifetime;
@@ -58,6 +65,24 @@ public class ipsecprofile extends base_resource
 	*/
 	public String get_name() throws Exception {
 		return this.name;
+	}
+
+	/**
+	* <pre>
+	* IKE Protocol Version.<br> Possible values = V1, V2
+	* </pre>
+	*/
+	public void set_ikeversion(String ikeversion) throws Exception{
+		this.ikeversion = ikeversion;
+	}
+
+	/**
+	* <pre>
+	* IKE Protocol Version.<br> Possible values = V1, V2
+	* </pre>
+	*/
+	public String get_ikeversion() throws Exception {
+		return this.ikeversion;
 	}
 
 	/**
@@ -98,7 +123,7 @@ public class ipsecprofile extends base_resource
 
 	/**
 	* <pre>
-	* Lifetime of SA in seconds.<br> Minimum value =  1<br> Maximum value =  31536000
+	* Lifetime of SA in seconds.<br> Minimum value =  60<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_lifetime(long lifetime) throws Exception {
@@ -107,7 +132,7 @@ public class ipsecprofile extends base_resource
 
 	/**
 	* <pre>
-	* Lifetime of SA in seconds.<br> Minimum value =  1<br> Maximum value =  31536000
+	* Lifetime of SA in seconds.<br> Minimum value =  60<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public void set_lifetime(Long lifetime) throws Exception{
@@ -116,7 +141,7 @@ public class ipsecprofile extends base_resource
 
 	/**
 	* <pre>
-	* Lifetime of SA in seconds.<br> Minimum value =  1<br> Maximum value =  31536000
+	* Lifetime of SA in seconds.<br> Minimum value =  60<br> Maximum value =  31536000
 	* </pre>
 	*/
 	public Long get_lifetime() throws Exception {
@@ -298,6 +323,7 @@ public class ipsecprofile extends base_resource
 	public static base_response add(nitro_service client, ipsecprofile resource) throws Exception {
 		ipsecprofile addresource = new ipsecprofile();
 		addresource.name = resource.name;
+		addresource.ikeversion = resource.ikeversion;
 		addresource.encalgo = resource.encalgo;
 		addresource.hashalgo = resource.hashalgo;
 		addresource.lifetime = resource.lifetime;
@@ -320,6 +346,7 @@ public class ipsecprofile extends base_resource
 			for (int i=0;i<resources.length;i++){
 				addresources[i] = new ipsecprofile();
 				addresources[i].name = resources[i].name;
+				addresources[i].ikeversion = resources[i].ikeversion;
 				addresources[i].encalgo = resources[i].encalgo;
 				addresources[i].hashalgo = resources[i].hashalgo;
 				addresources[i].lifetime = resources[i].lifetime;
@@ -505,6 +532,10 @@ public class ipsecprofile extends base_resource
 	public static class encalgoEnum {
 		public static final String AES = "AES";
 		public static final String _3DES = "3DES";
+	}
+	public static class ikeversionEnum {
+		public static final String V1 = "V1";
+		public static final String V2 = "V2";
 	}
 	public static class hashalgoEnum {
 		public static final String HMAC_SHA1 = "HMAC_SHA1";

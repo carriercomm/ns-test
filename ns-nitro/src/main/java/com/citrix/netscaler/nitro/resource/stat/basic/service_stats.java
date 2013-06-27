@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.basic;
@@ -27,6 +33,7 @@ class service_response extends base_response
 public class service_stats extends base_resource
 {
 	private String name;
+	private String clearstats;
 	private Long throughput;
 	private Long throughputrate;
 	private Long avgsvrttfb;
@@ -39,7 +46,9 @@ public class service_stats extends base_resource
 	private Long totalresponses;
 	private Long responsesrate;
 	private Long totalrequestbytes;
+	private Long requestbytesrate;
 	private Long totalresponsebytes;
+	private Long responsebytesrate;
 	private Long curclntconnections;
 	private Long surgecount;
 	private Long cursrvrconnections;
@@ -51,12 +60,10 @@ public class service_stats extends base_resource
 	private Long vsvrservicehits;
 	private Long vsvrservicehitsrate;
 	private Long activetransactions;
-	private Long totalpktsrecvd;
-	private Long totalpktssent;
 
 	/**
 	* <pre>
-	* Name of the service
+	* Name of the service.
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -70,6 +77,24 @@ public class service_stats extends base_resource
 	*/
 	public String get_name() throws Exception {
 		return this.name;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
 	}
 
 	/**
@@ -92,20 +117,11 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
-	* The service type of this service.
+	* The service type of this service.Possible values are ADNS, DNS, MYSQL, RTSP, SSL_DIAMETER, ADNS_TCP, DNS_TCP, NNTP, SIP_UDP, SSL_TCP, ANY, FTP, RADIUS, SNMP, TCP, DHCPRA, HTTP, RDP, SSL, TFTP, DIAMETER, MSSQL, RPCSVR, SSL_BRIDGE, UDP
 	* </pre>
 	*/
 	public String get_servicetype() throws Exception {
 		return this.servicetype;
-	}
-
-	/**
-	* <pre>
-	* Total number of packets sent.
-	* </pre>
-	*/
-	public Long get_totalpktssent() throws Exception {
-		return this.totalpktssent;
 	}
 
 	/**
@@ -128,11 +144,29 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
+	* Rate (/s) counter for totalresponsebytes
+	* </pre>
+	*/
+	public Long get_responsebytesrate() throws Exception {
+		return this.responsebytesrate;
+	}
+
+	/**
+	* <pre>
 	* Number of responses received on this service or virtual server. (This applies to HTTP/SSL services and servers.)
 	* </pre>
 	*/
 	public Long get_totalresponses() throws Exception {
 		return this.totalresponses;
+	}
+
+	/**
+	* <pre>
+	* Rate (/s) counter for totalrequestbytes
+	* </pre>
+	*/
+	public Long get_requestbytesrate() throws Exception {
+		return this.requestbytesrate;
 	}
 
 	/**
@@ -146,7 +180,7 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of bytes received or sent by this service (Mbps).
+	* Rate (/s) counter for throughput
 	* </pre>
 	*/
 	public Long get_throughputrate() throws Exception {
@@ -183,6 +217,7 @@ public class service_stats extends base_resource
 	/**
 	* <pre>
 	* Number of active transactions handled by this service. (Including those in the surge queue.)
+    Active Transaction means number of transactions currently served by the server including those waiting in the SurgeQ
 	* </pre>
 	*/
 	public Long get_activetransactions() throws Exception {
@@ -191,7 +226,7 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of responses received on this service or virtual server. (This applies to HTTP/SSL services and servers.)
+	* Rate (/s) counter for totalresponses
 	* </pre>
 	*/
 	public Long get_responsesrate() throws Exception {
@@ -209,7 +244,7 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
-	* Average TTFB between the NetScaler appliance and the server.
+	* Average TTFB between the NetScaler appliance and the server.TTFB is the time interval between sending the request packet to a service and receiving the first response from the service
 	* </pre>
 	*/
 	public Long get_avgsvrttfb() throws Exception {
@@ -245,20 +280,11 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
-	* Current state of the server.
+	* Current state of the server. Possible values are UP, DOWN, UNKNOWN, OFS(Out of Service), TROFS(Transition Out of Service), TROFS_DOWN(Down When going Out of Service)
 	* </pre>
 	*/
 	public String get_state() throws Exception {
 		return this.state;
-	}
-
-	/**
-	* <pre>
-	* Total number of packets received by this service or virtual server.
-	* </pre>
-	*/
-	public Long get_totalpktsrecvd() throws Exception {
-		return this.totalpktsrecvd;
 	}
 
 	/**
@@ -290,7 +316,7 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
-	* Total number of requests received on this service or virtual server. (This applies to HTTP/SSL services and servers.)
+	* Rate (/s) counter for totalrequests
 	* </pre>
 	*/
 	public Long get_requestsrate() throws Exception {
@@ -299,7 +325,7 @@ public class service_stats extends base_resource
 
 	/**
 	* <pre>
-	* Number of times that the service has been provided.
+	* Rate (/s) counter for vsvrservicehits
 	* </pre>
 	*/
 	public Long get_vsvrservicehitsrate() throws Exception {
@@ -368,4 +394,8 @@ public class service_stats extends base_resource
 		return response;
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

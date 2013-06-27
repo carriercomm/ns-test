@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.wi;
@@ -36,7 +42,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* The path of Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
+	* Path to the Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
 	* </pre>
 	*/
 	public void set_sitepath(String sitepath) throws Exception{
@@ -45,7 +51,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* The path of Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
+	* Path to the Web Interface site.<br> Minimum length =  1<br> Maximum length =  250
 	* </pre>
 	*/
 	public String get_sitepath() throws Exception {
@@ -54,7 +60,11 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* Access Type.<br> Default value: ACCESST_USER_DEVICE<br> Possible values = UserDevice, Gateway, UserDeviceAndGateway
+	* Type of access to the XenApp or XenDesktop server. 
+                            Available settings function as follows:
+                            * User Device - Clients can use the translated address of the mapping entry to connect to the XenApp or XenDesktop server.
+                            * Gateway - Access Gateway can use the translated address of the mapping entry to connect to the XenApp or XenDesktop server.
+                            * User Device and Gateway - Both clients and Access Gateway can use the translated address of the mapping entry to connect to the XenApp or XenDesktop server.<br> Default value: UserDevice<br> Possible values = UserDevice, Gateway, UserDeviceAndGateway
 	* </pre>
 	*/
 	public void set_accesstype(String accesstype) throws Exception{
@@ -63,7 +73,11 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* Access Type.<br> Default value: ACCESST_USER_DEVICE<br> Possible values = UserDevice, Gateway, UserDeviceAndGateway
+	* Type of access to the XenApp or XenDesktop server. 
+                            Available settings function as follows:
+                            * User Device - Clients can use the translated address of the mapping entry to connect to the XenApp or XenDesktop server.
+                            * Gateway - Access Gateway can use the translated address of the mapping entry to connect to the XenApp or XenDesktop server.
+                            * User Device and Gateway - Both clients and Access Gateway can use the translated address of the mapping entry to connect to the XenApp or XenDesktop server.<br> Default value: UserDevice<br> Possible values = UserDevice, Gateway, UserDeviceAndGateway
 	* </pre>
 	*/
 	public String get_accesstype() throws Exception {
@@ -72,7 +86,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* External Port to be translated to.<br> Range 1 - 65535
+	* External port number associated with the server's port number.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_translationexternalport(int translationexternalport) throws Exception {
@@ -81,7 +95,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* External Port to be translated to.<br> Range 1 - 65535
+	* External port number associated with the server's port number.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_translationexternalport(Integer translationexternalport) throws Exception{
@@ -90,7 +104,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* External Port to be translated to.<br> Range 1 - 65535
+	* External port number associated with the server's port number.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public Integer get_translationexternalport() throws Exception {
@@ -99,7 +113,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* Internal Ip Address to be tranlated from.
+	* IP address of the server for which you want to associate an external IP address. (Clients access the server through the associated external address and port.).
 	* </pre>
 	*/
 	public void set_translationinternalip(String translationinternalip) throws Exception{
@@ -108,7 +122,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* Internal Ip Address to be tranlated from.
+	* IP address of the server for which you want to associate an external IP address. (Clients access the server through the associated external address and port.).
 	* </pre>
 	*/
 	public String get_translationinternalip() throws Exception {
@@ -117,7 +131,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* External Ip Address to be translated to.
+	* External IP address associated with server's IP address.
 	* </pre>
 	*/
 	public void set_translationexternalip(String translationexternalip) throws Exception{
@@ -126,7 +140,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* External Ip Address to be translated to.
+	* External IP address associated with server's IP address.
 	* </pre>
 	*/
 	public String get_translationexternalip() throws Exception {
@@ -135,7 +149,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* Internal Port to be translated from.<br> Range 1 - 65535
+	* Port number of the server for which you want to associate an external port.  (Clients access the server through the associated external address and port.).<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_translationinternalport(int translationinternalport) throws Exception {
@@ -144,7 +158,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* Internal Port to be translated from.<br> Range 1 - 65535
+	* Port number of the server for which you want to associate an external port.  (Clients access the server through the associated external address and port.).<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_translationinternalport(Integer translationinternalport) throws Exception{
@@ -153,7 +167,7 @@ public class wisite_translationinternalip_binding extends base_resource
 
 	/**
 	* <pre>
-	* Internal Port to be translated from.<br> Range 1 - 65535
+	* Port number of the server for which you want to associate an external port.  (Clients access the server through the associated external address and port.).<br> Range 1 - 65535
 	* </pre>
 	*/
 	public Integer get_translationinternalport() throws Exception {
@@ -354,6 +368,10 @@ public class wisite_translationinternalip_binding extends base_resource
 		public static final String SSLRELAY = "SSLRELAY";
 	}
 	public static class loadbalanceEnum {
+		public static final String ON = "ON";
+		public static final String OFF = "OFF";
+	}
+	public static class recoveryfarmEnum {
 		public static final String ON = "ON";
 		public static final String OFF = "OFF";
 	}

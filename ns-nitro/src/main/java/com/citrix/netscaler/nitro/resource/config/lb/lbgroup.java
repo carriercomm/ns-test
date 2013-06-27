@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.lb;
@@ -31,16 +37,21 @@ public class lbgroup extends base_resource
 	private String persistencebackup;
 	private Long backuppersistencetimeout;
 	private String persistmask;
+	private String cookiename;
 	private Long v6persistmasklen;
 	private String cookiedomain;
 	private Long timeout;
 	private String rule;
 	private String newname;
+
+	//------- Read only Parameter ---------;
+
+	private Long td;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name of the group.<br> Minimum length =  1
+	* Name of the load balancing virtual server group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -49,7 +60,7 @@ public class lbgroup extends base_resource
 
 	/**
 	* <pre>
-	* The name of the group.<br> Minimum length =  1
+	* Name of the load balancing virtual server group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -58,11 +69,11 @@ public class lbgroup extends base_resource
 
 	/**
 	* <pre>
-	* The persistence type for the group.
-Select
-	SOURCEIP - This option is used to maintain persistency based on the client IP.
-	COOKIEINSERT- This option is used to maintain persistency based on the cookie in the client request.This cookie is inserted by the system in the first response to the client.
-	NONE - To disable the persistency.<br> Possible values = SOURCEIP, COOKIEINSERT, RULE, NONE
+	* Type of persistence for the group. Available settings function as follows:
+* SOURCEIP - Create persistence sessions based on the client IP.
+* COOKIEINSERT - Create persistence sessions based on a cookie in client requests. The cookie is inserted by a Set-Cookie directive from the server, in its first response to a client.
+* RULE - Create persistence sessions based on a user defined rule.
+* NONE - Disable persistence for the group.<br> Possible values = SOURCEIP, COOKIEINSERT, RULE, NONE
 	* </pre>
 	*/
 	public void set_persistencetype(String persistencetype) throws Exception{
@@ -71,11 +82,11 @@ Select
 
 	/**
 	* <pre>
-	* The persistence type for the group.
-Select
-	SOURCEIP - This option is used to maintain persistency based on the client IP.
-	COOKIEINSERT- This option is used to maintain persistency based on the cookie in the client request.This cookie is inserted by the system in the first response to the client.
-	NONE - To disable the persistency.<br> Possible values = SOURCEIP, COOKIEINSERT, RULE, NONE
+	* Type of persistence for the group. Available settings function as follows:
+* SOURCEIP - Create persistence sessions based on the client IP.
+* COOKIEINSERT - Create persistence sessions based on a cookie in client requests. The cookie is inserted by a Set-Cookie directive from the server, in its first response to a client.
+* RULE - Create persistence sessions based on a user defined rule.
+* NONE - Disable persistence for the group.<br> Possible values = SOURCEIP, COOKIEINSERT, RULE, NONE
 	* </pre>
 	*/
 	public String get_persistencetype() throws Exception {
@@ -84,7 +95,7 @@ Select
 
 	/**
 	* <pre>
-	* The backup persistence type for the group.<br> Possible values = SOURCEIP, NONE
+	* Type of backup persistence for the group.<br> Possible values = SOURCEIP, NONE
 	* </pre>
 	*/
 	public void set_persistencebackup(String persistencebackup) throws Exception{
@@ -93,7 +104,7 @@ Select
 
 	/**
 	* <pre>
-	* The backup persistence type for the group.<br> Possible values = SOURCEIP, NONE
+	* Type of backup persistence for the group.<br> Possible values = SOURCEIP, NONE
 	* </pre>
 	*/
 	public String get_persistencebackup() throws Exception {
@@ -102,7 +113,7 @@ Select
 
 	/**
 	* <pre>
-	* The maximum time backup persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Time period, in minutes, for which backup persistence is in effect.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_backuppersistencetimeout(long backuppersistencetimeout) throws Exception {
@@ -111,7 +122,7 @@ Select
 
 	/**
 	* <pre>
-	* The maximum time backup persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Time period, in minutes, for which backup persistence is in effect.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_backuppersistencetimeout(Long backuppersistencetimeout) throws Exception{
@@ -120,7 +131,7 @@ Select
 
 	/**
 	* <pre>
-	* The maximum time backup persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
+	* Time period, in minutes, for which backup persistence is in effect.<br> Default value: 2<br> Minimum value =  2<br> Maximum value =  1440
 	* </pre>
 	*/
 	public Long get_backuppersistencetimeout() throws Exception {
@@ -129,7 +140,7 @@ Select
 
 	/**
 	* <pre>
-	* The netmask to be applied when the persistency type is SOURCEIP.<br> Minimum length =  1
+	* Persistence mask to apply to source IPv4 addresses when creating source IP based persistence sessions.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_persistmask(String persistmask) throws Exception{
@@ -138,7 +149,7 @@ Select
 
 	/**
 	* <pre>
-	* The netmask to be applied when the persistency type is SOURCEIP.<br> Minimum length =  1
+	* Persistence mask to apply to source IPv4 addresses when creating source IP based persistence sessions.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_persistmask() throws Exception {
@@ -147,7 +158,25 @@ Select
 
 	/**
 	* <pre>
-	* The persistence mask. Use this parameter if you are using IPv6 based persistence type on an lb group.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Use this parameter to specify the cookie name for COOKIE peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.
+	* </pre>
+	*/
+	public void set_cookiename(String cookiename) throws Exception{
+		this.cookiename = cookiename;
+	}
+
+	/**
+	* <pre>
+	* Use this parameter to specify the cookie name for COOKIE peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.
+	* </pre>
+	*/
+	public String get_cookiename() throws Exception {
+		return this.cookiename;
+	}
+
+	/**
+	* <pre>
+	* Persistence mask to apply to source IPv6 addresses when creating source IP based persistence sessions.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public void set_v6persistmasklen(long v6persistmasklen) throws Exception {
@@ -156,7 +185,7 @@ Select
 
 	/**
 	* <pre>
-	* The persistence mask. Use this parameter if you are using IPv6 based persistence type on an lb group.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Persistence mask to apply to source IPv6 addresses when creating source IP based persistence sessions.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public void set_v6persistmasklen(Long v6persistmasklen) throws Exception{
@@ -165,7 +194,7 @@ Select
 
 	/**
 	* <pre>
-	* The persistence mask. Use this parameter if you are using IPv6 based persistence type on an lb group.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
+	* Persistence mask to apply to source IPv6 addresses when creating source IP based persistence sessions.<br> Default value: 128<br> Minimum value =  1<br> Maximum value =  128
 	* </pre>
 	*/
 	public Long get_v6persistmasklen() throws Exception {
@@ -174,7 +203,7 @@ Select
 
 	/**
 	* <pre>
-	* The domain attribute of the HTTP cookie.<br> Minimum length =  1
+	* Domain attribute for the HTTP cookie.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_cookiedomain(String cookiedomain) throws Exception{
@@ -183,7 +212,7 @@ Select
 
 	/**
 	* <pre>
-	* The domain attribute of the HTTP cookie.<br> Minimum length =  1
+	* Domain attribute for the HTTP cookie.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_cookiedomain() throws Exception {
@@ -192,7 +221,7 @@ Select
 
 	/**
 	* <pre>
-	* The maximum time that persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
+	* Time period for which a persistence session is in effect.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_timeout(long timeout) throws Exception {
@@ -201,7 +230,7 @@ Select
 
 	/**
 	* <pre>
-	* The maximum time that persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
+	* Time period for which a persistence session is in effect.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public void set_timeout(Long timeout) throws Exception{
@@ -210,7 +239,7 @@ Select
 
 	/**
 	* <pre>
-	* The maximum time that persistence is in effect for a specific client.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
+	* Time period for which a persistence session is in effect.<br> Default value: 2<br> Minimum value =  0<br> Maximum value =  1440
 	* </pre>
 	*/
 	public Long get_timeout() throws Exception {
@@ -219,7 +248,14 @@ Select
 
 	/**
 	* <pre>
-	* The RULE persistence type. The string can be either a existing rule name (configured using ###add rule### command) or else it could it be an inline expression with a maximum of 1500 characters.<br> Default value: "None"
+	* Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax.
+Note:
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.<br> Default value: "None"
 	* </pre>
 	*/
 	public void set_rule(String rule) throws Exception{
@@ -228,7 +264,14 @@ Select
 
 	/**
 	* <pre>
-	* The RULE persistence type. The string can be either a existing rule name (configured using ###add rule### command) or else it could it be an inline expression with a maximum of 1500 characters.<br> Default value: "None"
+	* Expression, or name of a named expression, against which traffic is evaluated. Written in the classic or default syntax.
+Note:
+Maximum length of a string literal in the expression is 255 characters. A longer string can be split into smaller strings of up to 255 characters each, and the smaller strings concatenated with the + operator. For example, you can create a 500-character string as follows: '"<string of 255 characters>" + "<string of 245 characters>"'
+
+The following requirements apply only to the NetScaler CLI:
+* If the expression includes one or more spaces, enclose the entire expression in double quotation marks.
+* If the expression itself includes double quotation marks, escape the quotations by using the \ character. 
+* Alternatively, you can use single quotation marks to enclose the rule, in which case you do not have to escape the double quotation marks.<br> Default value: "None"
 	* </pre>
 	*/
 	public String get_rule() throws Exception {
@@ -237,7 +280,7 @@ Select
 
 	/**
 	* <pre>
-	* The new name of the virtual server group.<br> Minimum length =  1
+	* New name for the load balancing virtual server group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -246,11 +289,20 @@ Select
 
 	/**
 	* <pre>
-	* The new name of the virtual server group.<br> Minimum length =  1
+	* New name for the load balancing virtual server group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
 		return this.newname;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain ID.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
 	}
 
 	/**
@@ -297,6 +349,7 @@ Select
 		updateresource.persistencebackup = resource.persistencebackup;
 		updateresource.backuppersistencetimeout = resource.backuppersistencetimeout;
 		updateresource.persistmask = resource.persistmask;
+		updateresource.cookiename = resource.cookiename;
 		updateresource.v6persistmasklen = resource.v6persistmasklen;
 		updateresource.cookiedomain = resource.cookiedomain;
 		updateresource.timeout = resource.timeout;
@@ -318,6 +371,7 @@ Select
 				updateresources[i].persistencebackup = resources[i].persistencebackup;
 				updateresources[i].backuppersistencetimeout = resources[i].backuppersistencetimeout;
 				updateresources[i].persistmask = resources[i].persistmask;
+				updateresources[i].cookiename = resources[i].cookiename;
 				updateresources[i].v6persistmasklen = resources[i].v6persistmasklen;
 				updateresources[i].cookiedomain = resources[i].cookiedomain;
 				updateresources[i].timeout = resources[i].timeout;
@@ -332,27 +386,9 @@ Select
 	* Use this API to unset the properties of lbgroup resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		lbgroup unsetresource = new lbgroup();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of lbgroup resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, lbgroup resource, String[] args) throws Exception{
 		lbgroup unsetresource = new lbgroup();
 		unsetresource.name = resource.name;
-		unsetresource.persistencetype = resource.persistencetype;
-		unsetresource.persistencebackup = resource.persistencebackup;
-		unsetresource.backuppersistencetimeout = resource.backuppersistencetimeout;
-		unsetresource.persistmask = resource.persistmask;
-		unsetresource.v6persistmasklen = resource.v6persistmasklen;
-		unsetresource.cookiedomain = resource.cookiedomain;
-		unsetresource.timeout = resource.timeout;
-		unsetresource.rule = resource.rule;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -384,14 +420,6 @@ Select
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new lbgroup();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].persistencetype = resources[i].persistencetype;
-				unsetresources[i].persistencebackup = resources[i].persistencebackup;
-				unsetresources[i].backuppersistencetimeout = resources[i].backuppersistencetimeout;
-				unsetresources[i].persistmask = resources[i].persistmask;
-				unsetresources[i].v6persistmasklen = resources[i].v6persistmasklen;
-				unsetresources[i].cookiedomain = resources[i].cookiedomain;
-				unsetresources[i].timeout = resources[i].timeout;
-				unsetresources[i].rule = resources[i].rule;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

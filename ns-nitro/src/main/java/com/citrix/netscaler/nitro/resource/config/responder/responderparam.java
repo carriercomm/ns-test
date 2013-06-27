@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.responder;
@@ -30,7 +36,10 @@ public class responderparam extends base_resource
 
 	/**
 	* <pre>
-	* can be NOOP, RESET or DROP.<br> Default value: "NOOP"
+	* Action to perform when policy evaluation creates an UNDEF condition. Available settings function as follows:
+* NOOP - Send the request to the protected server.
+* RESET - Reset the request and notify the user's browser, so that the user can resend the request.
+* DROP - Drop the request without sending a response to the user.<br> Default value: "NOOP"
 	* </pre>
 	*/
 	public void set_undefaction(String undefaction) throws Exception{
@@ -39,7 +48,10 @@ public class responderparam extends base_resource
 
 	/**
 	* <pre>
-	* can be NOOP, RESET or DROP.<br> Default value: "NOOP"
+	* Action to perform when policy evaluation creates an UNDEF condition. Available settings function as follows:
+* NOOP - Send the request to the protected server.
+* RESET - Reset the request and notify the user's browser, so that the user can resend the request.
+* DROP - Drop the request without sending a response to the user.<br> Default value: "NOOP"
 	* </pre>
 	*/
 	public String get_undefaction() throws Exception {
@@ -97,7 +109,6 @@ public class responderparam extends base_resource
 	*/
 	public static base_response unset(nitro_service client, responderparam resource, String[] args) throws Exception{
 		responderparam unsetresource = new responderparam();
-		unsetresource.undefaction = resource.undefaction;
 		return unsetresource.unset_resource(client,args);
 	}
 

@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
@@ -32,12 +38,13 @@ public class sslservice_sslcertkey_binding extends base_resource
 	private String ocspcheck;
 	private Boolean ca;
 	private Boolean snicert;
+	private Boolean skipcaname;
 	private String servicename;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name of the SSL service to which the SSL policy needs to be bound.<br> Minimum length =  1
+	* Name of the SSL service for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicename(String servicename) throws Exception{
@@ -46,7 +53,7 @@ public class sslservice_sslcertkey_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the SSL service to which the SSL policy needs to be bound.<br> Minimum length =  1
+	* Name of the SSL service for which to set advanced configuration.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicename() throws Exception {
@@ -100,6 +107,33 @@ public class sslservice_sslcertkey_binding extends base_resource
 
 	/**
 	* <pre>
+	* The flag is used to indicate whether this particular CA certificate's CA_Name needs to be sent to the SSL client while requesting      for client certificate in a SSL handshake.
+	* </pre>
+	*/
+	public void set_skipcaname(boolean skipcaname) throws Exception {
+		this.skipcaname = new Boolean(skipcaname);
+	}
+
+	/**
+	* <pre>
+	* The flag is used to indicate whether this particular CA certificate's CA_Name needs to be sent to the SSL client while requesting      for client certificate in a SSL handshake.
+	* </pre>
+	*/
+	public void set_skipcaname(Boolean skipcaname) throws Exception{
+		this.skipcaname = skipcaname;
+	}
+
+	/**
+	* <pre>
+	* The flag is used to indicate whether this particular CA certificate's CA_Name needs to be sent to the SSL client while requesting      for client certificate in a SSL handshake.
+	* </pre>
+	*/
+	public Boolean get_skipcaname() throws Exception {
+		return this.skipcaname;
+	}
+
+	/**
+	* <pre>
 	* CA certificate.
 	* </pre>
 	*/
@@ -145,7 +179,7 @@ public class sslservice_sslcertkey_binding extends base_resource
 
 	/**
 	* <pre>
-	* The state of the OCSP check parameter. (Mandatory/Optional).<br> Possible values = Mandatory, Optional
+	* Rule to use for the OCSP responder associated with the CA certificate during client authentication. If MANDATORY is specified, deny all SSL clients if the OCSP check fails because of connectivity issues with the remote OCSP server, or any other reason that prevents the OCSP check. With the OPTIONAL setting, allow SSL clients even if the OCSP check fails except when the client certificate is revoked.<br> Possible values = Mandatory, Optional
 	* </pre>
 	*/
 	public void set_ocspcheck(String ocspcheck) throws Exception{
@@ -154,7 +188,7 @@ public class sslservice_sslcertkey_binding extends base_resource
 
 	/**
 	* <pre>
-	* The state of the OCSP check parameter. (Mandatory/Optional).<br> Possible values = Mandatory, Optional
+	* Rule to use for the OCSP responder associated with the CA certificate during client authentication. If MANDATORY is specified, deny all SSL clients if the OCSP check fails because of connectivity issues with the remote OCSP server, or any other reason that prevents the OCSP check. With the OPTIONAL setting, allow SSL clients even if the OCSP check fails except when the client certificate is revoked.<br> Possible values = Mandatory, Optional
 	* </pre>
 	*/
 	public String get_ocspcheck() throws Exception {
@@ -210,6 +244,7 @@ public class sslservice_sslcertkey_binding extends base_resource
 		updateresource.certkeyname = resource.certkeyname;
 		updateresource.ca = resource.ca;
 		updateresource.crlcheck = resource.crlcheck;
+		updateresource.skipcaname = resource.skipcaname;
 		updateresource.snicert = resource.snicert;
 		updateresource.ocspcheck = resource.ocspcheck;
 		return updateresource.update_resource(client);
@@ -225,6 +260,7 @@ public class sslservice_sslcertkey_binding extends base_resource
 				updateresources[i].certkeyname = resources[i].certkeyname;
 				updateresources[i].ca = resources[i].ca;
 				updateresources[i].crlcheck = resources[i].crlcheck;
+				updateresources[i].skipcaname = resources[i].skipcaname;
 				updateresources[i].snicert = resources[i].snicert;
 				updateresources[i].ocspcheck = resources[i].ocspcheck;
 			}

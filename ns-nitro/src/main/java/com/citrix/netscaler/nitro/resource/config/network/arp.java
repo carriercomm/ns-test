@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -27,6 +33,7 @@ class arp_response extends base_response
 public class arp extends base_resource
 {
 	private String ipaddress;
+	private Long td;
 	private String mac;
 	private String ifnum;
 	private Long ownernode;
@@ -62,7 +69,34 @@ public class arp extends base_resource
 
 	/**
 	* <pre>
-	* MAC address of a network device for the ARP entry.
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
+	}
+
+	/**
+	* <pre>
+	* MAC address of the network device.
 	* </pre>
 	*/
 	public void set_mac(String mac) throws Exception{
@@ -71,7 +105,7 @@ public class arp extends base_resource
 
 	/**
 	* <pre>
-	* MAC address of a network device for the ARP entry.
+	* MAC address of the network device.
 	* </pre>
 	*/
 	public String get_mac() throws Exception {
@@ -80,7 +114,7 @@ public class arp extends base_resource
 
 	/**
 	* <pre>
-	* The Interface through which the network device is accessible. The format for specifying the interface is in slot/port notation (for example, 1/3).
+	* Interface through which the network device is accessible. Specify the interface in (slot/port) notation. For example, 1/3.
 	* </pre>
 	*/
 	public void set_ifnum(String ifnum) throws Exception{
@@ -89,7 +123,7 @@ public class arp extends base_resource
 
 	/**
 	* <pre>
-	* The Interface through which the network device is accessible. The format for specifying the interface is in slot/port notation (for example, 1/3).
+	* Interface through which the network device is accessible. Specify the interface in (slot/port) notation. For example, 1/3.
 	* </pre>
 	*/
 	public String get_ifnum() throws Exception {
@@ -244,6 +278,7 @@ public class arp extends base_resource
 	public static base_response add(nitro_service client, arp resource) throws Exception {
 		arp addresource = new arp();
 		addresource.ipaddress = resource.ipaddress;
+		addresource.td = resource.td;
 		addresource.mac = resource.mac;
 		addresource.ifnum = resource.ifnum;
 		addresource.ownernode = resource.ownernode;
@@ -260,6 +295,7 @@ public class arp extends base_resource
 			for (int i=0;i<resources.length;i++){
 				addresources[i] = new arp();
 				addresources[i].ipaddress = resources[i].ipaddress;
+				addresources[i].td = resources[i].td;
 				addresources[i].mac = resources[i].mac;
 				addresources[i].ifnum = resources[i].ifnum;
 				addresources[i].ownernode = resources[i].ownernode;
@@ -284,6 +320,7 @@ public class arp extends base_resource
 	public static base_response delete(nitro_service client, arp resource) throws Exception {
 		arp deleteresource = new arp();
 		deleteresource.ipaddress = resource.ipaddress;
+		deleteresource.td = resource.td;
 		deleteresource.all = resource.all;
 		deleteresource.ownernode = resource.ownernode;
 		return deleteresource.delete_resource(client);
@@ -315,6 +352,7 @@ public class arp extends base_resource
 			for (int i=0;i<resources.length;i++){
 				deleteresources[i] = new arp();
 				deleteresources[i].ipaddress = resources[i].ipaddress;
+				deleteresources[i].td = resources[i].td;
 				deleteresources[i].all = resources[i].all;
 				deleteresources[i].ownernode = resources[i].ownernode;
 			}
@@ -329,6 +367,7 @@ public class arp extends base_resource
 	public static base_response send(nitro_service client, arp resource) throws Exception {
 		arp sendresource = new arp();
 		sendresource.ipaddress = resource.ipaddress;
+		sendresource.td = resource.td;
 		sendresource.all = resource.all;
 		return sendresource.perform_operation(client,"send");
 	}
@@ -343,6 +382,7 @@ public class arp extends base_resource
 			for (int i=0;i<resources.length;i++){
 				sendresources[i] = new arp();
 				sendresources[i].ipaddress = resources[i].ipaddress;
+				sendresources[i].td = resources[i].td;
 				sendresources[i].all = resources[i].all;
 			}
 			result = perform_operation_bulk_request(client, sendresources,"send");

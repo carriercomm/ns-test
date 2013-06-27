@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.basic;
@@ -35,6 +41,7 @@ public class server extends base_resource
 	private String state;
 	private String ipv6address;
 	private String comment;
+	private Long td;
 	private Boolean domainresolvenow;
 	private Long delay;
 	private String graceful;
@@ -49,7 +56,9 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The server's name.<br> Minimum length =  1
+	* Name for the server. 
+Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
+Can be changed after the name is created.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -58,7 +67,9 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The server's name.<br> Minimum length =  1
+	* Name for the server. 
+Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.
+Can be changed after the name is created.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -67,7 +78,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the server.
+	* IPv4 or IPv6 address of the server. If you create an IP address based server, you can specify the name of the server, instead of its IP address, when creating a service. Note: If you do not create a server entry, the server IP address that you enter when you create a service becomes the name of the server.
 	* </pre>
 	*/
 	public void set_ipaddress(String ipaddress) throws Exception{
@@ -76,7 +87,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The IP address of the server.
+	* IPv4 or IPv6 address of the server. If you create an IP address based server, you can specify the name of the server, instead of its IP address, when creating a service. Note: If you do not create a server entry, the server IP address that you enter when you create a service becomes the name of the server.
 	* </pre>
 	*/
 	public String get_ipaddress() throws Exception {
@@ -85,7 +96,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The domain name of the server for which a service needs to be added. If an IP Address has been specified, the domain name does not need to be specified.<br> Minimum length =  1
+	* Domain name of the server. For a domain based configuration, you must create the server first.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_domain(String domain) throws Exception{
@@ -94,7 +105,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The domain name of the server for which a service needs to be added. If an IP Address has been specified, the domain name does not need to be specified.<br> Minimum length =  1
+	* Domain name of the server. For a domain based configuration, you must create the server first.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_domain() throws Exception {
@@ -103,7 +114,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The IP address used for translating dns obtained ip.
+	* IP address used to transform the server's DNS-resolved IP address.
 	* </pre>
 	*/
 	public void set_translationip(String translationip) throws Exception{
@@ -112,7 +123,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The IP address used for translating dns obtained ip.
+	* IP address used to transform the server's DNS-resolved IP address.
 	* </pre>
 	*/
 	public String get_translationip() throws Exception {
@@ -139,7 +150,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The duration in seconds for which NetScaler system waits to send the next dns query to resolve the domain name, in case the last query failed. If last query succeeds, the netscaler system waits for TTL time in the response.<br> Default value: 5<br> Minimum value =  5<br> Maximum value =  20939
+	* Time, in seconds, for which the NetScaler appliance must wait, after DNS resolution fails, before sending the next DNS query to resolve the domain name.<br> Default value: 5<br> Minimum value =  5<br> Maximum value =  20939
 	* </pre>
 	*/
 	public void set_domainresolveretry(int domainresolveretry) throws Exception {
@@ -148,7 +159,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The duration in seconds for which NetScaler system waits to send the next dns query to resolve the domain name, in case the last query failed. If last query succeeds, the netscaler system waits for TTL time in the response.<br> Default value: 5<br> Minimum value =  5<br> Maximum value =  20939
+	* Time, in seconds, for which the NetScaler appliance must wait, after DNS resolution fails, before sending the next DNS query to resolve the domain name.<br> Default value: 5<br> Minimum value =  5<br> Maximum value =  20939
 	* </pre>
 	*/
 	public void set_domainresolveretry(Integer domainresolveretry) throws Exception{
@@ -157,7 +168,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The duration in seconds for which NetScaler system waits to send the next dns query to resolve the domain name, in case the last query failed. If last query succeeds, the netscaler system waits for TTL time in the response.<br> Default value: 5<br> Minimum value =  5<br> Maximum value =  20939
+	* Time, in seconds, for which the NetScaler appliance must wait, after DNS resolution fails, before sending the next DNS query to resolve the domain name.<br> Default value: 5<br> Minimum value =  5<br> Maximum value =  20939
 	* </pre>
 	*/
 	public Integer get_domainresolveretry() throws Exception {
@@ -166,7 +177,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The initial state of the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Initial state of the server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -175,7 +186,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The initial state of the service.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Initial state of the server.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -184,7 +195,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Defines whether server is of type ipv6 or not for DBS services.<br> Default value: NO<br> Possible values = YES, NO
+	* Support IPv6 addressing mode. If you configure a server with the IPv6 addressing mode, you cannot use the server in the IPv4 addressing mode.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_ipv6address(String ipv6address) throws Exception{
@@ -193,7 +204,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Defines whether server is of type ipv6 or not for DBS services.<br> Default value: NO<br> Possible values = YES, NO
+	* Support IPv6 addressing mode. If you configure a server with the IPv6 addressing mode, you cannot use the server in the IPv4 addressing mode.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_ipv6address() throws Exception {
@@ -202,7 +213,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this server.
+	* Any information about the server.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -211,7 +222,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this server.
+	* Any information about the server.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {
@@ -220,7 +231,34 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Restart the probe for this domain based server, immediately.
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
+	}
+
+	/**
+	* <pre>
+	* Immediately send a DNS query to resolve the server's domain name.
 	* </pre>
 	*/
 	public void set_domainresolvenow(boolean domainresolvenow) throws Exception {
@@ -229,7 +267,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Restart the probe for this domain based server, immediately.
+	* Immediately send a DNS query to resolve the server's domain name.
 	* </pre>
 	*/
 	public void set_domainresolvenow(Boolean domainresolvenow) throws Exception{
@@ -238,7 +276,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Restart the probe for this domain based server, immediately.
+	* Immediately send a DNS query to resolve the server's domain name.
 	* </pre>
 	*/
 	public Boolean get_domainresolvenow() throws Exception {
@@ -247,7 +285,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The time in seconds after which all services in this server are brought down.
+	* Time, in seconds, after which all the services configured on the server are disabled.
 	* </pre>
 	*/
 	public void set_delay(long delay) throws Exception {
@@ -256,7 +294,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The time in seconds after which all services in this server are brought down.
+	* Time, in seconds, after which all the services configured on the server are disabled.
 	* </pre>
 	*/
 	public void set_delay(Long delay) throws Exception{
@@ -265,7 +303,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The time in seconds after which all services in this server are brought down.
+	* Time, in seconds, after which all the services configured on the server are disabled.
 	* </pre>
 	*/
 	public Long get_delay() throws Exception {
@@ -274,7 +312,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Indicates graceful shutdown of the service. System will wait for all outstanding connections to this service to be closed before disabling the service.<br> Default value: NO<br> Possible values = YES, NO
+	* Shut down gracefully, without accepting any new connections, and disabling each service when all of its connections are closed.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public void set_graceful(String graceful) throws Exception{
@@ -283,7 +321,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Indicates graceful shutdown of the service. System will wait for all outstanding connections to this service to be closed before disabling the service.<br> Default value: NO<br> Possible values = YES, NO
+	* Shut down gracefully, without accepting any new connections, and disabling each service when all of its connections are closed.<br> Default value: NO<br> Possible values = YES, NO
 	* </pre>
 	*/
 	public String get_graceful() throws Exception {
@@ -292,7 +330,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Display internally created named servers.
+	* Display names of the servers that have been created for internal use.
 	* </pre>
 	*/
 	public void set_Internal(boolean Internal) throws Exception {
@@ -301,7 +339,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Display internally created named servers.
+	* Display names of the servers that have been created for internal use.
 	* </pre>
 	*/
 	public void set_Internal(Boolean Internal) throws Exception{
@@ -310,7 +348,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* Display internally created named servers.
+	* Display names of the servers that have been created for internal use.
 	* </pre>
 	*/
 	public Boolean get_Internal() throws Exception {
@@ -319,7 +357,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the server.<br> Minimum length =  1
+	* New name for the server. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_newname(String newname) throws Exception{
@@ -328,7 +366,7 @@ public class server extends base_resource
 
 	/**
 	* <pre>
-	* The new name of the server.<br> Minimum length =  1
+	* New name for the server. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_newname() throws Exception {
@@ -401,6 +439,7 @@ public class server extends base_resource
 		addresource.state = resource.state;
 		addresource.ipv6address = resource.ipv6address;
 		addresource.comment = resource.comment;
+		addresource.td = resource.td;
 		return addresource.add_resource(client);
 	}
 
@@ -422,6 +461,7 @@ public class server extends base_resource
 				addresources[i].state = resources[i].state;
 				addresources[i].ipv6address = resources[i].ipv6address;
 				addresources[i].comment = resources[i].comment;
+				addresources[i].td = resources[i].td;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -519,20 +559,9 @@ public class server extends base_resource
 	* Use this API to unset the properties of server resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		server unsetresource = new server();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of server resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, server resource, String[] args) throws Exception{
 		server unsetresource = new server();
 		unsetresource.name = resource.name;
-		unsetresource.comment = resource.comment;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -564,7 +593,6 @@ public class server extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new server();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].comment = resources[i].comment;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

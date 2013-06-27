@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ns;
@@ -28,6 +34,7 @@ public class nspbr extends base_resource
 {
 	private String name;
 	private String action;
+	private Long td;
 	private Boolean srcip;
 	private String srcipop;
 	private String srcipval;
@@ -42,6 +49,8 @@ public class nspbr extends base_resource
 	private String destportval;
 	private Boolean nexthop;
 	private String nexthopval;
+	private Boolean iptunnel;
+	private String iptunnelname;
 	private String srcmac;
 	private String protocol;
 	private Long protocolnumber;
@@ -70,7 +79,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The name of the PBR.<br> Minimum length =  1
+	* Name for the PBR. Must begin with an ASCII alphabetic or underscore \(_\) character, and must contain only ASCII alphanumeric, underscore, hash \(\#\), period \(.\), space, colon \(:\), at \(@\), equals \(=\), and hyphen \(-\) characters. Can be changed after the PBR is created.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -79,7 +88,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The name of the PBR.<br> Minimum length =  1
+	* Name for the PBR. Must begin with an ASCII alphabetic or underscore \(_\) character, and must contain only ASCII alphanumeric, underscore, hash \(\#\), period \(.\), space, colon \(:\), at \(@\), equals \(=\), and hyphen \(-\) characters. Can be changed after the PBR is created.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -88,7 +97,11 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The action associated with the PBR.<br> Possible values = ALLOW, DENY
+	* Action to perform on the outgoing IPv4 packets that match the PBR. 
+
+Available settings function as follows:
+* ALLOW - The NetScaler appliance sends the packet to the designated next-hop router.
+* DENY - The NetScaler appliance applies the routing table for normal destination-based routing.<br> Possible values = ALLOW, DENY
 	* </pre>
 	*/
 	public void set_action(String action) throws Exception{
@@ -97,7 +110,11 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The action associated with the PBR.<br> Possible values = ALLOW, DENY
+	* Action to perform on the outgoing IPv4 packets that match the PBR. 
+
+Available settings function as follows:
+* ALLOW - The NetScaler appliance sends the packet to the designated next-hop router.
+* DENY - The NetScaler appliance applies the routing table for normal destination-based routing.<br> Possible values = ALLOW, DENY
 	* </pre>
 	*/
 	public String get_action() throws Exception {
@@ -106,7 +123,34 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source IP address (range).
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(long td) throws Exception {
+		this.td = new Long(td);
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public void set_td(Long td) throws Exception{
+		this.td = td;
+	}
+
+	/**
+	* <pre>
+	* Traffic Domain Id.<br> Minimum value =  0<br> Maximum value =  4094
+	* </pre>
+	*/
+	public Long get_td() throws Exception {
+		return this.td;
+	}
+
+	/**
+	* <pre>
+	* IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public void set_srcip(boolean srcip) throws Exception {
@@ -115,7 +159,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source IP address (range).
+	* IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public void set_srcip(Boolean srcip) throws Exception{
@@ -124,7 +168,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source IP address (range).
+	* IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public Boolean get_srcip() throws Exception {
@@ -133,7 +177,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* Logical operator.<br> Possible values = =, !=, EQ, NEQ
+	* Either the equals (=) or does not equal (!=) logical operator.<br> Possible values = =, !=, EQ, NEQ
 	* </pre>
 	*/
 	public void set_srcipop(String srcipop) throws Exception{
@@ -142,7 +186,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* Logical operator.<br> Possible values = =, !=, EQ, NEQ
+	* Either the equals (=) or does not equal (!=) logical operator.<br> Possible values = =, !=, EQ, NEQ
 	* </pre>
 	*/
 	public String get_srcipop() throws Exception {
@@ -151,7 +195,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source IP address (range).
+	* IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public void set_srcipval(String srcipval) throws Exception{
@@ -160,7 +204,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source IP address (range).
+	* IP address or range of IP addresses to match against the source IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public String get_srcipval() throws Exception {
@@ -169,7 +213,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source port (range).
+	* Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.
 	* </pre>
 	*/
 	public void set_srcport(boolean srcport) throws Exception {
@@ -178,7 +224,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source port (range).
+	* Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.
 	* </pre>
 	*/
 	public void set_srcport(Boolean srcport) throws Exception{
@@ -187,7 +235,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source port (range).
+	* Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.
 	* </pre>
 	*/
 	public Boolean get_srcport() throws Exception {
@@ -214,7 +264,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source port (range).<br> Maximum length =  65535
+	* Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.<br> Maximum length =  65535
 	* </pre>
 	*/
 	public void set_srcportval(String srcportval) throws Exception{
@@ -223,7 +275,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source port (range).<br> Maximum length =  65535
+	* Port number or range of port numbers to match against the source port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.<br> Maximum length =  65535
 	* </pre>
 	*/
 	public String get_srcportval() throws Exception {
@@ -232,7 +286,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination IP address (range).
+	* IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public void set_destip(boolean destip) throws Exception {
@@ -241,7 +295,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination IP address (range).
+	* IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public void set_destip(Boolean destip) throws Exception{
@@ -250,7 +304,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination IP address (range).
+	* IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet.  In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public Boolean get_destip() throws Exception {
@@ -277,7 +331,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination IP address (range).
+	* IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public void set_destipval(String destipval) throws Exception{
@@ -286,7 +340,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination IP address (range).
+	* IP address or range of IP addresses to match against the destination IP address of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [10.102.29.30-10.102.29.189].
 	* </pre>
 	*/
 	public String get_destipval() throws Exception {
@@ -295,7 +349,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination port (range).
+	* Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.
 	* </pre>
 	*/
 	public void set_destport(boolean destport) throws Exception {
@@ -304,7 +360,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination port (range).
+	* Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.
 	* </pre>
 	*/
 	public void set_destport(Boolean destport) throws Exception{
@@ -313,7 +371,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination port (range).
+	* Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.
 	* </pre>
 	*/
 	public Boolean get_destport() throws Exception {
@@ -340,7 +400,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination port (range).<br> Maximum length =  65535
+	* Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.<br> Maximum length =  65535
 	* </pre>
 	*/
 	public void set_destportval(String destportval) throws Exception{
@@ -349,7 +411,9 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The destination port (range).<br> Maximum length =  65535
+	* Port number or range of port numbers to match against the destination port number of an outgoing IPv4 packet. In the command line interface, separate the range with a hyphen and enclose within brackets. For example: [40-90]. 
+
+Note: The destination port can be specified only for TCP and UDP protocols.<br> Maximum length =  65535
 	* </pre>
 	*/
 	public String get_destportval() throws Exception {
@@ -358,7 +422,8 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The Next Hop IP address.
+	* IP address of the next hop router or the name of the link load balancing virtual server to which to send matching packets if action is set to ALLOW. 
+If you specify a link load balancing (LLB) virtual server, which can provide a backup if a next hop link fails, first make sure that the next hops bound to the LLB virtual server are actually next hops that are directly connected to the NetScaler appliance. Otherwise, the NetScaler throws an error when you attempt to create the PBR.
 	* </pre>
 	*/
 	public void set_nexthop(boolean nexthop) throws Exception {
@@ -367,7 +432,8 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The Next Hop IP address.
+	* IP address of the next hop router or the name of the link load balancing virtual server to which to send matching packets if action is set to ALLOW. 
+If you specify a link load balancing (LLB) virtual server, which can provide a backup if a next hop link fails, first make sure that the next hops bound to the LLB virtual server are actually next hops that are directly connected to the NetScaler appliance. Otherwise, the NetScaler throws an error when you attempt to create the PBR.
 	* </pre>
 	*/
 	public void set_nexthop(Boolean nexthop) throws Exception{
@@ -376,7 +442,8 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The Next Hop IP address.
+	* IP address of the next hop router or the name of the link load balancing virtual server to which to send matching packets if action is set to ALLOW. 
+If you specify a link load balancing (LLB) virtual server, which can provide a backup if a next hop link fails, first make sure that the next hops bound to the LLB virtual server are actually next hops that are directly connected to the NetScaler appliance. Otherwise, the NetScaler throws an error when you attempt to create the PBR.
 	* </pre>
 	*/
 	public Boolean get_nexthop() throws Exception {
@@ -403,7 +470,52 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source MAC address.
+	* The Tunnel name.
+	* </pre>
+	*/
+	public void set_iptunnel(boolean iptunnel) throws Exception {
+		this.iptunnel = new Boolean(iptunnel);
+	}
+
+	/**
+	* <pre>
+	* The Tunnel name.
+	* </pre>
+	*/
+	public void set_iptunnel(Boolean iptunnel) throws Exception{
+		this.iptunnel = iptunnel;
+	}
+
+	/**
+	* <pre>
+	* The Tunnel name.
+	* </pre>
+	*/
+	public Boolean get_iptunnel() throws Exception {
+		return this.iptunnel;
+	}
+
+	/**
+	* <pre>
+	* The iptunnel name where packets need to be forwarded upon.
+	* </pre>
+	*/
+	public void set_iptunnelname(String iptunnelname) throws Exception{
+		this.iptunnelname = iptunnelname;
+	}
+
+	/**
+	* <pre>
+	* The iptunnel name where packets need to be forwarded upon.
+	* </pre>
+	*/
+	public String get_iptunnelname() throws Exception {
+		return this.iptunnelname;
+	}
+
+	/**
+	* <pre>
+	* MAC address to match against the source MAC address of an outgoing IPv4 packet.
 	* </pre>
 	*/
 	public void set_srcmac(String srcmac) throws Exception{
@@ -412,7 +524,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The source MAC address.
+	* MAC address to match against the source MAC address of an outgoing IPv4 packet.
 	* </pre>
 	*/
 	public String get_srcmac() throws Exception {
@@ -421,7 +533,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The IP protocol name.<br> Possible values = ICMP, IGMP, TCP, EGP, IGP, ARGUS, UDP, RDP, RSVP, EIGRP, L2TP, ISIS
+	* Protocol, identified by protocol name, to match against the protocol of an outgoing IPv4 packet.<br> Possible values = ICMP, IGMP, TCP, EGP, IGP, ARGUS, UDP, RDP, RSVP, EIGRP, L2TP, ISIS
 	* </pre>
 	*/
 	public void set_protocol(String protocol) throws Exception{
@@ -430,7 +542,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The IP protocol name.<br> Possible values = ICMP, IGMP, TCP, EGP, IGP, ARGUS, UDP, RDP, RSVP, EIGRP, L2TP, ISIS
+	* Protocol, identified by protocol name, to match against the protocol of an outgoing IPv4 packet.<br> Possible values = ICMP, IGMP, TCP, EGP, IGP, ARGUS, UDP, RDP, RSVP, EIGRP, L2TP, ISIS
 	* </pre>
 	*/
 	public String get_protocol() throws Exception {
@@ -439,7 +551,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The IP protocol number (decimal).<br> Minimum value =  1<br> Maximum value =  255
+	* Protocol, identified by protocol number, to match against the protocol of an outgoing IPv4 packet.<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public void set_protocolnumber(long protocolnumber) throws Exception {
@@ -448,7 +560,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The IP protocol number (decimal).<br> Minimum value =  1<br> Maximum value =  255
+	* Protocol, identified by protocol number, to match against the protocol of an outgoing IPv4 packet.<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public void set_protocolnumber(Long protocolnumber) throws Exception{
@@ -457,7 +569,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The IP protocol number (decimal).<br> Minimum value =  1<br> Maximum value =  255
+	* Protocol, identified by protocol number, to match against the protocol of an outgoing IPv4 packet.<br> Minimum value =  1<br> Maximum value =  255
 	* </pre>
 	*/
 	public Long get_protocolnumber() throws Exception {
@@ -466,7 +578,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The VLAN number.<br> Minimum value =  1<br> Maximum value =  4094
+	* ID of the VLAN. The NetScaler appliance compares the PBR only to the outgoing packets on the specified VLAN. If you do not specify any interface ID, the appliance compares the PBR to the outgoing packets on all VLANs.<br> Minimum value =  1<br> Maximum value =  4094
 	* </pre>
 	*/
 	public void set_vlan(long vlan) throws Exception {
@@ -475,7 +587,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The VLAN number.<br> Minimum value =  1<br> Maximum value =  4094
+	* ID of the VLAN. The NetScaler appliance compares the PBR only to the outgoing packets on the specified VLAN. If you do not specify any interface ID, the appliance compares the PBR to the outgoing packets on all VLANs.<br> Minimum value =  1<br> Maximum value =  4094
 	* </pre>
 	*/
 	public void set_vlan(Long vlan) throws Exception{
@@ -484,7 +596,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The VLAN number.<br> Minimum value =  1<br> Maximum value =  4094
+	* ID of the VLAN. The NetScaler appliance compares the PBR only to the outgoing packets on the specified VLAN. If you do not specify any interface ID, the appliance compares the PBR to the outgoing packets on all VLANs.<br> Minimum value =  1<br> Maximum value =  4094
 	* </pre>
 	*/
 	public Long get_vlan() throws Exception {
@@ -493,7 +605,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The physical interface.
+	* ID of an interface. The NetScaler appliance compares the PBR only to the outgoing packets on the specified interface. If you do not specify any value, the appliance compares the PBR to the outgoing packets on all interfaces.
 	* </pre>
 	*/
 	public void set_Interface(String Interface) throws Exception{
@@ -502,7 +614,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The physical interface.
+	* ID of an interface. The NetScaler appliance compares the PBR only to the outgoing packets on the specified interface. If you do not specify any value, the appliance compares the PBR to the outgoing packets on all interfaces.
 	* </pre>
 	*/
 	public String get_Interface() throws Exception {
@@ -511,7 +623,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The priority of the PBR.<br> Minimum value =  1<br> Maximum value =  81920
+	* Priority of the PBR, which determines the order in which it is evaluated relative to the other PBRs. If you do not specify priorities while creating PBRs, the PBRs are evaluated in the order in which they are created.<br> Minimum value =  1<br> Maximum value =  81920
 	* </pre>
 	*/
 	public void set_priority(long priority) throws Exception {
@@ -520,7 +632,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The priority of the PBR.<br> Minimum value =  1<br> Maximum value =  81920
+	* Priority of the PBR, which determines the order in which it is evaluated relative to the other PBRs. If you do not specify priorities while creating PBRs, the PBRs are evaluated in the order in which they are created.<br> Minimum value =  1<br> Maximum value =  81920
 	* </pre>
 	*/
 	public void set_priority(Long priority) throws Exception{
@@ -529,7 +641,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The priority of the PBR.<br> Minimum value =  1<br> Maximum value =  81920
+	* Priority of the PBR, which determines the order in which it is evaluated relative to the other PBRs. If you do not specify priorities while creating PBRs, the PBRs are evaluated in the order in which they are created.<br> Minimum value =  1<br> Maximum value =  81920
 	* </pre>
 	*/
 	public Long get_priority() throws Exception {
@@ -538,7 +650,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* Enable/disable Monitored Static Route(MSR) on this route.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Monitor the route specified byte Next Hop parameter. This parameter is not applicable if you specify a link load balancing (LLB) virtual server name with the Next Hop parameter.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_msr(String msr) throws Exception{
@@ -547,7 +659,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* Enable/disable Monitored Static Route(MSR) on this route.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Monitor the route specified byte Next Hop parameter. This parameter is not applicable if you specify a link load balancing (LLB) virtual server name with the Next Hop parameter.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_msr() throws Exception {
@@ -574,7 +686,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The state of the PBR.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED, REMOVED
+	* Enable or disable the PBR. After you apply the PBRs, the NetScaler appliance compares outgoing packets to the enabled PBRs.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -583,7 +695,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The state of the PBR.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED, REMOVED
+	* Enable or disable the PBR. After you apply the PBRs, the NetScaler appliance compares outgoing packets to the enabled PBRs.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -628,7 +740,7 @@ public class nspbr extends base_resource
 
 	/**
 	* <pre>
-	* The commit status of the PBR.<br> Default value: XACLNAPPLIED<br> Possible values = APPLIED, NOTAPPLIED, RE-APPLY, SFAPPLIED, SFNOTAPPLIED, SFAPPLIED61, SFNOTAPPLIED61
+	* The commit status of the PBR.<br> Default value: NOTAPPLIED<br> Possible values = APPLIED, NOTAPPLIED, RE-APPLY, SFAPPLIED, SFNOTAPPLIED, SFAPPLIED61, SFNOTAPPLIED61
 	* </pre>
 	*/
 	public String get_kernelstate() throws Exception {
@@ -757,6 +869,7 @@ public class nspbr extends base_resource
 		nspbr addresource = new nspbr();
 		addresource.name = resource.name;
 		addresource.action = resource.action;
+		addresource.td = resource.td;
 		addresource.srcip = resource.srcip;
 		addresource.srcipop = resource.srcipop;
 		addresource.srcipval = resource.srcipval;
@@ -771,6 +884,8 @@ public class nspbr extends base_resource
 		addresource.destportval = resource.destportval;
 		addresource.nexthop = resource.nexthop;
 		addresource.nexthopval = resource.nexthopval;
+		addresource.iptunnel = resource.iptunnel;
+		addresource.iptunnelname = resource.iptunnelname;
 		addresource.srcmac = resource.srcmac;
 		addresource.protocol = resource.protocol;
 		addresource.protocolnumber = resource.protocolnumber;
@@ -794,6 +909,7 @@ public class nspbr extends base_resource
 				addresources[i] = new nspbr();
 				addresources[i].name = resources[i].name;
 				addresources[i].action = resources[i].action;
+				addresources[i].td = resources[i].td;
 				addresources[i].srcip = resources[i].srcip;
 				addresources[i].srcipop = resources[i].srcipop;
 				addresources[i].srcipval = resources[i].srcipval;
@@ -808,6 +924,8 @@ public class nspbr extends base_resource
 				addresources[i].destportval = resources[i].destportval;
 				addresources[i].nexthop = resources[i].nexthop;
 				addresources[i].nexthopval = resources[i].nexthopval;
+				addresources[i].iptunnel = resources[i].iptunnel;
+				addresources[i].iptunnelname = resources[i].iptunnelname;
 				addresources[i].srcmac = resources[i].srcmac;
 				addresources[i].protocol = resources[i].protocol;
 				addresources[i].protocolnumber = resources[i].protocolnumber;
@@ -894,6 +1012,8 @@ public class nspbr extends base_resource
 		updateresource.destportval = resource.destportval;
 		updateresource.nexthop = resource.nexthop;
 		updateresource.nexthopval = resource.nexthopval;
+		updateresource.iptunnel = resource.iptunnel;
+		updateresource.iptunnelname = resource.iptunnelname;
 		updateresource.srcmac = resource.srcmac;
 		updateresource.protocol = resource.protocol;
 		updateresource.protocolnumber = resource.protocolnumber;
@@ -930,6 +1050,8 @@ public class nspbr extends base_resource
 				updateresources[i].destportval = resources[i].destportval;
 				updateresources[i].nexthop = resources[i].nexthop;
 				updateresources[i].nexthopval = resources[i].nexthopval;
+				updateresources[i].iptunnel = resources[i].iptunnel;
+				updateresources[i].iptunnelname = resources[i].iptunnelname;
 				updateresources[i].srcmac = resources[i].srcmac;
 				updateresources[i].protocol = resources[i].protocol;
 				updateresources[i].protocolnumber = resources[i].protocolnumber;
@@ -948,30 +1070,9 @@ public class nspbr extends base_resource
 	* Use this API to unset the properties of nspbr resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		nspbr unsetresource = new nspbr();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of nspbr resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, nspbr resource, String[] args) throws Exception{
 		nspbr unsetresource = new nspbr();
 		unsetresource.name = resource.name;
-		unsetresource.srcip = resource.srcip;
-		unsetresource.srcport = resource.srcport;
-		unsetresource.destip = resource.destip;
-		unsetresource.destport = resource.destport;
-		unsetresource.nexthop = resource.nexthop;
-		unsetresource.srcmac = resource.srcmac;
-		unsetresource.protocol = resource.protocol;
-		unsetresource.vlan = resource.vlan;
-		unsetresource.Interface = resource.Interface;
-		unsetresource.msr = resource.msr;
-		unsetresource.monitor = resource.monitor;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -1003,17 +1104,6 @@ public class nspbr extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new nspbr();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].srcip = resources[i].srcip;
-				unsetresources[i].srcport = resources[i].srcport;
-				unsetresources[i].destip = resources[i].destip;
-				unsetresources[i].destport = resources[i].destport;
-				unsetresources[i].nexthop = resources[i].nexthop;
-				unsetresources[i].srcmac = resources[i].srcmac;
-				unsetresources[i].protocol = resources[i].protocol;
-				unsetresources[i].vlan = resources[i].vlan;
-				unsetresources[i].Interface = resources[i].Interface;
-				unsetresources[i].msr = resources[i].msr;
-				unsetresources[i].monitor = resources[i].monitor;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}
@@ -1273,7 +1363,6 @@ public class nspbr extends base_resource
 	public static class stateEnum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
-		public static final String REMOVED = "REMOVED";
 	}
 	public static class kernelstateEnum {
 		public static final String APPLIED = "APPLIED";

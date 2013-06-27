@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.sc;
@@ -31,7 +37,7 @@ public class scparameter extends base_resource
 
 	/**
 	* <pre>
-	* The time between the first time and next time the sureconnect alternet window display.The SureConnect alternate content window is displayed only once during a session. For the same browser accessing a configured URL.The value is in seconds.<br> Default value: 300<br> Minimum value =  1<br> Maximum value =  4294967294
+	* Time, in seconds, between the first time and the next time the SureConnect alternative content window is displayed. The alternative content window is displayed only once during a session for the same browser accessing a configured URL, so this parameter determines the length of a session.<br> Default value: 300<br> Minimum value =  1<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_sessionlife(long sessionlife) throws Exception {
@@ -40,7 +46,7 @@ public class scparameter extends base_resource
 
 	/**
 	* <pre>
-	* The time between the first time and next time the sureconnect alternet window display.The SureConnect alternate content window is displayed only once during a session. For the same browser accessing a configured URL.The value is in seconds.<br> Default value: 300<br> Minimum value =  1<br> Maximum value =  4294967294
+	* Time, in seconds, between the first time and the next time the SureConnect alternative content window is displayed. The alternative content window is displayed only once during a session for the same browser accessing a configured URL, so this parameter determines the length of a session.<br> Default value: 300<br> Minimum value =  1<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public void set_sessionlife(Long sessionlife) throws Exception{
@@ -49,7 +55,7 @@ public class scparameter extends base_resource
 
 	/**
 	* <pre>
-	* The time between the first time and next time the sureconnect alternet window display.The SureConnect alternate content window is displayed only once during a session. For the same browser accessing a configured URL.The value is in seconds.<br> Default value: 300<br> Minimum value =  1<br> Maximum value =  4294967294
+	* Time, in seconds, between the first time and the next time the SureConnect alternative content window is displayed. The alternative content window is displayed only once during a session for the same browser accessing a configured URL, so this parameter determines the length of a session.<br> Default value: 300<br> Minimum value =  1<br> Maximum value =  4294967294
 	* </pre>
 	*/
 	public Long get_sessionlife() throws Exception {
@@ -58,7 +64,7 @@ public class scparameter extends base_resource
 
 	/**
 	* <pre>
-	* The file containing the customized response that is to be displayed with ACTION as NS in the SureConnect policy.<br> Default value: "DEFAULT"<br> Minimum length =  1
+	* File containing the customized response to be displayed when the ACTION in the SureConnect policy is set to NS.<br> Default value: "DEFAULT"<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_vsr(String vsr) throws Exception{
@@ -67,7 +73,7 @@ public class scparameter extends base_resource
 
 	/**
 	* <pre>
-	* The file containing the customized response that is to be displayed with ACTION as NS in the SureConnect policy.<br> Default value: "DEFAULT"<br> Minimum length =  1
+	* File containing the customized response to be displayed when the ACTION in the SureConnect policy is set to NS.<br> Default value: "DEFAULT"<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_vsr() throws Exception {
@@ -126,8 +132,6 @@ public class scparameter extends base_resource
 	*/
 	public static base_response unset(nitro_service client, scparameter resource, String[] args) throws Exception{
 		scparameter unsetresource = new scparameter();
-		unsetresource.sessionlife = resource.sessionlife;
-		unsetresource.vsr = resource.vsr;
 		return unsetresource.unset_resource(client,args);
 	}
 

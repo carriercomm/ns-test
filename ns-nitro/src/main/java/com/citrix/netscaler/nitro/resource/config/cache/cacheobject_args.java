@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cache;
@@ -29,7 +35,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The URL of the object.<br> Minimum length =  1
+	* URL of the particular object whose details is required. Parameter "host" must be specified along with the URL.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_url(String url) throws Exception{
@@ -38,7 +44,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The URL of the object.<br> Minimum length =  1
+	* URL of the particular object whose details is required. Parameter "host" must be specified along with the URL.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_url() throws Exception {
@@ -47,7 +53,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The id of the cached object.
+	* ID of the cached object.
 	* </pre>
 	*/
 	public void set_locator(long locator) throws Exception {
@@ -56,7 +62,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The id of the cached object.
+	* ID of the cached object.
 	* </pre>
 	*/
 	public void set_locator(Long locator) throws Exception{
@@ -65,7 +71,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The id of the cached object.
+	* ID of the cached object.
 	* </pre>
 	*/
 	public Long get_locator() throws Exception {
@@ -101,7 +107,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The hostname of the object.<br> Minimum length =  1
+	* Host name of the object. Parameter "url" must be specified.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_host(String host) throws Exception{
@@ -110,7 +116,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The hostname of the object.<br> Minimum length =  1
+	* Host name of the object. Parameter "url" must be specified.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_host() throws Exception {
@@ -119,7 +125,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The host port of the object.<br> Default value: 80<br> Minimum value =  1
+	* Host port of the object. You must also set the Host parameter.<br> Default value: 80<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_port(int port) throws Exception {
@@ -128,7 +134,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The host port of the object.<br> Default value: 80<br> Minimum value =  1
+	* Host port of the object. You must also set the Host parameter.<br> Default value: 80<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_port(Integer port) throws Exception{
@@ -137,7 +143,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The host port of the object.<br> Default value: 80<br> Minimum value =  1
+	* Host port of the object. You must also set the Host parameter.<br> Default value: 80<br> Minimum value =  1
 	* </pre>
 	*/
 	public Integer get_port() throws Exception {
@@ -146,7 +152,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The name of the content group to be in which the cell is present.
+	* Name of the content group to which the object belongs. It will display only the objects belonging to the specified content group. You must also set the Host parameter.
 	* </pre>
 	*/
 	public void set_groupname(String groupname) throws Exception{
@@ -155,7 +161,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The name of the content group to be in which the cell is present.
+	* Name of the content group to which the object belongs. It will display only the objects belonging to the specified content group. You must also set the Host parameter.
 	* </pre>
 	*/
 	public String get_groupname() throws Exception {
@@ -164,7 +170,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The HTTP request method that caused the object to be stored.<br> Default value: NS_HTTP_METHOD_GET<br> Possible values = GET, POST
+	* HTTP request method that caused the object to be stored.<br> Default value: GET<br> Possible values = GET, POST
 	* </pre>
 	*/
 	public void set_httpmethod(String httpmethod) throws Exception{
@@ -173,7 +179,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The HTTP request method that caused the object to be stored.<br> Default value: NS_HTTP_METHOD_GET<br> Possible values = GET, POST
+	* HTTP request method that caused the object to be stored.<br> Default value: GET<br> Possible values = GET, POST
 	* </pre>
 	*/
 	public String get_httpmethod() throws Exception {
@@ -182,7 +188,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The name of the content group whose objects should be listed.
+	* Name of the content group whose objects should be listed.
 	* </pre>
 	*/
 	public void set_group(String group) throws Exception{
@@ -191,7 +197,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* The name of the content group whose objects should be listed.
+	* Name of the content group whose objects should be listed.
 	* </pre>
 	*/
 	public String get_group() throws Exception {
@@ -200,7 +206,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* Ignore marker objects.<br> Possible values = ON, OFF
+	* Ignore marker objects. Marker objects are created when a response exceeds the maximum or minimum response size for the content group or has not yet received the minimum number of hits for the content group.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_ignoremarkerobjects(String ignoremarkerobjects) throws Exception{
@@ -209,7 +215,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* Ignore marker objects.<br> Possible values = ON, OFF
+	* Ignore marker objects. Marker objects are created when a response exceeds the maximum or minimum response size for the content group or has not yet received the minimum number of hits for the content group.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_ignoremarkerobjects() throws Exception {
@@ -218,7 +224,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* Include objects not-ready for a cache hit.<br> Possible values = ON, OFF
+	* Include responses that have not yet reached a minimum number of hits before being cached.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public void set_includenotreadyobjects(String includenotreadyobjects) throws Exception{
@@ -227,7 +233,7 @@ public class cacheobject_args
 
 	/**
 	* <pre>
-	* Include objects not-ready for a cache hit.<br> Possible values = ON, OFF
+	* Include responses that have not yet reached a minimum number of hits before being cached.<br> Possible values = ON, OFF
 	* </pre>
 	*/
 	public String get_includenotreadyobjects() throws Exception {

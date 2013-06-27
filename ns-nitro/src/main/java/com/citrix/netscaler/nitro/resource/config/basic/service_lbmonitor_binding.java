@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.basic;
@@ -44,12 +50,13 @@ public class service_lbmonitor_binding extends base_resource
 	private Long monitortotalprobes;
 	private Long monitortotalfailedprobes;
 	private Long monitorcurrentfailedprobes;
+	private Boolean passive;
 	private String name;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(long weight) throws Exception {
@@ -58,7 +65,7 @@ public class service_lbmonitor_binding extends base_resource
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(Long weight) throws Exception{
@@ -67,7 +74,7 @@ public class service_lbmonitor_binding extends base_resource
 
 	/**
 	* <pre>
-	* The weight for the specified monitor.<br> Minimum value =  1<br> Maximum value =  100
+	* Weight to assign to the monitor-service binding. When a monitor is UP, the weight assigned to its binding with the service determines how much the monitor contributes toward keeping the health of the service above the value configured for the Monitor Threshold parameter.<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_weight() throws Exception {
@@ -76,7 +83,7 @@ public class service_lbmonitor_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service to which the policy will be bound.<br> Minimum length =  1
+	* Name of the service to which to bind a policy or monitor.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -85,11 +92,38 @@ public class service_lbmonitor_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the service to which the policy will be bound.<br> Minimum length =  1
+	* Name of the service to which to bind a policy or monitor.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
 		return this.name;
+	}
+
+	/**
+	* <pre>
+	* Indicates if load monitor is passive. A passive load monitor does not remove service from LB decision when threshold is breached.
+	* </pre>
+	*/
+	public void set_passive(boolean passive) throws Exception {
+		this.passive = new Boolean(passive);
+	}
+
+	/**
+	* <pre>
+	* Indicates if load monitor is passive. A passive load monitor does not remove service from LB decision when threshold is breached.
+	* </pre>
+	*/
+	public void set_passive(Boolean passive) throws Exception{
+		this.passive = passive;
+	}
+
+	/**
+	* <pre>
+	* Indicates if load monitor is passive. A passive load monitor does not remove service from LB decision when threshold is breached.
+	* </pre>
+	*/
+	public Boolean get_passive() throws Exception {
+		return this.passive;
 	}
 
 	/**
@@ -184,7 +218,7 @@ public class service_lbmonitor_binding extends base_resource
 
 	/**
 	* <pre>
-	* The running state of the monitor on this service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR
+	* The running state of the monitor on this service.<br> Possible values = UP, DOWN, UNKNOWN, BUSY, OUT OF SERVICE, GOING OUT OF SERVICE, DOWN WHEN GOING OUT OF SERVICE, NS_EMPTY_STR, Unknown, DISABLED
 	* </pre>
 	*/
 	public String get_monitor_state() throws Exception {
@@ -303,6 +337,7 @@ public class service_lbmonitor_binding extends base_resource
 		updateresource.monitor_name = resource.monitor_name;
 		updateresource.monstate = resource.monstate;
 		updateresource.weight = resource.weight;
+		updateresource.passive = resource.passive;
 		return updateresource.update_resource(client);
 	}
 
@@ -316,6 +351,7 @@ public class service_lbmonitor_binding extends base_resource
 				updateresources[i].monitor_name = resources[i].monitor_name;
 				updateresources[i].monstate = resources[i].monstate;
 				updateresources[i].weight = resources[i].weight;
+				updateresources[i].passive = resources[i].passive;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -437,6 +473,8 @@ public class service_lbmonitor_binding extends base_resource
 		public static final String GOING_OUT_OF_SERVICE = "GOING OUT OF SERVICE";
 		public static final String DOWN_WHEN_GOING_OUT_OF_SERVICE = "DOWN WHEN GOING OUT OF SERVICE";
 		public static final String NS_EMPTY_STR = "NS_EMPTY_STR";
+		public static final String Unknown = "Unknown";
+		public static final String DISABLED = "DISABLED";
 	}
 	public static class monstateEnum {
 		public static final String ENABLED = "ENABLED";

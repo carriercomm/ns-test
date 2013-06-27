@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -34,7 +40,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* Name of the RNAT6.<br> Minimum length =  1
+	* Name for the RNAT6 rule. Must begin with a letter, number, or the underscore character (_), and can consist of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore characters. Cannot be changed after the rule is created. Choose a name that helps identify the RNAT6 rule.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -43,7 +49,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* Name of the RNAT6.<br> Minimum length =  1
+	* Name for the RNAT6 rule. Must begin with a letter, number, or the underscore character (_), and can consist of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore characters. Cannot be changed after the rule is created. Choose a name that helps identify the RNAT6 rule.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -52,7 +58,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* ipv6 network address for rnat with prefix len CIDR notations (<ipv6 address>/<prefix len>).<br> Minimum length =  1
+	* IPv6 address of the network on whose traffic you want the NetScaler appliance to do RNAT processing.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_network(String network) throws Exception{
@@ -61,7 +67,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* ipv6 network address for rnat with prefix len CIDR notations (<ipv6 address>/<prefix len>).<br> Minimum length =  1
+	* IPv6 address of the network on whose traffic you want the NetScaler appliance to do RNAT processing.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_network() throws Exception {
@@ -70,7 +76,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* The acl6 name.<br> Minimum length =  1
+	* Name of any configured ACL6 whose action is ALLOW. The rule of the ACL6 is used as an RNAT6 rule.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_acl6name(String acl6name) throws Exception{
@@ -79,7 +85,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* The acl6 name.<br> Minimum length =  1
+	* Name of any configured ACL6 whose action is ALLOW. The rule of the ACL6 is used as an RNAT6 rule.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_acl6name() throws Exception {
@@ -88,7 +94,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* The redirect port.<br> Minimum value =  1<br> Maximum value =  65535
+	* Port number to which the IPv6 packets are redirected. Applicable to TCP and UDP protocols.<br> Minimum value =  1<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_redirectport(int redirectport) throws Exception {
@@ -97,7 +103,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* The redirect port.<br> Minimum value =  1<br> Maximum value =  65535
+	* Port number to which the IPv6 packets are redirected. Applicable to TCP and UDP protocols.<br> Minimum value =  1<br> Maximum value =  65535
 	* </pre>
 	*/
 	public void set_redirectport(Integer redirectport) throws Exception{
@@ -106,7 +112,7 @@ public class rnat6 extends base_resource
 
 	/**
 	* <pre>
-	* The redirect port.<br> Minimum value =  1<br> Maximum value =  65535
+	* Port number to which the IPv6 packets are redirected. Applicable to TCP and UDP protocols.<br> Minimum value =  1<br> Maximum value =  65535
 	* </pre>
 	*/
 	public Integer get_redirectport() throws Exception {
@@ -222,7 +228,6 @@ public class rnat6 extends base_resource
 	public static base_response unset(nitro_service client, rnat6 resource, String[] args) throws Exception{
 		rnat6 unsetresource = new rnat6();
 		unsetresource.name = resource.name;
-		unsetresource.redirectport = resource.redirectport;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -254,7 +259,6 @@ public class rnat6 extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new rnat6();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].redirectport = resources[i].redirectport;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

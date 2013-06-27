@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cs;
@@ -28,6 +34,7 @@ public class cspolicylabel extends base_resource
 {
 	private String labelname;
 	private String cspolicylabeltype;
+	private String newname;
 
 	//------- Read only Parameter ---------;
 
@@ -43,7 +50,10 @@ public class cspolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the content switching policy label.
+	* Name for the policy label. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. 
+The label name must be unique within the list of policy labels for content switching.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, \my label\ or \my policylabel\).
 	* </pre>
 	*/
 	public void set_labelname(String labelname) throws Exception{
@@ -52,7 +62,10 @@ public class cspolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* Name of the content switching policy label.
+	* Name for the policy label. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. 
+The label name must be unique within the list of policy labels for content switching.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, \my label\ or \my policylabel\).
 	* </pre>
 	*/
 	public String get_labelname() throws Exception {
@@ -61,7 +74,19 @@ public class cspolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The type of the policy label.<br> Possible values = HTTP, TCP, RTSP, SSL, SSL_TCP, UDP, DNS, SIP_UDP, ANY, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER
+	* Protocol supported by the policy label. All policies bound to the policy label must either match the specified protocol or be a subtype of that protocol. Available settings function as follows:
+* HTTP - Supports policies that process HTTP traffic. Used to access unencrypted Web sites. (The default.)
+* SSL - Supports policies that process HTTPS/SSL encrypted traffic. Used to access encrypted Web sites.
+* TCP - Supports policies that process any type of TCP traffic, including HTTP.
+* SSL_TCP - Supports policies that process SSL-encrypted TCP traffic, including SSL.
+* UDP - Supports policies that process any type of UDP-based traffic, including DNS.
+* DNS - Supports policies that process DNS traffic.
+* ANY - Supports all types of policies except HTTP, SSL, and TCP.             
+* SIP_UDP - Supports policies that process UDP based Session Initiation Protocol (SIP) traffic. SIP initiates, manages, and terminates multimedia communications sessions, and has emerged as the standard for Internet telephony (VoIP).
+* RTSP - Supports policies that process Real Time Streaming Protocol (RTSP) traffic. RTSP provides delivery of multimedia and other streaming data, such as audio, video, and other types of streamed media.
+* RADIUS - Supports policies that process Remote Authentication Dial In User Service (RADIUS) traffic. RADIUS supports combined authentication, authorization, and auditing services for network management.
+* MYSQL - Supports policies that process MYSQL traffic.
+* MSSQL - Supports policies that process Microsoft SQL traffic.<br> Possible values = HTTP, TCP, RTSP, SSL, SSL_TCP, UDP, DNS, SIP_UDP, ANY, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, FTP
 	* </pre>
 	*/
 	public void set_cspolicylabeltype(String cspolicylabeltype) throws Exception{
@@ -70,11 +95,41 @@ public class cspolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The type of the policy label.<br> Possible values = HTTP, TCP, RTSP, SSL, SSL_TCP, UDP, DNS, SIP_UDP, ANY, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER
+	* Protocol supported by the policy label. All policies bound to the policy label must either match the specified protocol or be a subtype of that protocol. Available settings function as follows:
+* HTTP - Supports policies that process HTTP traffic. Used to access unencrypted Web sites. (The default.)
+* SSL - Supports policies that process HTTPS/SSL encrypted traffic. Used to access encrypted Web sites.
+* TCP - Supports policies that process any type of TCP traffic, including HTTP.
+* SSL_TCP - Supports policies that process SSL-encrypted TCP traffic, including SSL.
+* UDP - Supports policies that process any type of UDP-based traffic, including DNS.
+* DNS - Supports policies that process DNS traffic.
+* ANY - Supports all types of policies except HTTP, SSL, and TCP.             
+* SIP_UDP - Supports policies that process UDP based Session Initiation Protocol (SIP) traffic. SIP initiates, manages, and terminates multimedia communications sessions, and has emerged as the standard for Internet telephony (VoIP).
+* RTSP - Supports policies that process Real Time Streaming Protocol (RTSP) traffic. RTSP provides delivery of multimedia and other streaming data, such as audio, video, and other types of streamed media.
+* RADIUS - Supports policies that process Remote Authentication Dial In User Service (RADIUS) traffic. RADIUS supports combined authentication, authorization, and auditing services for network management.
+* MYSQL - Supports policies that process MYSQL traffic.
+* MSSQL - Supports policies that process Microsoft SQL traffic.<br> Possible values = HTTP, TCP, RTSP, SSL, SSL_TCP, UDP, DNS, SIP_UDP, ANY, RADIUS, RDP, MYSQL, MSSQL, DIAMETER, SSL_DIAMETER, FTP
 	* </pre>
 	*/
 	public String get_cspolicylabeltype() throws Exception {
 		return this.cspolicylabeltype;
+	}
+
+	/**
+	* <pre>
+	* The new name of the content switching policylabel.<br> Minimum length =  1
+	* </pre>
+	*/
+	public void set_newname(String newname) throws Exception{
+		this.newname = newname;
+	}
+
+	/**
+	* <pre>
+	* The new name of the content switching policylabel.<br> Minimum length =  1
+	* </pre>
+	*/
+	public String get_newname() throws Exception {
+		return this.newname;
 	}
 
 	/**
@@ -115,7 +170,7 @@ public class cspolicylabel extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add lb vserver command) to which content will be switched.
+	* Name of the virtual server to which to forward requests that match the policy.
 	* </pre>
 	*/
 	public String get_targetvserver() throws Exception {
@@ -261,6 +316,24 @@ public class cspolicylabel extends base_resource
 	}
 
 	/**
+	* Use this API to rename a cspolicylabel resource.
+	*/
+	public static base_response rename(nitro_service client, cspolicylabel resource, String new_labelname) throws Exception {
+		cspolicylabel renameresource = new cspolicylabel();
+		renameresource.labelname = resource.labelname;
+		return renameresource.rename_resource(client,new_labelname);
+	}
+
+	/**
+	* Use this API to rename a cspolicylabel resource.
+	*/
+	public static base_response rename(nitro_service client, String labelname, String new_labelname) throws Exception {
+		cspolicylabel renameresource = new cspolicylabel();
+		renameresource.labelname = labelname;
+		return renameresource.rename_resource(client,new_labelname);
+	}
+
+	/**
 	* Use this API to fetch all the cspolicylabel resources that are configured on netscaler.
 	*/
 	public static cspolicylabel[] get(nitro_service service) throws Exception{
@@ -388,6 +461,7 @@ public class cspolicylabel extends base_resource
 		public static final String MSSQL = "MSSQL";
 		public static final String DIAMETER = "DIAMETER";
 		public static final String SSL_DIAMETER = "SSL_DIAMETER";
+		public static final String FTP = "FTP";
 	}
 	public static class labeltypeEnum {
 		public static final String policylabel = "policylabel";

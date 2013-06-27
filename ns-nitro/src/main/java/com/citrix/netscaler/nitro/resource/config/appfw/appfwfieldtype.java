@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.appfw;
@@ -38,7 +44,11 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* The name of this field type.<br> Minimum length =  1
+	* Name for the field type.
+Must begin with a letter, number, or the underscore character \(_\), and must contain only letters, numbers, and the hyphen \(-\), period \(.\) pound \(\#\), space \( \), at \(\@\), equals \(=\), colon \(:\), and underscore characters. Cannot be changed after the field type is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks \(for example, "my field type" or 'my field type'\).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -47,7 +57,11 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* The name of this field type.<br> Minimum length =  1
+	* Name for the field type.
+Must begin with a letter, number, or the underscore character \(_\), and must contain only letters, numbers, and the hyphen \(-\), period \(.\) pound \(\#\), space \( \), at \(\@\), equals \(=\), colon \(:\), and underscore characters. Cannot be changed after the field type is added.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks \(for example, "my field type" or 'my field type'\).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -56,7 +70,7 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* The regular expression that describes this field type.<br> Minimum length =  1
+	* PCRE - format regular expression defining the characters and length allowed for this field type.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_regex(String regex) throws Exception{
@@ -65,7 +79,7 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* The regular expression that describes this field type.<br> Minimum length =  1
+	* PCRE - format regular expression defining the characters and length allowed for this field type.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_regex() throws Exception {
@@ -74,7 +88,7 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* The priority of this field type.<br> Minimum value =  0<br> Maximum value =  64000
+	* Positive integer specifying the priority of the field type. A lower number specified a higher priority. Field types are checked in the order of their priority numbers.<br> Minimum value =  0<br> Maximum value =  64000
 	* </pre>
 	*/
 	public void set_priority(long priority) throws Exception {
@@ -83,7 +97,7 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* The priority of this field type.<br> Minimum value =  0<br> Maximum value =  64000
+	* Positive integer specifying the priority of the field type. A lower number specified a higher priority. Field types are checked in the order of their priority numbers.<br> Minimum value =  0<br> Maximum value =  64000
 	* </pre>
 	*/
 	public void set_priority(Long priority) throws Exception{
@@ -92,7 +106,7 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* The priority of this field type.<br> Minimum value =  0<br> Maximum value =  64000
+	* Positive integer specifying the priority of the field type. A lower number specified a higher priority. Field types are checked in the order of their priority numbers.<br> Minimum value =  0<br> Maximum value =  64000
 	* </pre>
 	*/
 	public Long get_priority() throws Exception {
@@ -101,7 +115,7 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this field type.
+	* Comment describing the type of field that this field type is intended to match.
 	* </pre>
 	*/
 	public void set_comment(String comment) throws Exception{
@@ -110,7 +124,7 @@ public class appfwfieldtype extends base_resource
 
 	/**
 	* <pre>
-	* Comments associated with this field type.
+	* Comment describing the type of field that this field type is intended to match.
 	* </pre>
 	*/
 	public String get_comment() throws Exception {

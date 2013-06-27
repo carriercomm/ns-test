@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.authentication;
@@ -31,11 +37,16 @@ public class authenticationnegotiateaction extends base_resource
 	private String domainuser;
 	private String domainuserpasswd;
 	private String ou;
+	private String defaultauthenticationgroup;
 	private Long __count;
 
 	/**
 	* <pre>
-	* The name for the new Negotiate action.<br> Minimum length =  1
+	* Name for the AD KDC server profile (negotiate action). 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after AD KDC server profile is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my authentication action or my authentication action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -44,7 +55,11 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* The name for the new Negotiate action.<br> Minimum length =  1
+	* Name for the AD KDC server profile (negotiate action). 
+Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after AD KDC server profile is created.
+
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, my authentication action or my authentication action).<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -53,7 +68,7 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* .<br> Minimum length =  1
+	* Domain name of the AD KDC server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_domain(String domain) throws Exception{
@@ -62,7 +77,7 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* .<br> Minimum length =  1
+	* Domain name of the AD KDC server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_domain() throws Exception {
@@ -71,7 +86,8 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* .<br> Minimum length =  1
+	* User name that the NetScaler appliance uses to join the AD KDC server domain. 
+The NetScaler appliance uses the domain user name to check the health of the AD KDC server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_domainuser(String domainuser) throws Exception{
@@ -80,7 +96,8 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* .<br> Minimum length =  1
+	* User name that the NetScaler appliance uses to join the AD KDC server domain. 
+The NetScaler appliance uses the domain user name to check the health of the AD KDC server.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_domainuser() throws Exception {
@@ -89,7 +106,7 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* .<br> Minimum length =  1
+	* Password that the NetScaler appliance uses to join the AD KDC server domain.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_domainuserpasswd(String domainuserpasswd) throws Exception{
@@ -98,7 +115,7 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* .<br> Minimum length =  1
+	* Password that the NetScaler appliance uses to join the AD KDC server domain.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_domainuserpasswd() throws Exception {
@@ -107,7 +124,7 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* organizational unit.<br> Minimum length =  1
+	* Active Directory organizational units (OU) attribute.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_ou(String ou) throws Exception{
@@ -116,11 +133,29 @@ public class authenticationnegotiateaction extends base_resource
 
 	/**
 	* <pre>
-	* organizational unit.<br> Minimum length =  1
+	* Active Directory organizational units (OU) attribute.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_ou() throws Exception {
 		return this.ou;
+	}
+
+	/**
+	* <pre>
+	* This is the default group that is chosen when the authentication succeeds in addition to extracted groups.<br> Maximum length =  64
+	* </pre>
+	*/
+	public void set_defaultauthenticationgroup(String defaultauthenticationgroup) throws Exception{
+		this.defaultauthenticationgroup = defaultauthenticationgroup;
+	}
+
+	/**
+	* <pre>
+	* This is the default group that is chosen when the authentication succeeds in addition to extracted groups.<br> Maximum length =  64
+	* </pre>
+	*/
+	public String get_defaultauthenticationgroup() throws Exception {
+		return this.defaultauthenticationgroup;
 	}
 
 	/**
@@ -167,6 +202,7 @@ public class authenticationnegotiateaction extends base_resource
 		addresource.domainuser = resource.domainuser;
 		addresource.domainuserpasswd = resource.domainuserpasswd;
 		addresource.ou = resource.ou;
+		addresource.defaultauthenticationgroup = resource.defaultauthenticationgroup;
 		return addresource.add_resource(client);
 	}
 
@@ -184,6 +220,7 @@ public class authenticationnegotiateaction extends base_resource
 				addresources[i].domainuser = resources[i].domainuser;
 				addresources[i].domainuserpasswd = resources[i].domainuserpasswd;
 				addresources[i].ou = resources[i].ou;
+				addresources[i].defaultauthenticationgroup = resources[i].defaultauthenticationgroup;
 			}
 			result = add_bulk_request(client, addresources);
 		}
@@ -250,6 +287,7 @@ public class authenticationnegotiateaction extends base_resource
 		updateresource.domainuser = resource.domainuser;
 		updateresource.domainuserpasswd = resource.domainuserpasswd;
 		updateresource.ou = resource.ou;
+		updateresource.defaultauthenticationgroup = resource.defaultauthenticationgroup;
 		return updateresource.update_resource(client);
 	}
 
@@ -267,6 +305,7 @@ public class authenticationnegotiateaction extends base_resource
 				updateresources[i].domainuser = resources[i].domainuser;
 				updateresources[i].domainuserpasswd = resources[i].domainuserpasswd;
 				updateresources[i].ou = resources[i].ou;
+				updateresources[i].defaultauthenticationgroup = resources[i].defaultauthenticationgroup;
 			}
 			result = update_bulk_request(client, updateresources);
 		}
@@ -277,23 +316,9 @@ public class authenticationnegotiateaction extends base_resource
 	* Use this API to unset the properties of authenticationnegotiateaction resource.
 	* Properties that need to be unset are specified in args array.
 	*/
-	public static base_response unset(nitro_service client, String name, String args[]) throws Exception {
-		authenticationnegotiateaction unsetresource = new authenticationnegotiateaction();
-		unsetresource.name = name;
-		return unsetresource.unset_resource(client, args);
-	}
-
-	/**
-	* Use this API to unset the properties of authenticationnegotiateaction resource.
-	* Properties that need to be unset are specified in args array.
-	*/
 	public static base_response unset(nitro_service client, authenticationnegotiateaction resource, String[] args) throws Exception{
 		authenticationnegotiateaction unsetresource = new authenticationnegotiateaction();
 		unsetresource.name = resource.name;
-		unsetresource.domain = resource.domain;
-		unsetresource.domainuser = resource.domainuser;
-		unsetresource.domainuserpasswd = resource.domainuserpasswd;
-		unsetresource.ou = resource.ou;
 		return unsetresource.unset_resource(client,args);
 	}
 
@@ -325,10 +350,6 @@ public class authenticationnegotiateaction extends base_resource
 			for (int i=0;i<resources.length;i++){
 				unsetresources[i] = new authenticationnegotiateaction();
 				unsetresources[i].name = resources[i].name;
-				unsetresources[i].domain = resources[i].domain;
-				unsetresources[i].domainuser = resources[i].domainuser;
-				unsetresources[i].domainuserpasswd = resources[i].domainuserpasswd;
-				unsetresources[i].ou = resources[i].ou;
 			}
 			result = unset_bulk_request(client, unsetresources,args);
 		}

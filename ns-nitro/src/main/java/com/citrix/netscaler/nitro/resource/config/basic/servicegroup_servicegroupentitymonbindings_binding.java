@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.basic;
@@ -39,7 +45,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The name of the service group to which the service will be bound.<br> Minimum length =  1
+	* Name of the service group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicegroupname(String servicegroupname) throws Exception{
@@ -48,7 +54,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The name of the service group to which the service will be bound.<br> Minimum length =  1
+	* Name of the service group.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicegroupname() throws Exception {
@@ -75,7 +81,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The port number of a service to be added.<br> Range 1 - 65535
+	* Port number of the service. Each service must have a unique port number.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(int port) throws Exception {
@@ -84,7 +90,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The port number of a service to be added.<br> Range 1 - 65535
+	* Port number of the service. Each service must have a unique port number.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public void set_port(Integer port) throws Exception{
@@ -93,7 +99,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The port number of a service to be added.<br> Range 1 - 65535
+	* Port number of the service. Each service must have a unique port number.<br> Range 1 - 65535
 	* </pre>
 	*/
 	public Integer get_port() throws Exception {
@@ -102,7 +108,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The state of the IP/Port after binding.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Initial state of the service after binding.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_state(String state) throws Exception{
@@ -111,7 +117,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The state of the IP/Port after binding.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
+	* Initial state of the service after binding.<br> Default value: ENABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_state() throws Exception {
@@ -120,7 +126,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* Unique numerical identifier used by hash based load balancing methods to identify a service.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_hashid(long hashid) throws Exception {
@@ -129,7 +135,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* Unique numerical identifier used by hash based load balancing methods to identify a service.<br> Minimum value =  1
 	* </pre>
 	*/
 	public void set_hashid(Long hashid) throws Exception{
@@ -138,7 +144,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* The hash identifier for the service. This must be unique for each service. This parameter is used by hash based load balancing methods.<br> Minimum value =  1
+	* Unique numerical identifier used by hash based load balancing methods to identify a service.<br> Minimum value =  1
 	* </pre>
 	*/
 	public Long get_hashid() throws Exception {
@@ -174,7 +180,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* A positive integer that will identify the service. Used when the persistency type is set to Custom Server ID.<br> Default value: "None"
+	* Unique service identifier. Used when the persistency type for the virtual server is set to Custom Server ID.<br> Default value: "None"
 	* </pre>
 	*/
 	public void set_customserverid(String customserverid) throws Exception{
@@ -183,7 +189,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* A positive integer that will identify the service. Used when the persistency type is set to Custom Server ID.<br> Default value: "None"
+	* Unique service identifier. Used when the persistency type for the virtual server is set to Custom Server ID.<br> Default value: "None"
 	* </pre>
 	*/
 	public String get_customserverid() throws Exception {
@@ -192,7 +198,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* Weight for this service. This weight is used when the system performs load balancing. It is useful to specify weights when services bound to the service group have different capacities.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  100
+	* .<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(long weight) throws Exception {
@@ -201,7 +207,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* Weight for this service. This weight is used when the system performs load balancing. It is useful to specify weights when services bound to the service group have different capacities.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  100
+	* .<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public void set_weight(Long weight) throws Exception{
@@ -210,7 +216,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 
 	/**
 	* <pre>
-	* Weight for this service. This weight is used when the system performs load balancing. It is useful to specify weights when services bound to the service group have different capacities.<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  100
+	* .<br> Default value: 1<br> Minimum value =  1<br> Maximum value =  100
 	* </pre>
 	*/
 	public Long get_weight() throws Exception {
@@ -354,7 +360,7 @@ public class servicegroup_servicegroupentitymonbindings_binding extends base_res
 		return 0;
 	}
 
-	public static class dup_stateEnum {
+	public static class monstateEnum {
 		public static final String ENABLED = "ENABLED";
 		public static final String DISABLED = "DISABLED";
 	}

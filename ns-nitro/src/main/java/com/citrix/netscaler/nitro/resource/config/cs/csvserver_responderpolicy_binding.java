@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.cs;
@@ -66,7 +72,7 @@ public class csvserver_responderpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Bindpoint, specifying where to bind the policy. This field is applicable only to rewrite policies.<br> Possible values = REQUEST, RESPONSE
+	* For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time.<br> Possible values = REQUEST, RESPONSE
 	* </pre>
 	*/
 	public void set_bindpoint(String bindpoint) throws Exception{
@@ -75,7 +81,7 @@ public class csvserver_responderpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* Bindpoint, specifying where to bind the policy. This field is applicable only to rewrite policies.<br> Possible values = REQUEST, RESPONSE
+	* For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time.<br> Possible values = REQUEST, RESPONSE
 	* </pre>
 	*/
 	public String get_bindpoint() throws Exception {
@@ -120,7 +126,7 @@ public class csvserver_responderpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add cs vserver or add cr vserver command) for which the content switching policy will be set.<br> Minimum length =  1
+	* Name of the content switching virtual server to which the content switching policy applies.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -129,7 +135,7 @@ public class csvserver_responderpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add cs vserver or add cr vserver command) for which the content switching policy will be set.<br> Minimum length =  1
+	* Name of the content switching virtual server to which the content switching policy applies.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -138,7 +144,9 @@ public class csvserver_responderpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add lb vserver command) to which content will be switched.<br> Minimum length =  1
+	* Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE.
+Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1
+Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_targetlbvserver(String targetlbvserver) throws Exception{
@@ -147,7 +155,9 @@ public class csvserver_responderpolicy_binding extends base_resource
 
 	/**
 	* <pre>
-	* The virtual server name (created with the add lb vserver command) to which content will be switched.<br> Minimum length =  1
+	* Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE.
+Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1
+Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_targetlbvserver() throws Exception {

@@ -1,17 +1,23 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.ssl;
 
-import com.citrix.netscaler.nitro.resource.config.ssl.sslservice_sslpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.ssl.sslservice_sslcipher_binding;
+import com.citrix.netscaler.nitro.resource.config.ssl.sslservice_sslpolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.ssl.sslservice_sslcertkey_binding;
 import com.citrix.netscaler.nitro.resource.config.ssl.sslservice_sslciphersuite_binding;
 import com.citrix.netscaler.nitro.resource.base.*;
@@ -31,14 +37,14 @@ class sslservice_binding_response extends base_response
 public class sslservice_binding extends base_resource
 {
 	private String servicename;
-	private sslservice_sslpolicy_binding	sslservice_sslpolicy_binding[] = null;
 	private sslservice_sslcipher_binding	sslservice_sslcipher_binding[] = null;
+	private sslservice_sslpolicy_binding	sslservice_sslpolicy_binding[] = null;
 	private sslservice_sslcertkey_binding	sslservice_sslcertkey_binding[] = null;
 	private sslservice_sslciphersuite_binding	sslservice_sslciphersuite_binding[] = null;
 
 	/**
 	* <pre>
-	* The name of the SSL service.<br> Minimum length =  1
+	* Name of the SSL service for which to show detailed information.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_servicename(String servicename) throws Exception{
@@ -47,7 +53,7 @@ public class sslservice_binding extends base_resource
 
 	/**
 	* <pre>
-	* The name of the SSL service.<br> Minimum length =  1
+	* Name of the SSL service for which to show detailed information.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_servicename() throws Exception {

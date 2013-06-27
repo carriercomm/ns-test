@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.stat.ha;
@@ -26,6 +32,7 @@ class hanode_response extends base_response
 
 public class hanode_stats extends base_resource
 {
+	private String clearstats;
 	private String hacurstatus;
 	private String hacurstate;
 	private String hacurmasterstate;
@@ -36,6 +43,24 @@ public class hanode_stats extends base_resource
 	private Long hapkttxrate;
 	private Long haerrproptimeout;
 	private Long haerrsyncfailure;
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters
+	* </pre>
+	*/
+	public void set_clearstats(String clearstats) throws Exception{
+		this.clearstats = clearstats;
+	}
+
+	/**
+	* <pre>
+	* Clear the statsistics / counters.<br> Possible values = basic, full
+	* </pre>
+	*/
+	public String get_clearstats() throws Exception {
+		return this.clearstats;
+	}
 
 	/**
 	* <pre>
@@ -90,7 +115,7 @@ FORCE CHANGE - Indicates that the secondary node is forcibly changing its status
 
 	/**
 	* <pre>
-	* Number of heartbeat packets received from the peer node. Heartbeats are sent at regular intervals (default is 200 milliseconds) to determine the state of the peer node.
+	* Rate (/s) counter for hatotpktrx
 	* </pre>
 	*/
 	public Long get_hapktrxrate() throws Exception {
@@ -108,7 +133,7 @@ FORCE CHANGE - Indicates that the secondary node is forcibly changing its status
 
 	/**
 	* <pre>
-	* Number of heartbeat packets sent to the peer node. Heartbeats are sent at regular intervals (default is 200 milliseconds) to determine the state of the peer node.
+	* Rate (/s) counter for hatotpkttx
 	* </pre>
 	*/
 	public Long get_hapkttxrate() throws Exception {
@@ -196,4 +221,8 @@ ROUTEMONITORFAIL  Indicates that the route monitor has failed. This state trigge
 		return response[0];
 	}
 
+	public static class clearstatsEnum {
+		public static final String basic = "basic";
+		public static final String full = "full";
+	}
 }

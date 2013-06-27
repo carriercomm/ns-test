@@ -1,11 +1,17 @@
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 package com.citrix.netscaler.nitro.resource.config.network;
@@ -35,7 +41,9 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* Name of forwarding session. .<br> Minimum length =  1
+	* Name for the forwarding session rule. Can begin with a letter, number, or the underscore character (_), and can consist of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the rule is created.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rule" or 'my rule').<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_name(String name) throws Exception{
@@ -44,7 +52,9 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* Name of forwarding session. .<br> Minimum length =  1
+	* Name for the forwarding session rule. Can begin with a letter, number, or the underscore character (_), and can consist of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the rule is created.
+The following requirement applies only to the NetScaler CLI:
+If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my rule" or 'my rule').<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_name() throws Exception {
@@ -53,7 +63,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* The network or subnet from/to which the traffic is flowing.<br> Minimum length =  1
+	* Network address from which the forwarded traffic originates or to which it is destined.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_network(String network) throws Exception{
@@ -62,7 +72,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* The network or subnet from/to which the traffic is flowing.<br> Minimum length =  1
+	* Network address from which the forwarded traffic originates or to which it is destined.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_network() throws Exception {
@@ -71,7 +81,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* The subnet mask for the network.<br> Minimum length =  1
+	* Subnet mask associated with the network.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_netmask(String netmask) throws Exception{
@@ -80,7 +90,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* The subnet mask for the network.<br> Minimum length =  1
+	* Subnet mask associated with the network.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_netmask() throws Exception {
@@ -89,7 +99,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* The ACL name.<br> Minimum length =  1
+	* Name of an extended ACL with action set to ALLOW. The rule specified in the ACL is used as a forwarding-session rule.<br> Minimum length =  1
 	* </pre>
 	*/
 	public void set_aclname(String aclname) throws Exception{
@@ -98,7 +108,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* The ACL name.<br> Minimum length =  1
+	* Name of an extended ACL with action set to ALLOW. The rule specified in the ACL is used as a forwarding-session rule.<br> Minimum length =  1
 	* </pre>
 	*/
 	public String get_aclname() throws Exception {
@@ -107,7 +117,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the connection failover mode of the forwarding session.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Synchronize connection information with the secondary appliance in a high availability (HA) pair. That is, synchronize all connection-related information for the forwarding session.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public void set_connfailover(String connfailover) throws Exception{
@@ -116,7 +126,7 @@ public class forwardingsession extends base_resource
 
 	/**
 	* <pre>
-	* Specifies the connection failover mode of the forwarding session.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
+	* Synchronize connection information with the secondary appliance in a high availability (HA) pair. That is, synchronize all connection-related information for the forwarding session.<br> Default value: DISABLED<br> Possible values = ENABLED, DISABLED
 	* </pre>
 	*/
 	public String get_connfailover() throws Exception {
