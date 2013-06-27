@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>sample-classes</module>
+        <module>not-implemented</module>
     </modules>
     <build>
          <pluginManagement>
