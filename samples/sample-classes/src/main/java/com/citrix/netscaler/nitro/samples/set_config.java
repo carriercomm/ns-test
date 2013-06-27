@@ -1,13 +1,18 @@
 package com.citrix.netscaler.nitro.samples;
-
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
 
 import com.citrix.netscaler.nitro.exception.nitro_exception;
@@ -48,7 +53,11 @@ import com.citrix.netscaler.nitro.resource.config.cs.cspolicy;
 import com.citrix.netscaler.nitro.resource.config.cs.csvserver;
 import com.citrix.netscaler.nitro.resource.config.cs.csvserver_cmppolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.filter.filterpolicy;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbservice;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbsite;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbvserver;
 import com.citrix.netscaler.nitro.resource.config.gslb.gslbvserver_domain_binding;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbvserver_gslbservice_binding;
 import com.citrix.netscaler.nitro.resource.base.base_response;
 import com.citrix.netscaler.nitro.resource.base.base_responses;
 
@@ -89,6 +98,29 @@ public class set_config
 	    return;
 	}
 	public void run_sample(nitro_service client) {
+		
+		add_gslb_vserver(client);
+		add_gslb_site(client);
+		add_gslb_service(client);
+		
+		bind_gslbvserver_gslbservice(client);
+		
+		
+		set_gslb_vserver_timeout(client);
+		unset_gslb_vserver_timeout(client);
+		enable_gslb_vserver(client);
+		disable_gslb_vserver(client);
+		rename_gslb_vserver(client);
+			
+		
+		set_gslb_service_cip(client);
+		unset_gslb_service_cip(client);
+		rename_gslb_service(client);
+			
+		
+		set_gslb_site_metricexchange(client);
+		unset_gslb_site_metricexchange(client);
+		
 		//clearconfig(client);
 		nsconfig_diff(client);
 		saveconfig(client);
@@ -138,6 +170,294 @@ public class set_config
 		bindsslvs_cert(client);
 	}
 
+	/*GSLB configs for Vserver, Service and Sites */
+	
+	public void add_gslb_vserver(nitro_service service)
+	{
+	
+		gslbvserver gslbvserver1=new gslbvserver();	
+		try{
+		gslbvserver1.set_name("gvip1");
+		gslbvserver1.set_servicetype("http");
+	
+		 
+		gslbvserver.add(service,gslbvserver1);				
+			System.out.println("add_gslb_vserver - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::add_gslb_vserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::add_gslb_vserver::message="+e);
+		}
+		
+	}	
+	public void set_gslb_vserver_timeout(nitro_service service)
+	{
+	
+		gslbvserver gslbvserver1=new gslbvserver();	
+		try{
+		gslbvserver1.set_name("gvip1");
+		gslbvserver1.set_timeout(10);	
+		
+		gslbvserver.update(service,gslbvserver1);				
+			System.out.println("set_gslb_vserver_timeout - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::set_gslb_vserver_timeout::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::set_gslb_vserver_timeout::message="+e);
+		}
+		
+	}	
+	
+	
+	public void unset_gslb_vserver_timeout(nitro_service service)
+	{
+		
+		gslbvserver gslbvserver1=new gslbvserver();	
+		try{
+		gslbvserver1.set_name("gvip1");
+		String arr[]={"timeout"};
+		 			
+		gslbvserver.unset(service,gslbvserver1,arr);				
+			System.out.println("unset_gslb_vserver_timeout - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::unset_gslb_vserver_timeout::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::unset_gslb_vserver_timeout::message="+e);
+		}
+		
+	}	
+	
+	public void enable_gslb_vserver(nitro_service service)
+	{
+			
+		try{
+		
+		gslbvserver.enable(service,"gvip1");				
+			System.out.println("enable_gslb_vserver - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::enable_gslb_vserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::enable_gslb_vserver::message="+e);
+		}
+		
+	}	
+	public void disable_gslb_vserver(nitro_service service)
+	{
+			
+		try{
+					
+		gslbvserver.disable(service,"gvip1");				
+			System.out.println("disable_gslb_vserver - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::disable_gslb_vserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::disable_gslb_vserver::message="+e);
+		}
+		
+	}
+	
+	public void rename_gslb_vserver(nitro_service service)
+	{
+			
+		try{
+		
+		String newname="newgvip1";
+		 
+		gslbvserver.rename(service,"gvip1",newname);				
+			System.out.println("rename_gslb_vserver - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::rename_gslb_vserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::rename_gslb_vserverr::message="+e);
+		}
+		
+	}	
+		
+	public void add_gslb_service(nitro_service service)
+	{
+		
+		int port=80;
+		long no=100;
+	
+		gslbservice gslbservice1=new gslbservice();
+		try{
+		gslbservice1.set_servicename("svc0");
+		gslbservice1.set_ip("10.102.3.239");
+		gslbservice1.set_maxclient(no);
+		gslbservice1.set_port(port);
+		gslbservice1.set_sitename("bangalore1");
+		gslbservice1.set_servicetype("http");
+			
+		gslbservice.add(service,gslbservice1);				
+			System.out.println("add_gslb_service - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::add_gslb_service::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::add_gslb_service::message="+e);
+		}
+		
+	}
+	
+	public void set_gslb_service_cip(nitro_service service)
+	{
+		
+		gslbservice gslbservice1=new gslbservice();
+		try{
+		gslbservice1.set_servicename("svc0");
+		gslbservice1.set_cip("enabled");
+		 
+		gslbservice.update(service,gslbservice1);				
+			System.out.println("set_gslb_service_cip - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::set_gslb_service_cip::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::set_gslb_service_cip::message="+e);
+		}
+		
+	}
+	public void unset_gslb_service_cip(nitro_service service)
+	{
+		
+		gslbservice gslbservice1=new gslbservice();
+		try{
+		gslbservice1.set_servicename("svc0");
+		
+			String arr[]={"cip"};	
+		 
+		gslbservice.unset(service,gslbservice1,arr);				
+			System.out.println("unset_gslb_service_cip - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::unset_gslb_service_cip::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::unset_gslb_service_cip::message="+e);
+		}
+		
+	}
+	
+	
+	public void rename_gslb_service(nitro_service service)
+	{
+		
+		try{
+		String newname="newsvc0";
+		 
+		gslbservice.rename(service,"svc0",newname);				
+			System.out.println("rename_gslb_service - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::rename_gslb_service::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::rename_gslb_service::message="+e);
+		}
+		
+	}
+	
+	
+
+	
+	public  void add_gslb_site(nitro_service service)
+	{
+		
+		gslbsite gslbsite1 =new gslbsite();
+	
+		try{
+		gslbsite1.set_sitename("bangalore1");
+		gslbsite1.set_sitetype("local");
+		gslbsite1.set_metricexchange("enabled");
+		gslbsite1.set_siteipaddress("10.102.3.222");
+		 
+		gslbsite.add(service,gslbsite1);
+			System.out.println("add_gslb_site - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::add_gslb_site::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::add_gslb_site::message="+e);
+		}
+		
+	}
+	
+	public void set_gslb_site_metricexchange(nitro_service service)
+	{ 
+				
+		gslbsite gslbsite1 =new gslbsite();
+		try{
+		gslbsite1.set_sitename("bangalore1");
+		gslbsite1.set_metricexchange("enabled");
+		 
+		gslbsite.update(service,gslbsite1);	
+			System.out.println("set_gslb_site_metricexchange - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::set_gslb_site_metricexchange::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::set_gslb_site_metricexchange::message="+e);
+		}
+		
+		
+	}
+	public void unset_gslb_site_metricexchange(nitro_service service)
+	{ 
+		
+		
+		String []arr={"metricexchange"};
+		gslbsite gslbsite1 =new gslbsite();
+		try{
+		gslbsite1.set_sitename("bangalore1");
+		 
+		gslbsite.unset(service,gslbsite1,arr);	
+			System.out.println("unset_gslb_site_metricexchange - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::unset_gslb_site_metricexchange::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::unset_gslb_site_metricexchange::message="+e);
+		}
+		
+		
+	}
+	
+	
+	/* GSLB vserver_service binding*/
+	
+	
+	public  void bind_gslbvserver_gslbservice(nitro_service service)
+	{	
+		try{
+		gslbvserver_gslbservice_binding obj = new gslbvserver_gslbservice_binding();
+		obj.set_name("newgvip1");
+		obj.set_servicename("newsvc0");
+		
+		gslbvserver_gslbservice_binding.add(service,obj);
+			System.out.println("bind_gslbvserver_gslbservice - Done ");			 
+		} catch (nitro_exception e) {
+			System.out.println("Exception::bind_gslbvserver_gslbservice::errorcode="+e.getErrorCode()+" , Message ="+ e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Exception::bind_gslbvserver_gslbservice::message="+e);			 
+		}
+	}
 	
 	public void nsconfig_diff(nitro_service client){
    		try

@@ -1,14 +1,20 @@
 package com.citrix.netscaler.nitro.samples;
-
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
+
 import com.google.gson.Gson;
 
 import com.citrix.netscaler.nitro.exception.nitro_exception;
@@ -33,7 +39,11 @@ import com.citrix.netscaler.nitro.resource.config.dns.dnsview_dnspolicy_binding;
 import com.citrix.netscaler.nitro.resource.config.dns.dnszone;
 import com.citrix.netscaler.nitro.resource.config.gslb.gslbldnsentries;
 import com.citrix.netscaler.nitro.resource.config.gslb.gslbparameter;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbservice;
 import com.citrix.netscaler.nitro.resource.config.gslb.gslbservice_binding;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbsite;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbvserver;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbvserver_gslbservice_binding;
 import com.citrix.netscaler.nitro.resource.config.ha.hanode;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver_binding;
 import com.citrix.netscaler.nitro.resource.config.network.Interface;
@@ -145,7 +155,7 @@ public class get_config
     	get_nsfeature(client);
     	get_enabled_nsfeature(client);
     	//get_svcmon_binds(client);
-    	get_snmpoid(client);
+		get_snmpoid(client);
     	get_appfwlearningdata(client);
     	count_lbvserver(client);
     	count_lbvserver_service_binding(client);
@@ -177,6 +187,77 @@ public class get_config
      	getlbvserver_bulk(client);
     	getlbvs_svc_bind_bulk(client);
     	get_vpnglobal_authpol(client);
+   	 	get_gslbvserver(client);
+   	 	get_gslbsite(client);
+   	 	get_gslbservice(client);
+   	 	get_gslbvserver_service_binding(client);
+     }
+     
+     /*Getting GSLB vserver, service and site */
+     public  void   get_gslbvserver(nitro_service client){
+   		try
+   		{
+   			gslbvserver result = gslbvserver.get(client,"newgvip1");
+    			System.out.println("get_gslbvserver - name= "+result.get_name() + ", servicetype= " + result.get_servicetype());	
+   		} catch (nitro_exception e)
+   		{
+   			System.out.println("Exception::get_gslbvserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+   		} catch (Exception e)
+   		{
+   			System.err.println("Exception::get_gslbvserver::message="+e);
+   		}
+      }
+     
+     public  void   get_gslbservice(nitro_service client){
+    		try
+    		{
+    			gslbservice result = gslbservice.get(client,"newsvc0");
+     			System.out.println("get_gslbservice - servicename= "+result.get_servicename() + ", servicetype= " + result.get_servicetype());	
+    		} catch (nitro_exception e)
+    		{
+    			System.out.println("Exception::get_gslbservice::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+    		} catch (Exception e)
+    		{
+    			System.err.println("Exception::get_gslbservice::message="+e);
+    		}
+       }
+     
+     public  void   get_gslbsite(nitro_service client){
+ 		try
+ 		{
+ 			gslbsite result = gslbsite.get(client, "bangalore1");
+  			System.out.println("get_gslbsite - sitename= "+result.get_sitename() + ", siteipaddress= " + result.get_siteipaddress());	
+ 		} catch (nitro_exception e)
+ 		{
+ 			System.out.println("Exception::get_gslbsite::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+ 		} catch (Exception e)
+ 		{
+ 			System.err.println("Exception::get_gslbsite::message="+e);
+ 		}
+    }
+     
+     
+     public  void   get_gslbvserver_service_binding(nitro_service client){
+    	 try
+   		{
+   			gslbvserver_gslbservice_binding[] result = gslbvserver_gslbservice_binding.get(client,"newgvip1");
+   			if(result != null)
+   			{
+   				for(int i =0 ;i<result.length;i++) {
+   					System.out.println("get_gslbvserver_service_binding - vserver name= "+result[i].get_name() + ", servicename= " + result[i].get_servicename());
+   				}
+   			}
+   			else
+   			{
+   				System.out.println("Exception::get_gslbvserver_service_binding - Done");
+   			}
+   		} catch (nitro_exception e)
+   		{
+   			System.out.println("Exception::get_gslbvserver_service_binding::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+   		} catch (Exception e)
+   		{
+   			System.err.println("Exception::get_gslbvserver_service_binding::message="+e);
+   		}
      }
      
      public  void   get_vpnglobal_authpol(nitro_service client){
@@ -382,7 +463,9 @@ public class get_config
      public  void   get_nsip(nitro_service client){
     		try
     		{
-    			nsip result = nsip.get(client, "1.1.1.77");
+    			nsip obj = new nsip();
+    			obj.set_ipaddress("1.1.1.77");	
+    			nsip result = nsip.get(client, obj);
     			System.out.println("get_nsip - metric"+result.get_metric()+ ", flags=" +result.get_flags()+ ", ospfarea"+ result.get_ospfarea()+ ", ospfareaval=" +result.get_ospfareaval());
     		} catch (nitro_exception e)
     		{
@@ -593,10 +676,15 @@ public class get_config
     		 snmpoid_args obj = new snmpoid_args();
     		 obj.set_entitytype("VSERVER");
     		snmpoid[] result = snmpoid.get(client, obj);
+    		if (result!= null) {
   			System.out.println("get_snmpoid name="+result.length);
   			for (int i =0;i<result.length;i++){
   				System.out.println(" enitity_name: "+result[i].get_entitytype()+" name="+result[i].get_name()+" cmnt= "+result[i].get_Snmpoid());
   			}
+    		}
+    		else {
+    			System.out.println("Exception::get_snmpoid::Done");
+    		}
    		}catch (nitro_exception e)
    		{
    			System.out.println("Exception::get_snmpoid::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
@@ -715,7 +803,7 @@ public class get_config
      public void get_sslcipher_binds(nitro_service client){
     	 try
     		{
-     		sslcipher_binding result = sslcipher_binding.get(client);
+     		sslcipher_binding result = sslcipher_binding.get(client, "g1");
    			System.out.println("get_sslcipher_binds name="+result.get_sslcipher_individualcipher_bindings().length);
     		}catch (nitro_exception e)
     		{
@@ -809,7 +897,12 @@ public class get_config
  		try
  		{
  			gslbservice_binding result = gslbservice_binding.get(client,"sj_svc");
-			System.out.println("get_gslbservice_binds name="+result.get_servicename()+", viewname=" + result.get_gslbservice_dnsview_bindings()[0].get_viewname());
+ 			if (result != null) {
+ 				System.out.println("get_gslbservice_binds name="+result.get_servicename()+", viewname=" + result.get_gslbservice_dnsview_bindings()[0].get_viewname());
+ 			}
+ 			else {
+ 				System.out.println("Exception::get_gslbservice_binds::Done");
+ 			}
  		}catch (nitro_exception e)
  		{
  			System.out.println("Exception::get_gslbservice_binds::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
@@ -1102,7 +1195,15 @@ public class get_config
 		try
 		{
 			lbvserver[] result = lbvserver.get(client);
-			System.out.println("get_lbvserver result::length="+result.length);
+   			if(result != null)
+   			{
+   				System.out.println("get_lbvserver result::length="+result.length);
+
+   			}
+   			else
+   			{
+   				System.out.println("Exception::get_lbvserver - Done");
+   			}
 		}catch (nitro_exception e)
 		{
 			System.out.println("Exception::get_lbvserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
@@ -1253,7 +1354,12 @@ public class get_config
 			//filter[0] = new filtervalue("port","80");
 			//filter[1] = new filtervalue("servicetype","HTTP");
 			lbvserver[] result = (lbvserver[])lbvserver.get_filtered(client, filter);
-			System.out.println("getfiltered_lbvserver result::length="+result.length);
+			if (result != null) {
+				System.out.println("getfiltered_lbvserver result::length="+result.length);
+			}
+			else {
+				System.out.println("Exception::getfiltered_lbvserver::Done");
+			}
 		}catch (nitro_exception e)
 		{
 			System.out.println("Exception::getfiltered_lbvserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
@@ -1269,7 +1375,12 @@ public class get_config
 		{
 			String filter = "port:80,servicetype:HTTP";
 			service[] result = service.get_filtered(client,filter);
-			System.out.println("getfiltered_services result::length="+result.length);
+			if (result != null) {
+				System.out.println("getfiltered_services result::length="+result.length);
+			}
+			else {
+				System.out.println("Exception::getfiltered_services::Done");
+			}
 		}catch (nitro_exception e)
 		{
 			System.out.println("Exception::getfiltered_services::errorcode="+e.getErrorCode()+",message="+ e.getMessage());

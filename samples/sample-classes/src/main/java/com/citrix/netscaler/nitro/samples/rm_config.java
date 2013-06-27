@@ -1,14 +1,20 @@
 package com.citrix.netscaler.nitro.samples;
-
 /*
-* The following copyright is for all changes made by Citrix Systems, Inc.:
-* Copyright: Copyright 2002-2008 Citrix Systems, Inc. All rights reserved.
-* This software and documentation contain valuable trade
-* secrets and proprietary property belonging to Citrix Systems, Inc.
-* None of this software and documentation may be copied,
-* duplicated or disclosed without the express
-* written permission of Citrix Systems, Inc.
+* Copyright (c) 2008-2015 Citrix Systems, Inc.
+*
+*   Licensed under the Apache License, Version 2.0 (the "License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
 */
+
 import com.citrix.netscaler.nitro.exception.nitro_exception;
 import com.citrix.netscaler.nitro.resource.base.base_response;
 import com.citrix.netscaler.nitro.resource.config.appfw.appfwconfidfield;
@@ -19,6 +25,10 @@ import com.citrix.netscaler.nitro.resource.config.basic.servicegroup_servicegrou
 import com.citrix.netscaler.nitro.resource.config.cs.cspolicy;
 import com.citrix.netscaler.nitro.resource.config.cs.csvserver;
 import com.citrix.netscaler.nitro.resource.config.filter.filterprebodyinjection;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbservice;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbsite;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbvserver;
+import com.citrix.netscaler.nitro.resource.config.gslb.gslbvserver_gslbservice_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbmonitor;
 import com.citrix.netscaler.nitro.resource.config.lb.lbmonitor_service_binding;
 import com.citrix.netscaler.nitro.resource.config.lb.lbvserver;
@@ -90,8 +100,78 @@ public class rm_config
 		unset_bulk_service(client);
                 rmlbvserver_bulk(client);
 		rmcsvserver_bulk(client);
-		unbind_lbmonitor_service(client);
+		//unbind_lbmonitor_service(client);
 		rmcsvserver_bulk_1(client);
+		unbind_gslbvserver_gslbservice(client);
+		rm_gslb_vserver(client);
+		rm_gslb_service(client);
+		rm_gslb_site(client);
+	}
+	
+	public void unbind_gslbvserver_gslbservice(nitro_service service)
+	{
+		try{
+		gslbvserver_gslbservice_binding obj = new gslbvserver_gslbservice_binding();
+		obj.set_servicename("newsvc0");
+		obj.set_name("newgvip1");
+			
+		gslbvserver_gslbservice_binding.delete(service,obj);			
+			System.out.println("unbind_gslbvserver_gslbservice - Done");			 
+		} catch (nitro_exception e) {
+			System.out.println("Exception::unbind_gslbvserver_gslbservice::errorcode="+e.getErrorCode()+" , Message ="+ e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Exception::unbind_gslbvserver_gslbservice::message="+e);			 
+		}
+	}
+	
+	public  void rm_gslb_vserver(nitro_service service)
+	{
+		
+		try{
+		 
+		gslbvserver.delete(service,"newgvip1");				
+			System.out.println("rm_gslb_vserver - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::rm_gslb_vserver::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::rm_gslb_vserver::message="+e);
+		}
+		
+	}	
+	
+	public void rm_gslb_service(nitro_service service)
+	{
+		
+		try{
+		 
+		gslbservice.delete(service,"newsvc0");				
+			System.out.println("rm_gslb_service - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::rm_gslb_service::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::rm_gslb_service::message="+e);
+		}
+		
+	}
+	
+	public void rm_gslb_site(nitro_service service)
+	{
+	
+		try{
+		gslbsite.delete(service,"bangalore1");				
+			System.out.println("rm_gslb_site - Done");
+		}catch (nitro_exception e)
+		{
+			System.out.println("Exception::rm_gslb_site::errorcode="+e.getErrorCode()+",message="+ e.getMessage());
+		}catch (Exception e)
+		{
+			System.out.println("Exception::rm_gslb_site::message="+e);
+		}
+		
 	}
 	
 	public static void rmcsvserver_bulk_1(nitro_service service)
@@ -149,6 +229,7 @@ public class rm_config
 		}
 	}
 	
+	/*
 	public static void unbind_lbmonitor_service(nitro_service service)
 	{
 
@@ -169,8 +250,8 @@ public class rm_config
 		System.err.println("Exception::unbind_lbmonitor_service::message="+e);
 	}
 
-	}
-
+	}	
+	*/
 	
 	public static void unset_bulk_service(nitro_service client)
 	{		 
@@ -217,7 +298,9 @@ public class rm_config
 	public static void unset_filterprebody(nitro_service client)
 	{
 		try {
-			filterprebodyinjection.unset(client, null);
+			filterprebodyinjection obj = filterprebodyinjection.get(client);
+			String args[] = {"prebody"};
+			filterprebodyinjection.unset(client, obj, args);
 			System.out.println("unset_filterprebody - Done");
 		} catch (nitro_exception e) {
 			System.out.println("Exception:: unset_filterprebody::rc="+e.getErrorCode()+" , Message ="+ e.getMessage());
@@ -229,8 +312,9 @@ public class rm_config
 	public static void unset_channel(nitro_service client)
 	{
 		try {
+			channel obj = channel.get(client, "LA/1");
 			String[] args = {"state", "speed"};
-			channel.unset(client, "LA/1", args);
+			channel.unset(client, obj, args);
 			System.out.println("unset_channel - Done");
 		} catch (nitro_exception e) {
 			System.out.println("Exception:: unset_channel::rc="+e.getErrorCode()+" , Message ="+ e.getMessage());
@@ -471,8 +555,9 @@ public class rm_config
 	public  void unset_cspolicy_domain(nitro_service client){
 		try
 		{
+			cspolicy obj = cspolicy.get(client, "cs_pol");
 			String args[] = {"domain"};
-			cspolicy.unset(client, "cs_pol", args);
+			cspolicy.unset(client, obj, args);
 			System.out.println("unset_cspolicy_domain - Done");
 		}catch (nitro_exception e)
 		{
@@ -523,7 +608,9 @@ public class rm_config
 
 	public  void unset_snmp_engineId (nitro_service client){
 		try {
-			snmpengineid.unset(client, null);
+			String[] args = {"ownerNode"};
+			snmpengineid my_engineid[] = snmpengineid.get(client);
+			snmpengineid.unset(client, my_engineid, args);
 			System.out.println("unset_snmp_engineId - Done");
 		}catch (nitro_exception e)
 		{

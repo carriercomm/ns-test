@@ -14,7 +14,7 @@
         <dependency>
             <groupId>com.citrix.netscaler</groupId>
             <artifactId>ns-nitro</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>10.1.112-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
