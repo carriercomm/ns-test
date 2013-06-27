@@ -15,6 +15,7 @@
         <module>sample-classes</module>
         <module>not-implemented</module>
         <module>get_config</module>
+        <module>CreateCluster</module>
     </modules>
     <build>
          <pluginManagement>
