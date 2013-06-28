@@ -1,0 +1,473 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson
+END
+JsonDeserializerExceptionWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonDeserializerExceptionWrapper.java
+END
+JsonFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonFormatter.java
+END
+JsonParserJavacc.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonParserJavacc.java
+END
+JavaFieldNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JavaFieldNamingPolicy.java
+END
+JsonSerializer.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonSerializer.java
+END
+JsonCompactFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonCompactFormatter.java
+END
+ModifierBasedExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ModifierBasedExclusionStrategy.java
+END
+JsonSerializationContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonSerializationContext.java
+END
+InnerClassExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/InnerClassExclusionStrategy.java
+END
+Preconditions.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/Preconditions.java
+END
+Token.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/Token.java
+END
+LowerCamelCaseSeparatorNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/LowerCamelCaseSeparatorNamingPolicy.java
+END
+JsonSerializationContextDefault.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonSerializationContextDefault.java
+END
+ObjectNavigator.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ObjectNavigator.java
+END
+TypeAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TypeAdapter.java
+END
+JsonElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonElement.java
+END
+JsonObjectDeserializationVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonObjectDeserializationVisitor.java
+END
+ModifyFirstLetterNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ModifyFirstLetterNamingPolicy.java
+END
+JsonParserJavaccConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonParserJavaccConstants.java
+END
+ExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ExclusionStrategy.java
+END
+LowerCaseNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/LowerCaseNamingPolicy.java
+END
+JsonArrayDeserializationVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonArrayDeserializationVisitor.java
+END
+GenericArrayTypeImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/GenericArrayTypeImpl.java
+END
+JsonObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonObject.java
+END
+UpperCaseNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/UpperCaseNamingPolicy.java
+END
+JsonNull.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonNull.java
+END
+Gson.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/Gson.java
+END
+DisjunctionExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/DisjunctionExclusionStrategy.java
+END
+JsonArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonArray.java
+END
+CamelCaseSeparatorNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/CamelCaseSeparatorNamingPolicy.java
+END
+ExposeAnnotationBasedExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ExposeAnnotationBasedExclusionStrategy.java
+END
+JsonDeserializer.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonDeserializer.java
+END
+GsonBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/GsonBuilder.java
+END
+CompositionFieldNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/CompositionFieldNamingPolicy.java
+END
+Escaper.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/Escaper.java
+END
+JsonParseException.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonParseException.java
+END
+StringUnmarshaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/StringUnmarshaller.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/package-info.java
+END
+InstanceCreator.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/InstanceCreator.java
+END
+JsonFieldNameValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonFieldNameValidator.java
+END
+JsonParserJavaccTokenManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonParserJavaccTokenManager.java
+END
+TypeInfoMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TypeInfoMap.java
+END
+TypeInfoArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TypeInfoArray.java
+END
+TypeInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TypeInfo.java
+END
+FieldNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/FieldNamingPolicy.java
+END
+TokenMgrError.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TokenMgrError.java
+END
+TypeUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TypeUtils.java
+END
+SimpleCharStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/SimpleCharStream.java
+END
+MappedObjectConstructor.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/MappedObjectConstructor.java
+END
+ObjectNavigatorFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ObjectNavigatorFactory.java
+END
+JsonPrintFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonPrintFormatter.java
+END
+LongSerializationPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/LongSerializationPolicy.java
+END
+RecursiveFieldNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/RecursiveFieldNamingPolicy.java
+END
+JsonParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonParser.java
+END
+JsonDeserializationContextDefault.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonDeserializationContextDefault.java
+END
+MemoryRefStack.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/MemoryRefStack.java
+END
+Primitives.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/Primitives.java
+END
+FieldNamingStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/FieldNamingStrategy.java
+END
+JsonDeserializationVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonDeserializationVisitor.java
+END
+JsonPrimitive.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonPrimitive.java
+END
+VersionExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/VersionExclusionStrategy.java
+END
+JsonEscapingVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonEscapingVisitor.java
+END
+JsonElementVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonElementVisitor.java
+END
+JsonTreeNavigator.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonTreeNavigator.java
+END
+TypeInfoCollection.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TypeInfoCollection.java
+END
+DefaultTypeAdapters.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/DefaultTypeAdapters.java
+END
+ObjectConstructor.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ObjectConstructor.java
+END
+SerializedNameAnnotationInterceptingNamingPolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/SerializedNameAnnotationInterceptingNamingPolicy.java
+END
+ParameterizedTypeImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ParameterizedTypeImpl.java
+END
+VersionConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/VersionConstants.java
+END
+JsonDeserializationContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonDeserializationContext.java
+END
+TypeInfoFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/TypeInfoFactory.java
+END
+NullExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/NullExclusionStrategy.java
+END
+JsonSerializationVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/JsonSerializationVisitor.java
+END
+DelegatingJsonElementVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/DelegatingJsonElementVisitor.java
+END
+ParseException.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ParseException.java
+END
+AnonymousAndLocalClassExclusionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/AnonymousAndLocalClassExclusionStrategy.java
+END
+ParameterizedTypeHandlerMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/418/tags/1.3/src/main/java/com/google/gson/ParameterizedTypeHandlerMap.java
+END
