@@ -7,8 +7,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.citrix.netscaler</groupId>
-    <artifactId>CreateCluster</artifactId>
-    <name>Netscvaler :: Experiment :: Samples :: CreateCluster</name>
+    <artifactId>set_config</artifactId>
+    <name>Netscvaler :: Experiment :: Samples :: Set Config</name>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -40,7 +40,7 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>com.citrix.netscaler.nitro.samples.CreateCluster</mainClass>
+                                <mainClass>com.citrix.netscaler.nitro.samples.set_config</mainClass>
                             </manifest>
                         </archive>
                         <descriptorRefs>

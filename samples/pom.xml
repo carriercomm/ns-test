@@ -16,6 +16,12 @@
         <module>not-implemented</module>
         <module>get_config</module>
         <module>CreateCluster</module>
+        <module>apptemplate_export</module>
+        <module>apptemplate_import</module>
+        <module>MyFirstNitroApplication</module>
+        <module>rm_config</module>
+        <module>set_config</module>
+        <module>stats</module>
     </modules>
     <build>
          <pluginManagement>
