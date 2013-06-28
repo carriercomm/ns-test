@@ -22,6 +22,7 @@
         <module>rm_config</module>
         <module>set_config</module>
         <module>stats</module>
+        <module>run_bat</module>
     </modules>
     <build>
          <pluginManagement>
